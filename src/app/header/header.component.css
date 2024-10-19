@@ -1,24 +1,13 @@
-header {
-  background-color: #333;
-  color: white;
-  padding: 1rem;
-}
-
-nav ul {
+.nav {
   display: flex;
-  list-style-type: none;
+  gap: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  outline: 2px solid black;
 }
 
-nav ul li {
-  margin-right: 1rem;
-}
-
-nav ul li a {
-  color: black;
+.nav a {
   text-decoration: none;
-}
-
-nav ul li a.active {
-  font-weight: bold;
-  text-decoration: underline;
+  color: inherit;
+  transition: font-weight 0.2s;
 }
