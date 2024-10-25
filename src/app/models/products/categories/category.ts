@@ -1,0 +1,22 @@
+export enum Category {
+    NONE,
+    AIRE_ACONCIIONADO,
+    VENTILADOR, 
+    TELEVISORES, 
+    AURICULARES, 
+    PARLANTES, 
+    HELADERAS, 
+    LAVARROPAS,
+    AspiradorasASPIRADORAS,
+    MICROONDAS, 
+    TOSTADORA,
+    CELULARES,
+    NOTEBOOKS,
+    TABLETS, 
+    IMPRESORAS, 
+    COMPUTADORAS_ESCRITORIO,
+    PS5,
+    TECLADOS,
+    MOUSES
+}
+
