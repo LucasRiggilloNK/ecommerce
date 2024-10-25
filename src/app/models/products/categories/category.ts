@@ -7,7 +7,7 @@ export enum Category {
     PARLANTES, 
     HELADERAS, 
     LAVARROPAS,
-    AspiradorasASPIRADORAS,
+    ASPIRADORAS,
     MICROONDAS, 
     TOSTADORA,
     CELULARES,
