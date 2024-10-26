@@ -10,16 +10,18 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
-    ReactiveFormsModule,
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    RegisterComponent,
+    RegisterComponent, 
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule, 
+  ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })
