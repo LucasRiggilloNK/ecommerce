@@ -22,6 +22,7 @@ export enum Brand {
     PANASONIC,
     MICROSOFT,
     NINTENDO,
+    LILIANA,
     LENOVO,
     HP,
     DELL,
