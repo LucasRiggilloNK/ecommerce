@@ -25,7 +25,7 @@ export class Product {
 		this.characteristics = characteristics;
 		this.model = model;
 	}
-
+    
 
 
 
@@ -109,10 +109,4 @@ export class Product {
         this.model = model;
     }
 
-	
-    
-    
-	
- 
-    
 }
