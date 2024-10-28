@@ -7,13 +7,13 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = ' ';
+  private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<boolean> {
     return this.http
-      .post<{ token: string }>(`${this.apiUrl}/login`, { username, password })
+      .post<{ token: string }>(`${this.apiUrl}/users`, { username, password })
       .pipe(
         map((response) => {
           localStorage.setItem('auth_token', response.token);
@@ -28,13 +28,16 @@ export class AuthService {
       );
   }
 
-  ogout(): void {
+  logout(): void {
     if (confirm('Are you sure you want to logout?')) {
       localStorage.removeItem('auth_token');
     }
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('auth_token');
+    if (typeof window !== 'undefined') {
+      return !!localStorage.getItem('auth_token');
+    }
+    return false;
   }
 }

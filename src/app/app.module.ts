@@ -9,7 +9,7 @@ import { PrivateComponent } from './private/private.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/login/auth.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,6 @@ import { HttpClientModule, provideHttpClient } from '@angular/common/http';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    provideHttpClient({ withFetch: true }),
   ],
   bootstrap: [AppComponent],
 })
