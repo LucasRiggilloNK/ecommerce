@@ -7,8 +7,7 @@ export class Usuario {
       public birthdate: Date,
       public address: string,
       public postalCode: string,
-      public email: string,
-      public password: string
+      public email: string
     ) {
       this.age = this.calculateAge(birthdate);
     }

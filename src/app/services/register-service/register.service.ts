@@ -6,7 +6,7 @@ export interface User {
   id?: number; 
   name: string;
   lastname: string;
-  birthdate: Date;
+  birthdate: string;
   age?: number;
   address: string;
   postalCode: string;
