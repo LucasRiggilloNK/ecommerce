@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Usuario } from '../models/users/user';
 import { RegisterService, User } from '../services/register-service/register.service';
 import { EmailService } from '../services/email-service/email.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,8 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private registerService: RegisterService,
-    private emailService: EmailService 
+    private emailService: EmailService,
+    private router: Router
   ) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
@@ -24,17 +26,18 @@ export class RegisterComponent {
       address: ['', Validators.required],
       postalCode: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
     });
   }
 
   onSubmit() {
     if (this.registerForm.valid) {
-      const { name, lastname, birthdate, address, postalCode, email } = this.registerForm.value;
-      const nuevoUsuario: User = { name, lastname, birthdate, address, postalCode, email };
+      const { name, lastname, birthdate, address, postalCode, email, password } = this.registerForm.value;
+      const nuevoUsuario: User = { name, lastname, birthdate, address, postalCode, email, password };
 
       this.registerService.registerUser(nuevoUsuario).subscribe(
         (response) => {
-          console.log('Usuario registrado:', response);
+          this.router.navigate(['/']);
           this.sendConfirmationEmail(email);
         },
         (error) => {
