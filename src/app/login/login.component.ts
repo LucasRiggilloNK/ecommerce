@@ -18,20 +18,20 @@ export class LoginComponent {
     private router: Router
   ) {
     this.loginForm = this.fb.group({
-      username: ['', Validators.required],
+      name: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
 
   login(): void {
     if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
-      this.authService.login(username, password).subscribe({
+      const { name, password } = this.loginForm.value;
+      this.authService.login(name, password).subscribe({
         next: (success) => {
           if (success) {
             this.router.navigate(['/']);
           } else {
-            this.errorMessage = 'Invalid username or password';
+            this.errorMessage = 'Invalid name or password';
           }
         },
         error: (err) => {

@@ -4,20 +4,17 @@
     <div class="form-group">
       <input
         type="text"
-        id="username"
-        formControlName="username"
+        id="name"
+        formControlName="name"
         required
         class="form-input"
-        placeholder="Username"
+        placeholder="name"
       />
       <div
-        *ngIf="
-          loginForm.get('username')?.invalid &&
-          loginForm.get('username')?.touched
-        "
+        *ngIf="loginForm.get('name')?.invalid && loginForm.get('name')?.touched"
         class="error-message"
       >
-        *Username is required
+        *name is required
       </div>
     </div>
     <div class="form-group">
