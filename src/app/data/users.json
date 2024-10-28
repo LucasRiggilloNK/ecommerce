@@ -1,4 +1,14 @@
 {
   "users": [
+    {
+      "id": "ba3d",
+      "name": "Nicolas",
+      "lastname": "Blanco rio",
+      "birthdate": "2024-10-12",
+      "address": "Beltrami Al 1560",
+      "postalCode": "7600",
+      "email": "nicolasuxmal@gmail.com",
+      "password": "1234"
+    }
   ]
 }
