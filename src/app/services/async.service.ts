@@ -19,5 +19,8 @@ export class AsyncService {
     }
     return this.http.post(urlApi, product, httpOptions).toPromise();
   }
+  getById(productId: number, urlApi: string):Promise<any>{
+    return this.http.get(urlApi + productId).toPromise();
+  }
 }
 

@@ -5,30 +5,117 @@ import { ProductoInteface } from '../../interfaces/product/producto-inteface';
 import { Brand } from '../../models/products/brands/brand';
 import { Category } from '../../models/products/categories/category';
 import { Image } from '../../models/products/images/image';
+import { rootCertificates } from 'tls';
+import { response } from 'express';
+import { publicDecrypt } from 'crypto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
   private productsApiUrl: string = "";
+  private airesAcondicionadoApiUrl: string = "";
+  private aspiradorasApiUrl: string = "";
+  private auricularesApiUrl: string = "";
+  private celularesApiUrl: string = "";
+  private computadorasEscritorioApiUrl: string = "";
+  private heladerasApiUrl: string = "";
+  private impresorasApiUrl: string = "";
+  private lavarropasApiUrl: string = "";
+  private microondasApiUrl: string = "";
+  private mousesApiUrl: string = "";
+  private notebooksApiUrl: string = "";
+  private parlantesApiUrl: string = "";
+  private tabletsApiUrl: string = "";
+  private tecladosApiUrl: string = "";
+  private televisoresApiUrl: string = "";
+  private tostadorasApiUrl: string = "";
+  private ventiladoresApiUrl: string = "";
+  private ps5ApiUrl = "";
   protected producsList: Product[] = [];
+
   //private product: Product|null = null;
   private product: ProductoInteface|null = null; //Para relacionar con los campos de modificar producto
 
   constructor(private asyncService: AsyncService) { 
     this.product = {
     idProduct: "",
-     brand: Brand.NONE,
-     category: Category.NONE,
-     image: new Image(""),
-     description: "",
-     price: 0,
-     stock: 0,
-     characteristics: "",
-     model: ""
+    brand: Brand.NONE,
+    category: Category.NONE,
+    image: new Image(""),
+    description: "",
+    price: 0,
+    stock: 0,
+    characteristics: "",
+    model: ""
     }
   }
 
+
+  getApiCategory(category: Category):string{//Retorna el strning de la API por categoría
+    let salida = "";
+    switch(category){
+      case Category.NONE:
+          salida = "";
+          break;
+        case Category.AIRE_ACONDICIONADO:
+          salida = this.airesAcondicionadoApiUrl;
+          break;
+        case Category.VENTILADOR:
+          salida =this.ventiladoresApiUrl;
+          break;
+        case Category.TELEVISORES: 
+          salida =this.televisoresApiUrl;
+          break;
+        case Category.AURICULARES: 
+          salida =this.auricularesApiUrl;
+          break;
+        case Category.PARLANTES:
+          salida =this.parlantesApiUrl;
+          break;
+        case Category.HELADERAS:
+          salida =this.heladerasApiUrl;
+          break;
+        case Category.LAVARROPAS:
+          salida =this.lavarropasApiUrl;
+          break;
+        case Category.ASPIRADORAS:
+          salida =this.aspiradorasApiUrl;
+          break;
+        case Category.MICROONDAS: 
+          salida =this.microondasApiUrl;
+          break;
+        case Category.TOSTADORA:
+          salida =this.tostadorasApiUrl;
+          break;
+        case Category.CELULARES:
+          salida =this.celularesApiUrl;
+          break;
+        case Category.NOTEBOOKS:
+          salida =this.notebooksApiUrl;
+          break;
+        case Category.TABLETS:
+          salida =this.tabletsApiUrl;
+          break;
+        case Category.IMPRESORAS:
+          salida =this.impresorasApiUrl;
+          break;
+        case Category.COMPUTADORAS_ESCRITORIO:
+          salida =this.computadorasEscritorioApiUrl;
+          break;
+        case Category.PS5:
+          salida =this.ps5ApiUrl;
+          break;
+        case Category.TECLADOS:
+          salida =this.tecladosApiUrl;
+          break;
+        case Category.MOUSES:
+          salida =this.mousesApiUrl;
+          break;
+      
+    }
+    return salida;
+  }
   
 //////////////////////    GET PRODUCTS     ////////////////////////////////////////////////////
   public async getProductsApiUrl(){
@@ -57,12 +144,24 @@ export class ProductService {
      characteristics: product.getCharacteristics(),
      model: product.getModel()
     }
-    
+    return productInterface;
   }
 
- public addProduct(product: Product):void{
-  /**pasar el Product a interfaz */
-    /**agregar el p */
+ public async addProduct(product: Product){//agrega el producto al json
+  await this.asyncService.add(this.productToInterface(product), this.getApiCategory(product.getCategory()))
+  .then(response =>{
+    alert("PRODUCTO GUARDADO CON EXITO...");
+  })
+  .catch(reason =>{
+    alert("ERROR DE GUARDADO DE PRODUCTO EN API...");
+  });
   }
 
 }
+
+
+  //////////////////////    GET BY ID     ////////////////////////////////////////////////////
+
+  public async getProductById(id: number){//VER CATEGORIA DEL ID
+    await this.asyncService.getById(id, )
+  }
