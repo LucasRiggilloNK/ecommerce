@@ -38,7 +38,7 @@ export class Product {
             this.characteristics = '';
             this.model = '';
 	}
-    
+
 
 
 
@@ -86,7 +86,7 @@ export class Product {
         this.image = image;
     } */
      public getImage(): string
- {
+    {
         return this.image;
     }
 

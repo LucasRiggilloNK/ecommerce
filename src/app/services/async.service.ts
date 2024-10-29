@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ProductoInteface } from '../interfaces/product/producto-inteface';
+import { ProductInterface } from '../interfaces/product/product-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class AsyncService {
     return this.http.get(urlApi).toPromise();
   }
 
-  add(product: ProductoInteface, urlApi: string): Promise<any>{
+  add(product: ProductInterface, urlApi: string): Promise<any>{
     const httpOptions = {
       headers: new HttpHeaders({"contentType":"appliction/json"})
     }

@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../../models/products/product';
 import { AsyncService } from '../async.service';
-import { ProductoInteface } from '../../interfaces/product/producto-inteface';
 import { Brand } from '../../models/products/brands/brand';
 import { Category } from '../../models/products/categories/category';
 import { Image } from '../../models/products/images/image';
 import { rootCertificates } from 'tls';
 import { response } from 'express';
 import { publicDecrypt } from 'crypto';
+import { ProductInterface } from '../../interfaces/product/product-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -35,11 +35,11 @@ export class ProductService {
   protected producsList: Product[] = [];
 
   //private product: Product|null = null;
-  private product: ProductoInteface|null = null; //Para relacionar con los campos de modificar producto
+  private product: ProductInterface|null = null; //Para relacionar con los campos de modificar producto
 
   constructor(private asyncService: AsyncService) { 
     this.product = {
-    idProduct: "",
+    idProduct: 0,
     brand: Brand.NONE,
     category: Category.NONE,
     image: new Image(""),
@@ -103,9 +103,6 @@ export class ProductService {
         case Category.COMPUTADORAS_ESCRITORIO:
           salida =this.computadorasEscritorioApiUrl;
           break;
-        case Category.PS5:
-          salida =this.ps5ApiUrl;
-          break;
         case Category.TECLADOS:
           salida =this.tecladosApiUrl;
           break;
@@ -132,8 +129,8 @@ export class ProductService {
 
   //////////////////////    ADD PRODUCTS     ////////////////////////////////////////////////////
 
-  private productToInterface(product: Product): ProductoInteface{
-    let productInterface: ProductoInteface = {
+  private productToInterface(product: Product): ProductInterface{
+    let productInterface: ProductInterface = {
     idProduct: product.getIdProduct(),
      brand: product.getBrand(),
      category: product.getCategory(),
@@ -162,6 +159,6 @@ export class ProductService {
 
   //////////////////////    GET BY ID     ////////////////////////////////////////////////////
 
-  public async getProductById(id: number){//VER CATEGORIA DEL ID
-    await this.asyncService.getById(id, )
-  }
+/*   public async getProductById(id: number){//VER CATEGORIA DEL ID
+    await this.asyncService.getById(id, ) 
+  }*/

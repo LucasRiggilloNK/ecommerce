@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Brand } from '../../models/products/brands/brand';
 import { Category } from '../../models/products/categories/category';
 import { ProductcCharacteristicsService } from '../../services/product/product-characteristics.service';
+import { ProductInterface } from '../../interfaces/product/product-interface';
 
 @Component({
   selector: 'app-add-product',
@@ -24,6 +25,7 @@ export class AddProductComponent {
   characteristics: string = "";
   model: string = "";
 
+  product: ProductInterface;
   characteristicsString: string = "";
 
   constructor(private productCharacteristicsService: ProductcCharacteristicsService) {
