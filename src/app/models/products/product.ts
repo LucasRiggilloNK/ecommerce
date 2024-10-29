@@ -3,17 +3,19 @@ import { Category } from "./categories/category";
 import { Image } from "./images/image";
 
 export class Product {
-    private idProduct: string;
     private brand: Brand;
+//    private idProduct: string;
+    private idProduct: number;
     private category: Category;
-    private image: Image;
     private description: string;
     private price: number;
     private stock: number;
     private characteristics: string;
     private model: string;
+//    private image: Image;
+    private image: string;
 
-	constructor(idProduct: string, brand: Brand, category: Category, image: Image, description: string, price: number,
+	/*constructor(idProduct: string, brand: Brand, category: Category, image: Image, description: string, price: number,
 		stock: number,characteristics: string, model: string){
 		this.idProduct = idProduct;
 		this.brand = brand;
@@ -24,17 +26,36 @@ export class Product {
 		this.stock = stock;
 		this.characteristics = characteristics;
 		this.model = model;
+	}*/
+	constructor(){
+            this.idProduct = 0; // Valor por defecto
+            this.brand = Brand.NONE;
+            this.category = Category.NONE;
+            this.image = '';
+            this.description = '';
+            this.price = 0;
+            this.stock = 0;
+            this.characteristics = '';
+            this.model = '';
 	}
     
 
 
 
-    public getIdProduct(): string
+/*     public getIdProduct(): string
  {
         return this.idProduct;
     }
 
     public setIdProduct(idProduct: string) {
+        this.idProduct = idProduct;
+    } */
+    public getIdProduct(): number
+ {
+        return this.idProduct;
+    }
+
+    public setIdProduct(idProduct: number) {
         this.idProduct = idProduct;
     }
 
@@ -56,14 +77,22 @@ export class Product {
         this.category = category;
     }
 
-    public getImage(): Image
+/*     public getImage(): Image
  {
         return this.image;
     }
 
     public setImage(image: Image) {
         this.image = image;
+    } */
+     public getImage(): string
+ {
+        return this.image;
     }
+
+    public setImage(image: string) {
+        this.image = image;
+    } 
 
     public getDescription(): string
  {
