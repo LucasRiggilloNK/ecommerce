@@ -13,11 +13,17 @@ export class AuthService {
 
   login(username: string, password: string): Observable<boolean> {
     return this.http
-      .post<{ token: string }>(`${this.apiUrl}/users`, { username, password })
+      .get<{ id: number; username: string; password: string }[]>(
+        `${this.apiUrl}/users?username=${username}&password=${password}`
+      )
       .pipe(
-        map((response) => {
-          localStorage.setItem('auth_token', response.token);
-          return true;
+        map((users) => {
+          if (users.length > 0) {
+            localStorage.setItem('auth_token', 'your_token');
+            return true;
+          } else {
+            return false;
+          }
         }),
         catchError((error) => {
           console.error('Error en login:', error);
