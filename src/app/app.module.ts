@@ -19,6 +19,13 @@ import { FanCharacteristicsComponent } from './components/characteristics/fan-ch
 import { HeapphonesCharacteristicsComponent } from './components/characteristics/heapphones-characteristics/heapphones-characteristics.component';
 import { RefrigeratorCharacteristicsComponent } from './components/characteristics/refrigerator-characteristics/refrigerator-characteristics.component';
 import { WashingCharacteristicsComponent } from './components/characteristics/washing-characteristics/washing-characteristics.component';
+import { NotebooksCharacteristicsComponent } from './components/characteristics/notebooks-characteristics/notebooks-characteristics.component';
+import { SmartphonesCharacteristicsComponent } from './components/characteristics/smartphones-characteristics/smartphones-characteristics.component';
+import { MicrowaveCharacteristicsComponent } from './components/characteristics/microwave-characteristics/microwave-characteristics.component';
+import { TabletCharacteristicsComponent } from './components/characteristics/tablet-characteristics/tablet-characteristics.component';
+import { PrinterCharacteristicsComponent } from './components/characteristics/printer-characteristics/printer-characteristics.component';
+import { KeyboardCharacteristicsComponent } from './components/characteristics/keyboard-characteristics/keyboard-characteristics.component';
+import { MouseCharacteristicsComponent } from './components/characteristics/mouse-characteristics/mouse-characteristics.component';
 
 
 @NgModule({
@@ -32,7 +39,14 @@ import { WashingCharacteristicsComponent } from './components/characteristics/wa
     FanCharacteristicsComponent,
     HeapphonesCharacteristicsComponent,
     RefrigeratorCharacteristicsComponent,
-    WashingCharacteristicsComponent
+    WashingCharacteristicsComponent,
+    NotebooksCharacteristicsComponent,
+    SmartphonesCharacteristicsComponent,
+    MicrowaveCharacteristicsComponent,
+    TabletCharacteristicsComponent,
+    PrinterCharacteristicsComponent,
+    KeyboardCharacteristicsComponent,
+    MouseCharacteristicsComponent
   ],
 
   imports: [BrowserModule, AppRoutingModule,HttpClientModule, ReactiveFormsModule],

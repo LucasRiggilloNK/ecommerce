@@ -3,14 +3,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductcCharacteristicsService } from '../../../services/product/product-characteristics.service';
 
 @Component({
-  selector: 'app-washing-characteristics',
-  templateUrl: './washing-characteristics.component.html',
-  styleUrl: './washing-characteristics.component.css'
+  selector: 'app-smartphones-characteristics',
+  templateUrl: './smartphones-characteristics.component.html',
+  styleUrl: './smartphones-characteristics.component.css'
 })
-export class WashingCharacteristicsComponent {
+export class SmartphonesCharacteristicsComponent {
+  inchesList: string[] = ['4.0"', '4.7"', '5.0"', '5.5"', '5.8"', '6.1"', '6.3"', '6.5"', '6.7"', '6.8"', '7.0"'];
+  ramList: string[] = ['4 GB', '6 GB', '8 GB', '12 GB', '16 GB', '18 GB'];
 
-
-  washingCapacityList: string[] = ['6 kg', '7 kg', '8 kg', '9 kg', '10 kg', '11 kg'];
 
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
@@ -19,11 +19,12 @@ export class WashingCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "capacidadLavado": new FormControl("6 kg", [Validators.required]),
+      "pulgadas": new FormControl('4.0"', [Validators.required]),
+      "ram": new FormControl('4 GB"', [Validators.required])
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString
-    console.log("characteristicsString en CONSTRUCTOR AirConditioningCharacteristicsComponent");
+    console.log("characteristicsString en CONSTRUCTOR MicrowaveCharacteristicsComponent");
     console.log(this.characteristicsString);
   }
 

@@ -25,7 +25,7 @@ export class AddProductComponent {
   characteristics: string = "";
   model: string = "";
 
-  product: ProductInterface;
+  //product: ProductInterface;
   characteristicsString: string = "";
 
   constructor(private productCharacteristicsService: ProductcCharacteristicsService) {

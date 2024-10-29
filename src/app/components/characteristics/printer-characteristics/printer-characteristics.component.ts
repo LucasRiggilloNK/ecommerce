@@ -3,14 +3,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductcCharacteristicsService } from '../../../services/product/product-characteristics.service';
 
 @Component({
-  selector: 'app-washing-characteristics',
-  templateUrl: './washing-characteristics.component.html',
-  styleUrl: './washing-characteristics.component.css'
+  selector: 'app-printer-characteristics',
+  templateUrl: './printer-characteristics.component.html',
+  styleUrl: './printer-characteristics.component.css'
 })
-export class WashingCharacteristicsComponent {
+export class PrinterCharacteristicsComponent {
 
-
-  washingCapacityList: string[] = ['6 kg', '7 kg', '8 kg', '9 kg', '10 kg', '11 kg'];
+  isMonochromatic: string[] = ['Si', 'No'];
+  is3DPrinter: string[] = ['Sí', 'No'];
 
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
@@ -19,11 +19,11 @@ export class WashingCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "capacidadLavado": new FormControl("6 kg", [Validators.required]),
+      "monochromatic": new FormControl('No', [Validators.required]),
+      "is3DPrinter": new FormControl('No"', [Validators.required])
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString
-    console.log("characteristicsString en CONSTRUCTOR AirConditioningCharacteristicsComponent");
     console.log(this.characteristicsString);
   }
 

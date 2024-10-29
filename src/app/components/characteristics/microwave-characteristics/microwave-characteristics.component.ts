@@ -3,14 +3,12 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductcCharacteristicsService } from '../../../services/product/product-characteristics.service';
 
 @Component({
-  selector: 'app-washing-characteristics',
-  templateUrl: './washing-characteristics.component.html',
-  styleUrl: './washing-characteristics.component.css'
+  selector: 'app-microwave-characteristics',
+  templateUrl: './microwave-characteristics.component.html',
+  styleUrl: './microwave-characteristics.component.css'
 })
-export class WashingCharacteristicsComponent {
-
-
-  washingCapacityList: string[] = ['6 kg', '7 kg', '8 kg', '9 kg', '10 kg', '11 kg'];
+export class MicrowaveCharacteristicsComponent {
+  microwaveCapacityList: string[] = ["15 lts", "17 lts", "20 lts", "23 lts", "25 lts", "28 lts", "30 lts", "32 lts", "35 lts", "40 lts", "42 lts", "45 lts"];
 
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
@@ -19,11 +17,11 @@ export class WashingCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "capacidadLavado": new FormControl("6 kg", [Validators.required]),
+      "capacidad": new FormControl("15 lts", [Validators.required])
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString
-    console.log("characteristicsString en CONSTRUCTOR AirConditioningCharacteristicsComponent");
+    console.log("characteristicsString en CONSTRUCTOR MicrowaveCharacteristicsComponent");
     console.log(this.characteristicsString);
   }
 

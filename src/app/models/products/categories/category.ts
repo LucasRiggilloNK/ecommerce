@@ -1,7 +1,7 @@
 export enum Category {
     NONE = 'Ninguno',
     AIRE_ACONDICIONADO = 'Aire Acondicionado',
-    VENTILADOR = 'Ventilador', 
+    VENTILADOR = 'Ventiladores', 
     TELEVISORES = 'Televisores', 
     AURICULARES = 'Auriculares', 
     PARLANTES = 'Parlantes', 
