@@ -1,7 +1,5 @@
-import { Component, OnInit, Output, output } from '@angular/core';
-import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
-import { toUSVString } from 'util';
-import { strict } from 'assert';
+import { Component, OnInit} from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductcCharacteristicsService } from '../../../services/product/product-characteristics.service';
 
 @Component({
