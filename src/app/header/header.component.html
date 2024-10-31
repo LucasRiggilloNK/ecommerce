@@ -1,6 +1,16 @@
-<nav class="nav">
-  <div class="link" routerLink="/home" routerLinkActive="active">Home</div>
-  <div class="link" routerLink="/productos" routerLinkActive="active">
-    Productos
-  </div>
-</nav>
+<header class="header">
+  <nav class="nav">
+    <div class="nav-links">
+      <div class="link" routerLink="/home" routerLinkActive="active">Home</div>
+      <div class="link" routerLink="/register" routerLinkActive="active">
+        Registro
+      </div>
+      <div class="link" routerLink="/login" routerLinkActive="active">
+        Login
+      </div>
+      <div class="link logout" (click)="logout()" *ngIf="isLoggedIn()">
+        Logout
+      </div>
+    </div>
+  </nav>
+</header>
