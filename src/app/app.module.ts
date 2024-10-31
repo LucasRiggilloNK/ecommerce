@@ -16,7 +16,15 @@ import {
   withFetch,
 } from '@angular/common/http';
 import { AuthInterceptor } from './services/login/auth.interceptor';
+import { AsideComponent } from './components/aside/aside.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { ViewProductComponent } from './components/products/view/view-product/view-product.component';
+import { RefrigeratorCharacteristicsComponent } from './components/characteristics/refrigerator-characteristics/refrigerator-characteristics.component';
+import { HeapphonesCharacteristicsComponent } from './components/characteristics/heapphones-characteristics/heapphones-characteristics.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FanCharacteristicsComponent } from './components/characteristics/fan-characteristics/fan-characteristics.component';
+import { TvCharacteristicsComponent } from './components/characteristics/tv-characteristics/tv-characteristics.component';
+import { AirConditioningCharacteristicsComponent } from './components/characteristics/air-conditioning-characteristics/air-conditioning-characteristics.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +34,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     LoginComponent,
     PrivateComponent,
+    AsideComponent,
+    AddProductComponent,
+    ViewProductComponent,
+    RefrigeratorCharacteristicsComponent,
+    HeapphonesCharacteristicsComponent,
+    FanCharacteristicsComponent,
+    TvCharacteristicsComponent,
+    RefrigeratorCharacteristicsComponent,
+    AirConditioningCharacteristicsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [
