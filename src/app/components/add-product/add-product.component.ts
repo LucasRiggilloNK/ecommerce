@@ -4,10 +4,12 @@ import { Brand } from '../../models/products/brands/brand';
 import { Category } from '../../models/products/categories/category';
 import { ProductcCharacteristicsService } from '../../services/product/product-characteristics.service';
 import { ProductInterface } from '../../interfaces/product/product-interface';
+
 import { Product } from '../../models/products/product';
 import { ProductService } from '../../services/product/product.service';
 import { response } from 'express';
 import { error } from 'console';
+
 
 @Component({
   selector: 'app-add-product',
@@ -29,7 +31,7 @@ export class AddProductComponent {
   characteristics: string = "";
   model: string = "";
 
- 
+
   characteristicsString: string = "";
   productInt: ProductInterface;
 

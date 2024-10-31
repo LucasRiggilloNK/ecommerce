@@ -37,7 +37,7 @@ export class Product {
             this.characteristics = '';
             this.model = '';
 	}
-    
+
 
 
 
@@ -69,22 +69,18 @@ export class Product {
         this.category = category;
     }
 
-    public getImage(): Image
- {
+
+
+
+
+     public getImage(): Image
+    {
         return this.image;
     }
 
     public setImage(image: Image) {
         this.image = image;
-    }
- /*     public getImage(): string
- {
-        return this.image;
-    }
-
-    public setImage(image: string) {
-        this.image = image;
-    }  */
+    }  
 
     public getDescription(): string
  {

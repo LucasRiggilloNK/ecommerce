@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { Injectable, OnInit } from '@angular/core';
 import { ProductInterface } from '../interfaces/product/product-interface';
 import { lastValueFrom, Observable } from 'rxjs';
 import { Product } from '../models/products/product';
+
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +34,10 @@ export class AsyncService{
     return this.http.post<ProductInterface>(urlApi, product, httpOptions);
   }
 
+
   getById(productId: number, urlApi: string):Observable<ProductInterface>{
     return this.http.get<ProductInterface>(urlApi + productId);
-  }
+
 }
 
+}

@@ -89,28 +89,7 @@ public getProductsListInterfaceObservable(){
   return this.asyncService.getAll(this.productsApiUrl);
 }
 
-public gethigherProductId(): number{
-  let productsListInt: ProductInterface[] = [];
-  let maxId = 0;
-  this.getProductsListInterfaceObservable().subscribe(
-    response =>{
-      productsListInt = response;
-      console.log("productsListInt");
-      console.log(this.productsListInt);
-      productsListInt.forEach(product =>{
-        if(product.id > maxId){
-          maxId = product.id;
-        }
-      });
-    }, error => {
-      alert("No se pudo leer el json productos...")
-    }
-  );
 
-  
-  return maxId;
-
-}
 
 
 
@@ -329,7 +308,5 @@ public gethigherProductId(): number{
 getProductInterfaceById(id: number){
   return this.asyncService.getById(id, this.productsApiUrl + "/");
 }
-
-
 
 }
