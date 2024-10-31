@@ -1,0 +1,7 @@
+<form action="" [formGroup]="characteristicsFormGroup">
+    <p> Tipo </p>
+    <select id="tipoVentiladores" formControlName="tipoVentiladores">
+        <option  *ngFor="let type of typeList" [value]="type"> {{type}} </option>
+    </select>
+
+</form>
