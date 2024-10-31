@@ -1,39 +1,53 @@
 <form [formGroup]="addProduct" (ngSubmit)="onSubmit()">
+  <p>Categoría</p>
+  <select id="category" formControlName="category">
+    <option
+      *ngFor="let category of categoryList"
+      [value]="category"
+      routerLinkActive="router-link-active"
+    >
+      {{ category }}
+    </option>
+  </select>
+  <br />
 
-    <p>Categoría</p>
-    <select id="category" formControlName="category">
-        <option *ngFor="let category of categoryList" [value]="category" routerLinkActive="router-link-active" >{{ category }}</option>
-    </select>
-    <br>
+  <p>Marca</p>
+  <select id="brand" formControlName="brand">
+    <option *ngFor="let brand of brandList" [value]="brand">{{ brand }}</option>
+  </select>
+  <br />
 
-    <p>Marca</p>
-    <select id="brand" formControlName="brand">
-        <option *ngFor="let brand of brandList" [value]="brand">{{ brand }}</option>
-    </select>
-    <br>
+  <p>URL Imágen</p>
+  <input type="text" formControlName="image" class="form-control" />
 
-    <p>URL Imágen</p>
-    <input type="text" formControlName="image" class="form-control">
+  <p>Descripción</p>
+  <input type="text" formControlName="description" class="form-control" />
 
+  <p>Precio</p>
+  <input type="number" formControlName="price" class="form-control" />
 
-    <p>Descripción</p>
-    <input type="text" formControlName="description" class="form-control">
+  <p>Stock</p>
+  <input type="number" formControlName="stock" class="form-control" />
 
-    <p>Precio</p>
-    <input type="number" formControlName="price" class="form-control">
+  <p>Modelo</p>
+  <br />
+  <input type="text" formControlName="model" class="form-control" />
 
-    <p>Stock</p>
-    <input type="number" formControlName="stock" class="form-control">
+  <app-air-conditioning-characteristics
+    *ngIf="getSelectedCategory() == 'Aire Acondicionado'"
+  ></app-air-conditioning-characteristics>
+  <app-fan-characteristics
+    *ngIf="getSelectedCategory() == 'Ventiladores'"
+  ></app-fan-characteristics>
+  <app-tv-characteristics
+    *ngIf="getSelectedCategory() == 'Televisores'"
+  ></app-tv-characteristics>
+  <app-heapphones-characteristics
+    *ngIf="getSelectedCategory() == 'Auriculares'"
+  ></app-heapphones-characteristics>
+  <app-refrigerator-characteristics
+    *ngIf="getSelectedCategory() == 'Heladeras'"
+  ></app-refrigerator-characteristics>
 
-    <p>Modelo</p> <br>
-    <input type="text" formControlName="model" class="form-control">
-
-
-    <app-air-conditioning-characteristics *ngIf="getSelectedCategory() == 'Aire Acondicionado'" ></app-air-conditioning-characteristics> 
-    <app-fan-characteristics *ngIf="getSelectedCategory() == 'Ventiladores'"></app-fan-characteristics>
-    <app-tv-characteristics  *ngIf="getSelectedCategory() == 'Televisores'"></app-tv-characteristics>
-    <app-heapphones-characteristics *ngIf="getSelectedCategory() == 'Auriculares'"></app-heapphones-characteristics>
-    <app-refrigerator-characteristics *ngIf="getSelectedCategory() == 'Heladeras'"></app-refrigerator-characteristics>
-
-    <button type="submit"> Crear </button>
+  <button type="submit">Crear</button>
 </form>

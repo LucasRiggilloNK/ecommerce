@@ -5,7 +5,7 @@ import {
 } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './home/home.component';
 import {
   HttpClientModule,
@@ -22,8 +22,8 @@ import { RefrigeratorCharacteristicsComponent } from './components/characteristi
 import { WashingCharacteristicsComponent } from './components/characteristics/washing-characteristics/washing-characteristics.component';
 import { ViewProductComponent } from './components/products/view/view-product/view-product.component';
 import { ProductDetailsComponent } from './components/products/details/product-details/product-details.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 import { PrivateComponent } from './private/private.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/login/auth.interceptor';
