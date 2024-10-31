@@ -1,0 +1,16 @@
+
+<form action="" [formGroup]="characteristicsFormGroup">
+    <p> Frio / Calor </p>
+    <select id="frioCalor" formControlName="frioCalor" required>
+        <option value="si"> Si </option>
+        <option value="no"> No </option>
+    </select>
+
+    <p> Tipo </p>
+    <select id="airTypes" formControlName="airTypes" required> 
+        <option *ngFor="let type of airTypesList" [value]="type">{{ type }}</option>
+    </select>
+
+</form>
+
+

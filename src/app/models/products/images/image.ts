@@ -1,14 +1,14 @@
 export class Image {
-    url: string;
+    private url: string;
 
     constructor(url: string){
         this.url = url;
     }
 
-    get(){
+    getUrl(){
         return this.url;
     }
-    set(url: string){
+    setUrl(url: string){
         this.url = url;
     }
 }
