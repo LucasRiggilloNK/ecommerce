@@ -29,7 +29,7 @@
     <input type="text" formControlName="model" class="form-control">
 
 
-    <app-air-conditioning-characteristics *ngIf="getSelectedCategory() == 'Aire Acondicionado'" ></app-air-conditioning-characteristics> <!-- "characteristicsString" es el input de add-product-component  characteristicsString el output de ir-conditioning-component-->
+    <app-air-conditioning-characteristics *ngIf="getSelectedCategory() == 'Aire Acondicionado'" ></app-air-conditioning-characteristics> 
     <app-fan-characteristics *ngIf="getSelectedCategory() == 'Ventiladores'"></app-fan-characteristics>
     <app-tv-characteristics  *ngIf="getSelectedCategory() == 'Televisores'"></app-tv-characteristics>
     <app-heapphones-characteristics *ngIf="getSelectedCategory() == 'Auriculares'"></app-heapphones-characteristics>

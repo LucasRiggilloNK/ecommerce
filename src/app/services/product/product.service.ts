@@ -1,20 +1,25 @@
-import { Injectable } from '@angular/core';
+import { Injectable, numberAttribute, OnInit } from '@angular/core';
 import { Product } from '../../models/products/product';
 import { AsyncService } from '../async.service';
-import { ProductoInteface } from '../../interfaces/product/producto-inteface';
 import { Brand } from '../../models/products/brands/brand';
 import { Category } from '../../models/products/categories/category';
 import { Image } from '../../models/products/images/image';
 import { rootCertificates } from 'tls';
 import { response } from 'express';
 import { publicDecrypt } from 'crypto';
+import { ProductInterface } from '../../interfaces/product/product-interface';
+import { error } from 'console';
+import { materialize, max, Observable, Subscribable, Subscription } from 'rxjs';
+import { basename } from 'path';
+import { validateHeaderName } from 'http';
+import { emitWarning } from 'process';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductService {
-  private productsApiUrl: string = "";
-  private airesAcondicionadoApiUrl: string = "";
+export class ProductService implements OnInit{
+  private productsApiUrl: string = "http://localhost:4000/products";
+  /* private airesAcondicionadoApiUrl: string = "";
   private aspiradorasApiUrl: string = "";
   private auricularesApiUrl: string = "";
   private celularesApiUrl: string = "";
@@ -30,114 +35,271 @@ export class ProductService {
   private tecladosApiUrl: string = "";
   private televisoresApiUrl: string = "";
   private tostadorasApiUrl: string = "";
-  private ventiladoresApiUrl: string = "";
-  private ps5ApiUrl = "";
-  protected producsList: Product[] = [];
+  private ventiladoresApiUrl: string = ""; */
+  private productsObjectList: Product[] = [];
+  private productsListInt: ProductInterface[] = [];
+  private product: Product|null = null;
+  private productInt: ProductInterface|null = null; //Para relacionar con los campos de modificar producto
+  private productAddedInt: ProductInterface|null = null;
+  
 
-  //private product: Product|null = null;
-  private product: ProductoInteface|null = null; //Para relacionar con los campos de modificar producto
 
   constructor(private asyncService: AsyncService) { 
-    this.product = {
-    idProduct: "",
+    this.productInt = {
+    id: 1,
     brand: Brand.NONE,
     category: Category.NONE,
-    image: new Image(""),
+    urlImage: "",
     description: "",
     price: 0,
     stock: 0,
     characteristics: "",
     model: ""
     }
+    
   }
 
+ ngOnInit(): void {
+  
+ }
 
-  getApiCategory(category: Category):string{//Retorna el strning de la API por categoría
-    let salida = "";
-    switch(category){
-      case Category.NONE:
-          salida = "";
-          break;
-        case Category.AIRE_ACONDICIONADO:
-          salida = this.airesAcondicionadoApiUrl;
-          break;
-        case Category.VENTILADOR:
-          salida =this.ventiladoresApiUrl;
-          break;
-        case Category.TELEVISORES: 
-          salida =this.televisoresApiUrl;
-          break;
-        case Category.AURICULARES: 
-          salida =this.auricularesApiUrl;
-          break;
-        case Category.PARLANTES:
-          salida =this.parlantesApiUrl;
-          break;
-        case Category.HELADERAS:
-          salida =this.heladerasApiUrl;
-          break;
-        case Category.LAVARROPAS:
-          salida =this.lavarropasApiUrl;
-          break;
-        case Category.ASPIRADORAS:
-          salida =this.aspiradorasApiUrl;
-          break;
-        case Category.MICROONDAS: 
-          salida =this.microondasApiUrl;
-          break;
-        case Category.TOSTADORA:
-          salida =this.tostadorasApiUrl;
-          break;
-        case Category.CELULARES:
-          salida =this.celularesApiUrl;
-          break;
-        case Category.NOTEBOOKS:
-          salida =this.notebooksApiUrl;
-          break;
-        case Category.TABLETS:
-          salida =this.tabletsApiUrl;
-          break;
-        case Category.IMPRESORAS:
-          salida =this.impresorasApiUrl;
-          break;
-        case Category.COMPUTADORAS_ESCRITORIO:
-          salida =this.computadorasEscritorioApiUrl;
-          break;
-        case Category.PS5:
-          salida =this.ps5ApiUrl;
-          break;
-        case Category.TECLADOS:
-          salida =this.tecladosApiUrl;
-          break;
-        case Category.MOUSES:
-          salida =this.mousesApiUrl;
-          break;
-      
-    }
-    return salida;
-  }
+
+
+ 
   
 //////////////////////    GET PRODUCTS     ////////////////////////////////////////////////////
-  public async getProductsApiUrl(){
 
-    await this.asyncService.getAll(this.productsApiUrl)
-    .then(response =>{
-      this.producsList = response;/* PASAR EL RESPONSE A OBJETOS*/
-    })
-    .catch(reason =>{
-      alert("Error de lectura API...");
-    })
+
+
+/* private obtainProductsListInterface(){
+  this.asyncService.getAll(this.productsApiUrl).subscribe(
+    response =>{
+      this.productsListInt = response;
+    }, error =>{
+      alert("Error de lectura metodo GET de API products.json...");
+    }
+  );
+  
+} */
+
+
+
+
+public getProductsListInterfaceObservable(){
+  return this.asyncService.getAll(this.productsApiUrl);
+}
+
+public gethigherProductId(): number{
+  let productsListInt: ProductInterface[] = [];
+  let maxId = 0;
+  this.getProductsListInterfaceObservable().subscribe(
+    response =>{
+      productsListInt = response;
+      console.log("productsListInt");
+      console.log(this.productsListInt);
+      productsListInt.forEach(product =>{
+        if(product.id > maxId){
+          maxId = product.id;
+        }
+      });
+    }, error => {
+      alert("No se pudo leer el json productos...")
+    }
+  );
+
+  
+  return maxId;
+
+}
+
+
+
+ /* private getProductsApiUrl():Promise<ProductInterface[]>{//el observable se transforma en ProductIntetface[] a través de suscriber
+
+     await this.asyncService.getAll(this.productsApiUrl).subscribe(response =>{
+      this.productsListInt = response as ProductInterface[];
+      console.log("PRODUCT INT GENERADO");
+    }, error =>{
+      alert("Error de lectura metodo GET de API products.json...");
+    }) 
+
+      return this.asyncService.getAll(this.productsApiUrl);
   }
+*/
+
+     
+
+     /* public getProductsListObject(){//obtiene una lista de productos de tipo inerface
+      console.log("inicio getProductsListObject()");
+      this.getProductsApiUrl().subscribe(response =>{
+        this.productsListInt = response as ProductInterface[];
+        console.log("PRODUCT INT GENERADO");
+      }, error =>{
+        alert("Error de lectura metodo GET de API products.json...");
+      });
+      console.log("fin de this.getProductsApiUrl()");
+      console.log(this.productsListInt);
+      return this.productsListInterfaceToProductsListObject(this.productsListInt); 
+      
+    }  */
+      /* private async loadProductsInterface():ProductInterface[]{//asigna this.productsListInt y this.productsObjectList, retorna this.productsObjectList
+        this.productsListInt = await this.asyncService.getAll(this.productsApiUrl);
+        return this.productsListInt; */
+        /* let productListObject: Product[] = [];
+       let productInt: ProductInterface = {
+        idProduct: 0,
+        brand: "",
+        category: "",
+        urlImage: "",
+        description: "",
+        price: 1,
+        stock: 1,
+        characteristics: "",
+        model: ""
+      } */
+      
+  
+      
+      
+       
+/*         await this.asyncService.getAll(this.productsApiUrl)
+       .then(response =>{
+          response.map(value => 
+          {
+            productInt.idProduct = value.idProduct;
+            productInt.brand = value.brand;
+            productInt.category = value.category;
+            productInt.characteristics = value.characteristics;
+            productInt.model = value.model;
+            productInt.price = value.price;
+            productInt.stock = value.stock;
+            productInt.urlImage = value.urlImage;
+            productInt.description = value.description;
+            this.productsListInt.push(productInt);
+          }
+          );
+          productListObject = this.productsListInterfaceToProductsListObject(this.productsListInt);
+          this.productsObjectList = productListObject;
+       })
+       .catch();
+        alert("Error de lectura metodo GET de API products.json...");
+
+       return this.productsObjectList; */
 
 
+      //}
+
+/* public getProductsListInterface(): Promise<ProductInterface[]>{
+ */  //let productsListInt: ProductInterface[] = [];
+  
+ 
+  
+  /* response.map(value => 
+      {
+         productInt.idProduct = value.idProduct;
+        productInt.brand = value.brand;
+        productInt.category = value.category;
+        productInt.characteristics = value.characteristics;
+        productInt.model = value.model;
+        productInt.price = value.price;
+        productInt.stock = value.stock;
+        productInt.urlImage = value.urlImage;
+        productInt.description = value.description;
+
+        productsListInt.push(productInt); 
+        
+      }) */
+ /*     this.loadProductsInterface
+  return productsListInt;
+} */
+
+/* getProductsListObject(): Product[]{
+  return this.productsListInterfaceToProductsListObject(this.productsListInt); */
+  /* let productListObject: Product[] = [];
+  let productsListInt: ProductInterface[] = [];
+  this.getAllProductsApi()
+  .then(response =>{
+    
+    productsListInt = response;
+    productListObject = this.productsListInterfaceToProductsListObject(productsListInt);
+    this.productsObjectList = productListObject;
+  
+  })
+  .catch(error =>{
+    alert("Error en getProductsListObject()" + error);
+  });
+
+  return productListObject; */
+//}
+/* 
+    productsInterfaceToProductObject(productInterface: ProductInterface): Product{
+      let product = new Product();
+      product.setIdProduct(productInterface.idProduct);
+      product.setBrand(Brand[productInterface.brand as keyof typeof Brand]);
+      product.setCategory(Category[productInterface.category as keyof typeof Category]);
+      product.setCharacteristics(productInterface.characteristics);
+      product.setDescription(productInterface.description);
+      product.setImage(new Image(productInterface.urlImage));
+      product.setModel(productInterface.model);
+      product.setPrice(productInterface.price);
+      product.setStock(productInterface.stock);
+
+      return product;
+    }
+
+        
+    productsListInterfaceToProductsListObject(productsListInt: ProductInterface[]): Product[]{
+      let producListObject: Product[] = [];
+      productsListInt.forEach(productInt =>{
+        producListObject.push(this.productsInterfaceToProductObject(productInt));
+      });
+
+      return producListObject;
+
+    }
+    
+    
+
+   private productsResponseToProductsListInt(response: any): ProductInterface[]{
+    let productsList: ProductInterface[] = [];
+    let productInterface: ProductInterface = {
+      idProduct: 0,
+      brand: "",
+      category: "",
+      urlImage: "",
+      description: "",
+      price: 1,
+      stock: 1,
+      characteristics: "",
+      model: ""
+    }
+
+    for(let i = 0; i < response.length; i++){
+
+      productInterface.idProduct = response[i].idProduct;
+      productInterface.brand =  response[i].brand;
+      productInterface.category= response[i].category;
+      productInterface.urlImage= response[i].UrlImage;
+      productInterface.description= response[i].description;
+      productInterface.price= response[i].price;
+      productInterface.stock= response[i].stock;
+      productInterface.characteristics= response[i].characteristics;
+      productInterface.model= response[i].model;
+
+      productsList.push(productInterface);
+
+    }
+    return productsList;
+  }
+  */
   //////////////////////    ADD PRODUCTS     ////////////////////////////////////////////////////
 
-  private productToInterface(product: Product): ProductoInteface{
-    let productInterface: ProductoInteface = {
-    idProduct: product.getIdProduct(),
+  private productToInterface(product: Product): ProductInterface{
+    let productInterface: ProductInterface = {
+      id: product.getId(),
      brand: product.getBrand(),
      category: product.getCategory(),
-     image: product.getImage(),
+     urlImage: product.getImage().getUrl(),
      description: product.getDescription(),
      price: product.getPrice(),
      stock: product.getStock(),
@@ -147,21 +309,27 @@ export class ProductService {
     return productInterface;
   }
 
- public async addProduct(product: Product){//agrega el producto al json
-  await this.asyncService.add(this.productToInterface(product), this.getApiCategory(product.getCategory()))
-  .then(response =>{
-    alert("PRODUCTO GUARDADO CON EXITO...");
-  })
-  .catch(reason =>{
-    alert("ERROR DE GUARDADO DE PRODUCTO EN API...");
-  });
+
+  public addProductApi(product: Product):Observable<ProductInterface>{
+
+    return this.asyncService.add(this.productToInterface(product), this.productsApiUrl);
+  
   }
 
-}
+ public addProductInterfaceApi(productInt: ProductInterface){
+  return this.asyncService.add(productInt, this.productsApiUrl);
+ }
+
+
+
 
 
   //////////////////////    GET BY ID     ////////////////////////////////////////////////////
 
-  public async getProductById(id: number){//VER CATEGORIA DEL ID
-    await this.asyncService.getById(id, )
-  }
+getProductInterfaceById(id: number){
+  return this.asyncService.getById(id, this.productsApiUrl + "/");
+}
+
+
+
+}

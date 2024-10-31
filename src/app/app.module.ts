@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { AirConditioningCharacteristicsComponent } from './components/characteristics/air-conditioning-characteristics/air-conditioning-characteristics.component';
 
@@ -19,6 +19,8 @@ import { FanCharacteristicsComponent } from './components/characteristics/fan-ch
 import { HeapphonesCharacteristicsComponent } from './components/characteristics/heapphones-characteristics/heapphones-characteristics.component';
 import { RefrigeratorCharacteristicsComponent } from './components/characteristics/refrigerator-characteristics/refrigerator-characteristics.component';
 import { WashingCharacteristicsComponent } from './components/characteristics/washing-characteristics/washing-characteristics.component';
+import { ViewProductComponent } from './components/products/view/view-product/view-product.component';
+import { ProductDetailsComponent } from './components/products/details/product-details/product-details.component';
 
 
 @NgModule({
@@ -32,12 +34,16 @@ import { WashingCharacteristicsComponent } from './components/characteristics/wa
     FanCharacteristicsComponent,
     HeapphonesCharacteristicsComponent,
     RefrigeratorCharacteristicsComponent,
-    WashingCharacteristicsComponent
+    WashingCharacteristicsComponent,
+    ViewProductComponent,
+    ProductDetailsComponent
   ],
 
   imports: [BrowserModule, AppRoutingModule,HttpClientModule, ReactiveFormsModule],
 
-  providers: [provideClientHydration()],
+  providers: [provideClientHydration(), provideHttpClient(withFetch())],
+
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}

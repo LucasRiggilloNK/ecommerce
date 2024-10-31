@@ -3,6 +3,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Brand } from '../../models/products/brands/brand';
 import { Category } from '../../models/products/categories/category';
 import { ProductcCharacteristicsService } from '../../services/product/product-characteristics.service';
+import { ProductInterface } from '../../interfaces/product/product-interface';
+import { Product } from '../../models/products/product';
+import { ProductService } from '../../services/product/product.service';
+import { response } from 'express';
+import { error } from 'console';
 
 @Component({
   selector: 'app-add-product',
@@ -24,11 +29,24 @@ export class AddProductComponent {
   characteristics: string = "";
   model: string = "";
 
+ 
   characteristicsString: string = "";
+  productInt: ProductInterface;
 
-  constructor(private productCharacteristicsService: ProductcCharacteristicsService) {
+  constructor(private productCharacteristicsService: ProductcCharacteristicsService, private productService: ProductService) {
     
-    
+    this.productInt= {
+      id: 0,
+      brand: "",
+      category: "",
+      urlImage: "",
+      description: "",
+      price: 1,
+      stock: 1,
+      characteristics: "",
+      model: ""
+    }
+
     this.addProduct = new FormGroup ({
       'brand': new FormControl(Brand.ACER),
       'category': new FormControl(Category.NONE),
@@ -49,17 +67,77 @@ export class AddProductComponent {
 
   
 
-  obtainCharacteristicsString(){
+  obtainCharacteristicsString(){//procesa y retorna un string de caracteristicas
     this.characteristicsString = this.productCharacteristicsService.sendCharacteristicsString();
   }
 
   onSubmit(){
-//tomar los datos del formulario y utilizar el método de characteristics para agregar los datos del tipo de categoria
 
-    this.obtainCharacteristicsString();
-    console.log("En SuBMIT" + this.characteristicsString);
+    this.obtainCharacteristicsString();//obtiene string caracteristicas
+    this.productInt = this.addProductFromToProductInterface();//pasa el form a interface de producto
+    this.productService.addProductInterfaceApi(this.productInt).subscribe(
+      response =>{
+        alert("Producto agregado...")
+      },error =>{
+        alert("No se pudo agregar el producto....");
+      }
+    );// agrega el productoInterface en el json
 
   }
 
+  addProductFromToProductInterface(): ProductInterface{
+    let product =  {
+      id: 0,
+      brand: "",
+      category: "",
+      urlImage: "",
+      description: "",
+      price: 1,
+      stock: 1,
+      characteristics: "",
+      model: ""
+    };
+
+    
+
+    
+    product.brand = this.addProduct.get('brand')?.value;
+    product.category = this.addProduct.get('category')?.value;
+    product.characteristics = this.characteristicsString;
+    product.description = this.addProduct.get('description')?.value;
+    product.model = this.addProduct.get('model')?.value;
+    product.price = this.addProduct.get('price')?.value;
+    product.urlImage = this.addProduct.get('urlImage')?.value;
+    product.stock = this.addProduct.get('stock')?.value;
+    
+
+    const { id, ...productWithoutId } = product;
+
+    return productWithoutId as ProductInterface;
+  }
+
+
+  /* public getHigherProductId(): number{
+    let productsListInt: ProductInterface[] = [];
+    let maxId = 0;
+    this.getProductsListInterfaceObservable().subscribe(
+      response =>{
+        productsListInt = response;
+        console.log("productsListInt");
+        console.log(this.productsListInt);
+        productsListInt.forEach(product =>{
+          if(product.id > maxId){
+            maxId = product.id;
+          }
+        });
+      }, error => {
+        alert("No se pudo leer el json productos...")
+      }
+    );
+  
+    
+    return maxId;
+  
+  } */
   
 }
