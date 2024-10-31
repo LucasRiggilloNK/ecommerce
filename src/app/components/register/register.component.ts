@@ -6,6 +6,7 @@ import {
   User,
 } from '../../services/register-service/register.service';
 import { EmailService } from '../../services/email-service/email.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,8 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private registerService: RegisterService,
-    private emailService: EmailService
+    private emailService: EmailService,
+    private router: Router
   ) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
@@ -27,13 +29,21 @@ export class RegisterComponent {
       address: ['', Validators.required],
       postalCode: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
     });
   }
 
   onSubmit() {
     if (this.registerForm.valid) {
-      const { name, lastname, birthdate, address, postalCode, email } =
-        this.registerForm.value;
+      const {
+        name,
+        lastname,
+        birthdate,
+        address,
+        postalCode,
+        email,
+        password,
+      } = this.registerForm.value;
       const nuevoUsuario: User = {
         name,
         lastname,
@@ -41,15 +51,27 @@ export class RegisterComponent {
         address,
         postalCode,
         email,
+        password,
       };
 
-      this.registerService.registerUser(nuevoUsuario).subscribe(
-        (response) => {
-          console.log('Usuario registrado:', response);
-          this.sendConfirmationEmail(email);
+      this.registerService.checkEmailExists(email).subscribe(
+        (exists) => {
+          if (exists) {
+            alert('Este correo electrónico ya está registrado.');
+          } else {
+            this.registerService.registerUser(nuevoUsuario).subscribe(
+              (response) => {
+                this.router.navigate(['/']);
+                this.sendConfirmationEmail(email);
+              },
+              (error) => {
+                console.error('Error al registrar el usuario:', error);
+              }
+            );
+          }
         },
         (error) => {
-          console.error('Error al registrar el usuario:', error);
+          console.error('Error al verificar el correo:', error);
         }
       );
     }

@@ -1,13 +1,14 @@
 {
   "users": [
     {
-      "id": "2c4a",
+      "id": "0440",
       "name": "lucas",
       "lastname": "riggillo",
       "birthdate": "2003-04-14",
       "address": "aguado 1601",
       "postalCode": "7600",
-      "email": "lucasriggillo@gmail.com"
+      "email": "lucasriggillo@gmail.com",
+      "password": "1234"
     }
   ]
 }

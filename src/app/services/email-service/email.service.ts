@@ -3,14 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmailService {
-  private apiUrl = 'http://localhost:3000/send-email'; // Cambia esto a tu endpoint de envío de correo
+  private apiUrl = 'http://localhost:3000/send-email';
 
   constructor(private http: HttpClient) {}
 
-  sendConfirmationEmail(email: string, subject: string, message: string): Observable<any> {
+  sendConfirmationEmail(
+    email: string,
+    subject: string,
+    message: string
+  ): Observable<any> {
     const emailData = { email, subject, message };
     return this.http.post(this.apiUrl, emailData);
   }
