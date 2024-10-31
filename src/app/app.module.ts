@@ -7,10 +7,13 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { PrivateComponent } from './private/private.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withFetch,
+} from '@angular/common/http';
 import { AuthInterceptor } from './services/login/auth.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,15 +24,10 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     PrivateComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-  ],
-
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    provideHttpClient(withFetch()),
   ],
   bootstrap: [AppComponent],
 })

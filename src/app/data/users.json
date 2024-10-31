@@ -9,6 +9,16 @@
       "postalCode": "7600",
       "email": "lucasriggillo@gmail.com",
       "password": "1234"
+    },
+    {
+      "id": "f58b",
+      "name": "test",
+      "lastname": "test",
+      "birthdate": "2000-07-15",
+      "address": "erverberb",
+      "postalCode": "7600",
+      "email": "test@test.com",
+      "password": "test"
     }
   ]
 }
