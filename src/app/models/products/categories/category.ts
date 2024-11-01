@@ -1,5 +1,5 @@
 export enum Category {
-    NONE = 'Ninguno',
+    NONE = '',
     AIRE_ACONDICIONADO = 'Aire Acondicionado',
     VENTILADOR = 'Ventiladores', 
     TELEVISORES = 'Televisores', 

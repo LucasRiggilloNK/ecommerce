@@ -43,5 +43,5 @@
     <app-keyboard-characteristics *ngIf="getSelectedCategory() == 'Teclado'"></app-keyboard-characteristics>
     <app-mouse-characteristics *ngIf="getSelectedCategory() == 'Mouse'"></app-mouse-characteristics>
 
-    <button type="submit"> Crear </button>
+    <button type="submit" [disabled]="!addProduct.valid"> Crear </button>  <!-- si todas las validaciones pasaron con exito lo habilita -->
 </form>
