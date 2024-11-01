@@ -1,1 +1,6 @@
-<p>washing-characteristics works!</p>
+<form action="" [formGroup]="characteristicsFormGroup">
+    <p> Capacidad de lavado </p>
+    <select id="capacidadLavado" formControlName="capacidadLavado"> 
+        <option *ngFor="let capacity of washingCapacityList" [value]="capacity">{{ capacity }}</option>
+    </select>
+</form>

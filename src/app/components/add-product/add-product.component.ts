@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Brand } from '../../models/products/brands/brand';
 import { Category } from '../../models/products/categories/category';
 import { ProductcCharacteristicsService } from '../../services/product/product-characteristics.service';
@@ -50,14 +50,14 @@ export class AddProductComponent {
     }
 
     this.addProduct = new FormGroup ({
-      'brand': new FormControl(Brand.ACER),
-      'category': new FormControl(Category.NONE),
-      'image': new FormControl(this.image),
-      'description': new FormControl(this.description),
-      'price': new FormControl(0),
-      'stock': new FormControl(1),
-      'characteristics': new FormControl(this.characteristics),
-      'model': new FormControl(this.model)
+      'brand': new FormControl(Brand.NONE, [Validators.required]),
+      'category': new FormControl(Category.NONE, [Validators.required]),
+      'image': new FormControl(this.image, [Validators.required]),
+      'description': new FormControl(this.description, [Validators.required]),  
+      'price': new FormControl('', [Validators.required, Validators.min(0.01)]),
+      'stock': new FormControl('', [Validators.required, Validators.min(1)]),
+      'characteristics': new FormControl(this.characteristics, [Validators.required]),
+      'model': new FormControl(this.model, [Validators.required])
     });
 
   }

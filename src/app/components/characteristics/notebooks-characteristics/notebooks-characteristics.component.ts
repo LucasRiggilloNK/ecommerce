@@ -3,14 +3,18 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductcCharacteristicsService } from '../../../services/product/product-characteristics.service';
 
 @Component({
-  selector: 'app-washing-characteristics',
-  templateUrl: './washing-characteristics.component.html',
-  styleUrl: './washing-characteristics.component.css'
+  selector: 'app-notebooks-characteristics',
+  templateUrl: './notebooks-characteristics.component.html',
+  styleUrl: './notebooks-characteristics.component.css'
 })
-export class WashingCharacteristicsComponent {
+export class NotebooksCharacteristicsComponent {
+
+  screenSizesList: string[] = ['13"', '14"', '15"', '15.6"', '16"', '17"'];
+  ramList: string[] = ['4 GB', '8 GB', '12 GB', '16 GB', '32 GB', '64 GB'];
+  processorsList: string[] = ['Intel Core i3', 'Intel Core i5', 'Intel Core i7', 'Intel Core i9', 'AMD Ryzen 3', 'AMD Ryzen 5', 'AMD Ryzen 7', 'AMD Ryzen 9', 'Apple M1', 'Apple M2', 'Intel Pentium Gold'];
+  storageSizesList: string[] = ['128GB', '256GB', '512GB', '1TB', '2TB', '4TB', '8TB', '16TB', '32TB', '64TB'];
 
 
-  washingCapacityList: string[] = ['6 kg', '7 kg', '8 kg', '9 kg', '10 kg', '11 kg'];
 
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
@@ -19,11 +23,13 @@ export class WashingCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "capacidadLavado": new FormControl("6 kg", [Validators.required]),
+      "screenSize": new FormControl('13"', [Validators.required]),
+      "ram": new FormControl('4 GB"', [Validators.required]),
+      "processor": new FormControl('Intel Core i3', [Validators.required]),
+      "storageSize": new FormControl('128GB', [Validators.required])
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString
-    console.log("characteristicsString en CONSTRUCTOR AirConditioningCharacteristicsComponent");
     console.log(this.characteristicsString);
   }
 
