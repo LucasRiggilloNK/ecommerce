@@ -25,6 +25,11 @@ export class Product {
 		this.stock = stock;
 		this.characteristics = characteristics;
 		this.model = model;
+        
+        filterBycategory(recibis una lista): return lista filtrada{
+        
+        
+        }
 	}*/
 	constructor(){
             this.id = 0; // Valor por defecto

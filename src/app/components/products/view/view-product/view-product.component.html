@@ -32,13 +32,95 @@
 </div> -->
 
 
-<button type="button" (click)="addGenericProduct()">ADD GENERIC PRODUCT</button>
-<br>
-<button type="button" (click)="getProductListInterface()">Listar</button>
+<!-- <button type="button" (click)="addGenericProduct()">ADD GENERIC PRODUCT</button> -->
+<!-- <br>
+<button type="button" (click)="getProductListInterface()">LISTAR TODOS LOS PRODUCTOS</button> -->
 <br>
 <input type="text" placeholder="Ingrese id a buscar" [formControl]="formControlById" id="inputId">
 <button type="button" (click)="getProductInterfaceById(formControlById.getRawValue())">Buscar</button>
 
+<br>
+<br>
+<p>FILTER</p>
+<!-- <form action="" [formGroup]="formControlGroupFilter">-->   
+<form action="" [formGroup]="formGrupSubfilters">
+    <p>Categoría</p>
+    <!-- <select id="category" formControlName="category" > -->
+    <select id="category" [formControl]="formControlCategory" >
+        <option *ngFor="let category of categoryList" [value]="category"  routerLinkActive="router-link-active" >{{ category }}</option>
+    </select>
+    <br>
+    <br>
+    <p>LISTA FILTRADA POR CATEGORIA</p>
+    
+    <div *ngIf="productListFilteredByCategory.length != 0">
+        <div >
+            <p>Marca</p>
+            <select id="brand" formControlName="brand">
+                <option *ngFor="let brand of brandList" [value]="brand">{{ brand }}</option>
+            </select>
+
+        </div>
+
+       
+        <div *ngIf="formControlCategory.value == 'Aire Acondicionado'">
+            <p> Frio / Calor </p>
+            <select id="frioCalor" formControlName="frioCalor" required>
+                <option value="si"> Si </option>
+                <option value="no"> No </option>
+            </select>
+
+            <p> Tipo </p>
+            <select id="airTypes" formControlName="airTypes" required> 
+                <option *ngFor="let type of airTypesListValues" [value]="type">{{ type }}</option>
+            </select>
+        </div>
+        <div *ngIf="formControlCategory.value == 'Ventiladores'">
+            
+                <p> Tipo </p>
+                <select id="tipoVentiladores" formControlName="tipoVentiladores">
+                    <option  *ngFor="let type of fanTypeListvalues" [value]="type"> {{type}} </option>
+                </select>
+        
+        </div>
+
+
+
+        <div *ngIf="productListSubFiltered.length != 0">
+            <div *ngFor="let product of productListSubFiltered" >
+                <img src="{{product.urlImage}}" alt="Imagen {{product.model}}">
+                <p>id de producto: {{product.id}}</p>
+                <p>Marca: {{product.brand}}: </p>
+                <p>Categoría: {{product.category}}</p>
+                <p>Precio: {{product.price}}</p>
+                <p>stringCaracteristicas: {{product.characteristics}}</p>
+                <p>Modelo: {{product.model}}</p>
+                
+                <br>
+            </div>
+
+
+
+        </div>
+        
+        
+        
+    </div>
+    
+<br>
+<br>
+<div *ngIf="productListSubFiltered.length == 0"><p>SIN PRODUCTOS</p></div>
+
+</form>
+
+
+
+
+
+<br><br><br><br>
+<br>
+<button type="button" (click)="getProductListInterface()">LISTAR TODOS LOS PRODUCTOS</button>
+<p>LISTA DE JSON</p>
 <br>
 <div *ngFor="let product of productsListInt" >
     <img src="{{product.urlImage}}" alt="Imagen {{product.model}}">

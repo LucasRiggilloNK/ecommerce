@@ -10,7 +10,7 @@ export class ProductcCharacteristicsService {
   constructor() { }
 
   
-    getCharacteristicsStringCategory(characteristicsFormGroup: FormGroup): string{
+    getCharacteristicsStringCategory(characteristicsFormGroup: FormGroup): string{// recibe el formGroup de caracteristicas de la categoria, arma el string y lo retorna
       let keys: string[] = [];
       let values: string[] = [];;
       let out = "";
@@ -34,7 +34,7 @@ export class ProductcCharacteristicsService {
     }
 
     getCharacteristicsString(): string{
-      //ir a buscar las caracteriticas al ts de airconditioning
+      
       return this.characteristicsString;
       
     }
