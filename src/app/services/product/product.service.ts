@@ -12,7 +12,7 @@ import { error } from 'console';
 import { materialize, max, Observable, Subscribable, Subscription } from 'rxjs';
 import { basename } from 'path';
 import { validateHeaderName } from 'http';
-import { emitWarning } from 'process';
+import { emitWarning, setUncaughtExceptionCaptureCallback } from 'process';
 
 @Injectable({
   providedIn: 'root'
@@ -88,189 +88,25 @@ export class ProductService implements OnInit{
 public getProductsListInterfaceObservable(){
   return this.asyncService.getAll(this.productsApiUrl);
 }
-
-
-
-
-
- /* private getProductsApiUrl():Promise<ProductInterface[]>{//el observable se transforma en ProductIntetface[] a través de suscriber
-
-     await this.asyncService.getAll(this.productsApiUrl).subscribe(response =>{
-      this.productsListInt = response as ProductInterface[];
-      console.log("PRODUCT INT GENERADO");
-    }, error =>{
-      alert("Error de lectura metodo GET de API products.json...");
-    }) 
-
-      return this.asyncService.getAll(this.productsApiUrl);
-  }
-*/
-
-     
-
-     /* public getProductsListObject(){//obtiene una lista de productos de tipo inerface
-      console.log("inicio getProductsListObject()");
-      this.getProductsApiUrl().subscribe(response =>{
-        this.productsListInt = response as ProductInterface[];
-        console.log("PRODUCT INT GENERADO");
-      }, error =>{
-        alert("Error de lectura metodo GET de API products.json...");
-      });
-      console.log("fin de this.getProductsApiUrl()");
-      console.log(this.productsListInt);
-      return this.productsListInterfaceToProductsListObject(this.productsListInt); 
-      
-    }  */
-      /* private async loadProductsInterface():ProductInterface[]{//asigna this.productsListInt y this.productsObjectList, retorna this.productsObjectList
-        this.productsListInt = await this.asyncService.getAll(this.productsApiUrl);
-        return this.productsListInt; */
-        /* let productListObject: Product[] = [];
-       let productInt: ProductInterface = {
-        idProduct: 0,
-        brand: "",
-        category: "",
-        urlImage: "",
-        description: "",
-        price: 1,
-        stock: 1,
-        characteristics: "",
-        model: ""
-      } */
-      
+public getAllProductsListInterface(): Promise<ProductInterface[]>{
   
-      
-      
-       
-/*         await this.asyncService.getAll(this.productsApiUrl)
-       .then(response =>{
-          response.map(value => 
-          {
-            productInt.idProduct = value.idProduct;
-            productInt.brand = value.brand;
-            productInt.category = value.category;
-            productInt.characteristics = value.characteristics;
-            productInt.model = value.model;
-            productInt.price = value.price;
-            productInt.stock = value.stock;
-            productInt.urlImage = value.urlImage;
-            productInt.description = value.description;
-            this.productsListInt.push(productInt);
-          }
-          );
-          productListObject = this.productsListInterfaceToProductsListObject(this.productsListInt);
-          this.productsObjectList = productListObject;
-       })
-       .catch();
-        alert("Error de lectura metodo GET de API products.json...");
-
-       return this.productsObjectList; */
-
-
-      //}
-
-/* public getProductsListInterface(): Promise<ProductInterface[]>{
- */  //let productsListInt: ProductInterface[] = [];
-  
- 
-  
-  /* response.map(value => 
-      {
-         productInt.idProduct = value.idProduct;
-        productInt.brand = value.brand;
-        productInt.category = value.category;
-        productInt.characteristics = value.characteristics;
-        productInt.model = value.model;
-        productInt.price = value.price;
-        productInt.stock = value.stock;
-        productInt.urlImage = value.urlImage;
-        productInt.description = value.description;
-
-        productsListInt.push(productInt); 
-        
-      }) */
- /*     this.loadProductsInterface
-  return productsListInt;
-} */
-
-/* getProductsListObject(): Product[]{
-  return this.productsListInterfaceToProductsListObject(this.productsListInt); */
-  /* let productListObject: Product[] = [];
-  let productsListInt: ProductInterface[] = [];
-  this.getAllProductsApi()
+  return this.asyncService.getAllPromise(this.productsApiUrl)
   .then(response =>{
-    
-    productsListInt = response;
-    productListObject = this.productsListInterfaceToProductsListObject(productsListInt);
-    this.productsObjectList = productListObject;
-  
+    return response;
   })
   .catch(error =>{
-    alert("Error en getProductsListObject()" + error);
+    alert("Error al obtener productos de archivo json");
+    return [];
   });
 
-  return productListObject; */
-//}
-/* 
-    productsInterfaceToProductObject(productInterface: ProductInterface): Product{
-      let product = new Product();
-      product.setIdProduct(productInterface.idProduct);
-      product.setBrand(Brand[productInterface.brand as keyof typeof Brand]);
-      product.setCategory(Category[productInterface.category as keyof typeof Category]);
-      product.setCharacteristics(productInterface.characteristics);
-      product.setDescription(productInterface.description);
-      product.setImage(new Image(productInterface.urlImage));
-      product.setModel(productInterface.model);
-      product.setPrice(productInterface.price);
-      product.setStock(productInterface.stock);
+  
+}
 
-      return product;
-    }
 
-        
-    productsListInterfaceToProductsListObject(productsListInt: ProductInterface[]): Product[]{
-      let producListObject: Product[] = [];
-      productsListInt.forEach(productInt =>{
-        producListObject.push(this.productsInterfaceToProductObject(productInt));
-      });
+/* public getProductsListInterfacePromise(): Promise<ProductInterface>{
+  return this.asyncService.getAllPromise(this.productsApiUrl);
+} */
 
-      return producListObject;
-
-    }
-    
-    
-
-   private productsResponseToProductsListInt(response: any): ProductInterface[]{
-    let productsList: ProductInterface[] = [];
-    let productInterface: ProductInterface = {
-      idProduct: 0,
-      brand: "",
-      category: "",
-      urlImage: "",
-      description: "",
-      price: 1,
-      stock: 1,
-      characteristics: "",
-      model: ""
-    }
-
-    for(let i = 0; i < response.length; i++){
-
-      productInterface.idProduct = response[i].idProduct;
-      productInterface.brand =  response[i].brand;
-      productInterface.category= response[i].category;
-      productInterface.urlImage= response[i].UrlImage;
-      productInterface.description= response[i].description;
-      productInterface.price= response[i].price;
-      productInterface.stock= response[i].stock;
-      productInterface.characteristics= response[i].characteristics;
-      productInterface.model= response[i].model;
-
-      productsList.push(productInterface);
-
-    }
-    return productsList;
-  }
-  */
   //////////////////////    ADD PRODUCTS     ////////////////////////////////////////////////////
 
   private productToInterface(product: Product): ProductInterface{
@@ -289,7 +125,7 @@ public getProductsListInterfaceObservable(){
   }
 
 
-  public addProductApi(product: Product):Observable<ProductInterface>{
+  public addProductApi(product: Product):Observable<ProductInterface>{//PASAR A PROMISE VER COMO SE AHCE EN EL GET
 
     return this.asyncService.add(this.productToInterface(product), this.productsApiUrl);
   
@@ -305,8 +141,37 @@ public getProductsListInterfaceObservable(){
 
   //////////////////////    GET BY ID     ////////////////////////////////////////////////////
 
-getProductInterfaceById(id: number){
+/* getProductInterfaceById(id: number){CON observable
   return this.asyncService.getById(id, this.productsApiUrl + "/");
+} */
+
+getProductInterfaceById(id: number): Promise<ProductInterface | null>{//COn promise
+  return this.asyncService.getByIdPromise(id, this.productsApiUrl + "/")
+  .then(response => {
+    return response;
+  }).catch(error => {
+    alert("Error al obtener producto por ID o producto inexistente");
+    return null;
+  });;
 }
+
+
+ filterByCategory(producListInterface: ProductInterface[], category: string): ProductInterface[]{//si no hay productos retorna un array vacío
+  let salida: ProductInterface[] = [];
+  
+  /* await this.getProductsListInterfacePromise()
+        .then(response =>{
+          salida = response;
+          })
+        .catch(); */
+
+
+  return producListInterface.filter(product => product.category == category);
+}
+
+filterByBrand(producListInterface: ProductInterface[], brand: string):ProductInterface[]{
+  return producListInterface.filter(product => product.brand == brand);
+}
+
 
 }

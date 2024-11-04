@@ -13,9 +13,7 @@ export class AsyncService{
 
   constructor(private http: HttpClient) { }
 
-  /* getAll(urlApi:string): Promise<any>{
-    return this.http.get(urlApi).toPromise();
-  } */
+  
 
 
 
@@ -23,9 +21,9 @@ export class AsyncService{
     return this.http.get<ProductInterface[]>(urlApi);
   } 
 
- /*  getAll(urlApi:string):Promise<ProductInterface[]>{
+    getAllPromise(urlApi:string):Promise<ProductInterface[]>{
     return lastValueFrom(this.http.get<ProductInterface[]>(urlApi));//lastValueFrom transforma el observable en promesa, ToPromise esta deprecado en versiones
-  } */
+  }  
 
   add(product: ProductInterface, urlApi: string):Observable<ProductInterface>{
     const httpOptions = {
@@ -40,4 +38,9 @@ export class AsyncService{
 
 }
 
+
+getByIdPromise(productId: number, urlApi: string):Promise<ProductInterface>{
+  return lastValueFrom(this.http.get<ProductInterface>(urlApi + productId));
+
+}
 }

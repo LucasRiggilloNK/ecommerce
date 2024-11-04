@@ -2,30 +2,30 @@
   "products": [
     {
       "id": "1",
-      "brand": "ELECTRA",
-      "category": "AIRE_ACONCIIONADO",
+      "brand": "Electra",
+      "category": "Aire Acondicionado",
       "urlImage": "https://medias.musimundo.com/medias/size515-179769-02.png?context=bWFzdGVyfGltYWdlc3w5MTQwMnxpbWFnZS9wbmd8YUdObEwyaGtaQzh4TURZd01USTBPVEl4TURNNU9DOXphWHBsTlRFMVh6RTNPVGMyT1Y4d01pNXdibWN8MTg0NGJjOGVlMmRhZTZiODgwMmI4M2Q3OWIzZjgzM2MxYTVlMzQzYzI5YmQ2NzlhNjBjY2RhMGE5ZjFiNjY4Mg",
       "description": "AIRE ACONDICIONADO SPLIT FRIO/CALOR. POTENCIA DE 3200 W. FRIGORIAS: 2752 FG/H. CALORIAS: 2752. KCAL/H. EFICIENCIA ENERGETICA A. TIPO DE GAS REFRIGERANTE R410A. FUNCIONES: TIMER. FUNCION SLEEP. DESHUMIDIFICACION. REINICIO AUTOMATICO. DUAL CONEXION DRENAJE. BAJO NIVEL SONORO. DISPLAY. EL NUEVO EQUIPO TREND A (ON/OFF) COMBINA DISENO Y FUNCIONES PARA UN CLIMA PERFECTO. SU FUNCION TURBO PERMITE CLIMATIZAR EL AMBIENTE DE MANERA RAPIDA AL COMBINAR MAYOR POTENCIA Y DISTANCIA DEL FLUJO DE AIRE.",
       "price": "839999",
       "stock": "100",
-      "characteristics": "FRIO/CALOR,SI,TIPO,SPLIT",
+      "characteristics": "frioCalor,si,airTypes,split",
       "model": "ENTRDO32TC"
     },
     {
       "id": "2",
-      "brand": "PHILIPS",
-      "category": "AIRE_ACONCIIONADO",
+      "brand": "Philips",
+      "category": "Aire Acondicionado",
       "urlImage": "https://medias.musimundo.com/medias/00611018-147101-147101-01-147101-01.jpg-size515?context=bWFzdGVyfGltYWdlc3wyMjQxOHxpbWFnZS9qcGVnfGFEY3lMMmhqTnk4eE1EUTBOVGM0TVRNek5qQTVOQzh3TURZeE1UQXhPQzB4TkRjeE1ERXRNVFEzTVRBeFh6QXhMVEUwTnpFd01WOHdNUzVxY0dkZmMybDZaVFV4TlF8NDE4NmE5ZWVlYzc5ZmY4OGU4NDA5YmE5ODg3NTUxMTY4NmI5MzIzMjQxNjMwOTJkNWJmODIxNjE3NDM1MDNlYg",
       "description": "Climatización: Frio Calor - Potencia Refrigeración: 3200W - Frigorías: 2.838 Fg - Hidden Display - Eficiencia Energetica Clase A/A. - Refrigerante Ecologico R410a. - Control Remoto Multifuncion. - Barrido de Aire Automático. -Funcion Sleep - Timer Programable - Filtros Lavables - Control de flujo - Medida de caños (Alta - Baja): 1/4 - 1/2",
       "price": "809999",
       "stock": "100",
-      "characteristics": "FRIO/CALOR,SI,TIPO,SPLIT",
+      "characteristics": "frioCalor,si,airTypes,ventana",
       "model": "PHS32HA4CN"
     },
     {
       "id": "3",
-      "brand": "ATMA",
-      "category": "ASPIRADORAS",
+      "brand": "Atma",
+      "category": "Aspiradoras",
       "urlImage": "https://medias.musimundo.com/medias/size515-152238-01.jpg?context=bWFzdGVyfGltYWdlc3wzMDY1MnxpbWFnZS9qcGVnfGFHWXdMMmhoT1M4eE1EWXhPRGt4T0RNek9EVTVNQzl6YVhwbE5URTFYekUxTWpJek9GOHdNUzVxY0djfDAyZTcxYjFkMDJlNzNmYWRlMjU0YTk0ZDMxNWQ2NWM0YWViNzQzMGY1NDBkM2U0OTA5ODgxNzBkZDI3OTdjZmM",
       "description": "Aspiradora trineo. Potencia 1300W. Capacidad 2 litros. Enrollacable: cable de 5 metros. Indicador de deposito lleno. Deposito lavable. Sistema ciclonico sin bolsa. Micro filtro hepa: reduce los alergenos del ambiente. Recoge pelo de mascotas. Manija transportadora. Diseno liviano con ruedas. Pedal encendido / apagado. Regulador del caudal de aire. Boquillas para zonas estrechas. Cepillo para pisos duros, blandos y alfombras.",
       "price": "125309",
@@ -35,13 +35,24 @@
     },
     {
       "id": "4",
-      "brand": "LILIANA",
-      "category": "ASPIRADORAS",
+      "brand": "Liliana",
+      "category": "Aspiradoras",
       "urlImage": "https://medias.musimundo.com/medias/size515-135463-01.jpg?context=bWFzdGVyfGltYWdlc3w4NDQ4NXxpbWFnZS9qcGVnfGFESmtMMmd6TlM4eE1EWXdOelV6TnpZeE9EazNOQzl6YVhwbE5URTFYekV6TlRRMk0xOHdNUzVxY0djfDM2MzlmZTI3MzIzNWQzOGVlZjFhNjkwODQxOWM5NWM5MWRkNWZhNTgzYWQ5ZTYwNDcwZjA1N2QzYjQwYzk4ZWI",
       "description": "Pot.1600W. Ciclonica. Contenedor de polvo extraible/lavable/transparente de 2L. Encendido de pie. Filtro HEPA. Control electronico y manual de capac.de succion. Cepillo y Boquilla duales. Enrollacable aut. Manguera c/rotacion 360. Ruedas grandes.",
       "price": "199999",
       "stock": "100",
       "characteristics": "",
+      "model": "LA910 ALLCLEAN"
+    },
+    {
+      "id": "5",
+      "brand": "Liliana",
+      "category": "Ventiladores",
+      "urlImage": "https://medias.musimundo.com/medias/size300-135898-01.jpg?context=bWFzdGVyfGltYWdlc3w0ODI1OXxpbWFnZS9qcGVnfGFHSmhMMmhsTXk4eE1EWXdOamczTWpFMk5qUXpNQzl6YVhwbE16QXdYekV6TlRnNU9GOHdNUzVxY0djfGMxNGMzZmY2ZGQyYjdhNmU0MWMxMTk3M2Y0NjZkMGRkNTNmNDYyMzcwYTM1MjY5Njg5OTg0YmIzMGRkNjk3M2M",
+      "description": "Pot.1600W. Ciclonica. Contenedor de polvo extraible/lavable/transparente de 2L. Encendido de pie. Filtro HEPA. Control electronico y manual de capac.de succion. Cepillo y Boquilla duales. Enrollacable aut. Manguera c/rotacion 360. Ruedas grandes.",
+      "price": "199999",
+      "stock": "100",
+      "characteristics": "tipoVentiladores,Pie",
       "model": "LA910 ALLCLEAN"
     },
     {
@@ -71,7 +82,7 @@
       "description": "hjhjhj",
       "price": null,
       "stock": null,
-      "characteristics": "frioCalor,si,airTypes,split",
+      "characteristics": "frioCalor,si,airTypes,split inverter",
       "model": ""
     }
   ]
