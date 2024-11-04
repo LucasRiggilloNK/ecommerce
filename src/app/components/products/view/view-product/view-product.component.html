@@ -32,9 +32,9 @@
 </div> -->
 
 
-<button type="button" (click)="addGenericProduct()">ADD GENERIC PRODUCT</button>
-<br>
-<button type="button" (click)="getProductListInterface()">Listar</button>
+<!-- <button type="button" (click)="addGenericProduct()">ADD GENERIC PRODUCT</button> -->
+<!-- <br>
+<button type="button" (click)="getProductListInterface()">LISTAR TODOS LOS PRODUCTOS</button> -->
 <br>
 <input type="text" placeholder="Ingrese id a buscar" [formControl]="formControlById" id="inputId">
 <button type="button" (click)="getProductInterfaceById(formControlById.getRawValue())">Buscar</button>
@@ -118,7 +118,8 @@
 
 
 <br><br><br><br>
-
+<br>
+<button type="button" (click)="getProductListInterface()">LISTAR TODOS LOS PRODUCTOS</button>
 <p>LISTA DE JSON</p>
 <br>
 <div *ngFor="let product of productsListInt" >

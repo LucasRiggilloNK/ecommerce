@@ -56,14 +56,26 @@
       "model": "LA910 ALLCLEAN"
     },
     {
-      "id": "be45",
-      "brand": "Astro",
-      "category": "Aire Acondicionado",
-      "description": "1212212",
-      "price": 12112,
-      "stock": 112121,
-      "characteristics": "frioCalor,no,airTypes,portatil",
-      "model": "121212"
+      "id": "6",
+      "brand": "TCL",
+      "category": "Televisores",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151395-01.jpg?context=bWFzdGVyfGltYWdlc3w2NjA3MnxpbWFnZS9qcGVnfGFEY3pMMmcxTWk4eE1EWXhNakUzTWpJeU5qVTVNQzl6YVhwbE5URTFYekUxTVRNNU5WOHdNUzVxY0djfDRhMTdhZWZlNjJmYjYzMDBhNjJjZTNmZTZmMDBkZTg4OWI4ZTc2YTQyZmMyMTViOWVlZGNjMjYzMWU1NDEzOTg",
+      "description": "Televisor Smart LED Google. Pantalla 55\" 4K UHD 3840 x 2160 Px. Procesador Quad core x4 @1.1GHz. Memoria: 8 GB eMMC5.1. Salidas de audio. Potencia: 2 x 9.5 W. Conexiones: WIFI 2.4, Bluetooth 5.0, HDMI, USB y Optica Digital. Sintonizador TDA. Soporte Vesa: 200 x 200. Medidas con base: Alto 76.6 / Ancho 122.6 / Profundidad 26.5. Peso: 10.2 Kg. Incluye: 1 Soporte de Pie Central, 1 Control Remoto Multimedia, 1 Adaptador AV IN y cable de alimentacion.",
+      "price": "769999",
+      "stock": "100",
+      "characteristics": "tecnologia,LED,pulgadas,55'",
+      "model": "L55P635-F"
+    },
+    {
+      "id": "7",
+      "brand": "JBL",
+      "category": "Auriculares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152183-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg3OXxpbWFnZS9qcGVnfGFHUXhMMmhoWWk4eE1EWXhOVFUxTVRReU5qVTVNQzl6YVhwbE5URTFYekUxTWpFNE0xOHdNaTVxY0djfGFkMjgxZTU4NTA4NGVhNjg1YzU3MzZkMmQ1MWQ1M2NkZjg5MzA2OTFmNWNlOWI5ODU4OWIzMmMwMjZjNjc4NDI",
+      "description": "Auricular inalambrico tipo vincha. Microfono. Control de volumen. Conexion bluetooth 5.3, frecuencia 2.4 GHz - 2.4835 GHz. Plegable. Driver de 40mm. Frecuencia 20Hz - 20 kHz. Impendancia 30 ohm. Sensivilidad 101 dB. Sensibilidad del microfono 40 dBV. Bateria de 500 mAh / 3.7V. Tiempo de reproduccion 76 Hs. Tiempo de carga 2Hs. Incluye cable de carga tipo C.",
+      "price": "110999",
+      "stock": "125",
+      "characteristics": "",
+      "model": "TUNE 720"
     },
     {
       "id": "ac53",
@@ -84,6 +96,16 @@
       "stock": null,
       "characteristics": "frioCalor,si,airTypes,split inverter",
       "model": ""
+    },
+    {
+      "id": "781e",
+      "brand": "JBL",
+      "category": "Parlantes",
+      "description": "Parlante portatil. Alimentacion 5v (no incluye cargador). Resistente al polvo y al agua conforme a la norma IP67. Transductor: 45 mm/1.75. Potencia de salida: 4.2 W RMS. Respuesta de frecuencia: 90 Hz 20 kHz. Relacion senal/ruido: >85 dB. Tipo de bateria: polimero de ion-litio 3.23 Wh (equivalente a 3,8 V / 850 mAh). Tiempo de carga de la bateria: 3 horas (5 V/1 A). Tiempo de reproduccion de musica: hasta 7 horas (en funcion del volumen y del contenido del audio) Version Bluetooth: 5.3. Perfil Bluetooth: A2DP 1.4, AVRCP 1.6 Rango de frecuencia del transmisor. Bluetooth: 2400 MHz 2483.5 MHz. Potencia del transmisor Bluetooth: =9 dBm (PIRE). Modulacion del transmisor. Bluetooth: GFSK, p/4 DQPSK, 8 DPSK. Incluye cable de carga tipo C.",
+      "price": 91999,
+      "stock": 122,
+      "characteristics": "",
+      "model": "GO 4"
     }
   ]
 }
