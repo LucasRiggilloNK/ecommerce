@@ -32,7 +32,8 @@
     <input type="text" formControlName="model" class="form-control">
 
 
-    <app-air-conditioning-characteristics *ngIf="getSelectedCategory() == 'Aire Acondicionado'" ></app-air-conditioning-characteristics> 
+<!--     <app-air-conditioning-characteristics *ngIf="getSelectedCategory() == 'Aire Acondicionado'" ></app-air-conditioning-characteristics>
+    
     <app-fan-characteristics *ngIf="getSelectedCategory() == 'Ventiladores'"></app-fan-characteristics>
     <app-tv-characteristics  *ngIf="getSelectedCategory() == 'Televisores'"></app-tv-characteristics>
     <app-heapphones-characteristics *ngIf="getSelectedCategory() == 'Auriculares'"></app-heapphones-characteristics>
@@ -44,7 +45,20 @@
     <app-tablet-characteristics *ngIf="getSelectedCategory() == 'Tablets'"></app-tablet-characteristics>
     <app-printer-characteristics *ngIf="getSelectedCategory() == 'Impresoras'"></app-printer-characteristics>
     <app-keyboard-characteristics *ngIf="getSelectedCategory() == 'Teclado'"></app-keyboard-characteristics>
-    <app-mouse-characteristics *ngIf="getSelectedCategory() == 'Mouse'"></app-mouse-characteristics>
+    <app-mouse-characteristics *ngIf="getSelectedCategory() == 'Mouse'"></app-mouse-characteristics>   -->  
 
+    <app-air-conditioning-characteristics *ngIf="addProduct.get('Category')?.value == 'Aire Acondicionado'" ></app-air-conditioning-characteristics>
+    <app-fan-characteristics *ngIf="addProduct.get('Category')?.value == 'Ventiladores'"></app-fan-characteristics>
+    <app-tv-characteristics  *ngIf="addProduct.get('Category')?.value == 'Televisores'"></app-tv-characteristics>
+    <app-heapphones-characteristics *ngIf="addProduct.get('Category')?.value == 'Auriculares'"></app-heapphones-characteristics>
+    <app-refrigerator-characteristics *ngIf="addProduct.get('Category')?.value == 'Heladeras'"></app-refrigerator-characteristics>
+    <app-washing-characteristics *ngIf="addProduct.get('Category')?.value == 'Lavarropas'"></app-washing-characteristics>
+    <app-notebooks-characteristics *ngIf="addProduct.get('Category')?.value == 'Notebooks'"></app-notebooks-characteristics>
+    <app-microwave-characteristics *ngIf="addProduct.get('Category')?.value == 'Microondas'"></app-microwave-characteristics>
+    <app-smartphones-characteristics *ngIf="addProduct.get('Category')?.value == 'Celulares'"></app-smartphones-characteristics>
+    <app-tablet-characteristics *ngIf="addProduct.get('Category')?.value == 'Tablets'"></app-tablet-characteristics>
+    <app-printer-characteristics *ngIf="addProduct.get('Category')?.value == 'Impresoras'"></app-printer-characteristics>
+    <app-keyboard-characteristics *ngIf="addProduct.get('Category')?.value == 'Teclado'"></app-keyboard-characteristics>
+    <app-mouse-characteristics *ngIf="addProduct.get('Category')?.value == 'Mouse'"></app-mouse-characteristics>
     <button type="submit" [disabled]="!addProduct.valid"> Crear </button>  <!-- si todas las validaciones pasaron con exito lo habilita -->
 </form>

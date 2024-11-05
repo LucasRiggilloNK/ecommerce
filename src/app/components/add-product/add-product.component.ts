@@ -71,10 +71,10 @@ export class AddProductComponent {
 
   }
 
-  getSelectedCategory(): string {
+  /* getSelectedCategory(): string {
     console.log("Category: " + this.addProduct.get('category')?.value);
     return this.addProduct.get('category')?.value;
-  }
+  } */
 
   
 
