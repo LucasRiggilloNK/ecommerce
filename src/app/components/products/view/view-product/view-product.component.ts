@@ -150,7 +150,7 @@ ngOnInit(): void {
 
 
 //////////////////////////   ADD    ///////////////////////////////////////77
-  addGenericProduct(){
+  /* addGenericProduct(){
     let product = new Product();
       product.setId(this.productsListInt.length + 1);
       product.setBrand(Brand.APPLE);
@@ -177,7 +177,7 @@ ngOnInit(): void {
       //this.getProductListInterface();
       
       
-  }
+  } */
 
 //////////////////////////////////////7   GET BY ID   ///////////////////////////////////////////////////777
 

@@ -59,9 +59,11 @@ export class AddProductComponent {
       'characteristics': new FormControl(this.characteristics, [Validators.required]),
       'model': new FormControl(this.model, [Validators.required]) */
 
+      //VER VALIDATORS ARRIBA!!!----------------------------------------------------
+
       'brand': new FormControl(Brand.NONE),
       'category': new FormControl(Category.NONE),
-      'image': new FormControl(this.image),
+      'urlImage': new FormControl(this.image),
       'description': new FormControl(this.description),  
       'price': new FormControl(''),
       'stock': new FormControl(''),
@@ -82,7 +84,7 @@ export class AddProductComponent {
     this.characteristicsString = this.productCharacteristicsService.sendCharacteristicsString();
   }
 
-  onSubmit(){
+  /* onSubmit(){//FUNCIONA
 
     this.obtainCharacteristicsString();//obtiene string caracteristicas
     this.productInt = this.addProductFromToProductInterface();//pasa el form a interface de producto
@@ -94,10 +96,18 @@ export class AddProductComponent {
       }
     );// agrega el productoInterface en el json
 
+  } */
+
+  async onSubmit(){
+
+    this.obtainCharacteristicsString();//obtiene string caracteristicas
+    this.productInt = this.addProductFromToProductInterface();//pasa el form a interface de producto
+    await this.productService.addProductInterfaceApi(this.productInt);
+
   }
 
   addProductFromToProductInterface(): ProductInterface{
-    let product =  {
+    let product:ProductInterface =  {
       id: 0,
       brand: "",
       category: "",
@@ -110,8 +120,6 @@ export class AddProductComponent {
     };
 
     
-
-    
     product.brand = this.addProduct.get('brand')?.value;
     product.category = this.addProduct.get('category')?.value;
     product.characteristics = this.characteristicsString;
@@ -122,9 +130,10 @@ export class AddProductComponent {
     product.stock = this.addProduct.get('stock')?.value;
     
 
-    const { id, ...productWithoutId } = product;
+    /* const { id, ...productWithoutId } = product;
 
-    return productWithoutId as ProductInterface;
+    return productWithoutId as ProductInterface; */
+    return product;
   }
 
 

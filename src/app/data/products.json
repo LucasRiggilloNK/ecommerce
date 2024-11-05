@@ -1,7 +1,6 @@
 {
   "products": [
     {
-      "id": "1",
       "brand": "Electra",
       "category": "Aire Acondicionado",
       "urlImage": "https://medias.musimundo.com/medias/size515-179769-02.png?context=bWFzdGVyfGltYWdlc3w5MTQwMnxpbWFnZS9wbmd8YUdObEwyaGtaQzh4TURZd01USTBPVEl4TURNNU9DOXphWHBsTlRFMVh6RTNPVGMyT1Y4d01pNXdibWN8MTg0NGJjOGVlMmRhZTZiODgwMmI4M2Q3OWIzZjgzM2MxYTVlMzQzYzI5YmQ2NzlhNjBjY2RhMGE5ZjFiNjY4Mg",
@@ -9,10 +8,10 @@
       "price": "839999",
       "stock": "100",
       "characteristics": "frioCalor,si,airTypes,split",
-      "model": "ENTRDO32TC"
+      "model": "ENTRDO32TC",
+      "id": "958b"
     },
     {
-      "id": "2",
       "brand": "Philips",
       "category": "Aire Acondicionado",
       "urlImage": "https://medias.musimundo.com/medias/00611018-147101-147101-01-147101-01.jpg-size515?context=bWFzdGVyfGltYWdlc3wyMjQxOHxpbWFnZS9qcGVnfGFEY3lMMmhqTnk4eE1EUTBOVGM0TVRNek5qQTVOQzh3TURZeE1UQXhPQzB4TkRjeE1ERXRNVFEzTVRBeFh6QXhMVEUwTnpFd01WOHdNUzVxY0dkZmMybDZaVFV4TlF8NDE4NmE5ZWVlYzc5ZmY4OGU4NDA5YmE5ODg3NTUxMTY4NmI5MzIzMjQxNjMwOTJkNWJmODIxNjE3NDM1MDNlYg",
@@ -20,10 +19,10 @@
       "price": "809999",
       "stock": "100",
       "characteristics": "frioCalor,si,airTypes,ventana",
-      "model": "PHS32HA4CN"
+      "model": "PHS32HA4CN",
+      "id": "3480"
     },
     {
-      "id": "3",
       "brand": "Atma",
       "category": "Aspiradoras",
       "urlImage": "https://medias.musimundo.com/medias/size515-152238-01.jpg?context=bWFzdGVyfGltYWdlc3wzMDY1MnxpbWFnZS9qcGVnfGFHWXdMMmhoT1M4eE1EWXhPRGt4T0RNek9EVTVNQzl6YVhwbE5URTFYekUxTWpJek9GOHdNUzVxY0djfDAyZTcxYjFkMDJlNzNmYWRlMjU0YTk0ZDMxNWQ2NWM0YWViNzQzMGY1NDBkM2U0OTA5ODgxNzBkZDI3OTdjZmM",
@@ -31,10 +30,10 @@
       "price": "125309",
       "stock": "100",
       "characteristics": "",
-      "model": "AS8920PI"
+      "model": "AS8920PI",
+      "id": "58fe"
     },
     {
-      "id": "4",
       "brand": "Liliana",
       "category": "Aspiradoras",
       "urlImage": "https://medias.musimundo.com/medias/size515-135463-01.jpg?context=bWFzdGVyfGltYWdlc3w4NDQ4NXxpbWFnZS9qcGVnfGFESmtMMmd6TlM4eE1EWXdOelV6TnpZeE9EazNOQzl6YVhwbE5URTFYekV6TlRRMk0xOHdNUzVxY0djfDM2MzlmZTI3MzIzNWQzOGVlZjFhNjkwODQxOWM5NWM5MWRkNWZhNTgzYWQ5ZTYwNDcwZjA1N2QzYjQwYzk4ZWI",
@@ -42,10 +41,10 @@
       "price": "199999",
       "stock": "100",
       "characteristics": "",
-      "model": "LA910 ALLCLEAN"
+      "model": "LA910 ALLCLEAN",
+      "id": "3f4c"
     },
     {
-      "id": "5",
       "brand": "Liliana",
       "category": "Ventiladores",
       "urlImage": "https://medias.musimundo.com/medias/size300-135898-01.jpg?context=bWFzdGVyfGltYWdlc3w0ODI1OXxpbWFnZS9qcGVnfGFHSmhMMmhsTXk4eE1EWXdOamczTWpFMk5qUXpNQzl6YVhwbE16QXdYekV6TlRnNU9GOHdNUzVxY0djfGMxNGMzZmY2ZGQyYjdhNmU0MWMxMTk3M2Y0NjZkMGRkNTNmNDYyMzcwYTM1MjY5Njg5OTg0YmIzMGRkNjk3M2M",
@@ -53,10 +52,10 @@
       "price": "199999",
       "stock": "100",
       "characteristics": "tipoVentiladores,Pie",
-      "model": "LA910 ALLCLEAN"
+      "model": "LA910 ALLCLEAN",
+      "id": "36c9"
     },
     {
-      "id": "6",
       "brand": "TCL",
       "category": "Televisores",
       "urlImage": "https://medias.musimundo.com/medias/size515-151395-01.jpg?context=bWFzdGVyfGltYWdlc3w2NjA3MnxpbWFnZS9qcGVnfGFEY3pMMmcxTWk4eE1EWXhNakUzTWpJeU5qVTVNQzl6YVhwbE5URTFYekUxTVRNNU5WOHdNUzVxY0djfDRhMTdhZWZlNjJmYjYzMDBhNjJjZTNmZTZmMDBkZTg4OWI4ZTc2YTQyZmMyMTViOWVlZGNjMjYzMWU1NDEzOTg",
@@ -64,10 +63,10 @@
       "price": "769999",
       "stock": "100",
       "characteristics": "tecnologia,LED,pulgadas,55'",
-      "model": "L55P635-F"
+      "model": "L55P635-F",
+      "id": "dbb1"
     },
     {
-      "id": "7",
       "brand": "JBL",
       "category": "Auriculares",
       "urlImage": "https://medias.musimundo.com/medias/size515-152183-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg3OXxpbWFnZS9qcGVnfGFHUXhMMmhoWWk4eE1EWXhOVFUxTVRReU5qVTVNQzl6YVhwbE5URTFYekUxTWpFNE0xOHdNaTVxY0djfGFkMjgxZTU4NTA4NGVhNjg1YzU3MzZkMmQ1MWQ1M2NkZjg5MzA2OTFmNWNlOWI5ODU4OWIzMmMwMjZjNjc4NDI",
@@ -75,37 +74,96 @@
       "price": "110999",
       "stock": "125",
       "characteristics": "",
-      "model": "TUNE 720"
+      "model": "TUNE 720",
+      "id": "7f98"
     },
     {
-      "id": "ac53",
-      "brand": "Astro",
-      "category": "Aire Acondicionado",
-      "description": "hjhjhj",
-      "price": null,
-      "stock": null,
-      "characteristics": "frioCalor,si,airTypes,split",
-      "model": ""
+      "brand": "Samsung",
+      "category": "Celulares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151314-01.jpg?context=bWFzdGVyfGltYWdlc3w1Njg1NXxpbWFnZS9qcGVnfGFHTTNMMmhpT1M4eE1EWXhNRE0zT0RBeE5EYzFNQzl6YVhwbE5URTFYekUxTVRNeE5GOHdNUzVxY0djfDU0ZTg2NzYwYjZjZTgxYmMwNDYwNjBjMTYwNTQ0NmM0NDQ1NzZkZGQxMWNiNjAzNWFjYWI2MjcyODk4NTc0YWI",
+      "description": "CELULAR SAMSUNG GALAXY A35 - SM-A356E AZUL",
+      "price": 549999,
+      "stock": 23,
+      "characteristics": "",
+      "model": "SM-A356E",
+      "id": "c79c"
     },
     {
-      "id": "e184",
-      "brand": "Astro",
-      "category": "Aire Acondicionado",
-      "description": "hjhjhj",
-      "price": null,
-      "stock": null,
-      "characteristics": "frioCalor,si,airTypes,split inverter",
-      "model": ""
+      "brand": "Samsung",
+      "category": "Celulares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151314-01.jpg?context=bWFzdGVyfGltYWdlc3w1Njg1NXxpbWFnZS9qcGVnfGFHTTNMMmhpT1M4eE1EWXhNRE0zT0RBeE5EYzFNQzl6YVhwbE5URTFYekUxTVRNeE5GOHdNUzVxY0djfDU0ZTg2NzYwYjZjZTgxYmMwNDYwNjBjMTYwNTQ0NmM0NDQ1NzZkZGQxMWNiNjAzNWFjYWI2MjcyODk4NTc0YWI",
+      "description": "CELULAR SAMSUNG GALAXY A35 - SM-A356E AZUL",
+      "price": 549999,
+      "stock": 23,
+      "characteristics": "",
+      "model": "SM-A356E",
+      "id": "e7cb"
     },
     {
-      "id": "781e",
+      "brand": "Samsung",
+      "category": "Celulares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-150915-01.jpg?context=bWFzdGVyfGltYWdlc3w1MzAzMHxpbWFnZS9qcGVnfGFEZ3lMMmczWmk4eE1EWXhOelF4TWpRMU1qTTRNaTl6YVhwbE5URTFYekUxTURreE5WOHdNUzVxY0djfDcxZWFmYzMxYTNjYTk4YjdjNzFiODJmYjVjMGY4MWYxMjQ3ZjcyZTVhZDRmYzk3NmEyYjAyMzhmMzQwNWNjNjY",
+      "description": "CELULAR SAMSUNG GALAXY S24 ULTRA - SM-S928BZKMARO",
+      "price": 259900,
+      "stock": 29,
+      "characteristics": "",
+      "model": "SM-S928BZKMARO",
+      "id": "1e59"
+    },
+    {
+      "brand": "Whirlpool",
+      "category": "Heladeras",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152752-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTk1MHxpbWFnZS9qcGVnfGFEQmlMMmcyTlM4eE1EWXlNall5TURJM01EWXlNaTl6YVhwbE5URTFYekUxTWpjMU1sOHdNUzVxY0djfDBlNzYxMDMxMzcxODlmNTY2NjA1NmY2MDcxNDgzY2Y0ZjI5ZjA4OTBlMGZlYmRhZDRlNDc1ODJiYThlYzg4ZDQ",
+      "description": "Heladera. Volumen bruto 592 L. Volumen neto 554 L. Sistema de enfriamiento: No Frost. Inverter. Ubicacion del freezer: inferior. Eficiencia Energetica A. Crisper para frutas y verduras. Crisper especial multiuso. Tipo de estantes: vidrio templado, perfil plastico extruido con hotstamping. Ruedas. Pies regulables. Tipo de controles: display touch, control externo de temperatura, control de circulacion de aire. Accede rapido a las funciones: turbo ice, turbo zone, fiesta, vacaciones y compras. Compartimento extra frio turbo zone.",
+      "price": 3341999,
+      "stock": 14,
+      "characteristics": "sistEnfriamiento,no frost",
+      "model": "WRO85BK",
+      "id": "3040"
+    },
+    {
       "brand": "JBL",
       "category": "Parlantes",
-      "description": "Parlante portatil. Alimentacion 5v (no incluye cargador). Resistente al polvo y al agua conforme a la norma IP67. Transductor: 45 mm/1.75. Potencia de salida: 4.2 W RMS. Respuesta de frecuencia: 90 Hz 20 kHz. Relacion senal/ruido: >85 dB. Tipo de bateria: polimero de ion-litio 3.23 Wh (equivalente a 3,8 V / 850 mAh). Tiempo de carga de la bateria: 3 horas (5 V/1 A). Tiempo de reproduccion de musica: hasta 7 horas (en funcion del volumen y del contenido del audio) Version Bluetooth: 5.3. Perfil Bluetooth: A2DP 1.4, AVRCP 1.6 Rango de frecuencia del transmisor. Bluetooth: 2400 MHz 2483.5 MHz. Potencia del transmisor Bluetooth: =9 dBm (PIRE). Modulacion del transmisor. Bluetooth: GFSK, p/4 DQPSK, 8 DPSK. Incluye cable de carga tipo C.",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151139-01.jpg?context=bWFzdGVyfGltYWdlc3w1NjI3N3xpbWFnZS9qcGVnfGFEVTVMMmd4WWk4eE1EVTNPVFExTVRjME1ERTVNQzl6YVhwbE5URTFYekUxTVRFek9WOHdNUzVxY0djfGYzYjMzMDFiYjUwOWZlZWNiNWIwYjQ4MDJjNzUzNzA3OWIyMmY0NWFkNTE2ZjlmOGZkNDQwNjQxNTFiNWNjMjY",
+      "description": "Descripción: Parlante portatil. Alimentacion 5v (no incluye cargador). Resistente al polvo y al agua conforme a la norma IP67. Transductor: 45 mm/1.75. Potencia de salida: 4.2 W RMS. Respuesta de frecuencia: 90 Hz 20 kHz. Relacion senal/ruido: >85 dB. Tipo de bateria: polimero de ion-litio 3.23 Wh (equivalente a 3,8 V / 850 mAh). Tiempo de carga de la bateria: 3 horas (5 V/1 A). Tiempo de reproduccion de musica: hasta 7 horas (en funcion del volumen y del contenido del audio) Version Bluetooth: 5.3. Perfil Bluetooth: A2DP 1.4, AVRCP 1.6 Rango de frecuencia del transmisor. Bluetooth: 2400 MHz 2483.5 MHz. Potencia del transmisor Bluetooth: =9 dBm (PIRE). Modulacion del transmisor. Bluetooth: GFSK, p/4 DQPSK, 8 DPSK. Incluye cable de carga tipo C.",
       "price": 91999,
-      "stock": 122,
+      "stock": 24,
       "characteristics": "",
-      "model": "GO 4"
+      "model": "GO 4",
+      "id": "70e4"
+    },
+    {
+      "brand": "Philips",
+      "category": "Televisores",
+      "urlImage": "https://medias.musimundo.com/medias/size515-146615-03.jpg?context=bWFzdGVyfGltYWdlc3w3NjQyNXxpbWFnZS9qcGVnfGFEazVMMmcyTUM4eE1EVTRPVGN6TkRnNU5UWTBOaTl6YVhwbE5URTFYekUwTmpZeE5WOHdNeTVxY0djfDRlMDNlZTc0ZTY4MDkyNzg4MmZjMzljZjM5MzEwNjVmOTIzMjQxNTZkOTA2NjdlY2ViNGNlNWMwODU2Y2NmYzY",
+      "description": " Televisor Smart / Android. Pantalla: TV LED HD. Resolucion de panel: 1366 x 768 p. Relacion de aspecto: 16:9. Optimizacion de la imagen: HDR10, HLG (Hybrid Log Gamma), Pixel Plus alta definicion. Tamano diagonal de pantalla: 32 pulgadas / 80 cm. Cantidad de conexiones HDMI: 3. Cantidad de puertos USB: 2. WIFI. Bluetooth. Potencia de salida (RMS): 10 W. Configuracion del parlante: Altavoz de 5 W x2. Optimizacion del sonido: Nivelador automatico de volumen, Dialogo nitido, Dolby Atmos, Mejora de graves Dolby. Sistema operativo: Android TV 10 (Q). Aplicaciones preinstaladas: YouTube, Amazon, Prime Video, Apple TV, Disney+, Aplicacion de fitness, Google Play Movies, Google Play Music, Busqueda de Google, Netflix, YouTube Music. Tamano de la memoria (flash): 8 GB. Control por voz con IA: Presiona un boton del control remoto para hablar con el Asistente de Google. Controla el televisor o los dispositivos inteligentes para el hogar compatibles con el Asistente de Google usando tu voz.",
+      "price": 319999,
+      "stock": 126,
+      "characteristics": "tecnologia,LED,pulgadas,32\"",
+      "model": "32PHD6927/77",
+      "id": "b0e1"
+    },
+    {
+      "brand": "Samsung",
+      "category": "Televisores",
+      "urlImage": "https://medias.musimundo.com/medias/size515-150909-01.jpg?context=bWFzdGVyfGltYWdlc3w5MzAzMXxpbWFnZS9qcGVnfGFEZGlMMmcwWWk4eE1EWXhPVGs0T0RZM01qVTBNaTl6YVhwbE5URTFYekUxTURrd09WOHdNUzVxY0djfDAxZGQwOTBlMjE3ZTE2MDkzMGY4NjRiZWU2MzllY2NhOGZhNWFkOTllN2Q1NDlhZDlmZWE5YTVhMDNlYWI2NTM",
+      "description": "SMART LED TV SAMSUNG 43\" PULGADAS 4K UHD UN43CU7000GCZB",
+      "price": 650999,
+      "stock": 99,
+      "characteristics": "tecnologia,LED,pulgadas,32\"",
+      "model": "UN43CU7000GCZB",
+      "id": "7bf3"
+    },
+    {
+      "id": 0,
+      "brand": "HP",
+      "category": "Notebooks",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152691-01.jpg?context=bWFzdGVyfGltYWdlc3w1NzgyN3xpbWFnZS9qcGVnfGFEUmxMMmc1TVM4eE1EWXlNREEzTkRrNE16UTFOQzl6YVhwbE5URTFYekUxTWpZNU1WOHdNUzVxY0djfDY1MzY0MGYwYjQzOGFjMGQxYWM0YTVjYjU1YzEwZDFmMDhhMTNlYWY1MjgyZTk2NWVjMjhmNjVjODI5ZmMxZjY",
+      "description": "Notebook. Pantalla de 14\" FHD (1920 x 1080) con antirreflejante. Brillo 250 nits. Procesador AMD Ryzen 5-7520U (2.8 hasta 4.3 Ghz, 4 MB de cache L3, 4 nucleos y 8 subprocesos). Capacidad 512 Gb SSD PCIe NVMe M.2. RAM 8 Gb LPDDR5-5500 MHz (incorporada). Placa de video AMD Radeon. Conexiones: Wi-Fi 6 (1x1). Bluetooth 5.3. USB Type-C con velocidad de transferencia de datos de 5Gbps. 2 USB Tipo-A con velocidad de senalizacion de 5 Gb/s. 1 Conector inteligente de CA. 1 HDMI 1.4b. 1 combinacion de audifonos/microfono. Sistema operativo Windows 11. Camara FHD HP True Vision de 1080p con reduccion de ruido temporal y microfonos digitales integrados de doble matriz. Bateria de 41 Whrs.",
+      "price": 799999,
+      "stock": 42,
+      "characteristics": "screenSize,14\",ram,8 GB,processor,AMD Ryzen 5,storageSize,128GB",
+      "model": "14-EM0002LA"
     }
   ]
 }

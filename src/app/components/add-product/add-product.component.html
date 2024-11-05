@@ -16,7 +16,7 @@
     <br>
 
     <p>URL Imágen</p>
-    <input type="text" formControlName="image" class="form-control">
+    <input type="text" formControlName="urlImage" class="form-control">
 
 
     <p>Descripción</p>
@@ -47,18 +47,19 @@
     <app-keyboard-characteristics *ngIf="getSelectedCategory() == 'Teclado'"></app-keyboard-characteristics>
     <app-mouse-characteristics *ngIf="getSelectedCategory() == 'Mouse'"></app-mouse-characteristics>   -->  
 
-    <app-air-conditioning-characteristics *ngIf="addProduct.get('Category')?.value == 'Aire Acondicionado'" ></app-air-conditioning-characteristics>
-    <app-fan-characteristics *ngIf="addProduct.get('Category')?.value == 'Ventiladores'"></app-fan-characteristics>
-    <app-tv-characteristics  *ngIf="addProduct.get('Category')?.value == 'Televisores'"></app-tv-characteristics>
-    <app-heapphones-characteristics *ngIf="addProduct.get('Category')?.value == 'Auriculares'"></app-heapphones-characteristics>
-    <app-refrigerator-characteristics *ngIf="addProduct.get('Category')?.value == 'Heladeras'"></app-refrigerator-characteristics>
-    <app-washing-characteristics *ngIf="addProduct.get('Category')?.value == 'Lavarropas'"></app-washing-characteristics>
-    <app-notebooks-characteristics *ngIf="addProduct.get('Category')?.value == 'Notebooks'"></app-notebooks-characteristics>
-    <app-microwave-characteristics *ngIf="addProduct.get('Category')?.value == 'Microondas'"></app-microwave-characteristics>
-    <app-smartphones-characteristics *ngIf="addProduct.get('Category')?.value == 'Celulares'"></app-smartphones-characteristics>
-    <app-tablet-characteristics *ngIf="addProduct.get('Category')?.value == 'Tablets'"></app-tablet-characteristics>
-    <app-printer-characteristics *ngIf="addProduct.get('Category')?.value == 'Impresoras'"></app-printer-characteristics>
-    <app-keyboard-characteristics *ngIf="addProduct.get('Category')?.value == 'Teclado'"></app-keyboard-characteristics>
-    <app-mouse-characteristics *ngIf="addProduct.get('Category')?.value == 'Mouse'"></app-mouse-characteristics>
+    <app-air-conditioning-characteristics *ngIf="addProduct.get('category')?.value == 'Aire Acondicionado'" ></app-air-conditioning-characteristics>
+    <app-fan-characteristics *ngIf="addProduct.get('category')?.value == 'Ventiladores'"></app-fan-characteristics>
+    <app-tv-characteristics  *ngIf="addProduct.get('category')?.value == 'Televisores'"></app-tv-characteristics>
+    <app-heapphones-characteristics *ngIf="addProduct.get('category')?.value == 'Auriculares'"></app-heapphones-characteristics>
+    <app-refrigerator-characteristics *ngIf="addProduct.get('category')?.value == 'Heladeras'"></app-refrigerator-characteristics>
+    <app-washing-characteristics *ngIf="addProduct.get('category')?.value == 'Lavarropas'"></app-washing-characteristics>
+    <app-notebooks-characteristics *ngIf="addProduct.get('category')?.value == 'Notebooks'"></app-notebooks-characteristics>
+    <app-microwave-characteristics *ngIf="addProduct.get('category')?.value == 'Microondas'"></app-microwave-characteristics>
+    <app-smartphones-characteristics *ngIf="addProduct.get('category')?.value == 'Celulares'"></app-smartphones-characteristics>
+    <app-tablet-characteristics *ngIf="addProduct.get('category')?.value == 'Tablets'"></app-tablet-characteristics>
+    <app-printer-characteristics *ngIf="addProduct.get('category')?.value == 'Impresoras'"></app-printer-characteristics>
+    <app-keyboard-characteristics *ngIf="addProduct.get('category')?.value == 'Teclado'"></app-keyboard-characteristics>
+    <app-mouse-characteristics *ngIf="addProduct.get('category')?.value == 'Mouse'"></app-mouse-characteristics>
+    
     <button type="submit" [disabled]="!addProduct.valid"> Crear </button>  <!-- si todas las validaciones pasaron con exito lo habilita -->
 </form>

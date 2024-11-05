@@ -125,14 +125,26 @@ public getAllProductsListInterface(): Promise<ProductInterface[]>{
   }
 
 
-  public addProductApi(product: Product):Observable<ProductInterface>{//PASAR A PROMISE VER COMO SE AHCE EN EL GET
+  /* public addProductApi(product: Product):Observable<ProductInterface>{//PASAR A PROMISE VER COMO SE AHCE EN EL GET
 
     return this.asyncService.add(this.productToInterface(product), this.productsApiUrl);
   
-  }
+  } */
 
- public addProductInterfaceApi(productInt: ProductInterface){
+ /* public addProductInterfaceApi(productInt: ProductInterface){//FUNCIONA
   return this.asyncService.add(productInt, this.productsApiUrl);
+ } */
+
+ public addProductInterfaceApi(productInt: ProductInterface): Promise<ProductInterface | null>{
+  return this.asyncService.add(productInt, this.productsApiUrl)
+  .then(response =>{
+    alert("Producto agregado existosamente...");
+    return response;
+  })
+  .catch(error =>{
+    alert("Error al agregar producto al archivo json");
+    return null;
+  });
  }
 
 
