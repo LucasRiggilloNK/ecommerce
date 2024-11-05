@@ -103,35 +103,11 @@ public getAllProductsListInterface(): Promise<ProductInterface[]>{
 }
 
 
-/* public getProductsListInterfacePromise(): Promise<ProductInterface>{
-  return this.asyncService.getAllPromise(this.productsApiUrl);
-} */
 
   //////////////////////    ADD PRODUCTS     ////////////////////////////////////////////////////
 
-  private productToInterface(product: Product): ProductInterface{
-    let productInterface: ProductInterface = {
-      id: product.getId(),
-     brand: product.getBrand(),
-     category: product.getCategory(),
-     urlImage: product.getImage().getUrl(),
-     description: product.getDescription(),
-     price: product.getPrice(),
-     stock: product.getStock(),
-     characteristics: product.getCharacteristics(),
-     model: product.getModel()
-    }
-    return productInterface;
-  }
 
-
-  /* public addProductApi(product: Product):Observable<ProductInterface>{//PASAR A PROMISE VER COMO SE AHCE EN EL GET
-
-    return this.asyncService.add(this.productToInterface(product), this.productsApiUrl);
-  
-  } */
-
- /* public addProductInterfaceApi(productInt: ProductInterface){//FUNCIONA
+ /* public addProductInterfaceApi(productInt: ProductInterface){//FUNCIONA OBSERVABLE
   return this.asyncService.add(productInt, this.productsApiUrl);
  } */
 
@@ -170,13 +146,6 @@ getProductInterfaceById(id: number): Promise<ProductInterface | null>{//COn prom
 
  filterByCategory(producListInterface: ProductInterface[], category: string): ProductInterface[]{//si no hay productos retorna un array vacío
   let salida: ProductInterface[] = [];
-  
-  /* await this.getProductsListInterfacePromise()
-        .then(response =>{
-          salida = response;
-          })
-        .catch(); */
-
 
   return producListInterface.filter(product => product.category == category);
 }

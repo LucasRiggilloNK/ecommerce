@@ -26,12 +26,10 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   formControlById: FormControl;
 
   categoryList: string[] = Object.values(Category);
-  //brandList: string[] = Object.values(Brand);
   brandList: string[] = [];
 
   productListFilteredByCategory: ProductInterface[] = [];
   productListSubFiltered: ProductInterface[] = [];
-  //formControlGroupFilter: FormGroup;
  formControlCategory: FormControl;
  formGrupSubfilters: FormGroup;
 
@@ -59,11 +57,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     let indiceNONE = this.categoryList.indexOf(Category.NONE)
     this.categoryList.splice(indiceNONE, 1);
 
-
-    /* this.formControlGroupFilter = new FormGroup({
-      "category": new FormControl(Category.NONE),
-      "brand": new FormControl(Brand.NONE)
-    }); */
     this.formControlCategory = new FormControl();
     this.formGrupSubfilters = new FormGroup({
       "brand": new FormControl(Brand.NONE),
@@ -79,12 +72,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   }
 ngOnInit(): void {
   this.getProductListInterface();
-   /* this.valueChangesSubscription = this.formControlGroupFilter.valueChanges.subscribe(
-    form =>{
-      this.getConditionOfLoadProductsFilteredByCategory(this.formControlGroupFilter);
-    }
-    
-  );   */
   this.valueChangesSubscription = this.formControlCategory.valueChanges.subscribe(
     form =>{
       this.getListFilteredByCategory(this.formControlCategory);
@@ -107,21 +94,6 @@ ngOnInit(): void {
 
   
 
-  //////////////////////////////7   GET    //////////////////////////////////////////////////
-  /* getProductListInterface(){
-    
-    this.subscriptionGetProductListInterface = this.productService.getProductsListInterfaceObservable().subscribe(
-      response =>{
-        this.productsListInt = response;
-      }, error =>{
-        alert("Error de lectura metodo GET de API products.json...");
-      }
-    );
-    console.log("*");
-    console.log(this.productsListInt);
-    
-  } */
-
   
       async getProductListInterface(){
     
@@ -133,7 +105,7 @@ ngOnInit(): void {
     } 
 
 
-    /* async getProductListInterface(){FUNVIONA
+    /* async getProductListInterface(){FUNCIONA
     
       this.subscriptionGetProductListInterface = await this.productService.getProductsListInterfaceObservable().subscribe(
       response =>{
@@ -149,37 +121,10 @@ ngOnInit(): void {
   } */
 
 
-//////////////////////////   ADD    ///////////////////////////////////////77
-  /* addGenericProduct(){
-    let product = new Product();
-      product.setId(this.productsListInt.length + 1);
-      product.setBrand(Brand.APPLE);
-      product.setCategory(Category.CELULARES);
-      product.setCharacteristics("5456fd4f");
-      product.setDescription("BLA BLA BLA");
-      product.setImage(new Image("IMAGEN URL"));
-      product.setModel("LG445588");
-      product.setPrice(500000);
-      product.setStock(1000);
+  
 
 
 
-      this.productService.addProductApi(product).subscribe(
-        response =>{
-          this.getProductListInterface();
-
-        },
-        error =>{
-          alert("Error al agregar producto...");
-        }
-      );
-
-      //this.getProductListInterface();
-      
-      
-  } */
-
-//////////////////////////////////////7   GET BY ID   ///////////////////////////////////////////////////777
 
   /* getProductInterfaceById(id: number){CON OBSERVABLE
     //let id = this.formControlById.getRawValue();
@@ -218,36 +163,6 @@ buttonDetails(id: number){
 getFilterByCategory(productsListInt: ProductInterface[], category: string): ProductInterface[]{//carga la lista filtrada por categoria
   return this.productService.filterByCategory(productsListInt, category);
 }
-
-/* getConditionOfLoadProductsFilteredByCategory():boolean{//FUNCIONA
-  
-  let productListSubFiltered: ProductInterface[] = [];
-  this.productListSubFiltered =  [];
-
-  let productListFilteredByCategory = this.getFilterByCategory(this.productsListInt, this.formControlGroupFilter.get("category")?.value);
-  let out = false;
-
-  if(productListFilteredByCategory.length != 0){
-    this.productListFilteredByCategory = productListFilteredByCategory;
-
-    if(this.predefinedValueFilters()){
-      console.log("ATRODEN");
-      this.productListSubFiltered = this.productListFilteredByCategory;
-
-    } else{
-      productListSubFiltered = this.applySubFilters(this.productListFilteredByCategory);
-      if(productListSubFiltered.length != 0){
-        this.productListSubFiltered = productListSubFiltered;
-        
-      }else{
-        this.formControlGroupFilter.get("brand")?.setValue(Brand.NONE);
-      }
-    } 
-    out = true;
-  }
-
-  return out;
-} */
 
 
 async getAllProductsListInterface(): Promise<ProductInterface[]>{
@@ -302,14 +217,6 @@ obtainCharacteristicsArrayOfStringCharacteristics(stringCharacteristics: string)
 }
 
 
-
-/* removeFormControlsAddedAtformGrupSubfilters(formGrupSubfilters: FormGroup){//restablece el formGrupSubfilters
-  Object.keys(formGrupSubfilters.controls).forEach( key =>{
-    if(key != "category" && key != "brand"){
-      formGrupSubfilters.removeControl(key);
-    }
-  });
-} */
 
 private async getListFilteredBySubFilters(productListSubFilteredByCategory: ProductInterface[], formGroup: FormGroup, category: string){
   let filteredProductsListInterface = productListSubFilteredByCategory;
@@ -383,18 +290,7 @@ private getListFilteredByBrand(productsListInterface: ProductInterface[], brand:
   return productsListInterface.filter(product => product.brand == brand);
 }
 
-/* getListFilteredByAirType(productsListInterface: ProductInterface[], airType: string): ProductInterface[]{
-  let producList: ProductInterface[] = [];
-  productsListInterface.forEach(productinterface =>{
-    let characteristics = this.obtainCharacteristicsArrayOfStringCharacteristics(productinterface.characteristics);
-    if(characteristics[characteristics.indexOf("airTypes") + 1]  == airType ){
-      console.log("*");
-      console.log(productinterface);
-      producList.push(productinterface);
-    }
-  });
-  return producList;
-} */
+
 
   getListFilteredCharacteristics(productsListInterface: ProductInterface[], typeName: string, typeValue: string): ProductInterface[]{
     let producList: ProductInterface[] = [];
@@ -422,48 +318,7 @@ getListFilteredByFrioCalor(productsListInterface: ProductInterface[], frioCalor:
   return producList;
 }
 
- /*   async getConditionOfLoadProductsFilteredByCategory(formControlGroupFilter: FormGroup){
-
-    console.log(formControlGroupFilter.get("category")?.value);
-    console.log(formControlGroupFilter.get("brand")?.value);
-
-    let filteredProductsListInterface: ProductInterface[] = [];
-    this.brandList = [];
-    let out = false;
-
-    if(formControlGroupFilter.get("category")?.value != Category.NONE){//none está cargado iniciamente en el formControl. Si está así, no muestra nada
-      //filtrado por todos los filtros
-      console.log("ATRODEN");
-      filteredProductsListInterface = await this.getAllProductsListInterface();// carga todos los productos
-      console.log(filteredProductsListInterface);
-
-      filteredProductsListInterface = this.getFilterByCategory(filteredProductsListInterface, formControlGroupFilter.get("category")?.value);//filtro categoria
-      console.log(filteredProductsListInterface);
-
-      this.brandList = this.obtainBrandListFilteredByCategory(filteredProductsListInterface);// obtiene las marcas de los productos filtrados
-      console.log(this.brandList);
-      
-
-      if(formControlGroupFilter.get("brand")?.value != Brand.NONE){
-        
-        filteredProductsListInterface = filteredProductsListInterface.filter(poduct => poduct.brand === formControlGroupFilter.get("brand")?.value);
-        console.log(filteredProductsListInterface);
-
-      }
-      
-      
-
-       
-      out = true;
-    } 
-    
-  
-    
-
-      this.productListSubFiltered = filteredProductsListInterface;
-  
-    return out;
-  }*/
+ 
  
 
 obtainBrandListFilteredByCategory(prductListInterface: ProductInterface[]){
