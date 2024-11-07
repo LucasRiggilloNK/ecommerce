@@ -15,10 +15,10 @@ import { validateHeaderName } from 'http';
 import { emitWarning, setUncaughtExceptionCaptureCallback } from 'process';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class ProductService implements OnInit{
-  private productsApiUrl: string = "http://localhost:4000/products";
+export class ProductService implements OnInit {
+  private productsApiUrl: string = 'http://localhost:3000/products';
   /* private airesAcondicionadoApiUrl: string = "";
   private aspiradorasApiUrl: string = "";
   private auricularesApiUrl: string = "";
@@ -38,40 +38,29 @@ export class ProductService implements OnInit{
   private ventiladoresApiUrl: string = ""; */
   private productsObjectList: Product[] = [];
   private productsListInt: ProductInterface[] = [];
-  private product: Product|null = null;
-  private productInt: ProductInterface|null = null; //Para relacionar con los campos de modificar producto
-  private productAddedInt: ProductInterface|null = null;
-  
+  private product: Product | null = null;
+  private productInt: ProductInterface | null = null; //Para relacionar con los campos de modificar producto
+  private productAddedInt: ProductInterface | null = null;
 
-
-  constructor(private asyncService: AsyncService) { 
+  constructor(private asyncService: AsyncService) {
     this.productInt = {
-    id: 1,
-    brand: Brand.NONE,
-    category: Category.NONE,
-    urlImage: "",
-    description: "",
-    price: 0,
-    stock: 0,
-    characteristics: "",
-    model: ""
-    }
-    
+      id: 1,
+      brand: Brand.NONE,
+      category: Category.NONE,
+      urlImage: '',
+      description: '',
+      price: 0,
+      stock: 0,
+      characteristics: '',
+      model: '',
+    };
   }
 
- ngOnInit(): void {
-  
- }
+  ngOnInit(): void {}
 
+  //////////////////////    GET PRODUCTS     ////////////////////////////////////////////////////
 
-
- 
-  
-//////////////////////    GET PRODUCTS     ////////////////////////////////////////////////////
-
-
-
-/* private obtainProductsListInterface(){
+  /* private obtainProductsListInterface(){
   this.asyncService.getAll(this.productsApiUrl).subscribe(
     response =>{
       this.productsListInt = response;
@@ -82,77 +71,77 @@ export class ProductService implements OnInit{
   
 } */
 
-
-
-
-public getProductsListInterfaceObservable(){
-  return this.asyncService.getAll(this.productsApiUrl);
-}
-public getAllProductsListInterface(): Promise<ProductInterface[]>{
-  
-  return this.asyncService.getAllPromise(this.productsApiUrl)
-  .then(response =>{
-    return response;
-  })
-  .catch(error =>{
-    alert("Error al obtener productos de archivo json");
-    return [];
-  });
-
-  
-}
-
-
+  public getProductsListInterfaceObservable() {
+    return this.asyncService.getAll(this.productsApiUrl);
+  }
+  public getAllProductsListInterface(): Promise<ProductInterface[]> {
+    return this.asyncService
+      .getAllPromise(this.productsApiUrl)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        alert('Error al obtener productos de archivo json');
+        return [];
+      });
+  }
 
   //////////////////////    ADD PRODUCTS     ////////////////////////////////////////////////////
 
-
- /* public addProductInterfaceApi(productInt: ProductInterface){//FUNCIONA OBSERVABLE
+  /* public addProductInterfaceApi(productInt: ProductInterface){//FUNCIONA OBSERVABLE
   return this.asyncService.add(productInt, this.productsApiUrl);
  } */
 
- public addProductInterfaceApi(productInt: ProductInterface): Promise<ProductInterface | null>{
-  return this.asyncService.add(productInt, this.productsApiUrl)
-  .then(response =>{
-    alert("Producto agregado existosamente...");
-    return response;
-  })
-  .catch(error =>{
-    alert("Error al agregar producto al archivo json");
-    return null;
-  });
- }
-
-
-
-
+  public addProductInterfaceApi(
+    productInt: ProductInterface
+  ): Promise<ProductInterface | null> {
+    return this.asyncService
+      .add(productInt, this.productsApiUrl)
+      .then((response) => {
+        alert('Producto agregado existosamente...');
+        return response;
+      })
+      .catch((error) => {
+        alert('Error al agregar producto al archivo json');
+        return null;
+      });
+  }
 
   //////////////////////    GET BY ID     ////////////////////////////////////////////////////
 
-/* getProductInterfaceById(id: number){CON observable
+  /* getProductInterfaceById(id: number){CON observable
   return this.asyncService.getById(id, this.productsApiUrl + "/");
 } */
 
-getProductInterfaceById(id: number): Promise<ProductInterface | null>{//COn promise
-  return this.asyncService.getByIdPromise(id, this.productsApiUrl + "/")
-  .then(response => {
-    return response;
-  }).catch(error => {
-    alert("Error al obtener producto por ID o producto inexistente");
-    return null;
-  });;
-}
+  getProductInterfaceById(id: number): Promise<ProductInterface | null> {
+    //COn promise
+    return this.asyncService
+      .getByIdPromise(id, this.productsApiUrl + '/')
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        alert('Error al obtener producto por ID o producto inexistente');
+        return null;
+      });
+  }
 
+  filterByCategory(
+    producListInterface: ProductInterface[],
+    category: string
+  ): ProductInterface[] {
+    //si no hay productos retorna un array vacío
+    let salida: ProductInterface[] = [];
 
- filterByCategory(producListInterface: ProductInterface[], category: string): ProductInterface[]{//si no hay productos retorna un array vacío
-  let salida: ProductInterface[] = [];
+    return producListInterface.filter(
+      (product) => product.category == category
+    );
+  }
 
-  return producListInterface.filter(product => product.category == category);
-}
-
-filterByBrand(producListInterface: ProductInterface[], brand: string):ProductInterface[]{
-  return producListInterface.filter(product => product.brand == brand);
-}
-
-
+  filterByBrand(
+    producListInterface: ProductInterface[],
+    brand: string
+  ): ProductInterface[] {
+    return producListInterface.filter((product) => product.brand == brand);
+  }
 }
