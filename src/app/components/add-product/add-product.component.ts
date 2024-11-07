@@ -24,7 +24,7 @@ export class AddProductComponent {
 
   brand: string = "";
   category: string = "";
-  image: string = "";
+  urlImage: string = "";
   description: string = "";
   price: string = "";
   stock: string = "";
@@ -50,25 +50,24 @@ export class AddProductComponent {
     }
 
     this.addProduct = new FormGroup ({
-      /* 'brand': new FormControl(Brand.NONE, [Validators.required]),
+      'brand': new FormControl(Brand.NONE, [Validators.required]),
       'category': new FormControl(Category.NONE, [Validators.required]),
-      'image': new FormControl(this.image, [Validators.required]),
+      'urlImage': new FormControl(this.urlImage, [Validators.required]),
       'description': new FormControl(this.description, [Validators.required]),  
       'price': new FormControl('', [Validators.required, Validators.min(0.01)]),
       'stock': new FormControl('', [Validators.required, Validators.min(1)]),
-      'characteristics': new FormControl(this.characteristics, [Validators.required]),
-      'model': new FormControl(this.model, [Validators.required]) */
+      'model': new FormControl(this.model, [Validators.required])
 
       //VER VALIDATORS ARRIBA!!!----------------------------------------------------
 
-      'brand': new FormControl(Brand.NONE),
+/*       'brand': new FormControl(Brand.NONE),
       'category': new FormControl(Category.NONE),
       'urlImage': new FormControl(this.image),
       'description': new FormControl(this.description),  
       'price': new FormControl(''),
       'stock': new FormControl(''),
       'characteristics': new FormControl(this.characteristics),
-      'model': new FormControl(this.model)
+      'model': new FormControl(this.model) */
     });
 
   }

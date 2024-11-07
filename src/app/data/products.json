@@ -73,7 +73,7 @@
       "description": "Auricular inalambrico tipo vincha. Microfono. Control de volumen. Conexion bluetooth 5.3, frecuencia 2.4 GHz - 2.4835 GHz. Plegable. Driver de 40mm. Frecuencia 20Hz - 20 kHz. Impendancia 30 ohm. Sensivilidad 101 dB. Sensibilidad del microfono 40 dBV. Bateria de 500 mAh / 3.7V. Tiempo de reproduccion 76 Hs. Tiempo de carga 2Hs. Incluye cable de carga tipo C.",
       "price": "110999",
       "stock": "125",
-      "characteristics": "",
+      "characteristics": "tipoAuricular,inEar",
       "model": "TUNE 720",
       "id": "7f98"
     },
@@ -164,6 +164,28 @@
       "stock": 42,
       "characteristics": "screenSize,14\",ram,8 GB,processor,AMD Ryzen 5,storageSize,128GB",
       "model": "14-EM0002LA"
+    },
+    {
+      "id": 0,
+      "brand": "Whirlpool",
+      "category": "Microondas",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152798-01.jpg?context=bWFzdGVyfGltYWdlc3w0MzAxMXxpbWFnZS9qcGVnfGFEZGxMMmc0T0M4eE1EWXlOak0xTmpJME9EWXdOaTl6YVhwbE5URTFYekUxTWpjNU9GOHdNUzVxY0djfGY4Y2VlNjk4NjUzOTUyYzA3ODBkOTBmNmQ2MmYyMTU3ZmMwMzk0NGY4YzE2YWRkMjRiOTgyODU5YWMyYzM0YzI",
+      "description": "Microondas empotrable. Capacidad 40L. Potencia microondas 850W. Potencia grill 800W. Timer. Gabinete de acero inoxidable. Grill. Coccion automatica. Funcion conveccion. Funcion descongelar. Display LED. 7 Niveles de coccion.",
+      "price": 1700000,
+      "stock": 12,
+      "characteristics": "capacidad,40 lts",
+      "model": "WMO40AS"
+    },
+    {
+      "id": 0,
+      "brand": "Whirlpool",
+      "category": "Lavarropas",
+      "urlImage": "https://medias.musimundo.com/medias/size515-149618-01.jpg?context=bWFzdGVyfGltYWdlc3wzMDM3NXxpbWFnZS9qcGVnfGFHWTNMMmcxWmk4eE1EVXdNVE0zT1RBMk16Z3pPQzl6YVhwbE5URTFYekUwT1RZeE9GOHdNUzVxY0djfGYzMGQzNDI5NzI4MWUxMjgxYWUxNjRkMmVjZjMxNDYxMTlmN2JlZWFmODJlNDczNWJhZDI4MzkzMTY3Yjc5ZTM",
+      "description": "Lavarropas automatico. Tecnologia inverter. Capacidad 9 Kg. 15 Programas. Eficiencia energetica A++. Carga frontal. Velocidad de centrifugado 1400 RPM. Controles mecanicos. Display. Regulador de temperatura. Exclusion de centrifugado. Media carga. Antiarrugas. Lavado rapido. Tambor de acero inoxidable. Pies niveladores. Alarma de puerta. Traba de seguridad. Consumo de agua: 64 litros. Bomba de desagote. Sensores inteligentes detectan el nivel de carga para optimizar el ciclo minimizando el uso de recursos. Ahorro superior, mejor rendimiento y durabilidad.",
+      "price": 1169999,
+      "stock": 10,
+      "characteristics": "capacidadLavado,9 kg",
+      "model": "WNQ90AS "
     }
   ]
 }
