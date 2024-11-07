@@ -1,0 +1,191 @@
+{
+  "products": [
+    {
+      "brand": "Electra",
+      "category": "Aire Acondicionado",
+      "urlImage": "https://medias.musimundo.com/medias/size515-179769-02.png?context=bWFzdGVyfGltYWdlc3w5MTQwMnxpbWFnZS9wbmd8YUdObEwyaGtaQzh4TURZd01USTBPVEl4TURNNU9DOXphWHBsTlRFMVh6RTNPVGMyT1Y4d01pNXdibWN8MTg0NGJjOGVlMmRhZTZiODgwMmI4M2Q3OWIzZjgzM2MxYTVlMzQzYzI5YmQ2NzlhNjBjY2RhMGE5ZjFiNjY4Mg",
+      "description": "AIRE ACONDICIONADO SPLIT FRIO/CALOR. POTENCIA DE 3200 W. FRIGORIAS: 2752 FG/H. CALORIAS: 2752. KCAL/H. EFICIENCIA ENERGETICA A. TIPO DE GAS REFRIGERANTE R410A. FUNCIONES: TIMER. FUNCION SLEEP. DESHUMIDIFICACION. REINICIO AUTOMATICO. DUAL CONEXION DRENAJE. BAJO NIVEL SONORO. DISPLAY. EL NUEVO EQUIPO TREND A (ON/OFF) COMBINA DISENO Y FUNCIONES PARA UN CLIMA PERFECTO. SU FUNCION TURBO PERMITE CLIMATIZAR EL AMBIENTE DE MANERA RAPIDA AL COMBINAR MAYOR POTENCIA Y DISTANCIA DEL FLUJO DE AIRE.",
+      "price": "839999",
+      "stock": "100",
+      "characteristics": "frioCalor,si,airTypes,split",
+      "model": "ENTRDO32TC",
+      "id": "958b"
+    },
+    {
+      "brand": "Philips",
+      "category": "Aire Acondicionado",
+      "urlImage": "https://medias.musimundo.com/medias/00611018-147101-147101-01-147101-01.jpg-size515?context=bWFzdGVyfGltYWdlc3wyMjQxOHxpbWFnZS9qcGVnfGFEY3lMMmhqTnk4eE1EUTBOVGM0TVRNek5qQTVOQzh3TURZeE1UQXhPQzB4TkRjeE1ERXRNVFEzTVRBeFh6QXhMVEUwTnpFd01WOHdNUzVxY0dkZmMybDZaVFV4TlF8NDE4NmE5ZWVlYzc5ZmY4OGU4NDA5YmE5ODg3NTUxMTY4NmI5MzIzMjQxNjMwOTJkNWJmODIxNjE3NDM1MDNlYg",
+      "description": "Climatización: Frio Calor - Potencia Refrigeración: 3200W - Frigorías: 2.838 Fg - Hidden Display - Eficiencia Energetica Clase A/A. - Refrigerante Ecologico R410a. - Control Remoto Multifuncion. - Barrido de Aire Automático. -Funcion Sleep - Timer Programable - Filtros Lavables - Control de flujo - Medida de caños (Alta - Baja): 1/4 - 1/2",
+      "price": "809999",
+      "stock": "100",
+      "characteristics": "frioCalor,si,airTypes,ventana",
+      "model": "PHS32HA4CN",
+      "id": "3480"
+    },
+    {
+      "brand": "Atma",
+      "category": "Aspiradoras",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152238-01.jpg?context=bWFzdGVyfGltYWdlc3wzMDY1MnxpbWFnZS9qcGVnfGFHWXdMMmhoT1M4eE1EWXhPRGt4T0RNek9EVTVNQzl6YVhwbE5URTFYekUxTWpJek9GOHdNUzVxY0djfDAyZTcxYjFkMDJlNzNmYWRlMjU0YTk0ZDMxNWQ2NWM0YWViNzQzMGY1NDBkM2U0OTA5ODgxNzBkZDI3OTdjZmM",
+      "description": "Aspiradora trineo. Potencia 1300W. Capacidad 2 litros. Enrollacable: cable de 5 metros. Indicador de deposito lleno. Deposito lavable. Sistema ciclonico sin bolsa. Micro filtro hepa: reduce los alergenos del ambiente. Recoge pelo de mascotas. Manija transportadora. Diseno liviano con ruedas. Pedal encendido / apagado. Regulador del caudal de aire. Boquillas para zonas estrechas. Cepillo para pisos duros, blandos y alfombras.",
+      "price": "125309",
+      "stock": "100",
+      "characteristics": "",
+      "model": "AS8920PI",
+      "id": "58fe"
+    },
+    {
+      "brand": "Liliana",
+      "category": "Aspiradoras",
+      "urlImage": "https://medias.musimundo.com/medias/size515-135463-01.jpg?context=bWFzdGVyfGltYWdlc3w4NDQ4NXxpbWFnZS9qcGVnfGFESmtMMmd6TlM4eE1EWXdOelV6TnpZeE9EazNOQzl6YVhwbE5URTFYekV6TlRRMk0xOHdNUzVxY0djfDM2MzlmZTI3MzIzNWQzOGVlZjFhNjkwODQxOWM5NWM5MWRkNWZhNTgzYWQ5ZTYwNDcwZjA1N2QzYjQwYzk4ZWI",
+      "description": "Pot.1600W. Ciclonica. Contenedor de polvo extraible/lavable/transparente de 2L. Encendido de pie. Filtro HEPA. Control electronico y manual de capac.de succion. Cepillo y Boquilla duales. Enrollacable aut. Manguera c/rotacion 360. Ruedas grandes.",
+      "price": "199999",
+      "stock": "100",
+      "characteristics": "",
+      "model": "LA910 ALLCLEAN",
+      "id": "3f4c"
+    },
+    {
+      "brand": "Liliana",
+      "category": "Ventiladores",
+      "urlImage": "https://medias.musimundo.com/medias/size300-135898-01.jpg?context=bWFzdGVyfGltYWdlc3w0ODI1OXxpbWFnZS9qcGVnfGFHSmhMMmhsTXk4eE1EWXdOamczTWpFMk5qUXpNQzl6YVhwbE16QXdYekV6TlRnNU9GOHdNUzVxY0djfGMxNGMzZmY2ZGQyYjdhNmU0MWMxMTk3M2Y0NjZkMGRkNTNmNDYyMzcwYTM1MjY5Njg5OTg0YmIzMGRkNjk3M2M",
+      "description": "Pot.1600W. Ciclonica. Contenedor de polvo extraible/lavable/transparente de 2L. Encendido de pie. Filtro HEPA. Control electronico y manual de capac.de succion. Cepillo y Boquilla duales. Enrollacable aut. Manguera c/rotacion 360. Ruedas grandes.",
+      "price": "199999",
+      "stock": "100",
+      "characteristics": "tipoVentiladores,Pie",
+      "model": "LA910 ALLCLEAN",
+      "id": "36c9"
+    },
+    {
+      "brand": "TCL",
+      "category": "Televisores",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151395-01.jpg?context=bWFzdGVyfGltYWdlc3w2NjA3MnxpbWFnZS9qcGVnfGFEY3pMMmcxTWk4eE1EWXhNakUzTWpJeU5qVTVNQzl6YVhwbE5URTFYekUxTVRNNU5WOHdNUzVxY0djfDRhMTdhZWZlNjJmYjYzMDBhNjJjZTNmZTZmMDBkZTg4OWI4ZTc2YTQyZmMyMTViOWVlZGNjMjYzMWU1NDEzOTg",
+      "description": "Televisor Smart LED Google. Pantalla 55\" 4K UHD 3840 x 2160 Px. Procesador Quad core x4 @1.1GHz. Memoria: 8 GB eMMC5.1. Salidas de audio. Potencia: 2 x 9.5 W. Conexiones: WIFI 2.4, Bluetooth 5.0, HDMI, USB y Optica Digital. Sintonizador TDA. Soporte Vesa: 200 x 200. Medidas con base: Alto 76.6 / Ancho 122.6 / Profundidad 26.5. Peso: 10.2 Kg. Incluye: 1 Soporte de Pie Central, 1 Control Remoto Multimedia, 1 Adaptador AV IN y cable de alimentacion.",
+      "price": "769999",
+      "stock": "100",
+      "characteristics": "tecnologia,LED,pulgadas,55'",
+      "model": "L55P635-F",
+      "id": "dbb1"
+    },
+    {
+      "brand": "JBL",
+      "category": "Auriculares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152183-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg3OXxpbWFnZS9qcGVnfGFHUXhMMmhoWWk4eE1EWXhOVFUxTVRReU5qVTVNQzl6YVhwbE5URTFYekUxTWpFNE0xOHdNaTVxY0djfGFkMjgxZTU4NTA4NGVhNjg1YzU3MzZkMmQ1MWQ1M2NkZjg5MzA2OTFmNWNlOWI5ODU4OWIzMmMwMjZjNjc4NDI",
+      "description": "Auricular inalambrico tipo vincha. Microfono. Control de volumen. Conexion bluetooth 5.3, frecuencia 2.4 GHz - 2.4835 GHz. Plegable. Driver de 40mm. Frecuencia 20Hz - 20 kHz. Impendancia 30 ohm. Sensivilidad 101 dB. Sensibilidad del microfono 40 dBV. Bateria de 500 mAh / 3.7V. Tiempo de reproduccion 76 Hs. Tiempo de carga 2Hs. Incluye cable de carga tipo C.",
+      "price": "110999",
+      "stock": "125",
+      "characteristics": "tipoAuricular,inEar",
+      "model": "TUNE 720",
+      "id": "7f98"
+    },
+    {
+      "brand": "Samsung",
+      "category": "Celulares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151314-01.jpg?context=bWFzdGVyfGltYWdlc3w1Njg1NXxpbWFnZS9qcGVnfGFHTTNMMmhpT1M4eE1EWXhNRE0zT0RBeE5EYzFNQzl6YVhwbE5URTFYekUxTVRNeE5GOHdNUzVxY0djfDU0ZTg2NzYwYjZjZTgxYmMwNDYwNjBjMTYwNTQ0NmM0NDQ1NzZkZGQxMWNiNjAzNWFjYWI2MjcyODk4NTc0YWI",
+      "description": "CELULAR SAMSUNG GALAXY A35 - SM-A356E AZUL",
+      "price": 549999,
+      "stock": 23,
+      "characteristics": "",
+      "model": "SM-A356E",
+      "id": "c79c"
+    },
+    {
+      "brand": "Samsung",
+      "category": "Celulares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151314-01.jpg?context=bWFzdGVyfGltYWdlc3w1Njg1NXxpbWFnZS9qcGVnfGFHTTNMMmhpT1M4eE1EWXhNRE0zT0RBeE5EYzFNQzl6YVhwbE5URTFYekUxTVRNeE5GOHdNUzVxY0djfDU0ZTg2NzYwYjZjZTgxYmMwNDYwNjBjMTYwNTQ0NmM0NDQ1NzZkZGQxMWNiNjAzNWFjYWI2MjcyODk4NTc0YWI",
+      "description": "CELULAR SAMSUNG GALAXY A35 - SM-A356E AZUL",
+      "price": 549999,
+      "stock": 23,
+      "characteristics": "",
+      "model": "SM-A356E",
+      "id": "e7cb"
+    },
+    {
+      "brand": "Samsung",
+      "category": "Celulares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-150915-01.jpg?context=bWFzdGVyfGltYWdlc3w1MzAzMHxpbWFnZS9qcGVnfGFEZ3lMMmczWmk4eE1EWXhOelF4TWpRMU1qTTRNaTl6YVhwbE5URTFYekUxTURreE5WOHdNUzVxY0djfDcxZWFmYzMxYTNjYTk4YjdjNzFiODJmYjVjMGY4MWYxMjQ3ZjcyZTVhZDRmYzk3NmEyYjAyMzhmMzQwNWNjNjY",
+      "description": "CELULAR SAMSUNG GALAXY S24 ULTRA - SM-S928BZKMARO",
+      "price": 259900,
+      "stock": 29,
+      "characteristics": "",
+      "model": "SM-S928BZKMARO",
+      "id": "1e59"
+    },
+    {
+      "brand": "Whirlpool",
+      "category": "Heladeras",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152752-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTk1MHxpbWFnZS9qcGVnfGFEQmlMMmcyTlM4eE1EWXlNall5TURJM01EWXlNaTl6YVhwbE5URTFYekUxTWpjMU1sOHdNUzVxY0djfDBlNzYxMDMxMzcxODlmNTY2NjA1NmY2MDcxNDgzY2Y0ZjI5ZjA4OTBlMGZlYmRhZDRlNDc1ODJiYThlYzg4ZDQ",
+      "description": "Heladera. Volumen bruto 592 L. Volumen neto 554 L. Sistema de enfriamiento: No Frost. Inverter. Ubicacion del freezer: inferior. Eficiencia Energetica A. Crisper para frutas y verduras. Crisper especial multiuso. Tipo de estantes: vidrio templado, perfil plastico extruido con hotstamping. Ruedas. Pies regulables. Tipo de controles: display touch, control externo de temperatura, control de circulacion de aire. Accede rapido a las funciones: turbo ice, turbo zone, fiesta, vacaciones y compras. Compartimento extra frio turbo zone.",
+      "price": 3341999,
+      "stock": 14,
+      "characteristics": "sistEnfriamiento,no frost",
+      "model": "WRO85BK",
+      "id": "3040"
+    },
+    {
+      "brand": "JBL",
+      "category": "Parlantes",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151139-01.jpg?context=bWFzdGVyfGltYWdlc3w1NjI3N3xpbWFnZS9qcGVnfGFEVTVMMmd4WWk4eE1EVTNPVFExTVRjME1ERTVNQzl6YVhwbE5URTFYekUxTVRFek9WOHdNUzVxY0djfGYzYjMzMDFiYjUwOWZlZWNiNWIwYjQ4MDJjNzUzNzA3OWIyMmY0NWFkNTE2ZjlmOGZkNDQwNjQxNTFiNWNjMjY",
+      "description": "Descripción: Parlante portatil. Alimentacion 5v (no incluye cargador). Resistente al polvo y al agua conforme a la norma IP67. Transductor: 45 mm/1.75. Potencia de salida: 4.2 W RMS. Respuesta de frecuencia: 90 Hz 20 kHz. Relacion senal/ruido: >85 dB. Tipo de bateria: polimero de ion-litio 3.23 Wh (equivalente a 3,8 V / 850 mAh). Tiempo de carga de la bateria: 3 horas (5 V/1 A). Tiempo de reproduccion de musica: hasta 7 horas (en funcion del volumen y del contenido del audio) Version Bluetooth: 5.3. Perfil Bluetooth: A2DP 1.4, AVRCP 1.6 Rango de frecuencia del transmisor. Bluetooth: 2400 MHz 2483.5 MHz. Potencia del transmisor Bluetooth: =9 dBm (PIRE). Modulacion del transmisor. Bluetooth: GFSK, p/4 DQPSK, 8 DPSK. Incluye cable de carga tipo C.",
+      "price": 91999,
+      "stock": 24,
+      "characteristics": "",
+      "model": "GO 4",
+      "id": "70e4"
+    },
+    {
+      "brand": "Philips",
+      "category": "Televisores",
+      "urlImage": "https://medias.musimundo.com/medias/size515-146615-03.jpg?context=bWFzdGVyfGltYWdlc3w3NjQyNXxpbWFnZS9qcGVnfGFEazVMMmcyTUM4eE1EVTRPVGN6TkRnNU5UWTBOaTl6YVhwbE5URTFYekUwTmpZeE5WOHdNeTVxY0djfDRlMDNlZTc0ZTY4MDkyNzg4MmZjMzljZjM5MzEwNjVmOTIzMjQxNTZkOTA2NjdlY2ViNGNlNWMwODU2Y2NmYzY",
+      "description": " Televisor Smart / Android. Pantalla: TV LED HD. Resolucion de panel: 1366 x 768 p. Relacion de aspecto: 16:9. Optimizacion de la imagen: HDR10, HLG (Hybrid Log Gamma), Pixel Plus alta definicion. Tamano diagonal de pantalla: 32 pulgadas / 80 cm. Cantidad de conexiones HDMI: 3. Cantidad de puertos USB: 2. WIFI. Bluetooth. Potencia de salida (RMS): 10 W. Configuracion del parlante: Altavoz de 5 W x2. Optimizacion del sonido: Nivelador automatico de volumen, Dialogo nitido, Dolby Atmos, Mejora de graves Dolby. Sistema operativo: Android TV 10 (Q). Aplicaciones preinstaladas: YouTube, Amazon, Prime Video, Apple TV, Disney+, Aplicacion de fitness, Google Play Movies, Google Play Music, Busqueda de Google, Netflix, YouTube Music. Tamano de la memoria (flash): 8 GB. Control por voz con IA: Presiona un boton del control remoto para hablar con el Asistente de Google. Controla el televisor o los dispositivos inteligentes para el hogar compatibles con el Asistente de Google usando tu voz.",
+      "price": 319999,
+      "stock": 126,
+      "characteristics": "tecnologia,LED,pulgadas,32\"",
+      "model": "32PHD6927/77",
+      "id": "b0e1"
+    },
+    {
+      "brand": "Samsung",
+      "category": "Televisores",
+      "urlImage": "https://medias.musimundo.com/medias/size515-150909-01.jpg?context=bWFzdGVyfGltYWdlc3w5MzAzMXxpbWFnZS9qcGVnfGFEZGlMMmcwWWk4eE1EWXhPVGs0T0RZM01qVTBNaTl6YVhwbE5URTFYekUxTURrd09WOHdNUzVxY0djfDAxZGQwOTBlMjE3ZTE2MDkzMGY4NjRiZWU2MzllY2NhOGZhNWFkOTllN2Q1NDlhZDlmZWE5YTVhMDNlYWI2NTM",
+      "description": "SMART LED TV SAMSUNG 43\" PULGADAS 4K UHD UN43CU7000GCZB",
+      "price": 650999,
+      "stock": 99,
+      "characteristics": "tecnologia,LED,pulgadas,32\"",
+      "model": "UN43CU7000GCZB",
+      "id": "7bf3"
+    },
+    {
+      "id": 0,
+      "brand": "HP",
+      "category": "Notebooks",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152691-01.jpg?context=bWFzdGVyfGltYWdlc3w1NzgyN3xpbWFnZS9qcGVnfGFEUmxMMmc1TVM4eE1EWXlNREEzTkRrNE16UTFOQzl6YVhwbE5URTFYekUxTWpZNU1WOHdNUzVxY0djfDY1MzY0MGYwYjQzOGFjMGQxYWM0YTVjYjU1YzEwZDFmMDhhMTNlYWY1MjgyZTk2NWVjMjhmNjVjODI5ZmMxZjY",
+      "description": "Notebook. Pantalla de 14\" FHD (1920 x 1080) con antirreflejante. Brillo 250 nits. Procesador AMD Ryzen 5-7520U (2.8 hasta 4.3 Ghz, 4 MB de cache L3, 4 nucleos y 8 subprocesos). Capacidad 512 Gb SSD PCIe NVMe M.2. RAM 8 Gb LPDDR5-5500 MHz (incorporada). Placa de video AMD Radeon. Conexiones: Wi-Fi 6 (1x1). Bluetooth 5.3. USB Type-C con velocidad de transferencia de datos de 5Gbps. 2 USB Tipo-A con velocidad de senalizacion de 5 Gb/s. 1 Conector inteligente de CA. 1 HDMI 1.4b. 1 combinacion de audifonos/microfono. Sistema operativo Windows 11. Camara FHD HP True Vision de 1080p con reduccion de ruido temporal y microfonos digitales integrados de doble matriz. Bateria de 41 Whrs.",
+      "price": 799999,
+      "stock": 42,
+      "characteristics": "screenSize,14\",ram,8 GB,processor,AMD Ryzen 5,storageSize,128GB",
+      "model": "14-EM0002LA"
+    },
+    {
+      "id": 0,
+      "brand": "Whirlpool",
+      "category": "Microondas",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152798-01.jpg?context=bWFzdGVyfGltYWdlc3w0MzAxMXxpbWFnZS9qcGVnfGFEZGxMMmc0T0M4eE1EWXlOak0xTmpJME9EWXdOaTl6YVhwbE5URTFYekUxTWpjNU9GOHdNUzVxY0djfGY4Y2VlNjk4NjUzOTUyYzA3ODBkOTBmNmQ2MmYyMTU3ZmMwMzk0NGY4YzE2YWRkMjRiOTgyODU5YWMyYzM0YzI",
+      "description": "Microondas empotrable. Capacidad 40L. Potencia microondas 850W. Potencia grill 800W. Timer. Gabinete de acero inoxidable. Grill. Coccion automatica. Funcion conveccion. Funcion descongelar. Display LED. 7 Niveles de coccion.",
+      "price": 1700000,
+      "stock": 12,
+      "characteristics": "capacidad,40 lts",
+      "model": "WMO40AS"
+    },
+    {
+      "id": 0,
+      "brand": "Whirlpool",
+      "category": "Lavarropas",
+      "urlImage": "https://medias.musimundo.com/medias/size515-149618-01.jpg?context=bWFzdGVyfGltYWdlc3wzMDM3NXxpbWFnZS9qcGVnfGFHWTNMMmcxWmk4eE1EVXdNVE0zT1RBMk16Z3pPQzl6YVhwbE5URTFYekUwT1RZeE9GOHdNUzVxY0djfGYzMGQzNDI5NzI4MWUxMjgxYWUxNjRkMmVjZjMxNDYxMTlmN2JlZWFmODJlNDczNWJhZDI4MzkzMTY3Yjc5ZTM",
+      "description": "Lavarropas automatico. Tecnologia inverter. Capacidad 9 Kg. 15 Programas. Eficiencia energetica A++. Carga frontal. Velocidad de centrifugado 1400 RPM. Controles mecanicos. Display. Regulador de temperatura. Exclusion de centrifugado. Media carga. Antiarrugas. Lavado rapido. Tambor de acero inoxidable. Pies niveladores. Alarma de puerta. Traba de seguridad. Consumo de agua: 64 litros. Bomba de desagote. Sensores inteligentes detectan el nivel de carga para optimizar el ciclo minimizando el uso de recursos. Ahorro superior, mejor rendimiento y durabilidad.",
+      "price": 1169999,
+      "stock": 10,
+      "characteristics": "capacidadLavado,9 kg",
+      "model": "WNQ90AS "
+    }
+  ]
+}
