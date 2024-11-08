@@ -31,11 +31,13 @@ import { PrivateComponent } from './private/private.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/login/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    CartComponent,
     HomeComponent,
     AddProductComponent,
     AirConditioningCharacteristicsComponent,

@@ -1,37 +1,3 @@
-<!-- <button type="button" onclick="">VER PRODUCTOS</button>
- -->
-<!-- <div *ngFor="let product of productsListInt">
-    <img src="{{product.urlImage}}" alt="Imagen {{product.model}}">
-    <p>id de producto: {{product.idProduct}}</p>
-     <p>Marca: {{product.brand}}: </p>
-     <p>Categoría: {{product.category}}</p>
-     <p>Descripción: {{product.description}}</p>
-     <p>Precio: {{product.price}}</p>
-    <p>Stock: {{product.stock}}</p>
-    <p>stringCaracteristicas: {{product.characteristics}}</p>
-     <p>Modelo: {{product.model}}</p>
-     <br>
-</div> -->
-<!-- <button type="button" (click)="addGenericProduct()">ADD GENERIC PRODUCT</button>
-<br>
-<button type="button" (click)="getProductListObject()">Listar</button>
-<br>
-<div *ngFor="let product of productListObject">
-    <img src="{{product.getImage().getUrl()}}" alt="Imagen {{product.getModel()}}">
-    <p>id de producto: {{product.getIdProduct()}}</p>
-     <p>Marca: {{product.getBrand()}}: </p>
-     <p>Categoría: {{product.getCategory()}}</p>
-     <p>Descripción: {{product.getDescription()}}</p>
-     <p>Precio: {{product.getPrice()}}</p>
-    <p>Stock: {{product.getStock()}}</p>
-    <p>stringCaracteristicas: {{product.getCharacteristics()}}</p>
-     <p>Modelo: {{product.getModel()}}</p>
-     <br>
-</div> -->
-
-<!-- <button type="button" (click)="addGenericProduct()">ADD GENERIC PRODUCT</button> -->
-<!-- <br>
-<button type="button" (click)="getProductListInterface()">LISTAR TODOS LOS PRODUCTOS</button> -->
 <br />
 <input
   type="text"
@@ -240,7 +206,9 @@
         <p>Precio: {{ product.price }}</p>
         <p>stringCaracteristicas: {{ product.characteristics }}</p>
         <p>Modelo: {{ product.model }}</p>
-
+        <button type="button" (click)="addToCart(product)">
+          Añadir al carrito
+        </button>
         <br />
       </div>
     </div>
@@ -270,4 +238,5 @@
   <p>Modelo: {{ product.model }}</p>
   <button type="button" (click)="buttonDetails(product.id)">DETAILS</button>
   <br />
+  <button type="button" (click)="addToCart(product)">Añadir al carrito</button>
 </div>

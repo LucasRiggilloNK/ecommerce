@@ -1,0 +1,27 @@
+<h3>Carrito de Compras</h3>
+
+<!-- Verifica si hay productos en el carrito -->
+<div *ngIf="carrito.length > 0; else noProducts">
+  <!-- Recorre el carrito y muestra los productos -->
+  <div *ngFor="let product of carrito">
+    <div class="product-item">
+      <!-- Muestra la información del producto -->
+      <p>
+        <strong>{{ product.brand }} {{ product.model }}</strong>
+      </p>
+      <p>Precio: {{ product.price }} USD</p>
+      <p>Stock disponible: {{ product.stock }}</p>
+      <!-- Muestra el stock disponible -->
+      <button (click)="removeProduct(product.id)">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Si no hay productos, muestra un mensaje -->
+<ng-template #noProducts>
+  <p>No hay productos en el carrito.</p>
+</ng-template>
+
+<!-- Botón para vaciar el carrito -->
+<button *ngIf="carrito.length > 0" (click)="clearCart()">Vaciar carrito</button>
+<app-view-product></app-view-product>

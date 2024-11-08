@@ -21,6 +21,7 @@ import { response } from 'express';
 import { error } from 'console';
 import { Observable, Subscription } from 'rxjs';
 import { BADNAME } from 'dns';
+import { CarritoService } from '../../../../services/cart.service';
 
 @Component({
   selector: 'app-view-product',
@@ -29,6 +30,7 @@ import { BADNAME } from 'dns';
 })
 export class ViewProductComponent implements OnInit, OnDestroy {
   productsListInt: ProductInterface[] = [];
+
   productInterfaceById: ProductInterface | null = null;
 
   subscriptionGetProductListInterface: Subscription;
@@ -185,7 +187,10 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   isMonochromatic: string[] = ['Si', 'No'];
   is3DPrinter: string[] = ['Sí', 'No'];
 
-  constructor(private productService: ProductService) {
+  constructor(
+    private productService: ProductService,
+    private carritoService: CarritoService
+  ) {
     this.subscriptionGetProductListInterface = new Subscription();
     this.subscriptionGetProductInterfaceById = new Subscription();
     this.formControlById = new FormControl();
@@ -264,7 +269,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       await this.productService.getAllProductsListInterface();
 
     console.log('*');
-    console.log(this.productsListInt);
   }
 
   /* async getProductListInterface(){FUNCIONA
@@ -680,6 +684,10 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   return producList;
 }
  */
+
+  addToCart(product: ProductInterface): void {
+    this.carritoService.addToCart(product);
+  }
 
   obtainBrandListFilteredByCategory(prductListInterface: ProductInterface[]) {
     let brandList: string[] = [];
