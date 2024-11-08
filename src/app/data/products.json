@@ -155,7 +155,7 @@
       "id": "7bf3"
     },
     {
-      "id": 0,
+      "id": "0",
       "brand": "HP",
       "category": "Notebooks",
       "urlImage": "https://medias.musimundo.com/medias/size515-152691-01.jpg?context=bWFzdGVyfGltYWdlc3w1NzgyN3xpbWFnZS9qcGVnfGFEUmxMMmc1TVM4eE1EWXlNREEzTkRrNE16UTFOQzl6YVhwbE5URTFYekUxTWpZNU1WOHdNUzVxY0djfDY1MzY0MGYwYjQzOGFjMGQxYWM0YTVjYjU1YzEwZDFmMDhhMTNlYWY1MjgyZTk2NWVjMjhmNjVjODI5ZmMxZjY",
@@ -166,7 +166,7 @@
       "model": "14-EM0002LA"
     },
     {
-      "id": 0,
+      "id": "0",
       "brand": "Whirlpool",
       "category": "Microondas",
       "urlImage": "https://medias.musimundo.com/medias/size515-152798-01.jpg?context=bWFzdGVyfGltYWdlc3w0MzAxMXxpbWFnZS9qcGVnfGFEZGxMMmc0T0M4eE1EWXlOak0xTmpJME9EWXdOaTl6YVhwbE5URTFYekUxTWpjNU9GOHdNUzVxY0djfGY4Y2VlNjk4NjUzOTUyYzA3ODBkOTBmNmQ2MmYyMTU3ZmMwMzk0NGY4YzE2YWRkMjRiOTgyODU5YWMyYzM0YzI",
@@ -177,7 +177,7 @@
       "model": "WMO40AS"
     },
     {
-      "id": 0,
+      "id": "0",
       "brand": "Whirlpool",
       "category": "Lavarropas",
       "urlImage": "https://medias.musimundo.com/medias/size515-149618-01.jpg?context=bWFzdGVyfGltYWdlc3wzMDM3NXxpbWFnZS9qcGVnfGFHWTNMMmcxWmk4eE1EVXdNVE0zT1RBMk16Z3pPQzl6YVhwbE5URTFYekUwT1RZeE9GOHdNUzVxY0djfGYzMGQzNDI5NzI4MWUxMjgxYWUxNjRkMmVjZjMxNDYxMTlmN2JlZWFmODJlNDczNWJhZDI4MzkzMTY3Yjc5ZTM",
@@ -186,6 +186,17 @@
       "stock": 10,
       "characteristics": "capacidadLavado,9 kg",
       "model": "WNQ90AS "
+    },
+    {
+      "id": 0,
+      "brand": "Atma",
+      "category": "Aire Acondicionado",
+      "urlImage": "ewcerv",
+      "description": "erbetbt",
+      "price": 200,
+      "stock": 10,
+      "characteristics": "frioCalor,si,airTypes,split",
+      "model": "wefewgv"
     }
   ]
 }

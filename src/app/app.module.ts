@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { AirConditioningCharacteristicsComponent } from './components/characteristics/air-conditioning-characteristics/air-conditioning-characteristics.component';
@@ -26,7 +25,12 @@ import { TabletCharacteristicsComponent } from './components/characteristics/tab
 import { PrinterCharacteristicsComponent } from './components/characteristics/printer-characteristics/printer-characteristics.component';
 import { KeyboardCharacteristicsComponent } from './components/characteristics/keyboard-characteristics/keyboard-characteristics.component';
 import { MouseCharacteristicsComponent } from './components/characteristics/mouse-characteristics/mouse-characteristics.component';
-
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { PrivateComponent } from './private/private.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/login/auth.interceptor';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,13 +52,36 @@ import { MouseCharacteristicsComponent } from './components/characteristics/mous
     TabletCharacteristicsComponent,
     PrinterCharacteristicsComponent,
     KeyboardCharacteristicsComponent,
-    MouseCharacteristicsComponent
+    MouseCharacteristicsComponent,
+    RegisterComponent,
+    LoginComponent,
+    PrivateComponent,
+    AddProductComponent,
+    AirConditioningCharacteristicsComponent,
+    TvCharacteristicsComponent,
+    FanCharacteristicsComponent,
+    HeapphonesCharacteristicsComponent,
+    RefrigeratorCharacteristicsComponent,
+    WashingCharacteristicsComponent,
+    ViewProductComponent,
+    ProductDetailsComponent,
+    NotebooksCharacteristicsComponent,
+    SmartphonesCharacteristicsComponent,
+    MicrowaveCharacteristicsComponent,
+    TabletCharacteristicsComponent,
+    PrinterCharacteristicsComponent,
+    KeyboardCharacteristicsComponent,
+    MouseCharacteristicsComponent,
+    ViewProductComponent,
   ],
 
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
-  providers: [provideClientHydration(), provideHttpClient(withFetch())],
 
-
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    provideClientHydration(),
+    provideHttpClient(withFetch()),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
