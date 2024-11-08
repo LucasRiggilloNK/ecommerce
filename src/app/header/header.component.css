@@ -27,5 +27,7 @@
 }
 
 .link.active {
-  border-bottom: 2px solid #449bec;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+  transition: 0.2s;
 }

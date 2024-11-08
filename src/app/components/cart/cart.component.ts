@@ -38,7 +38,7 @@ export class CartComponent {
 
     console.log(this.carrito); // Verifica el carrito después de agregar un producto
     this.saveCart(); // Guardar el carrito en localStorage
-    location.reload(); // Actualizar la página
+    location.reload(); // Actualiza página
   }
 
   // Método para eliminar un producto del carrito

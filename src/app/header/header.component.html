@@ -21,7 +21,9 @@
       <div class="link logout" (click)="logout()" *ngIf="isLoggedIn()">
         Logout
       </div>
-      <div class="link" routerLink="/cart">carrito</div>
+      <div class="link" routerLinkActive="active" routerLink="/cart">
+        Carrito
+      </div>
     </div>
   </nav>
 </header>
