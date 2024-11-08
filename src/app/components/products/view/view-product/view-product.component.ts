@@ -49,12 +49,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   characteristicsList: string[] = [];
 
-  airTypesListValues: string[] = [
-    'split',
-    'portatil',
-    'split inverter',
-    'ventana',
-  ];
+  airTypesListValues: string[];
+
   fanTypeListvalues = ['Pie', 'Turbo'];
 
   tvTechnologiesList: string[] = ['LED', 'OLED', 'AMOLED', 'QLED', 'NanoCell'];
@@ -189,6 +185,9 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.subscriptionGetProductListInterface = new Subscription();
     this.subscriptionGetProductInterfaceById = new Subscription();
     this.formControlById = new FormControl();
+
+    this.airTypesListValues = this.productService.getAirTypesListValues();
+
 
     //Elimina el elemento none en categoryList
     let indiceNONE = this.categoryList.indexOf(Category.NONE);

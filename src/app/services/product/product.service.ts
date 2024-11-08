@@ -13,6 +13,9 @@ export class ProductService {
   private productsListInt: ProductInterface[] = [];
   private productInt: ProductInterface | null = null;
 
+  
+  private airTypesListValues: string[] = ['split', 'portatil', 'split inverter', 'ventana'];
+
   constructor(private asyncService: AsyncService) {
     this.productInt = {
       brand: Brand.NONE,
@@ -100,4 +103,13 @@ export class ProductService {
   ): ProductInterface[] {
     return producListInterface.filter((product) => product.brand === brand);
   }
+
+  //////////////////////    GET AIR TYPES LIST     ////////////////////////////////////////////////////
+
+  public getAirTypesListValues(): string[] {
+    return this.airTypesListValues;
+  }
+
+
 }
+
