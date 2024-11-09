@@ -12,16 +12,18 @@ import { Product } from '../../../../models/products/product';
 import { Brand } from '../../../../models/products/brands/brand';
 import { Category } from '../../../../models/products/categories/category';
 import { Image } from '../../../../models/products/images/image';
-import {
-  AbstractFormGroupDirective,
-  FormControl,
-  FormGroup,
-} from '@angular/forms';
 import { response } from 'express';
 import { error } from 'console';
 import { Observable, Subscription } from 'rxjs';
 import { BADNAME } from 'dns';
 import { CarritoService } from '../../../../services/cart.service';
+
+import {
+  AbstractFormGroupDirective,
+  FormControl,
+  FormGroup,
+} from '@angular/forms';
+
 
 @Component({
   selector: 'app-view-product',
@@ -52,145 +54,30 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   characteristicsList: string[] = [];
 
-  airTypesListValues: string[] = [
-    'split',
-    'portatil',
-    'split inverter',
-    'ventana',
-  ];
-  fanTypeListvalues = ['Pie', 'Turbo'];
+  airTypesListValues: string[];
+/*   fanTypeListvalues: string[];
+  tvTechnologiesList: string[];
+  tvInchesList: string[];
+  headphonesTypeListvalues: string[];
+  coolingSystemList: string[];
+  washingCapacityList: string[];
+  microwaveCapacityList: string[];
+  smartPhoneInchesList: string[];
+  smartPhoneRamList: string[];
+  notebookScreenSizesList: string[];
+  notebookRamList: string[];
+  notebookProcessorsList: string[];
+  tabletScreenSizesList: string[];
+  notebookStorageSizesList: string[];
+  tabletRamList: string[];
+  isMonochromatic: string[];
+  is3DPrinter: string[];
+ */
 
-  tvTechnologiesList: string[] = ['LED', 'OLED', 'AMOLED', 'QLED', 'NanoCell'];
-  tvInchesList: string[] = ['32"', '43"', '55"', '60"', '70"', '75"'];
-
-  headphonesTypeListvalues = ['inEar', 'headBand'];
-
-  coolingSystemList: string[] = [
-    'no frost',
-    'ciclico',
-    'cycle defrost',
-    'cilcico',
-    'cycle desfrost',
-    'mono cooling',
-    'skin condenser',
-  ];
-
-  washingCapacityList: string[] = [
-    '6 kg',
-    '7 kg',
-    '8 kg',
-    '9 kg',
-    '10 kg',
-    '11 kg',
-  ];
-
-  microwaveCapacityList: string[] = [
-    '15 lts',
-    '17 lts',
-    '20 lts',
-    '23 lts',
-    '25 lts',
-    '28 lts',
-    '30 lts',
-    '32 lts',
-    '35 lts',
-    '40 lts',
-    '42 lts',
-    '45 lts',
-  ];
-
-  smartPhoneInchesList: string[] = [
-    '4.0"',
-    '4.7"',
-    '5.0"',
-    '5.5"',
-    '5.8"',
-    '6.1"',
-    '6.3"',
-    '6.5"',
-    '6.7"',
-    '6.8"',
-    '7.0"',
-  ];
-  smartPhoneRamList: string[] = [
-    '4 GB',
-    '6 GB',
-    '8 GB',
-    '12 GB',
-    '16 GB',
-    '18 GB',
-  ];
-
-  notebookScreenSizesList: string[] = [
-    '13"',
-    '14"',
-    '15"',
-    '15.6"',
-    '16"',
-    '17"',
-  ];
-  notebookRamList: string[] = [
-    '4 GB',
-    '8 GB',
-    '12 GB',
-    '16 GB',
-    '32 GB',
-    '64 GB',
-  ];
-  notebookProcessorsList: string[] = [
-    'Intel Core i3',
-    'Intel Core i5',
-    'Intel Core i7',
-    'Intel Core i9',
-    'AMD Ryzen 3',
-    'AMD Ryzen 5',
-    'AMD Ryzen 7',
-    'AMD Ryzen 9',
-    'Apple M1',
-    'Apple M2',
-    'Intel Pentium Gold',
-  ];
-  notebookStorageSizesList: string[] = [
-    '128GB',
-    '256GB',
-    '512GB',
-    '1TB',
-    '2TB',
-    '4TB',
-    '8TB',
-    '16TB',
-    '32TB',
-    '64TB',
-  ];
-
-  tabletScreenSizesList: string[] = [
-    '7"',
-    '8"',
-    '9"',
-    '10"',
-    '10.5"',
-    '11"',
-    '12.4"',
-    '12.9"',
-    '13"',
-    '14"',
-  ];
-  tabletRamList: string[] = [
-    '2 GB',
-    '3 GB',
-    '4 GB',
-    '6 GB',
-    '8 GB',
-    '12 GB',
-    '16 GB',
-  ];
-
-  isMonochromatic: string[] = ['Si', 'No'];
-  is3DPrinter: string[] = ['Sí', 'No'];
 
   constructor(
     private productService: ProductService,
-    private carritoService: CarritoService
+    private carritoService: CarritoService,
   ) {
     this.subscriptionGetProductListInterface = new Subscription();
     this.subscriptionGetProductInterfaceById = new Subscription();
@@ -241,7 +128,11 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       hasCableMouse: new FormControl(''),
       isWirelessMouse: new FormControl(''),
       hasBluetoothMouse: new FormControl(''),
+
+
     });
+
+    this.airTypesListValues = this.productService.getCharacteristicsList('airTypes');
   }
 
   ngOnInit(): void {
@@ -708,11 +599,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     return productsListInterface.filter((product) => product.brand == brand);
   }
 
-  getListFilteredCharacteristics(
-    productsListInterface: ProductInterface[],
-    typeName: string,
-    typeValue: string
-  ): ProductInterface[] {
+  getListFilteredCharacteristics(productsListInterface: ProductInterface[], typeName: string, typeValue: string): ProductInterface[] {
     let producList: ProductInterface[] = [];
     productsListInterface.forEach((productinterface) => {
       let characteristics =
