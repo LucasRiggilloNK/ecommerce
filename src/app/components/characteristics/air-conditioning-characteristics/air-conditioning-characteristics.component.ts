@@ -8,7 +8,8 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
   styleUrl: './air-conditioning-characteristics.component.css'
 })
 export class AirConditioningCharacteristicsComponent implements OnInit{
-  airTypesList: string[] = ["split", "portatil", "split inverter", "ventana"];
+  airTypesList: string[] = ["Split", "Portatil", "Split inverter", "Ventana"];
+  heatColdList: string[] = ["Si", "No"];
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
 
@@ -16,12 +17,12 @@ export class AirConditioningCharacteristicsComponent implements OnInit{
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "frioCalor": new FormControl("si", [Validators.required]),
-      "airTypes": new FormControl("split", [Validators.required])
+      "heatCold": new FormControl(this.heatColdList[0], [Validators.required]),
+      "airTypes": new FormControl(this.airTypesList[0], [Validators.required])
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString
-    console.log("characteristicsString en CONSTRUCTOR AirConditioningCharacteristicsComponent");
+    
     console.log(this.characteristicsString);
   }
 

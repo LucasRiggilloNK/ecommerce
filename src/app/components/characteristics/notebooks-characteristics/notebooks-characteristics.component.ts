@@ -9,10 +9,10 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
 })
 export class NotebooksCharacteristicsComponent {
 
-  screenSizesList: string[] = ['13"', '14"', '15"', '15.6"', '16"', '17"'];
-  ramList: string[] = ['4 GB', '8 GB', '12 GB', '16 GB', '32 GB', '64 GB'];
-  processorsList: string[] = ['Intel Core i3', 'Intel Core i5', 'Intel Core i7', 'Intel Core i9', 'AMD Ryzen 3', 'AMD Ryzen 5', 'AMD Ryzen 7', 'AMD Ryzen 9', 'Apple M1', 'Apple M2', 'Intel Pentium Gold'];
-  storageSizesList: string[] = ['128GB', '256GB', '512GB', '1TB', '2TB', '4TB', '8TB', '16TB', '32TB', '64TB'];
+  notebookScreenSizesList: string[] = ['13"', '14"', '15"', '15.6"', '16"', '17"'];
+  notebookRamList: string[] = ['4 GB', '8 GB', '12 GB', '16 GB', '32 GB', '64 GB'];
+  notebookProcessorsList: string[] = ['Intel Core i3', 'Intel Core i5', 'Intel Core i7', 'Intel Core i9', 'AMD Ryzen 3', 'AMD Ryzen 5', 'AMD Ryzen 7', 'AMD Ryzen 9', 'Apple M1', 'Apple M2', 'Intel Pentium Gold'];
+  notebookStorageSizesList: string[] = ['128GB', '256GB', '512GB', '1TB', '2TB', '4TB', '8TB', '16TB', '32TB', '64TB'];
 
 
 
@@ -23,10 +23,10 @@ export class NotebooksCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "screenSize": new FormControl('13"', [Validators.required]),
-      "ram": new FormControl('4 GB"', [Validators.required]),
-      "processor": new FormControl('Intel Core i3', [Validators.required]),
-      "storageSize": new FormControl('128GB', [Validators.required])
+      "notebookScreenSize": new FormControl(this.notebookScreenSizesList[0], [Validators.required]),
+      "notebookRam": new FormControl(this.notebookRamList[0], [Validators.required]),
+      "notebookProcessor": new FormControl(this.notebookProcessorsList[0], [Validators.required]),
+      "notebookStorageSize": new FormControl(this.notebookStorageSizesList[0], [Validators.required])
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString

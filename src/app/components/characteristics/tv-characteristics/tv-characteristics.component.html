@@ -1,12 +1,12 @@
 <form action="" [formGroup]="characteristicsFormGroup">
     <p> Tecnología </p>
-    <select id="tecnologia" formControlName="tecnologia"> 
+    <select id="tvTecnology" formControlName="tvTecnology"> 
         <option *ngFor="let technology of tvTechnologiesList" [value]="technology">{{ technology }}</option>
     </select>
 
     <P> Pulgadas </P>
-    <select id="pulgadas" formControlName="pulgadas"> 
-        <option *ngFor="let inch of inchesList" [value]="inch">{{ inch }}</option>
+    <select id="tvInches" formControlName="tvInches"> 
+        <option *ngFor="let inch of tvInchesList" [value]="inch">{{ inch }}</option>
     </select>    
 
 

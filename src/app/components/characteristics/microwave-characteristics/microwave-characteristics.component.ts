@@ -17,7 +17,7 @@ export class MicrowaveCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "capacidad": new FormControl("15 lts", [Validators.required])
+      "microwaveCapacity": new FormControl(this.microwaveCapacityList[0], [Validators.required])
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString

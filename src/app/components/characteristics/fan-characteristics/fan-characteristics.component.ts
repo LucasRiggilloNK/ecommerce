@@ -10,12 +10,12 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
 export class FanCharacteristicsComponent {
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
-  typeList = ["Pie", "Turbo"];
+  fanTypeList = ["Pie", "Turbo"];
   constructor(private productCharacteristicsService: ProductcCharacteristicsService){
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "tipoVentiladores": new FormControl("pie", [Validators.required])
+      "fanType": new FormControl(this.fanTypeList[0], [Validators.required])
       
     });
 

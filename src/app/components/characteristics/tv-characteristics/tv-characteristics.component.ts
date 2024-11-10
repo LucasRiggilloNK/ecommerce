@@ -8,8 +8,8 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
   styleUrl: './tv-characteristics.component.css'
 })
 export class TvCharacteristicsComponent {
-  tvTechnologiesList: string[] = ["LED", "OLED", "AMOLED", "QLED", "NanoCell"];
-  inchesList: string[] = ['32"', '43"', '55"', '60"', '70"', '75"'];
+  tvTechnologiesList: string[] = ["LED", "OLED", "AMOLED", "QLED", "NanoCell", "FHD"];
+  tvInchesList: string[] = ['32"', '43"', '55"', '60"', '70"', '75"'];
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
 
@@ -17,8 +17,8 @@ export class TvCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "tecnologia": new FormControl("LED", [Validators.required]),
-      "pulgadas": new FormControl("32", [Validators.required])
+      "tvTecnology": new FormControl(this.tvTechnologiesList[0], [Validators.required]),
+      "tvInches": new FormControl(this.tvInchesList[0], [Validators.required])
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString

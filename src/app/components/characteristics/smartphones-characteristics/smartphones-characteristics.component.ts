@@ -8,8 +8,8 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
   styleUrl: './smartphones-characteristics.component.css'
 })
 export class SmartphonesCharacteristicsComponent {
-  inchesList: string[] = ['4.0"', '4.7"', '5.0"', '5.5"', '5.8"', '6.1"', '6.3"', '6.5"', '6.7"', '6.8"', '7.0"'];
-  ramList: string[] = ['4 GB', '6 GB', '8 GB', '12 GB', '16 GB', '18 GB'];
+  smartphoneInchesList: string[] = ['4.0"', '4.7"', '5.0"', '5.5"', '5.8"', '6.1"', '6.3"', '6.5"', '6.7"', '6.8"', '7.0"'];
+  smartphoneRamList: string[] = ['4 GB', '6 GB', '8 GB', '12 GB', '16 GB', '18 GB'];
 
 
   characteristicsFormGroup: FormGroup;
@@ -19,8 +19,8 @@ export class SmartphonesCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "pulgadas": new FormControl('4.0"', [Validators.required]),
-      "ram": new FormControl('4 GB"', [Validators.required])
+      "smartphoneInches": new FormControl(this.smartphoneInchesList[0], [Validators.required]),
+      "smartphoneRam": new FormControl(this.smartphoneRamList[0], [Validators.required])
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString

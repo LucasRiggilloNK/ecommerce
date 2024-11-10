@@ -10,9 +10,8 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
 })
 export class MouseCharacteristicsComponent {
 
-  hasCable: string[] = ['Si', 'No'];
-  isWireless: string[] = ['Si', 'No'];
-  hasBluetooth: string[] = ['Sí', 'No'];
+  mouseConnectivityTypeList: string[] =["Cable","Wireless","Bluetooth"];
+
 
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
@@ -21,10 +20,8 @@ export class MouseCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "hasCable": new FormControl('No', [Validators.required]),
-      "isWireless": new FormControl('No"', [Validators.required]),
-      "hasBluetooth": new FormControl('No"', [Validators.required])
-    });
+      
+      "mouseConnectivityType": new FormControl(this.mouseConnectivityTypeList[0], [Validators.required])});
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString
     console.log(this.characteristicsString);

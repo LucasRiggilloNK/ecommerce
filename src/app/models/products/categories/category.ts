@@ -9,7 +9,6 @@ export enum Category {
     LAVARROPAS = 'Lavarropas',
     ASPIRADORAS = 'Aspiradoras',
     MICROONDAS = 'Microondas', 
-    TOSTADORA = 'Tostadora',
     CELULARES = 'Celulares',
     NOTEBOOKS = 'Notebooks',
     TABLETS = 'Tablets', 

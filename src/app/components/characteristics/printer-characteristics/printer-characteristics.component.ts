@@ -11,6 +11,7 @@ export class PrinterCharacteristicsComponent {
 
   isMonochromatic: string[] = ['Si', 'No'];
   is3DPrinter: string[] = ['Sí', 'No'];
+  printerTypeList: string[] = ["Color", "Monocromática", "3D"];
 
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
@@ -19,8 +20,7 @@ export class PrinterCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "monochromatic": new FormControl('No', [Validators.required]),
-      "is3DPrinter": new FormControl('No"', [Validators.required])
+      "printerType":new FormControl(this.printerTypeList[0], [Validators.required])
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString

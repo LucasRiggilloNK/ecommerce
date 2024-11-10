@@ -1,14 +1,7 @@
 <form action="" [formGroup]="characteristicsFormGroup">
-    <P> Cable </P>
-    <select id="hasCable" formControlName="hasCable"> 
-        <option *ngFor="let cable of hasCable" [value]="cable">{{ cable }}</option>
-    </select>    
-    <P> Inalámbrico </P>
-    <select id="isWireless" formControlName="isWireless"> 
-        <option *ngFor="let wireless of isWireless" [value]="wireless">{{ wireless }}</option>
-    </select>       
-    <P> Bluetooth </P>
-    <select id="hasBluetooth" formControlName="hasBluetooth"> 
-        <option *ngFor="let bluetooth of hasBluetooth" [value]="bluetooth">{{ bluetooth }}</option>
-    </select>       
+   
+    <P> Conectividad </P>
+    <select id="mouseConnectivityType" formControlName="mouseConnectivityType"> 
+        <option *ngFor="let type of mouseConnectivityTypeList" [value]="type">{{ type }}</option>
+    </select> 
 </form>

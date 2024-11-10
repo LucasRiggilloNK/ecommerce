@@ -51,28 +51,28 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   valueChangesSubscription?: Subscription;
   valueChangesformGrupSubfiltersSubscription?: Subscription;
 	
+  airTypesList: string[] = ["Split", "Portatil", "Split inverter", "Ventana"];
+   heatColdList = ['Si', 'No'];
+   fanTypeList = ['Pie', 'Turbo'];
+   tvTechnologiesList: string[] = ['LED', 'OLED', 'AMOLED', 'QLED', 'NanoCell', "FHD"];
+   tvInchesList: string[] = ['32"', '43"', '55"', '60"', '70"', '75"'];
+   headphonesTypeList = ['inEar', 'headBand'];
+   refrigeratorCoolingSystemList: string[] =  ['No frost', 'Ciclico', 'Cycle defrost', 'Mono cooling', 'Skin condenser'];
+   washingCapacityList: string[] = ['6 kg', "6.5 kg",'7 kg', '8 kg', '9 kg', '10 kg', '11 kg'];
+   microwaveCapacityList: string[] = ['15 lts', '17 lts', '20 lts', '23 lts', '25 lts', '28 lts', '30 lts', '32 lts', '35 lts', '40 lts', '42 lts', '45 lts'];
+   smartPhoneInchesList: string[] = ['4.0"', '4.7"', '5.0"', '5.5"', '5.8"', '6.1"', '6.3"', '6.5"', '6.6"', '6.7"', '6.8"', '7.0"'];
+   smartPhoneRamList: string[] = ['4 GB', '6 GB', '8 GB', '12 GB', '16 GB', '18 GB'];
+   notebookScreenSizesList: string[] = [ '13"', '14"', '15"', '15.6"', '16"', '17"'];
+   notebookRamList: string[] = ['4 GB', '8 GB', '12 GB', '16 GB', '32 GB', '64 GB'];
+   notebookProcessorsList: string[] = ['Intel Core i3', 'Intel Core i5', 'Intel Core i7', 'Intel Core i9', 'AMD Ryzen 3', 'AMD Ryzen 5', 'AMD Ryzen 7', 'AMD Ryzen 9', 'Apple M1', 'Apple M2', 'Intel Pentium Gold'];
+   notebookStorageSizesList: string[] = ['128GB', '256GB', '512GB', '1TB', '2TB', '4TB', '8TB', '16TB', '32TB', '64TB'];
+   tabletScreenSizesList: string[] = ['7"', '8"', '9"', '10"', '10.1"', '10.5"', '11"', '12.4"', '12.9"', '13"', '14"'];
+   tabletRamList: string[] = ['2 GB', '3 GB', '4 GB', '6 GB', '8 GB', '12 GB', '16 GB'];
+   printerTypeList: string[] = ["Color", "Monocromática", "3D"];
+   keyboardConnectivityTypeList: string[] = ["Cable","Wireless","Bluetooth"];
+   mouseConnectivityTypeList: string[] = ["Cable","Wireless","Bluetooth"];
 
-  characteristicsList: string[] = [];
 
-  airTypesListValues: string[];
-/*   fanTypeListvalues: string[];
-  tvTechnologiesList: string[];
-  tvInchesList: string[];
-  headphonesTypeListvalues: string[];
-  coolingSystemList: string[];
-  washingCapacityList: string[];
-  microwaveCapacityList: string[];
-  smartPhoneInchesList: string[];
-  smartPhoneRamList: string[];
-  notebookScreenSizesList: string[];
-  notebookRamList: string[];
-  notebookProcessorsList: string[];
-  tabletScreenSizesList: string[];
-  notebookStorageSizesList: string[];
-  tabletRamList: string[];
-  isMonochromatic: string[];
-  is3DPrinter: string[];
- */
 
 
   constructor(
@@ -92,47 +92,44 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       brand: new FormControl(Brand.NONE),
       // Aire acondicionado
       airTypes: new FormControl(''),
-      frioCalor: new FormControl(''),
+      heatCold: new FormControl(''),
       // Ventiladores
-      tipoVentiladores: new FormControl(''),
+      fanType: new FormControl(''),
       // Televisores
-      tecnologia: new FormControl(''),
-      pulgadas: new FormControl(''),
+      tvTecnology: new FormControl(''),
+      tvInches: new FormControl(''),
       // Auriculares
-      tipoAuricular: new FormControl(''),
+      headphoneType: new FormControl(''),
       // Heladeras
-      sistEnfriamiento: new FormControl(''),
+      refrigeratorCoolingSystem: new FormControl(''),
       // Lavarropas
-      capacidadLavado: new FormControl(''),
+      washingCapacity: new FormControl(''),
       // Notebooks
-      screenSize: new FormControl(''),
-      ram: new FormControl(''),
-      processor: new FormControl(''),
-      storageSize: new FormControl(''),
+      notebookScreenSize: new FormControl(''),
+      notebookRam: new FormControl(''),
+      notebookProcessor: new FormControl(''),
+      notebookStorageSize: new FormControl(''),
       // Microondas
-      capacidad: new FormControl(''),
+      microwaveCapacity: new FormControl(''),
       // Celulares
-      pulgadasCelular: new FormControl(''),
-      ramCelular: new FormControl(''),
+      smartphoneInches: new FormControl(''),
+      smartphoneRam: new FormControl(''),
       // Tablets
-      screenSizeTablet: new FormControl(''),
-      ramTablet: new FormControl(''),
+      tabletScreenSize: new FormControl(''),
+      tabletRam: new FormControl(''),
       // Impresoras
-      monochromatic: new FormControl(''),
-      is3DPrinter: new FormControl(''),
-      // Teclado
-      hasCableKeyboard: new FormControl(''),
-      isWirelessKeyboard: new FormControl(''),
-      hasBluetoothKeyboard: new FormControl(''),
-      // Mouse
-      hasCableMouse: new FormControl(''),
-      isWirelessMouse: new FormControl(''),
-      hasBluetoothMouse: new FormControl(''),
+      printerType: new FormControl(''),
+      // Teclado, mouse
+      keyboardConnectivityType: new FormControl(''),
+      mouseConnectivityType: new FormControl('')
+      
 
 
     });
 
-    this.airTypesListValues = this.productService.getCharacteristicsList('airTypes');
+    /* this.airTypesListValues = this.productService.getCharacteristicsList('airTypes');
+    this.heatColdList = this.productService.getCharacteristicsList('frioCalor'); */
+
   }
 
   ngOnInit(): void {
@@ -166,35 +163,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     console.log('*');
   }
 
-  /* async getProductListInterface(){FUNCIONA
-    
-      this.subscriptionGetProductListInterface = await this.productService.getProductsListInterfaceObservable().subscribe(
-      response =>{
-        this.productsListInt = response;
-      }, error =>{
-        alert("Error de lectura metodo GET de API products.json...");
-      }
-    ); 
-    
-    console.log("*");
-    console.log(this.productsListInt);
-    
-  } */
 
-  /* getProductInterfaceById(id: number){CON OBSERVABLE
-    //let id = this.formControlById.getRawValue();
-    this.subscriptionGetProductInterfaceById = this.productService.getProductInterfaceById(id).subscribe(
-
-    response => {
-      this.productInterfaceById = response;
-      console.log("Producto encontrado: ");
-      console.log(this.productInterfaceById);
-    }, 
-    error => {
-      alert("Error: no se encontró el producto por id..." + error);
-    }
-  )
-} */
 
   async getProductInterfaceById(id: number) {
     // CON PROMISE
@@ -223,48 +192,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   async getAllProductsListInterface(): Promise<ProductInterface[]> {
     return await this.productService.getAllProductsListInterface();
   }
-
-/*   async getListFilteredByCategory(formControlCategory: FormControl) {
-		
-    //Función que se ejecuta al hacer cambios en el select categoría
-    let filteredProductsListInterface: ProductInterface[] = [];
-
-    if (formControlCategory.value != Category.NONE) {
-      //none está cargado iniciamente en el formControl. Si está así, no muestra nada
-
-      console.log('ATRODEN CATEGORY');
-      //Filtrar por categoria
-      this.productListFilteredByCategory =
-        await this.getAllProductsListInterface(); // carga todos los productos en productListFilteredByCategory
-
-      this.productListFilteredByCategory = this.getFilterByCategory(
-        this.productListFilteredByCategory,
-        formControlCategory.value
-      ); //filtro categoria
-      filteredProductsListInterface = this.productListFilteredByCategory; // la iguala a filteredProductsListInterface para poder filtrar desde ahi y no perder el punto de inicio de la categoria
-
-      //limpiar todos los subfiltros
-      this.valueChangesformGrupSubfiltersSubscription?.unsubscribe(); //desuscribo para poder cambiar los subfiltros y q no haya problemas de detección
-
-      this.setInitialSubFiltersOfListProductsInterface(
-        filteredProductsListInterface
-      ); //setea el estado inicial de lo subfiltros
-
-      //Asignar lista a mostrar
-      this.productListSubFiltered = filteredProductsListInterface; // está sin subfiltros aplicados pero es lo q tiene q mostrar inicialmente
-
-      this.valueChangesformGrupSubfiltersSubscription =
-        this.formGrupSubfilters.valueChanges.subscribe((form) => {
-          this.getListFilteredBySubFilters(
-            this.productListFilteredByCategory,
-            this.formGrupSubfilters,
-            formControlCategory.value
-          );
-        });
-    }
-  } */
-
-
 
 
 
@@ -324,30 +251,30 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     ); // obtiene las marcas de los productos filtrados
     this.formGrupSubfilters.get('brand')?.setValue(Brand.NONE);
     this.formGrupSubfilters.get('airTypes')?.setValue('');
-    this.formGrupSubfilters.get('frioCalor')?.setValue('');
-    this.formGrupSubfilters.get('tipoVentiladores')?.setValue('');
-    this.formGrupSubfilters.get('tecnologia')?.setValue('');
-    this.formGrupSubfilters.get('pulgadas')?.setValue('');
-    this.formGrupSubfilters.get('tipoAuricular')?.setValue('');
-    this.formGrupSubfilters.get('sistEnfriamiento')?.setValue('');
-    this.formGrupSubfilters.get('capacidadLavado')?.setValue('');
-    this.formGrupSubfilters.get('screenSize')?.setValue('');
-    this.formGrupSubfilters.get('ram')?.setValue('');
-    this.formGrupSubfilters.get('processor')?.setValue('');
-    this.formGrupSubfilters.get('storageSize')?.setValue('');
-    this.formGrupSubfilters.get('capacidad')?.setValue('');
-    this.formGrupSubfilters.get('pulgadasCelular')?.setValue('');
-    this.formGrupSubfilters.get('ramCelular')?.setValue('');
-    this.formGrupSubfilters.get('screenSizeTablet')?.setValue('');
-    this.formGrupSubfilters.get('ramTablet')?.setValue('');
-    this.formGrupSubfilters.get('monochromatic')?.setValue('');
-    this.formGrupSubfilters.get('is3DPrinter')?.setValue('');
-    this.formGrupSubfilters.get('hasCableKeyboard')?.setValue('');
-    this.formGrupSubfilters.get('isWirelessKeyboard')?.setValue('');
-    this.formGrupSubfilters.get('hasBluetoothKeyboard')?.setValue('');
-    this.formGrupSubfilters.get('hasCableMouse')?.setValue('');
-    this.formGrupSubfilters.get('isWirelessMouse')?.setValue('');
-    this.formGrupSubfilters.get('hasBluetoothMouse')?.setValue('');
+    this.formGrupSubfilters.get('heatCold')?.setValue('');
+    this.formGrupSubfilters.get('fanType')?.setValue('');
+    this.formGrupSubfilters.get('tvTecnology')?.setValue('');
+    this.formGrupSubfilters.get('tvInches')?.setValue('');
+    this.formGrupSubfilters.get('headphoneType')?.setValue('');
+    this.formGrupSubfilters.get('refrigeratorCoolingSystem')?.setValue('');
+    this.formGrupSubfilters.get('washingCapacity')?.setValue('');
+    this.formGrupSubfilters.get('notebookScreenSize')?.setValue('');
+    this.formGrupSubfilters.get('notebookRam')?.setValue('');
+    this.formGrupSubfilters.get('notebookProcessor')?.setValue('');
+    this.formGrupSubfilters.get('notebookStorageSize')?.setValue('');
+    this.formGrupSubfilters.get('microwaveCapacity')?.setValue('');
+    this.formGrupSubfilters.get('smartphoneInches')?.setValue('');
+    this.formGrupSubfilters.get('smartphoneRam')?.setValue('');
+    this.formGrupSubfilters.get('tabletScreenSize')?.setValue('');
+    this.formGrupSubfilters.get('tabletRam')?.setValue('');
+    this.formGrupSubfilters.get('printerType')?.setValue('');
+    this.formGrupSubfilters.get('keyboardConnectivityType')?.setValue('');
+    this.formGrupSubfilters.get('mouseConnectivityType')?.setValue('');
+
+  
+
+    
+    
   }
 
   obtainCharacteristicsArrayOfStringCharacteristics(
@@ -385,206 +312,173 @@ export class ViewProductComponent implements OnInit, OnDestroy {
             formGroup.get('airTypes')?.value
           );
         }
-        if (formGroup.get('frioCalor')?.value != '') {
+        if (formGroup.get('heatCold')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'frioCalor',
-            formGroup.get('frioCalor')?.value
+            'heatCold',
+            formGroup.get('heatCold')?.value
           );
         }
         break;
       case 'Ventiladores':
-        if (formGroup.get('tipoVentiladores')?.value != '') {
+        if (formGroup.get('fanType')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'tipoVentiladores',
-            formGroup.get('tipoVentiladores')?.value
+            'fanType',
+            formGroup.get('fanType')?.value
           );
         }
         break;
       case 'Televisores':
-        if (formGroup.get('tecnologia')?.value != '') {
+        if (formGroup.get('tvTecnology')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'tecnologia',
-            formGroup.get('tecnologia')?.value
+            'tvTecnology',
+            formGroup.get('tvTecnology')?.value
           );
         }
-        if (formGroup.get('pulgadas')?.value != '') {
+        if (formGroup.get('tvInches')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'pulgadas',
-            formGroup.get('pulgadas')?.value
+            'tvInches',
+            formGroup.get('tvInches')?.value
           );
         }
         break;
       case 'Auriculares':
-        if (formGroup.get('tipoAuricular')?.value != '') {
+        if (formGroup.get('headphoneType')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'tipoAuricular',
-            formGroup.get('tipoAuricular')?.value
+            'headphoneType',
+            formGroup.get('headphoneType')?.value
           );
         }
         break;
       case 'Parlantes':
         break;
       case 'Heladeras':
-        if (formGroup.get('sistEnfriamiento')?.value != '') {
+        if (formGroup.get('refrigeratorCoolingSystem')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'sistEnfriamiento',
-            formGroup.get('sistEnfriamiento')?.value
+            'refrigeratorCoolingSystem',
+            formGroup.get('refrigeratorCoolingSystem')?.value
           );
         }
         break;
       case 'Lavarropas':
-        if (formGroup.get('capacidadLavado')?.value != '') {
+        if (formGroup.get('washingCapacity')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'capacidadLavado',
-            formGroup.get('capacidadLavado')?.value
+            'washingCapacity',
+            formGroup.get('washingCapacity')?.value
           );
         }
         break;
       case 'Aspiradoras':
         break;
       case 'Microondas':
-        if (formGroup.get('capacidad')?.value != '') {
+        if (formGroup.get('microwaveCapacity')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'capacidad',
-            formGroup.get('capacidad')?.value
+            'microwaveCapacity',
+            formGroup.get('microwaveCapacity')?.value
           );
         }
         break;
       case 'Tostadora':
         break;
       case 'Celulares':
-        if (formGroup.get('pulgadasCelular')?.value != '') {
+        if (formGroup.get('smartphoneInches')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'pulgadasCelular',
-            formGroup.get('pulgadasCelular')?.value
+            'smartphoneInches',
+            formGroup.get('smartphoneInches')?.value
           );
         }
-        if (formGroup.get('ramCelular')?.value != '') {
+        if (formGroup.get('smartphoneRam')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'ramCelular',
-            formGroup.get('ramCelular')?.value
+            'smartphoneRam',
+            formGroup.get('smartphoneRam')?.value
           );
         }
         break;
       case 'Notebooks':
-        if (formGroup.get('screenSize')?.value != '') {
+        if (formGroup.get('notebookScreenSize')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'screenSize',
-            formGroup.get('screenSize')?.value
+            'notebookScreenSize',
+            formGroup.get('notebookScreenSize')?.value
           );
         }
-        if (formGroup.get('ram')?.value != '') {
+        if (formGroup.get('notebookRam')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'ram',
-            formGroup.get('ram')?.value
+            'notebookRam',
+            formGroup.get('notebookRam')?.value
           );
         }
-        if (formGroup.get('processor')?.value != '') {
+        if (formGroup.get('notebookProcessor')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'processor',
-            formGroup.get('processor')?.value
+            'notebookProcessor',
+            formGroup.get('notebookProcessor')?.value
           );
         }
-        if (formGroup.get('storageSize')?.value != '') {
+        if (formGroup.get('notebookStorageSize')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'storageSize',
-            formGroup.get('storageSize')?.value
+            'notebookStorageSize',
+            formGroup.get('notebookStorageSize')?.value
           );
         }
         break;
       case 'Tablets':
-        if (formGroup.get('screenSizeTablet')?.value != '') {
+        if (formGroup.get('tabletScreenSize')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'screenSizeTablet',
-            formGroup.get('screenSizeTablet')?.value
+            'tabletScreenSize',
+            formGroup.get('tabletScreenSize')?.value
           );
         }
-        if (formGroup.get('ramTablet')?.value != '') {
+        if (formGroup.get('tabletRam')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'ramTablet',
-            formGroup.get('ramTablet')?.value
+            'tabletRam',
+            formGroup.get('tabletRam')?.value
           );
         }
         break;
       case 'Impresoras':
-        if (formGroup.get('monochromatic')?.value != '') {
+        if (formGroup.get('printerType')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'monochromatic',
-            formGroup.get('monochromatic')?.value
-          );
-        }
-        if (formGroup.get('is3DPrinter')?.value != '') {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'is3DPrinter',
-            formGroup.get('is3DPrinter')?.value
+            'printerType',
+            formGroup.get('printerType')?.value
           );
         }
         break;
       case 'Computadoras de Escritorio':
         break;
       case 'Teclados':
-        if (formGroup.get('hasCableKeyboard')?.value != '') {
+        if (formGroup.get('keyboardConnectivityType')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'hasCableKeyboard',
-            formGroup.get('hasCableKeyboard')?.value
+            'keyboardConnectivityType',
+            formGroup.get('keyboardConnectivityType')?.value
           );
-        }
-        if (formGroup.get('isWirelessKeyboard')?.value != '') {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'isWirelessKeyboard',
-            formGroup.get('isWirelessKeyboard')?.value
-          );
-        }
-        if (formGroup.get('hasBluetoothKeyboard')?.value != '') {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'hasBluetoothKeyboard',
-            formGroup.get('hasBluetoothKeyboard')?.value
-          );
-        }
+        };
+        
         break;
       case 'Mouses':
-        if (formGroup.get('hasCableMouse')?.value != '') {
+        if (formGroup.get('mouseConnectivityType')?.value != '') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
-            'hasCableMouse',
-            formGroup.get('hasCableMouse')?.value
+            'mouseConnectivityType',
+            formGroup.get('mouseConnectivityType')?.value
           );
         }
-        if (formGroup.get('isWirelessMouse')?.value != '') {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'isWirelessMouse',
-            formGroup.get('isWirelessMouse')?.value
-          );
-        }
-        if (formGroup.get('hasBluetoothMouse')?.value != '') {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'hasBluetoothMouse',
-            formGroup.get('hasBluetoothMouse')?.value
-          );
-        }
+        
         break;
     }
 
@@ -633,15 +527,19 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.carritoService.addToCart(product);
   }
 
-  obtainBrandListFilteredByCategory(prductListInterface: ProductInterface[]) {
+  obtainBrandListFilteredByCategory(productListInterface: ProductInterface[]) {//devuelve las marcas existentes en la lista por categoria
     let brandList: string[] = [];
-    prductListInterface.forEach((product) => {
+    productListInterface.forEach((product) => {
       if (!brandList.includes(product.brand)) {
         brandList.push(product.brand);
       }
     });
     return brandList;
   }
+
+  
+
+
 
 	//////////////////////////////////////////   nav   /////////////////////////////////////////////////////
 	getListFiltersByButtonNav(category:string){

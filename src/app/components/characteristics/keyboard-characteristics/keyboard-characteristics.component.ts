@@ -10,9 +10,7 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
 export class KeyboardCharacteristicsComponent {
 
 
-  hasCable: string[] = ['Si', 'No'];
-  isWireless: string[] = ['Si', 'No'];
-  hasBluetooth: string[] = ['Sí', 'No'];
+  keyboardConnectivityTypeList: string[] = ["Cable","Wireless","Bluetooth"];
 
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
@@ -21,9 +19,7 @@ export class KeyboardCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "hasCable": new FormControl('No', [Validators.required]),
-      "isWireless": new FormControl('No"', [Validators.required]),
-      "hasBluetooth": new FormControl('No"', [Validators.required])
+      "keyboardConnectivityType": new FormControl(this.keyboardConnectivityTypeList[0], [Validators.required])
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString

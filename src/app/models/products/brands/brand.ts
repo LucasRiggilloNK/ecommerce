@@ -44,5 +44,14 @@ export enum Brand {
     FUJIFILM = 'Fujifilm',
     WHIRLPOOL = 'Whirlpool',
     JABRA = 'Jabra',
-    SENNHEISER = 'Sennheiser'
+    SENNHEISER = 'Sennheiser',
+    NOBLEX = "Noblex",
+    MONSTER = "Monster",
+    BLACKPOINT ="Blackpoint",
+    GAFA = "Gafa",
+    HISENSE = "Hisense",
+    PCBOX = "Pcbox",
+    EPSON = "Epson",
+    EXO = "Exo",
+    SHENLONG = "Shenlong"
 }

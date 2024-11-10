@@ -9,8 +9,8 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
 })
 export class TabletCharacteristicsComponent {
 
-  screenSizesList: string[] = ['7"', '8"', '9"', '10"', '10.5"', '11"', '12.4"', '12.9"', '13"', '14"'];
-  ramList: string[] = ['2 GB', '3 GB', '4 GB', '6 GB', '8 GB', '12 GB', '16 GB'];
+  tabletScreenSizesList: string[] = ['7"', '8"', '9"', '10"','10.1"', '10.5"', '11"', '12.4"', '12.9"', '13"', '14"'];
+  tabletRamList: string[] = ['2 GB', '3 GB', '4 GB', '6 GB', '8 GB', '12 GB', '16 GB'];
 
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
@@ -19,8 +19,8 @@ export class TabletCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "screenSize": new FormControl('13"', [Validators.required]),
-      "ram": new FormControl('4 GB"', [Validators.required])
+      "tabletScreenSize": new FormControl(this.tabletScreenSizesList[0], [Validators.required]),
+      "tabletRam": new FormControl(this.tabletRamList[0], [Validators.required])
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString

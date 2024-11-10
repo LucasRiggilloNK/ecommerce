@@ -100,12 +100,12 @@ export class AddProductComponent {
   async onSubmit(){
 
     this.obtainCharacteristicsString();//obtiene string caracteristicas
-    this.productInt = this.addProductFromToProductInterface();//pasa el form a interface de producto
+    this.productInt = this.addProductFormToProductInterface();//pasa el form a interface de producto
     await this.productService.addProductInterfaceApi(this.productInt);
 
   }
 
-  addProductFromToProductInterface(): ProductInterface{
+  addProductFormToProductInterface(): ProductInterface{
     let product:ProductInterface =  {
       id: 0,
       brand: "",
@@ -128,11 +128,9 @@ export class AddProductComponent {
     product.urlImage = this.addProduct.get('urlImage')?.value;
     product.stock = this.addProduct.get('stock')?.value;
     
-
-    /* const { id, ...productWithoutId } = product;
-
-    return productWithoutId as ProductInterface; */
-    return product;
+    
+    
+    return product ;
   }
 
 

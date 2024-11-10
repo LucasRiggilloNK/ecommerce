@@ -36,20 +36,6 @@
   <br />
   <input type="text" formControlName="model" class="form-control" />
 
-  <!--     <app-air-conditioning-characteristics *ngIf="getSelectedCategory() == 'Aire Acondicionado'" ></app-air-conditioning-characteristics>
-    
-    <app-fan-characteristics *ngIf="getSelectedCategory() == 'Ventiladores'"></app-fan-characteristics>
-    <app-tv-characteristics  *ngIf="getSelectedCategory() == 'Televisores'"></app-tv-characteristics>
-    <app-heapphones-characteristics *ngIf="getSelectedCategory() == 'Auriculares'"></app-heapphones-characteristics>
-    <app-refrigerator-characteristics *ngIf="getSelectedCategory() == 'Heladeras'"></app-refrigerator-characteristics>
-    <app-washing-characteristics *ngIf="getSelectedCategory() == 'Lavarropas'"></app-washing-characteristics>
-    <app-notebooks-characteristics *ngIf="getSelectedCategory() == 'Notebooks'"></app-notebooks-characteristics>
-    <app-microwave-characteristics *ngIf="getSelectedCategory() == 'Microondas'"></app-microwave-characteristics>
-    <app-smartphones-characteristics *ngIf="getSelectedCategory() == 'Celulares'"></app-smartphones-characteristics>
-    <app-tablet-characteristics *ngIf="getSelectedCategory() == 'Tablets'"></app-tablet-characteristics>
-    <app-printer-characteristics *ngIf="getSelectedCategory() == 'Impresoras'"></app-printer-characteristics>
-    <app-keyboard-characteristics *ngIf="getSelectedCategory() == 'Teclado'"></app-keyboard-characteristics>
-    <app-mouse-characteristics *ngIf="getSelectedCategory() == 'Mouse'"></app-mouse-characteristics>   -->
 
   <app-air-conditioning-characteristics
     *ngIf="addProduct.get('category')?.value == 'Aire Acondicionado'"
@@ -85,10 +71,10 @@
     *ngIf="addProduct.get('category')?.value == 'Impresoras'"
   ></app-printer-characteristics>
   <app-keyboard-characteristics
-    *ngIf="addProduct.get('category')?.value == 'Teclado'"
+    *ngIf="addProduct.get('category')?.value == 'Teclados'"
   ></app-keyboard-characteristics>
   <app-mouse-characteristics
-    *ngIf="addProduct.get('category')?.value == 'Mouse'"
+    *ngIf="addProduct.get('category')?.value == 'Mouses'"
   ></app-mouse-characteristics>
 
   <button type="submit" [disabled]="!addProduct.valid">Crear</button>

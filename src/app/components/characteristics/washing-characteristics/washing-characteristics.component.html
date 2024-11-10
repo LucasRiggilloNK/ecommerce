@@ -1,6 +1,6 @@
 <form action="" [formGroup]="characteristicsFormGroup">
     <p> Capacidad de lavado </p>
-    <select id="capacidadLavado" formControlName="capacidadLavado"> 
+    <select id="washingCapacity" formControlName="washingCapacity"> 
         <option *ngFor="let capacity of washingCapacityList" [value]="capacity">{{ capacity }}</option>
     </select>
 </form>

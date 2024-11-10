@@ -13,23 +13,26 @@ export class ProductService {
   private productsListInt: ProductInterface[] = [];
   private productInt: ProductInterface | null = null;
   private airTypesListValues: string[] = ['split', 'portatil', 'split inverter', 'ventana'];
+  private heatColdList = ['Sí', 'No'];
   private fanTypeListvalues = ['Pie', 'Turbo'];
-  tvTechnologiesList: string[] = ['LED', 'OLED', 'AMOLED', 'QLED', 'NanoCell'];
-  tvInchesList: string[] = ['32"', '43"', '55"', '60"', '70"', '75"'];
-  headphonesTypeListvalues = ['inEar', 'headBand'];
-  coolingSystemList: string[] = ['no frost', 'ciclico', 'cycle defrost', 'cilcico', 'cycle desfrost', 'mono cooling', 'skin condenser'];
-  washingCapacityList: string[] = ['6 kg', '7 kg', '8 kg', '9 kg', '10 kg', '11 kg'];
-  microwaveCapacityList: string[] = ['15 lts', '17 lts', '20 lts', '23 lts', '25 lts', '28 lts', '30 lts', '32 lts', '35 lts', '40 lts', '42 lts', '45 lts'];
-  smartPhoneInchesList: string[] = ['4.0"', '4.7"', '5.0"', '5.5"', '5.8"', '6.1"', '6.3"', '6.5"', '6.7"', '6.8"', '7.0"'];
-  smartPhoneRamList: string[] = ['4 GB', '6 GB', '8 GB', '12 GB', '16 GB', '18 GB'];
-  notebookScreenSizesList: string[] = [ '13"', '14"', '15"', '15.6"', '16"', '17"'];
-  notebookRamList: string[] = ['4 GB', '8 GB', '12 GB', '16 GB', '32 GB', '64 GB'];
-  notebookProcessorsList: string[] = ['Intel Core i3', 'Intel Core i5', 'Intel Core i7', 'Intel Core i9', 'AMD Ryzen 3', 'AMD Ryzen 5', 'AMD Ryzen 7', 'AMD Ryzen 9', 'Apple M1', 'Apple M2', 'Intel Pentium Gold'];
-  notebookStorageSizesList: string[] = ['128GB', '256GB', '512GB', '1TB', '2TB', '4TB', '8TB', '16TB', '32TB', '64TB'];
-  tabletScreenSizesList: string[] = ['7"', '8"', '9"', '10"', '10.5"', '11"', '12.4"', '12.9"', '13"', '14"'];
-  tabletRamList: string[] = ['2 GB', '3 GB', '4 GB', '6 GB', '8 GB', '12 GB', '16 GB'];
-  isMonochromatic: string[] = ['Si', 'No'];
-  is3DPrinter: string[] = ['Sí', 'No'];
+  private tvTechnologiesList: string[] = ['LED', 'OLED', 'AMOLED', 'QLED', 'NanoCell'];
+  private tvInchesList: string[] = ['32"', '43"', '55"', '60"', '70"', '75"'];
+  private headphonesTypeListvalues = ['inEar', 'headBand'];
+  private coolingSystemList: string[] = ['no frost', 'ciclico', 'cycle defrost', 'cilcico', 'cycle desfrost', 'mono cooling', 'skin condenser'];
+  private washingCapacityList: string[] = ['6 kg', '7 kg', '8 kg', '9 kg', '10 kg', '11 kg'];
+  private microwaveCapacityList: string[] = ['15 lts', '17 lts', '20 lts', '23 lts', '25 lts', '28 lts', '30 lts', '32 lts', '35 lts', '40 lts', '42 lts', '45 lts'];
+  private smartPhoneInchesList: string[] = ['4.0"', '4.7"', '5.0"', '5.5"', '5.8"', '6.1"', '6.3"', '6.5"', '6.7"', '6.8"', '7.0"'];
+  private smartPhoneRamList: string[] = ['4 GB', '6 GB', '8 GB', '12 GB', '16 GB', '18 GB'];
+  private notebookScreenSizesList: string[] = [ '13"', '14"', '15"', '15.6"', '16"', '17"'];
+  private notebookRamList: string[] = ['4 GB', '8 GB', '12 GB', '16 GB', '32 GB', '64 GB'];
+  private notebookProcessorsList: string[] = ['Intel Core i3', 'Intel Core i5', 'Intel Core i7', 'Intel Core i9', 'AMD Ryzen 3', 'AMD Ryzen 5', 'AMD Ryzen 7', 'AMD Ryzen 9', 'Apple M1', 'Apple M2', 'Intel Pentium Gold'];
+  private notebookStorageSizesList: string[] = ['128GB', '256GB', '512GB', '1TB', '2TB', '4TB', '8TB', '16TB', '32TB', '64TB'];
+  private tabletScreenSizesList: string[] = ['7"', '8"', '9"', '10"', '10.5"', '11"', '12.4"', '12.9"', '13"', '14"'];
+  private tabletRamList: string[] = ['2 GB', '3 GB', '4 GB', '6 GB', '8 GB', '12 GB', '16 GB'];
+  private printerTypeList: string[] = ["color", "monochomatic", "3D"];
+  private isMonochromatic: string[] = ['Si', 'No'];
+  private is3DPrinter: string[] = ['Sí', 'No'];
+  private conectivityTypeList: string[] = ["cable","wireless","bluetooth"]
 
   
   constructor(private asyncService: AsyncService) {
@@ -74,7 +77,7 @@ export class ProductService {
         productInt,
         this.productsApiUrl
       );
-      console.log('Producto agregado exitosamente');
+      alert('Producto agregado exitosamente');
       return response;
     } catch (error) {
       console.error('Error al agregar producto al archivo json', error);
@@ -125,13 +128,89 @@ export class ProductService {
   getCharacteristicsList(type: string): string[] {
     let out: string[] = [];
     switch(type) {
-       case 'airTypes': 
+        case 'airTypes': 
           out = this.airTypesListValues;
         break;
+        case 'frioCalor': 
+          out = this.heatColdList;
+        break;
+        case 'tipoVentiladores': 
+          out = this.fanTypeListvalues;
+        break;
+        case 'tipoAuricular': 
+          out = this.headphonesTypeListvalues;
+        break;
+        case 'tipoConectividad':  //para teclado y mouse
+          out = this.conectivityTypeList;
+        break;
+        case 'capacidad': 
+          out = this.microwaveCapacityList;
+        break;
+        case 'screenSize': 
+          out = this.notebookScreenSizesList;
+        break;
+        case 'ram': 
+          out = this.notebookRamList;
+        break;
+        case 'processor': 
+          out = this.notebookProcessorsList;
+        break;
+        case 'storageSize': 
+          out = this.notebookStorageSizesList;
+        break;
+        case 'printerType': 
+          out = this.printerTypeList;
+        break;
+        case 'sistEnfriamiento': 
+          out = this.coolingSystemList;
+        break;
+        case 'pulgadas': 
+          out = this.smartPhoneInchesList;
+        break;
+        case 'ram': 
+          out = this.smartPhoneRamList;
+        break;
+        case 'pulgadas': 
+          out = this.smartPhoneRamList;
+        break;
+        case 'ram': 
+          out = this.smartPhoneRamList;
+        break;
+
     } 
     return out;
          
   }
-  
+
+
+
+
+
+
+
+
+
+
+
+/* 
+
+
+smarthphones
+ "pulgadas"
+      "ram"
+
+tablet
+"screenSize"  
+    "ram"
+
+
+tv
+"tecnologia"
+      "pulgadas"
+
+
+washing
+ "capacidadLavado"
+ */
 
 }
