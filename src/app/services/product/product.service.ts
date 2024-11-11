@@ -4,6 +4,8 @@ import { AsyncService } from '../async.service';
 import { Brand } from '../../models/products/brands/brand';
 import { Category } from '../../models/products/categories/category';
 import { ProductInterface } from '../../interfaces/product/product-interface';
+import { response } from 'express';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +14,7 @@ export class ProductService {
   private productsApiUrl = 'http://localhost:3000/products';
   private productsListInt: ProductInterface[] = [];
   private productInt: ProductInterface | null = null;
+  private productToVievDetails: ProductInterface | null = null;
   	
 
   airTypesList: string[] = ["Todos", "Split", "Portatil", "Split inverter", "Ventana"];
@@ -198,35 +201,23 @@ export class ProductService {
          
   }
 
+  ////////////////////////////////////    DETALLES PRODUCTO    //////////////////////////////////////////
 
+async setProductToViewDetailsById(id: number){
+  this.productToVievDetails = await this.asyncService.getByIdPromise(id, this.productsApiUrl)
+  .then(response =>{
+    return response;
+  })
+  .catch(error =>{
+    console.log("Error al obtener producto por id");
+    return null;
+  });
 
+  console.log(this.productToVievDetails);
+}
 
-
-
-
-
-
-
-
-/* 
-
-
-smarthphones
- "pulgadas"
-      "ram"
-
-tablet
-"screenSize"  
-    "ram"
-
-
-tv
-"tecnologia"
-      "pulgadas"
-
-
-washing
- "capacidadLavado"
- */
+getProductToVievDetails(){
+  return this.productToVievDetails;
+}
 
 }

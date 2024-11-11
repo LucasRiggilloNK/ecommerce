@@ -35,7 +35,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   productInterfaceById: ProductInterface | null = null;
 
-  subscriptionGetProductListInterface: Subscription;
+  //subscriptionGetProductListInterface: Subscription;
   subscriptionGetProductInterfaceById: Subscription;
 
   formControlById: FormControl;
@@ -72,11 +72,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   keyboardConnectivityTypeList: string[];
   mouseConnectivityTypeList: string[];
 
-  constructor(
-    private productService: ProductService,
-    private carritoService: CarritoService,
-  ) {
-    this.subscriptionGetProductListInterface = new Subscription();
+  constructor(private productService: ProductService, private carritoService: CarritoService) {
+    //this.subscriptionGetProductListInterface = new Subscription();
     this.subscriptionGetProductInterfaceById = new Subscription();
     this.formControlById = new FormControl();
 
@@ -149,18 +146,13 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getProductListInterface();
-    this.valueChangesSubscription =
-      this.formControlCategory.valueChanges.subscribe((form) => {
+    this.valueChangesSubscription =this.formControlCategory.valueChanges.subscribe((form) => {
         this.getListFilteredByCategory(this.formControlCategory.value);
       });
 
     this.valueChangesformGrupSubfiltersSubscription =
       this.formGrupSubfilters.valueChanges.subscribe((form) => {
-        this.getListFilteredBySubFilters(
-          this.productListFilteredByCategory,
-          this.formGrupSubfilters,
-          this.formControlCategory.value
-        );
+        this.getListFilteredBySubFilters(this.productListFilteredByCategory,this.formGrupSubfilters,this.formControlCategory.value);
       });
 
 			
@@ -174,8 +166,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   async getProductListInterface() {
     this.productsListInt =
       await this.productService.getAllProductsListInterface();
-
-    console.log('*');
   }
 
 
@@ -196,11 +186,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.getProductInterfaceById(id);
   }
 
-  getFilterByCategory(
-    productsListInt: ProductInterface[],
-    category: string
-  ): ProductInterface[] {
-    //carga la lista filtrada por categoria
+  getFilterByCategory(productsListInt: ProductInterface[], category: string): ProductInterface[] {//retorna la lista filtrada por categoria
     return this.productService.filterByCategory(productsListInt, category);
   }
 
@@ -209,7 +195,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   }
 
 
-		async getListFilteredByCategory(category: string) {
+		/* async getListFilteredByCategory(category: string) {//funciona
 		
 			//Función que se ejecuta al hacer cambios en el select categoría
 			let filteredProductsListInterface: ProductInterface[] = [];
@@ -247,7 +233,43 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 						);
 					});
 			}
-		}
+		} */
+
+
+
+
+      async getListFilteredByCategory(category: string) {
+
+        //Función que se ejecuta al hacer cambios en el select categoría
+        let filteredProductsListInterface: ProductInterface[] = [];
+    
+        if (category != Category.NONE) {//none está cargado iniciamente en el formControl. Si está así, no muestra nada
+          //Filtrar por categoria
+          this.productListFilteredByCategory = await this.getAllProductsListInterface(); // carga todos los productos en productListFilteredByCategory
+    
+
+          this.productListFilteredByCategory = this.getFilterByCategory(this.productListFilteredByCategory,category); //filtro categoria
+          
+          filteredProductsListInterface = this.productListFilteredByCategory; // la iguala a filteredProductsListInterface para poder filtrar desde ahi y no perder el punto de inicio de la categoria
+    
+          //limpiar todos los subfiltros
+          this.valueChangesformGrupSubfiltersSubscription?.unsubscribe(); //desuscribo para poder cambiar los subfiltros y q no haya problemas de detección
+    
+          this.setInitialSubFiltersOfListProductsInterface(filteredProductsListInterface); //setea el estado inicial de lo subfiltros
+    
+          //Asignar lista a mostrar
+          this.productListSubFiltered = filteredProductsListInterface; // está sin subfiltros aplicados pero es lo q tiene q mostrar inicialmente
+    
+          this.valueChangesformGrupSubfiltersSubscription =
+            this.formGrupSubfilters.valueChanges.subscribe((form) => {
+              this.getListFilteredBySubFilters(
+                this.productListFilteredByCategory,
+                this.formGrupSubfilters,
+                this.formControlCategory.value
+              );
+            });
+        }
+      }
 
 
   private setInitialSubFiltersOfListProductsInterface(
@@ -594,4 +616,14 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 			console.log(this.productListSubFiltered);
 
 	}
+
+
+
+
+  //////////////////////////////////   DETAILS    ///////////////////////////////////////////////////////////
+
+  sendProductIdToViewDetails(id: number){
+    
+    this.productService.setProductToViewDetailsById(id);
+  }
 }

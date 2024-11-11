@@ -234,9 +234,15 @@
             <p>{{ product.brand }}</p>
             <p>{{ product.category }} {{ product.brand}} {{ product.model }}</p>
             <p>Precio: {{ product.price }}</p>
-            <button type="button" (click)="addToCart(product)">
-              Añadir al carrito
-            </button>
+            <div>
+              <button type="button" (click)="sendProductIdToViewDetails(product.id)" [routerLink]="['/productDetails']" >
+                Detalles
+              </button>
+              <button type="button" (click)="addToCart(product)">
+                Añadir al carrito
+              </button>
+            </div>
+            
           </div>
 
         </div>
