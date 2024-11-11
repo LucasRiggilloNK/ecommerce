@@ -51,29 +51,26 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   valueChangesSubscription?: Subscription;
   valueChangesformGrupSubfiltersSubscription?: Subscription;
 	
-  airTypesList: string[] = ["Split", "Portatil", "Split inverter", "Ventana"];
-   heatColdList = ['Si', 'No'];
-   fanTypeList = ['Pie', 'Turbo'];
-   tvTechnologiesList: string[] = ['LED', 'OLED', 'AMOLED', 'QLED', 'NanoCell', "FHD"];
-   tvInchesList: string[] = ['32"', '43"', '55"', '60"', '70"', '75"'];
-   headphonesTypeList = ['inEar', 'headBand'];
-   refrigeratorCoolingSystemList: string[] =  ['No frost', 'Ciclico', 'Cycle defrost', 'Mono cooling', 'Skin condenser'];
-   washingCapacityList: string[] = ['6 kg', "6.5 kg",'7 kg', '8 kg', '9 kg', '10 kg', '11 kg'];
-   microwaveCapacityList: string[] = ['15 lts', '17 lts', '20 lts', '23 lts', '25 lts', '28 lts', '30 lts', '32 lts', '35 lts', '40 lts', '42 lts', '45 lts'];
-   smartPhoneInchesList: string[] = ['4.0"', '4.7"', '5.0"', '5.5"', '5.8"', '6.1"', '6.3"', '6.5"', '6.6"', '6.7"', '6.8"', '7.0"'];
-   smartPhoneRamList: string[] = ['4 GB', '6 GB', '8 GB', '12 GB', '16 GB', '18 GB'];
-   notebookScreenSizesList: string[] = [ '13"', '14"', '15"', '15.6"', '16"', '17"'];
-   notebookRamList: string[] = ['4 GB', '8 GB', '12 GB', '16 GB', '32 GB', '64 GB'];
-   notebookProcessorsList: string[] = ['Intel Core i3', 'Intel Core i5', 'Intel Core i7', 'Intel Core i9', 'AMD Ryzen 3', 'AMD Ryzen 5', 'AMD Ryzen 7', 'AMD Ryzen 9', 'Apple M1', 'Apple M2', 'Intel Pentium Gold'];
-   notebookStorageSizesList: string[] = ['128GB', '256GB', '512GB', '1TB', '2TB', '4TB', '8TB', '16TB', '32TB', '64TB'];
-   tabletScreenSizesList: string[] = ['7"', '8"', '9"', '10"', '10.1"', '10.5"', '11"', '12.4"', '12.9"', '13"', '14"'];
-   tabletRamList: string[] = ['2 GB', '3 GB', '4 GB', '6 GB', '8 GB', '12 GB', '16 GB'];
-   printerTypeList: string[] = ["Color", "Monocromática", "3D"];
-   keyboardConnectivityTypeList: string[] = ["Cable","Wireless","Bluetooth"];
-   mouseConnectivityTypeList: string[] = ["Cable","Wireless","Bluetooth"];
-
-
-
+  tvTechnologiesList: string[];
+  tvInchesList: string[];
+  airTypesList: string[];
+  heatColdList: string[];
+  fanTypeList : string[];
+  headphonesTypeList: string[];
+  refrigeratorCoolingSystemList: string[];
+  washingCapacityList: string[];
+  microwaveCapacityList: string[];
+  smartphoneInchesList: string[];
+  smartphoneRamList: string[];
+  notebookScreenSizesList: string[];
+  notebookRamList: string[];
+  notebookProcessorsList: string[];
+  notebookStorageSizesList: string[];
+  tabletScreenSizesList: string[];
+  tabletRamList: string[];
+  printerTypeList: string[];
+  keyboardConnectivityTypeList: string[];
+  mouseConnectivityTypeList: string[];
 
   constructor(
     private productService: ProductService,
@@ -90,6 +87,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.formControlCategory = new FormControl();
     this.formGrupSubfilters = new FormGroup({
       brand: new FormControl(Brand.NONE),
+      orderByPrice: new FormControl(''),
       // Aire acondicionado
       airTypes: new FormControl(''),
       heatCold: new FormControl(''),
@@ -126,9 +124,26 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
 
     });
-
-    /* this.airTypesListValues = this.productService.getCharacteristicsList('airTypes');
-    this.heatColdList = this.productService.getCharacteristicsList('frioCalor'); */
+    this.tvTechnologiesList = this.productService.getCharacteristicsList('tvTecnology');
+    this.tvInchesList = this.productService.getCharacteristicsList('tvInches');
+    this.airTypesList = this.productService.getCharacteristicsList('airTypes');
+    this.heatColdList = this.productService.getCharacteristicsList('heatCold');
+    this.fanTypeList = this.productService.getCharacteristicsList('fanType');
+    this.headphonesTypeList = this.productService.getCharacteristicsList('headphoneType');
+    this.refrigeratorCoolingSystemList = this.productService.getCharacteristicsList('refrigeratorCoolingSystem');
+    this.washingCapacityList = this.productService.getCharacteristicsList('washingCapacity');
+    this.microwaveCapacityList = this.productService.getCharacteristicsList('microwaveCapacity');
+    this.smartphoneInchesList = this.productService.getCharacteristicsList('smartphoneInches');
+    this.smartphoneRamList = this.productService.getCharacteristicsList('smartphoneRam'); 
+    this.notebookScreenSizesList = this.productService.getCharacteristicsList('notebookScreenSize');
+    this.notebookRamList = this.productService.getCharacteristicsList('notebookRam');
+    this.notebookProcessorsList = this.productService.getCharacteristicsList('notebookProcessor');
+    this.notebookStorageSizesList = this.productService.getCharacteristicsList('notebookStorageSize');
+    this.tabletScreenSizesList = this.productService.getCharacteristicsList('tabletScreenSize');
+    this.tabletRamList = this.productService.getCharacteristicsList('tabletRam');
+    this.printerTypeList = this.productService.getCharacteristicsList('printerType');
+    this.keyboardConnectivityTypeList = this.productService.getCharacteristicsList('keyboardConnectivityType');
+    this.mouseConnectivityTypeList = this.productService.getCharacteristicsList('mouseConnectivityType');
 
   }
 
@@ -194,7 +209,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   }
 
 
-
 		async getListFilteredByCategory(category: string) {
 		
 			//Función que se ejecuta al hacer cambios en el select categoría
@@ -236,13 +250,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 		}
 
 
-
-
-
-
-
-
-
   private setInitialSubFiltersOfListProductsInterface(
     productsListInterface: ProductInterface[]
   ) {
@@ -250,6 +257,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       productsListInterface
     ); // obtiene las marcas de los productos filtrados
     this.formGrupSubfilters.get('brand')?.setValue(Brand.NONE);
+    this.formGrupSubfilters.get('orderByPrice')?.setValue('');
     this.formGrupSubfilters.get('airTypes')?.setValue('');
     this.formGrupSubfilters.get('heatCold')?.setValue('');
     this.formGrupSubfilters.get('fanType')?.setValue('');
@@ -292,7 +300,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
     console.log('ATRODEN SUB FILTERS');
     //FILTRA POR MARCA
-    if (formGroup.get('brand')?.value != Brand.NONE) {
+    if (formGroup.get('brand')?.value != Brand.NONE && formGroup.get('brand')?.value != Brand.ALL) {
       console.log('ATRODEN BRAND');
       filteredProductsListInterface = this.getListFilteredByBrand(
         filteredProductsListInterface,
@@ -300,19 +308,23 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       );
     }
 
+    // FILTRA ORDENADO POR PRECIO
+    if(formGroup.get('orderByPrice')?.value != ''){
+      console.log('ATRODEN ORDERBYPRICE');
+      filteredProductsListInterface = this.getListOrderedByPrice(filteredProductsListInterface, formGroup.get('orderByPrice')?.value);
+    }
+
     // FILTRA POR CARACTERISTICAS DE CATEGORIA
     switch (category) {
       case 'Aire Acondicionado':
-        if (formGroup.get('airTypes')?.value != '') {
-          console.log('ATRODEN AA');
-          //filteredProductsListInterface = this.getListFilteredByAirType(filteredProductsListInterface, formGroup.get("airTypes")?.value);
+        if (formGroup.get('airTypes')?.value != '' && formGroup.get('airTypes')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'airTypes',
             formGroup.get('airTypes')?.value
           );
         }
-        if (formGroup.get('heatCold')?.value != '') {
+        if (formGroup.get('heatCold')?.value != '' && formGroup.get('heatCold')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'heatCold',
@@ -321,7 +333,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         }
         break;
       case 'Ventiladores':
-        if (formGroup.get('fanType')?.value != '') {
+        if (formGroup.get('fanType')?.value != '' && formGroup.get('fanType')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'fanType',
@@ -330,14 +342,14 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         }
         break;
       case 'Televisores':
-        if (formGroup.get('tvTecnology')?.value != '') {
+        if (formGroup.get('tvTecnology')?.value !='' && formGroup.get('tvTecnology')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'tvTecnology',
             formGroup.get('tvTecnology')?.value
           );
         }
-        if (formGroup.get('tvInches')?.value != '') {
+        if (formGroup.get('tvInches')?.value != '' && formGroup.get('tvInches')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'tvInches',
@@ -346,7 +358,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         }
         break;
       case 'Auriculares':
-        if (formGroup.get('headphoneType')?.value != '') {
+        if (formGroup.get('headphoneType')?.value != '' && formGroup.get('headphoneType')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'headphoneType',
@@ -357,7 +369,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       case 'Parlantes':
         break;
       case 'Heladeras':
-        if (formGroup.get('refrigeratorCoolingSystem')?.value != '') {
+        if (formGroup.get('refrigeratorCoolingSystem')?.value != '' && formGroup.get('refrigeratorCoolingSystem')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'refrigeratorCoolingSystem',
@@ -366,7 +378,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         }
         break;
       case 'Lavarropas':
-        if (formGroup.get('washingCapacity')?.value != '') {
+        if (formGroup.get('washingCapacity')?.value != '' && formGroup.get('washingCapacity')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'washingCapacity',
@@ -377,7 +389,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       case 'Aspiradoras':
         break;
       case 'Microondas':
-        if (formGroup.get('microwaveCapacity')?.value != '') {
+        if (formGroup.get('microwaveCapacity')?.value != '' && formGroup.get('microwaveCapacity')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'microwaveCapacity',
@@ -388,14 +400,14 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       case 'Tostadora':
         break;
       case 'Celulares':
-        if (formGroup.get('smartphoneInches')?.value != '') {
+        if (formGroup.get('smartphoneInches')?.value != '' && formGroup.get('smartphoneInches')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'smartphoneInches',
             formGroup.get('smartphoneInches')?.value
           );
         }
-        if (formGroup.get('smartphoneRam')?.value != '') {
+        if (formGroup.get('smartphoneRam')?.value != '' && formGroup.get('smartphoneRam')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'smartphoneRam',
@@ -404,28 +416,28 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         }
         break;
       case 'Notebooks':
-        if (formGroup.get('notebookScreenSize')?.value != '') {
+        if (formGroup.get('notebookScreenSize')?.value != '' && formGroup.get('notebookScreenSize')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'notebookScreenSize',
             formGroup.get('notebookScreenSize')?.value
           );
         }
-        if (formGroup.get('notebookRam')?.value != '') {
+        if (formGroup.get('notebookRam')?.value != '' && formGroup.get('notebookRam')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'notebookRam',
             formGroup.get('notebookRam')?.value
           );
         }
-        if (formGroup.get('notebookProcessor')?.value != '') {
+        if (formGroup.get('notebookProcessor')?.value != '' && formGroup.get('notebookProcessor')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'notebookProcessor',
             formGroup.get('notebookProcessor')?.value
           );
         }
-        if (formGroup.get('notebookStorageSize')?.value != '') {
+        if (formGroup.get('notebookStorageSize')?.value != '' && formGroup.get('notebookStorageSize')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'notebookStorageSize',
@@ -434,14 +446,14 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         }
         break;
       case 'Tablets':
-        if (formGroup.get('tabletScreenSize')?.value != '') {
+        if (formGroup.get('tabletScreenSize')?.value != '' && formGroup.get('tabletScreenSize')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'tabletScreenSize',
             formGroup.get('tabletScreenSize')?.value
           );
         }
-        if (formGroup.get('tabletRam')?.value != '') {
+        if (formGroup.get('tabletRam')?.value != '' && formGroup.get('tabletRam')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'tabletRam',
@@ -450,7 +462,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         }
         break;
       case 'Impresoras':
-        if (formGroup.get('printerType')?.value != '') {
+        if (formGroup.get('printerType')?.value != '' && formGroup.get('printerType')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'printerType',
@@ -461,7 +473,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       case 'Computadoras de Escritorio':
         break;
       case 'Teclados':
-        if (formGroup.get('keyboardConnectivityType')?.value != '') {
+        if (formGroup.get('keyboardConnectivityType')?.value != '' && formGroup.get('keyboardConnectivityType')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'keyboardConnectivityType',
@@ -471,7 +483,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         
         break;
       case 'Mouses':
-        if (formGroup.get('mouseConnectivityType')?.value != '') {
+        if (formGroup.get('mouseConnectivityType')?.value != '' && formGroup.get('mouseConnectivityType')?.value != 'Todos') {
           filteredProductsListInterface = this.getListFilteredCharacteristics(
             filteredProductsListInterface,
             'mouseConnectivityType',
@@ -492,6 +504,15 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   ): ProductInterface[] {
     return productsListInterface.filter((product) => product.brand == brand);
   }
+
+  private getListOrderedByPrice(productListInterface: ProductInterface[], mode: 'asc' | 'desc'): ProductInterface[] {
+    productListInterface.sort((a, b) => {
+      return mode === 'asc' ? a.price - b.price : b.price - a.price;
+    });
+    return productListInterface;
+  }
+
+  
 
   getListFilteredCharacteristics(productsListInterface: ProductInterface[], typeName: string, typeValue: string): ProductInterface[] {
     let producList: ProductInterface[] = [];
@@ -529,6 +550,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   obtainBrandListFilteredByCategory(productListInterface: ProductInterface[]) {//devuelve las marcas existentes en la lista por categoria
     let brandList: string[] = [];
+    brandList.push(Brand.ALL);
     productListInterface.forEach((product) => {
       if (!brandList.includes(product.brand)) {
         brandList.push(product.brand);

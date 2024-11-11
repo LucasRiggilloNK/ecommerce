@@ -1,5 +1,6 @@
 export enum Brand {
     NONE = '',
+    ALL = 'Todos',
     ATMA = 'Atma',
     AXEL = 'Axel',
     BARCALA = 'Barcala',

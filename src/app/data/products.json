@@ -62,7 +62,7 @@
       "description": "Televisor Smart LED Google. Pantalla 55\" 4K UHD 3840 x 2160 Px. Procesador Quad core x4 @1.1GHz. Memoria: 8 GB eMMC5.1. Salidas de audio. Potencia: 2 x 9.5 W. Conexiones: WIFI 2.4, Bluetooth 5.0, HDMI, USB y Optica Digital. Sintonizador TDA. Soporte Vesa: 200 x 200. Medidas con base: Alto 76.6 / Ancho 122.6 / Profundidad 26.5. Peso: 10.2 Kg. Incluye: 1 Soporte de Pie Central, 1 Control Remoto Multimedia, 1 Adaptador AV IN y cable de alimentacion.",
       "price": "769999",
       "stock": "100",
-      "characteristics": "tvTecnology,LED,tvInches,55'",
+      "characteristics": "tvTecnology,LED,tvInches,55\"",
       "model": "L55P635-F",
       "id": "ec45"
     },
