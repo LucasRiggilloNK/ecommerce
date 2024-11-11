@@ -26,16 +26,15 @@ export class AsyncService {
     return this.http.post<ProductInterface>(urlApi, product, httpOptions);
   } */
 
-  add(
-    product: ProductInterface,
-    urlApi: string
-  ): Promise<ProductInterface | null> {
+  add(product: ProductInterface,urlApi: string): Promise<ProductInterface | null> {
     const httpOptions = {
-      headers: new HttpHeaders({ 'content-Type': 'application/json' }),
+headers: new HttpHeaders({'content-Type': 'application/json'}),
     };
-    return lastValueFrom(
-      this.http.post<ProductInterface>(urlApi, product, httpOptions)
-    );
+
+    const { id, ...productWithoutId } = product;//producto sin id para q json server lo genere automaticamente
+
+    return lastValueFrom(this.http.post<ProductInterface>(urlApi, productWithoutId, httpOptions));
+    //return lastValueFrom(this.http.post<ProductInterface>(urlApi, product, httpOptions));
   }
 
   /*   getById(productId: number, urlApi: string):Observable<ProductInterface>{
