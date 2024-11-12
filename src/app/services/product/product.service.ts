@@ -4,17 +4,19 @@ import { AsyncService } from '../async.service';
 import { Brand } from '../../models/products/brands/brand';
 import { Category } from '../../models/products/categories/category';
 import { ProductInterface } from '../../interfaces/product/product-interface';
-import { response } from 'express';
+import { response, Router } from 'express';
 import { error } from 'console';
+import { ActivatedRoute, Route } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
   private productsApiUrl = 'http://localhost:3000/products';
+  private maxId = 100000000;
   private productsListInt: ProductInterface[] = [];
   private productInt: ProductInterface | null = null;
-  private productToVievDetails: ProductInterface | null = null;
+  private productToVievDetails: ProductInterface;
   	
 
   airTypesList: string[] = ["Todos", "Split", "Portatil", "Split inverter", "Ventana"];
@@ -43,6 +45,17 @@ export class ProductService {
   
   constructor(private asyncService: AsyncService) {
     this.productInt = {
+      brand: Brand.NONE,
+      category: Category.NONE,
+      urlImage: '',
+      description: '',
+      price: 0,
+      stock: 0,
+      characteristics: '',
+      model: '',
+      id: 1,
+    };
+    this.productToVievDetails = {
       brand: Brand.NONE,
       category: Category.NONE,
       urlImage: '',
@@ -99,7 +112,8 @@ export class ProductService {
     try {
       const response = await this.asyncService.getByIdPromise(
         id,
-        `${this.productsApiUrl}/`
+        /* `${this.productsApiUrl}/` */
+        `${this.productsApiUrl}`
       );
       return response;
     } catch (error) {
@@ -203,21 +217,32 @@ export class ProductService {
 
   ////////////////////////////////////    DETALLES PRODUCTO    //////////////////////////////////////////
 
-async setProductToViewDetailsById(id: number){
-  this.productToVievDetails = await this.asyncService.getByIdPromise(id, this.productsApiUrl)
+/* public async setProductToViewDetailsById(id: number){
+  
+  await this.asyncService.getByIdPromise(id, this.productsApiUrl)
   .then(response =>{
-    return response;
+    this.productToVievDetails = response;
+    
   })
   .catch(error =>{
-    console.log("Error al obtener producto por id");
-    return null;
+    console.log("Error al obtener producto por id**");
+    
   });
 
-  console.log(this.productToVievDetails);
+
 }
 
 getProductToVievDetails(){
   return this.productToVievDetails;
+} */
+
+async getLatestProductId(): Promise<number>{
+  let allProducts: ProductInterface[] = [];
+  allProducts = await this.getAllProductsListInterface();
+  
+  return Math.max(...allProducts.map(product => Number(product.id)));
 }
+
+
 
 }

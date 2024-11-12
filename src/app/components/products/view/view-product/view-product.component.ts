@@ -182,9 +182,9 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     }
   }
 
-  buttonDetails(id: number) {
+  /* buttonDetails(id: number) {
     this.getProductInterfaceById(id);
-  }
+  } */
 
   getFilterByCategory(productsListInt: ProductInterface[], category: string): ProductInterface[] {//retorna la lista filtrada por categoria
     return this.productService.filterByCategory(productsListInt, category);
@@ -195,7 +195,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   }
 
 
-		/* async getListFilteredByCategory(category: string) {//funciona
+		async getListFilteredByCategory(category: string) {//funciona
 		
 			//Función que se ejecuta al hacer cambios en el select categoría
 			let filteredProductsListInterface: ProductInterface[] = [];
@@ -233,43 +233,12 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 						);
 					});
 			}
-		} */
+		}
 
 
 
 
-      async getListFilteredByCategory(category: string) {
-
-        //Función que se ejecuta al hacer cambios en el select categoría
-        let filteredProductsListInterface: ProductInterface[] = [];
-    
-        if (category != Category.NONE) {//none está cargado iniciamente en el formControl. Si está así, no muestra nada
-          //Filtrar por categoria
-          this.productListFilteredByCategory = await this.getAllProductsListInterface(); // carga todos los productos en productListFilteredByCategory
-    
-
-          this.productListFilteredByCategory = this.getFilterByCategory(this.productListFilteredByCategory,category); //filtro categoria
-          
-          filteredProductsListInterface = this.productListFilteredByCategory; // la iguala a filteredProductsListInterface para poder filtrar desde ahi y no perder el punto de inicio de la categoria
-    
-          //limpiar todos los subfiltros
-          this.valueChangesformGrupSubfiltersSubscription?.unsubscribe(); //desuscribo para poder cambiar los subfiltros y q no haya problemas de detección
-    
-          this.setInitialSubFiltersOfListProductsInterface(filteredProductsListInterface); //setea el estado inicial de lo subfiltros
-    
-          //Asignar lista a mostrar
-          this.productListSubFiltered = filteredProductsListInterface; // está sin subfiltros aplicados pero es lo q tiene q mostrar inicialmente
-    
-          this.valueChangesformGrupSubfiltersSubscription =
-            this.formGrupSubfilters.valueChanges.subscribe((form) => {
-              this.getListFilteredBySubFilters(
-                this.productListFilteredByCategory,
-                this.formGrupSubfilters,
-                this.formControlCategory.value
-              );
-            });
-        }
-      }
+   
 
 
   private setInitialSubFiltersOfListProductsInterface(
@@ -622,8 +591,14 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   //////////////////////////////////   DETAILS    ///////////////////////////////////////////////////////////
 
-  sendProductIdToViewDetails(id: number){
-    
+/*   sendProductIdToViewDetails(id: number){
+   
     this.productService.setProductToViewDetailsById(id);
-  }
+    
+  } */
+
+
+
+
+    
 }

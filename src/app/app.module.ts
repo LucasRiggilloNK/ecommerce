@@ -32,6 +32,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/login/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [

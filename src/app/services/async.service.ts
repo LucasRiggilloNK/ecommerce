@@ -31,10 +31,10 @@ export class AsyncService {
 headers: new HttpHeaders({'content-Type': 'application/json'}),
     };
 
-    const { id, ...productWithoutId } = product;//producto sin id para q json server lo genere automaticamente
+    //const { id, ...productWithoutId } = product;//producto sin id para q json server lo genere automaticamente
 
-    return lastValueFrom(this.http.post<ProductInterface>(urlApi, productWithoutId, httpOptions));
-    //return lastValueFrom(this.http.post<ProductInterface>(urlApi, product, httpOptions));
+    //return lastValueFrom(this.http.post<ProductInterface>(urlApi, productWithoutId, httpOptions));
+    return lastValueFrom(this.http.post<ProductInterface>(urlApi, product, httpOptions));
   }
 
   /*   getById(productId: number, urlApi: string):Observable<ProductInterface>{
@@ -42,7 +42,10 @@ headers: new HttpHeaders({'content-Type': 'application/json'}),
 
 } */
 
+  /* getByIdPromise(productId: number, urlApi: string): Promise<ProductInterface> {
+    return lastValueFrom(this.http.get<ProductInterface>(urlApi + "/" + productId));
+  } */
   getByIdPromise(productId: number, urlApi: string): Promise<ProductInterface> {
-    return lastValueFrom(this.http.get<ProductInterface>(urlApi + productId));
+    return lastValueFrom(this.http.get<ProductInterface>(urlApi + "/" + productId));
   }
 }

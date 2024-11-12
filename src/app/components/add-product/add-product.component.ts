@@ -9,6 +9,8 @@ import { Product } from '../../models/products/product';
 import { ProductService } from '../../services/product/product.service';
 import { response } from 'express';
 import { error } from 'console';
+import { toUSVString } from 'util';
+import { resolveObjectURL } from 'buffer';
 
 
 @Component({
@@ -118,7 +120,6 @@ export class AddProductComponent {
       model: ""
     };
 
-    
     product.brand = this.addProduct.get('brand')?.value;
     product.category = this.addProduct.get('category')?.value;
     product.characteristics = this.characteristicsString;
@@ -126,9 +127,8 @@ export class AddProductComponent {
     product.model = this.addProduct.get('model')?.value;
     product.price = this.addProduct.get('price')?.value;
     product.urlImage = this.addProduct.get('urlImage')?.value;
-    product.stock = this.addProduct.get('stock')?.value;
-    
-    
+    product.stock = this.addProduct.get('stock')?.value; 
+
     
     return product ;
   }

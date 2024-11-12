@@ -54,5 +54,7 @@ export enum Brand {
     PCBOX = "Pcbox",
     EPSON = "Epson",
     EXO = "Exo",
-    SHENLONG = "Shenlong"
+    SHENLONG = "Shenlong",
+    STROMBERG = "Stromberg",
+    GENIUS = "Genius"
 }

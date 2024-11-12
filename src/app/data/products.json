@@ -9,7 +9,7 @@
       "stock": "100",
       "characteristics": "heatCold,Si,airTypes,Split",
       "model": "ENTRDO32TC",
-      "id": "e4a4"
+      "id": "1"
     },
     {
       "brand": "Philips",
@@ -20,7 +20,7 @@
       "stock": "100",
       "characteristics": "heatCold,Si,airTypes,Ventana",
       "model": "PHS32HA4CN",
-      "id": "23cf"
+      "id": "2"
     },
     {
       "brand": "Atma",
@@ -31,7 +31,7 @@
       "stock": "100",
       "characteristics": "",
       "model": "AS8920PI",
-      "id": "51d4"
+      "id": "3"
     },
     {
       "brand": "Liliana",
@@ -42,7 +42,7 @@
       "stock": "100",
       "characteristics": "",
       "model": "LA910 ALLCLEAN",
-      "id": "b609"
+      "id": "4"
     },
     {
       "brand": "Liliana",
@@ -53,7 +53,7 @@
       "stock": "100",
       "characteristics": "fanType,Pie",
       "model": "LA910 ALLCLEAN",
-      "id": "6160"
+      "id": "5"
     },
     {
       "brand": "TCL",
@@ -64,7 +64,7 @@
       "stock": "100",
       "characteristics": "tvTecnology,LED,tvInches,55\"",
       "model": "L55P635-F",
-      "id": "ec45"
+      "id": "6"
     },
     {
       "brand": "JBL",
@@ -75,7 +75,7 @@
       "stock": "125",
       "characteristics": "headphoneType,inEar",
       "model": "TUNE 720",
-      "id": "0e4b"
+      "id": "7"
     },
     {
       "brand": "Samsung",
@@ -86,7 +86,7 @@
       "stock": 23,
       "characteristics": "smartphoneInches,6.6\",smartphoneRam,8 GB",
       "model": "SM-A356E",
-      "id": "653e"
+      "id": "8"
     },
     {
       "brand": "Samsung",
@@ -97,7 +97,7 @@
       "stock": 29,
       "characteristics": "smartphoneInches,6.8\",smartphoneRam,12 GB",
       "model": "SM-S928BZKMARO",
-      "id": "e28f"
+      "id": "9"
     },
     {
       "brand": "Whirlpool",
@@ -108,7 +108,7 @@
       "stock": 14,
       "characteristics": "refrigeratorCoolingSystem,No frost",
       "model": "WRO85BK",
-      "id": "b364"
+      "id": "10"
     },
     {
       "brand": "JBL",
@@ -119,7 +119,7 @@
       "stock": 24,
       "characteristics": "",
       "model": "GO 4",
-      "id": "2474"
+      "id": "11"
     },
     {
       "brand": "Philips",
@@ -130,7 +130,7 @@
       "stock": 126,
       "characteristics": "tvTecnology,LED,tvInches,32\"",
       "model": "32PHD6927/77",
-      "id": "176b"
+      "id": "12"
     },
     {
       "brand": "Samsung",
@@ -141,7 +141,7 @@
       "stock": 99,
       "characteristics": "tvTecnology,LED,tvInches,32\"",
       "model": "UN43CU7000GCZB",
-      "id": "8589"
+      "id": "13"
     },
     {
       "brand": "Whirlpool",
@@ -152,7 +152,7 @@
       "stock": 12,
       "characteristics": "microwaveCapacity,40 lts",
       "model": "WMO40AS",
-      "id": "2cfc"
+      "id": "14"
     },
     {
       "brand": "Whirlpool",
@@ -163,7 +163,7 @@
       "stock": 10,
       "characteristics": "washingCapacity,9 kg",
       "model": "WNQ90AS ",
-      "id": "fac6"
+      "id": "15"
     },
     {
       "brand": "Acer",
@@ -174,7 +174,7 @@
       "stock": 36,
       "characteristics": "tabletScreenSize,10.1\",tabletRam,4 GB",
       "model": "M10-11-K01Z",
-      "id": "d5f9"
+      "id": "16"
     },
     {
       "brand": "Electrolux",
@@ -184,7 +184,8 @@
       "price": 150999,
       "stock": 56,
       "characteristics": "fanType,Pie",
-      "model": "VP24P"
+      "model": "VP24P",
+      "id": "17"
     },
     {
       "brand": "Noblex",
@@ -194,7 +195,8 @@
       "price": 419999,
       "stock": 58,
       "characteristics": "tvTecnology,FHD,tvInches,43\"",
-      "model": "DV43X5150"
+      "model": "DV43X5150",
+      "id": "18"
     },
     {
       "brand": "Monster",
@@ -204,7 +206,8 @@
       "price": 64999,
       "stock": 25,
       "characteristics": "headphoneType,inEar",
-      "model": "XKH03"
+      "model": "XKH03",
+      "id": "19"
     },
     {
       "brand": "Blackpoint",
@@ -214,7 +217,8 @@
       "price": 23999,
       "stock": 21,
       "characteristics": "",
-      "model": "S29.1"
+      "model": "S29.1",
+      "id": "20"
     },
     {
       "brand": "Gafa",
@@ -224,7 +228,8 @@
       "price": 699999,
       "stock": 12,
       "characteristics": "refrigeratorCoolingSystem,Cycle defrost",
-      "model": "HGF358AFB"
+      "model": "HGF358AFB",
+      "id": "21"
     },
     {
       "brand": "Hisense",
@@ -234,7 +239,8 @@
       "price": 759999,
       "stock": 6,
       "characteristics": "washingCapacity,6.5 kg",
-      "model": "WFMB6510SU"
+      "model": "WFMB6510SU",
+      "id": "22"
     },
     {
       "brand": "BGH",
@@ -244,7 +250,8 @@
       "price": 312999,
       "stock": 10,
       "characteristics": "microwaveCapacity,20 lts",
-      "model": "B223DN20"
+      "model": "B223DN20",
+      "id": "23"
     },
     {
       "brand": "Motorola",
@@ -254,7 +261,8 @@
       "price": 799999,
       "stock": 6,
       "characteristics": "smartphoneInches,6.7\",smartphoneRam,8 GB",
-      "model": "EDGE 50 FUSION - XT2429-1"
+      "model": "EDGE 50 FUSION - XT2429-1",
+      "id": "24"
     },
     {
       "brand": "HP",
@@ -264,7 +272,8 @@
       "price": 1599999,
       "stock": 21,
       "characteristics": "notebookScreenSize,14\",notebookRam,8 GB,notebookProcessor,Intel Core i5,notebookStorageSize,512GB",
-      "model": "14-EP1002LA - A51JPLA"
+      "model": "14-EP1002LA - A51JPLA",
+      "id": "25"
     },
     {
       "brand": "Acer",
@@ -274,9 +283,11 @@
       "price": 1439999,
       "stock": 9,
       "characteristics": "notebookScreenSize,15.6\",notebookRam,8 GB,notebookProcessor,AMD Ryzen 5,notebookStorageSize,1TB",
-      "model": "AN515-46-R3ST"
+      "model": "AN515-46-R3ST",
+      "id": "26"
     },
     {
+      "id": "e9a9",
       "brand": "Pcbox",
       "category": "Tablets",
       "urlImage": "https://medias.musimundo.com/medias/size515-150754-02.jpg?context=bWFzdGVyfGltYWdlc3w0OTkzMnxpbWFnZS9qcGVnfGFHSmtMMmcxWWk4eE1EVTFNVFF4TWpRNU1ESTNNQzl6YVhwbE5URTFYekUxTURjMU5GOHdNaTVxY0djfDI2ODlhYThiYjZkZmM3ZGM5YzhmYTY5OThlYWI2NWNjNGJhYmY3Njg3M2RkMDdiYmVjNDAwNTRiOTU0NjJlMzQ",
@@ -294,9 +305,11 @@
       "price": 439999,
       "stock": 14,
       "characteristics": "printerType,Color",
-      "model": "ECOTANK L1250 (B631E)"
+      "model": "ECOTANK L1250 (B631E)",
+      "id": "27"
     },
     {
+      "id": "28",
       "brand": "HP",
       "category": "Impresoras",
       "urlImage": "https://medias.musimundo.com/medias/size515-150654-01.jpg?context=bWFzdGVyfGltYWdlc3wxODc4NnxpbWFnZS9qcGVnfGFHUTJMMmd6Wmk4eE1EWXhPVGMxTURjME5EQTVOQzl6YVhwbE5URTFYekUxTURZMU5GOHdNUzVxY0djfDVhNjg0MThlN2EzNDE5YjQ1NTNjYjIxNzQ3OWUzYzExNGQyMTk3ZjFhZjA5YjcxYmYxZjk2MGZkMDNjOTNlYWY",
@@ -307,6 +320,7 @@
       "model": "LASERJET M111W"
     },
     {
+      "id": "29",
       "brand": "Exo",
       "category": "Computadoras de Escritorio",
       "urlImage": "https://medias.musimundo.com/medias/size515-152864-01.jpg?context=bWFzdGVyfGltYWdlc3w1MTU5MXxpbWFnZS9qcGVnfGFHTTRMMmhoTnk4eE1EWXlOVEkzT1RnNE5UTTBNaTl6YVhwbE5URTFYekUxTWpnMk5GOHdNUzVxY0djfDJjZTg3NDA2MmQ4YWJkM2RlNmE2MjkyMzFjZGMzMWM0ZDcwZGFjZDI2YTNkYTJjOTVlNTc1M2UyMDM2NDMxYmM",
@@ -314,7 +328,7 @@
       "price": 1349999,
       "stock": 4,
       "characteristics": "",
-      "model": "G52A"
+      "model": "30"
     },
     {
       "brand": "Logitech",
@@ -324,7 +338,8 @@
       "price": 182196,
       "stock": 5,
       "characteristics": "keyboardConnectivityType,Bluetooth",
-      "model": "MX"
+      "model": "MX",
+      "id": "31"
     },
     {
       "brand": "Shenlong",
@@ -334,7 +349,8 @@
       "price": 39999,
       "stock": 5,
       "characteristics": "keyboardConnectivityType,Cable",
-      "model": "MK9600SB"
+      "model": "MK9600SB",
+      "id": "32"
     },
     {
       "brand": "Logitech",
@@ -344,7 +360,8 @@
       "price": 98442,
       "stock": 24,
       "characteristics": "mouseConnectivityType,Wireless",
-      "model": "LIFT"
+      "model": "LIFT",
+      "id": "33"
     },
     {
       "brand": "Shenlong",
@@ -354,10 +371,11 @@
       "price": 12299,
       "stock": 2,
       "characteristics": "mouseConnectivityType,Cable",
-      "model": "M700"
+      "model": "M700",
+      "id": "34"
     },
     {
-      "id": "4ea7",
+      "id": "35",
       "brand": "Dell",
       "category": "Notebooks",
       "urlImage": "https://medias.musimundo.com/medias/size515-151941-01.jpg?context=bWFzdGVyfGltYWdlc3w3MTY5NXxpbWFnZS9qcGVnfGFHSTVMMmhoWXk4eE1EWXhNall5TURrNE5ETTFNQzl6YVhwbE5URTFYekUxTVRrME1WOHdNUzVxY0djfGQ1YzZkYjNmYTM3MWM3YTI4Yjg3MmEyYzViZGNmYjZhNzkxMGI2NzE2NDJhMDgwZDI3MWNmMmI1YzQ1OTY5NTg",
@@ -368,7 +386,7 @@
       "model": "INSPIRON 3535 - 261J2"
     },
     {
-      "id": "8b31",
+      "id": "36",
       "brand": "TCL",
       "category": "Celulares",
       "urlImage": "https://medias.musimundo.com/medias/size515-152698-01.jpg?context=bWFzdGVyfGltYWdlc3w1OTI5NHxpbWFnZS9qcGVnfGFEQXlMMmhpTVM4eE1EWXlNREUzTmpFek9ESTNNQzl6YVhwbE5URTFYekUxTWpZNU9GOHdNUzVxY0djfDg5MDg2NWVlMWJiOTMxZmUzN2E0YzE1MjQxNDZlMzVmNmI0OWE5OGU2YTU5ZWVkM2Y0YWIwYWMxZDA4Zjc1NzA",
@@ -377,6 +395,83 @@
       "stock": 15,
       "characteristics": "smartphoneInches,6.7\",smartphoneRam,6 GB",
       "model": "408 T507A-FALCAR11"
+    },
+    {
+      "id": "37",
+      "brand": "Electrolux",
+      "category": "Heladeras",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151216-01.jpg?context=bWFzdGVyfGltYWdlc3wyMDkxNHxpbWFnZS9qcGVnfGFEUmtMMmhtWXk4eE1EVTRNek14TlRNME9UVXpOQzl6YVhwbE5URTFYekUxTVRJeE5sOHdNUzVxY0djfDAwOTM3NTI4OWI5ZmZiZjE4ZTVjZmZjNDQ2YmNhMDQ3YjNlMGI1NmU1Mjg1NGRiY2RjOWU3NTI1MzdhNTQ3MmM",
+      "description": "Heladera side by side. Volumen bruto 620L. Volumen neto 541L. Sistema de enfriamiento no frost, Inverter. Ubicacion del freezer inferior. Control digital. Eficiencia energetica A. Crisper para frutas. Crisper especial multiuso. Estantes de vidrio templado antiderrame. Compartimiento de congelado rapido. Compartimiento extra frio. Fabricadora de cubitos. Pies regulables. Cajon tastelock que controla la humedad de frutas y verduras. Tasteguard que elimina malos olores causados por bacterias. Tecnologia Autosense: regula temperatura automaticamente utilizando Inteligencia Artificial y prolonga la visa util de los alimentos. El Dispenser de agua y hielo en la puerta de la heladera aporta practicidad permitiendo obtener agua filtrada y cubitos de hielo para consumir en el momento. FlexiSpace: compartimento inteligente con temperatura variable que va desde el congelador (-23C) hasta el refrigerador (7C) y preserva cada tipo de alimento y bebida de manera funcional.",
+      "price": 3899999,
+      "stock": 11,
+      "characteristics": "refrigeratorCoolingSystem,No frost",
+      "model": "IQ8IS"
+    },
+    {
+      "id": "38",
+      "brand": "Hisense",
+      "category": "Heladeras",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151549-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDM4MnxpbWFnZS9qcGVnfGFERmlMMmd6TkM4eE1EVTVOVFl5TURJNU1EVTVNQzl6YVhwbE5URTFYekUxTVRVME9WOHdNUzVxY0djfDE4YmVhMjc4NDFlYzNmZmZmM2M3OTBlODQyMWIwOTI4NGNiMWI4NGJjYjZjM2M4ZmMwMzlhNjEwZmYxOTA1MjI",
+      "description": "Heladera side by side no frost. Volumen neto 518L. Volumen bruto 592L. Ubicacion del freezer lateral. Tecnologia inverter. Eficiencia energetica A+. Crisper para frutas y multi uso. Estantes de vidrio templado. Pies regulables. Tipo de gas refrigerante R600a/68. Luz LED. Pantalla de control externo. Termostato regulable.",
+      "price": 1899999,
+      "stock": 4,
+      "characteristics": "refrigeratorCoolingSystem,No frost",
+      "model": "RC-67WSG"
+    },
+    {
+      "id": "39",
+      "brand": "Stromberg",
+      "category": "Parlantes",
+      "urlImage": "https://medias.musimundo.com/medias/size515-179281-01.png?context=bWFzdGVyfGltYWdlc3wzNDA2Mzh8aW1hZ2UvcG5nfGFHTTJMMmhpTlM4eE1EWXlNell5TnprNE5Ea3lOaTl6YVhwbE5URTFYekUzT1RJNE1WOHdNUzV3Ym1jfGI4NDllZWE0ZjcwMWYyMGJlOTA1MTA2MWUzNjg1NGFlNjNlZDQyYjk0NjJkNDQwZTBhNzdmM2I2MDdlMDAxOTI",
+      "description": "DESCUBRÍ UN MUNDO DE POSIBILIDADES CON EL PARLANTE PORTÁTIL STROMBERG ZING!. ESTE DIMINUTO GIGANTE DE 5 WATTS DE POTENCIA Y CON UNA DURACIÓN DE BATERÍA DE HASTA 6 HORAS TE ACOMPAÑA EN CADA MOMENTO ESPECIAL. EL PARLANTE STROMBERG ZING! CON BLUETOOTH SE CONECTA FÁCILMENTE A TUS DISPOSITIVOS LIBERÁNDOTE DE LOS CABLES Y PERMITIÉNDOTE MOVERTE CON TOTAL LIBERTAD. WOOFER 1X1.75 / 5 WATTS DE POTENCIA DURACIÓN DE BATERÍA: 6 HORAS (50% DE VOLUMEN) BLUETOOTH / ENTRADA ELÉCTRICA: 5V 1A USB ENTRADA AUXILIAR 3 5MM",
+      "price": 27999,
+      "stock": 19,
+      "characteristics": "",
+      "model": "ZING"
+    },
+    {
+      "id": "40",
+      "brand": "Genius",
+      "category": "Parlantes",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152851-01.jpg?context=bWFzdGVyfGltYWdlc3wyOTE1M3xpbWFnZS9qcGVnfGFHWTRMMmd4TkM4eE1EWXlORFE1TmpRMk56azVPQzl6YVhwbE5URTFYekUxTWpnMU1WOHdNUzVxY0djfGRiNjMyZjI1ZTUxN2RjYWEyOWYxNWIwYjYzOTUzZTUxYzQ3ZjBkOWY1MTRiZmZhYWJiMWMzNzYzMGViZjIwMjQ",
+      "description": "Parlantes estereo USB 2.0 con auxiliar auriculares. Elegante, pequeno y potente de 3 vatios con sonido claro y nitido. El conector de audio de 3,5 mm es compatible para diversos dispositivos. Unidad de controlador: 2 \" \" . Respuesta frecuente: 150 Hz - 20 kHz. Relacion senal/ruido: 70dB. Toma de auriculares. Longitud del cable: 1.2m.",
+      "price": 17999,
+      "stock": 19,
+      "characteristics": "",
+      "model": "SP-U125"
+    },
+    {
+      "id": "41",
+      "brand": "Motorola",
+      "category": "Celulares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-149580-01.jpg?context=bWFzdGVyfGltYWdlc3wzMDY1N3xpbWFnZS9qcGVnfGFEbG1MMmhoTnk4eE1EVXdOVGcyT0RZME1ESTROaTl6YVhwbE5URTFYekUwT1RVNE1GOHdNUzVxY0djfDcyOGRkNDI3NGIwYjdhMmQ2MTJlOWUzYjAxYjc5ODExNDFjNmE5YWE5MjgzMWZkZjAyNDZiMzY0YWY3NTVjMDI",
+      "description": "Celular plegable. Pantalla principal de 6.9\" resolucion FHD+ (1080x2640). Pantalla secundaria de 3.63\" resolucion (1056x1066). Tecnologia pOLED. Procesador Qualcomm Snapdragon 8+ Gen 1, octa core. Velocidad del procesador 3.2 GHz. Almacenamiento de 512 GB / Memoria RAM de 12 GB. Camara principal: 12 MP (79.5) F1.59 + Gran Angular y macro: 13 MP (108) F2.2, zoom: digital (8x fotos / 6x videos), flash LED. Camara frontal: 32 MP (80.5) F2.4, flash frontal: Backlight. Conexiones: Wifi 802.11 a/b/g/n/ac/ax /k/v/r/u - WiFi 6E. Wi-Fi Direct / Hotspot. Bluetooth 5.3. Conector USB C 2.0. NFC. GPS. Sensores: Acelerometro, sensor de proximidad, brujula (campo magnetico), giroscopio, huella dactilar, desbloqueo facial. Sistema operativo android 13. Dual SIM (pSIM+eSIM). Bateria: 3800 mAh. Carga Turbo. Carga inalambrica. Incluye: Cubierta Protectora (flip y base), herramienta de extraccion de SIM, cable de datos USB-A - USB-C y cargador 33W USB-A.",
+      "price": 1699999,
+      "stock": 15,
+      "characteristics": "smartphoneInches,6.8\",smartphoneRam,12 GB",
+      "model": "RAZR 40 ULTRA XT2321-1"
+    },
+    {
+      "id": "42",
+      "brand": "Stromberg",
+      "category": "Auriculares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152750-05.jpg?context=bWFzdGVyfGltYWdlc3wxODc2M3xpbWFnZS9qcGVnfGFHTm1MMmhrT0M4eE1EWXlNemN5T1RBME1UUXpPQzl6YVhwbE5URTFYekUxTWpjMU1GOHdOUzVxY0djfGM2MjkxMWYyNDRiNjIzZWNhZjYyNWVlNDc1ZmQwNjY3MjQzMzJjZTM2NTYzMzM4OGJmZGQ2M2Y4YmVlYTE4ODA",
+      "description": "Auricular in ear BT. Drivers 13mm. Tecnologia TWS y DEEP BASS. Smart Touch. Funda cargadora de 300mAh con hasta 10 cargas completas de los audifonos. Bateria interna de 30mAh con hasta 4 horas de carga. Entrada USB-C.",
+      "price": 24999,
+      "stock": 25,
+      "characteristics": "headphoneType,inEar",
+      "model": "CYBER WABE"
+    },
+    {
+      "id": null,
+      "brand": "Axel",
+      "category": "Ventiladores",
+      "urlImage": "https://medias.musimundo.com/medias/00616029-147230-147230-01-147230-01.jpg-size515?context=bWFzdGVyfGltYWdlc3wyODgwNnxpbWFnZS9qcGVnfGFESmhMMmc0T1M4eE1EUXlNRGM0TlRFeE9USTJNaTh3TURZeE5qQXlPUzB4TkRjeU16QXRNVFEzTWpNd1h6QXhMVEUwTnpJek1GOHdNUzVxY0dkZmMybDZaVFV4TlF8Mjc4MjBmYTEwZjYxYzcwMWFmOTBjMWExM2E5ZGYyY2RlZGI2YTYxNmUxMzFjNWFlMzU3ZTY0NjhjNzlmMTc5Mg",
+      "description": "Ventilador industrial de pie 24\". Motor potenciado. 3 Velocidades. Oscilante. Inclinable. 2 Palas metalicas tipo avion.",
+      "price": 124439,
+      "stock": 25,
+      "characteristics": "fanType,Pie",
+      "model": "AX-PIE24"
     }
   ]
 }

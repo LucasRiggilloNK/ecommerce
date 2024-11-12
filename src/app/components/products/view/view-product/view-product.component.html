@@ -235,7 +235,8 @@
             <p>{{ product.category }} {{ product.brand}} {{ product.model }}</p>
             <p>Precio: {{ product.price }}</p>
             <div>
-              <button type="button" (click)="sendProductIdToViewDetails(product.id)" [routerLink]="['/productDetails']" >
+              <!-- <button type="button" (click)="sendProductIdToViewDetails(product.id)" [routerLink]="['/productDetails']" > -->
+                <button type="button"  [routerLink]="['/productDetails',product.id]" >
                 Detalles
               </button>
               <button type="button" (click)="addToCart(product)">
