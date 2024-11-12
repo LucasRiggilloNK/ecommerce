@@ -1,28 +1,32 @@
 <header class="header">
   <nav class="nav">
     <div class="nav-links">
-      <div class="link" routerLink="/home" routerLinkActive="active">Home</div>
-      <div
-        class="link"
-        routerLink="/register"
-        *ngIf="!isLoggedIn()"
-        routerLinkActive="active"
-      >
-        Registro
-      </div>
-      <div
-        class="link"
-        routerLink="/login"
-        *ngIf="!isLoggedIn()"
-        routerLinkActive="active"
-      >
-        Login
-      </div>
-      <div class="link logout" (click)="logout()" *ngIf="isLoggedIn()">
-        Logout
+      <div class="left-links">
+        <div class="link" routerLink="/home" routerLinkActive="active">
+          Home
+        </div>
+        <div
+          class="link"
+          routerLink="/register"
+          *ngIf="!isLoggedIn()"
+          routerLinkActive="active"
+        >
+          Registro
+        </div>
+        <div
+          class="link"
+          routerLink="/login"
+          *ngIf="!isLoggedIn()"
+          routerLinkActive="active"
+        >
+          Login
+        </div>
+        <div class="link logout" (click)="logout()" *ngIf="isLoggedIn()">
+          Logout
+        </div>
       </div>
       <div class="link" routerLinkActive="active" routerLink="/cart">
-        Carrito
+        <img src="/cart.svg" alt="cart" width="25px" height="25px" />
       </div>
     </div>
   </nav>

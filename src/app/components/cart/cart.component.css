@@ -1,6 +1,16 @@
 .product-item {
-  border-bottom: 1px solid #ccc;
-  padding: 10px 0;
+  display: flex;
+  gap: 10px;
+  border: 1px solid white;
+  padding: 10px;
+  width: fit-content;
+  min-width: 500px;
+}
+
+.item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 button {
@@ -9,6 +19,8 @@ button {
   border: none;
   padding: 5px 10px;
   cursor: pointer;
+  margin-top: 10px;
+  margin-left: 50px;
 }
 
 button:hover {
@@ -17,4 +29,16 @@ button:hover {
 
 h3 {
   text-align: center;
+}
+
+.vacio {
+  margin: 10px 30px;
+}
+
+.product-img {
+  max-width: 150px;
+}
+
+.items {
+  padding: 50px;
 }

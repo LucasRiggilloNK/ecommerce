@@ -128,3 +128,16 @@ table {
   margin: 0 auto;
   margin-top: 10px;
 }
+
+body {
+  background-color: #212529;
+}
+
+p {
+  color: white;
+}
+
+html,
+body {
+  font-family: "Roboto", sans-serif;
+}

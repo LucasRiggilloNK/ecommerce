@@ -58,7 +58,7 @@ export class CartComponent {
       product.stock += 1; // Aumenta el stock de cada producto
     });
     this.carrito = [];
-    localStorage.clear(); // Vacia localStorage
+    localStorage.removeItem('carrito'); // Vacia el carrito en localStorage
     this.saveCart(); // Vacia el carrito en localStorage
   }
 
