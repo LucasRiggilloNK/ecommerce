@@ -463,7 +463,7 @@
       "model": "CYBER WABE"
     },
     {
-      "id": null,
+      "id": "43",
       "brand": "Axel",
       "category": "Ventiladores",
       "urlImage": "https://medias.musimundo.com/medias/00616029-147230-147230-01-147230-01.jpg-size515?context=bWFzdGVyfGltYWdlc3wyODgwNnxpbWFnZS9qcGVnfGFESmhMMmc0T1M4eE1EUXlNRGM0TlRFeE9USTJNaTh3TURZeE5qQXlPUzB4TkRjeU16QXRNVFEzTWpNd1h6QXhMVEUwTnpJek1GOHdNUzVxY0dkZmMybDZaVFV4TlF8Mjc4MjBmYTEwZjYxYzcwMWFmOTBjMWExM2E5ZGYyY2RlZGI2YTYxNmUxMzFjNWFlMzU3ZTY0NjhjNzlmMTc5Mg",
@@ -472,6 +472,39 @@
       "stock": 25,
       "characteristics": "fanType,Pie",
       "model": "AX-PIE24"
+    },
+    {
+      "id": "d91f",
+      "brand": "Iphone",
+      "category": "Celulares",
+      "urlImage": "https://images.fravega.com/f300/d1b0d862832738d294eb91166eb6fbe2.jpg.webp",
+      "description": "iPhone 13 de 128 GB en color Blanco Estelar | Rendimiento, Cámara y Diseño de Vanguardia  Descubre el iPhone 13 de 128 GB en su elegante color Blanco Estelar, un dispositivo que combina potencia y estilo. Este smartphone ofrece un rendimiento excepcional gracias a su chip A15 Bionic, una cámara dual avanzada con Modo Noche, y una batería de larga duración. Disfruta de una pantalla Super Retina XDR de 6.1 pulgadas, ideal para ver tus contenidos favoritos con la máxima calidad. Aprovecha el almacenamiento de 128 GB para guardar todas tus fotos, aplicaciones y más. Compra ahora y experimenta lo último en tecnología móvil.  Principales características:  Pantalla Super Retina XDR de 6.1 pulgadas: Imágenes nítidas y colores vibrantes.  Chip A15 Bionic: Potencia y eficiencia inigualables para un rendimiento ultrarrápido.  Cámara dual de 12 MP con Modo Noche: Captura fotos y videos de alta calidad en cualquier condición de luz.  128 GB de almacenamiento interno: Espacio suficiente para todas tus aplicaciones, fotos y archivos.  Batería de larga duración: Hasta 19 horas de reproducción de video.  Resistencia al agua y al polvo (IP68): Diseñado para durar en cualquier ambiente.  iOS 15: Sistema operativo avanzado con nuevas funcionalidades y mayor seguridad.  Compra el iPhone 13 en Blanco Estelar y lleva tu experiencia móvil al siguiente nivel.",
+      "price": 1549990,
+      "stock": 12,
+      "characteristics": "smartphoneInches,6.1\",smartphoneRam,4 GB",
+      "model": "iPhone 13 128 GB"
+    },
+    {
+      "id": "4609",
+      "brand": "Asus",
+      "category": "Notebooks",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151859-01.jpg?context=bWFzdGVyfGltYWdlc3w1Mjc5OHxpbWFnZS9qcGVnfGFHTm1MMmhpT0M4eE1EWXdOalEzTXpVME16Y3hNQzl6YVhwbE5URTFYekUxTVRnMU9WOHdNUzVxY0djfDY5YmI5NTU3OGY5Mjg0OWJlMjVlODhkNWU0YWE4ZGYyMzg3YjMxOGRkODM3NWZlOWI1YmJiYTJmNWJmN2M3Y2U",
+      "description": "Notebook. Pantalla de 15.6\" FHD (1920x1080). Relacion aspecto 16:9 . Procesador Intel Core i7-1165G7 (2.8 hasta 4.7 GHz). Capacidad 512GB M.2 NVMe PCIe 3.0 SSD. RAM 8 Gb DDR4. Placa de video Intel UHD Graphics. Conexiones: Wi-Fi 5(802.11ac) (Dual band). Bluetooth 5.1. 2 Entradas USB tipo A, 1 USB 3.2 gen 1 tipo A, 1 USB 3.2 gen 1 tipo C. 1 HDMI 1.4. DC-in. Entrada para microfono. Microfono incorporado. Sistema operativo Windows 11 home. Camara frontal VGA. Bateria 37WHrs, 2S1P, 2-cell Li-ion.",
+      "price": 1249999,
+      "stock": 23,
+      "characteristics": "notebookScreenSize,15.6\",notebookRam,8 GB,notebookProcessor,Intel Core i7,notebookStorageSize,512GB",
+      "model": "X515EA-EJ4328W"
+    },
+    {
+      "id": "ae64",
+      "brand": "Noganet",
+      "category": "Teclados",
+      "urlImage": "https://medias.musimundo.com/medias/size515-150864-01.jpg?context=bWFzdGVyfGltYWdlc3w2MjEyM3xpbWFnZS9qcGVnfGFETTBMMmc1TUM4eE1EVTFPRGMwTVRrM01EazNOQzl6YVhwbE5URTFYekUxTURnMk5GOHdNUzVxY0djfDE2OTgxMzc2MmY5ZjU2ZmZiZmJmZTM5N2MwOThhYmNhOTJlYzkxMDQxZGJiNWMyOWI0NWJlNTg1MWRhY2RhZDU",
+      "description": "Teclado gamer LED multicolor con opcion de apagado de luces (FN+bloq despl). 104 Teclas reforzadas que soportan exigencias de uso. 12 Teclas multimedia y de web. Conexion USB 2.0. Longitud del cable 1.4m. Posee teclas claves para gamers y de web estrategicamente ubicadas, para agilizar el uso de Internet y funciones multimedia mas empleadas cotidianamente.",
+      "price": 17999,
+      "stock": 12,
+      "characteristics": "keyboardConnectivityType,Cable",
+      "model": "NKB-T100"
     }
   ]
 }

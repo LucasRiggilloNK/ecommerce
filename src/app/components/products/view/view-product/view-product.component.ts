@@ -170,7 +170,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
 
 
-  async getProductInterfaceById(id: number) {
+  async getProductInterfaceById(id: string) {
     // CON PROMISE
     this.productInterfaceById =
       await this.productService.getProductInterfaceById(id);

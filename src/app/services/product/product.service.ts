@@ -53,7 +53,7 @@ export class ProductService {
       stock: 0,
       characteristics: '',
       model: '',
-      id: 1,
+      id: "1",
     };
     this.productToVievDetails = {
       brand: Brand.NONE,
@@ -64,7 +64,7 @@ export class ProductService {
       stock: 0,
       characteristics: '',
       model: '',
-      id: 1,
+      id: "1",
     };
   }
 
@@ -107,7 +107,7 @@ export class ProductService {
   //////////////////////    GET BY ID     ////////////////////////////////////////////////////
 
   public async getProductInterfaceById(
-    id: number
+    id: string
   ): Promise<ProductInterface | null> {
     try {
       const response = await this.asyncService.getByIdPromise(

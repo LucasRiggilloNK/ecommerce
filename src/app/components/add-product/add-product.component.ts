@@ -40,7 +40,7 @@ export class AddProductComponent {
   constructor(private productCharacteristicsService: ProductcCharacteristicsService, private productService: ProductService) {
     
     this.productInt= {
-      id: 0,
+      id: "0",
       brand: "",
       category: "",
       urlImage: "",
@@ -109,7 +109,7 @@ export class AddProductComponent {
 
   addProductFormToProductInterface(): ProductInterface{
     let product:ProductInterface =  {
-      id: 0,
+      id: "0",
       brand: "",
       category: "",
       urlImage: "",

@@ -4,7 +4,7 @@ import { Image } from "../../models/products/images/image";
 
 export interface ProductInterface {
 
-     id: number;
+     id: string;
      brand: string;
      category: string;
      urlImage: string;

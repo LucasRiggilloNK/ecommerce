@@ -42,8 +42,8 @@ export class CartComponent {
   }
 
   // Método para eliminar un producto del carrito
-  removeProduct(productId: number): void {
-    const index = this.carrito.findIndex((p) => p.id === productId);
+  removeProduct(productId: string): void {
+    const index = this.carrito.findIndex((p) => Number(p.id) === Number(productId));
     if (index !== -1) {
       const product = this.carrito[index];
       product.stock++; // Aumenta stock al eliminar del carrito

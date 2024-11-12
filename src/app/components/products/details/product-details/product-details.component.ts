@@ -26,7 +26,7 @@ export class ProductDetailsComponent implements OnInit{
       stock: 0,
       characteristics: '',
       model: '',
-      id: 1,
+      id: "1",
     };
 
   }
@@ -34,7 +34,7 @@ export class ProductDetailsComponent implements OnInit{
 
 ngOnInit(): void {
     
-    let idProducto = Number(this.route.snapshot.paramMap.get("id"));
+    let idProducto = this.route.snapshot.paramMap.get("id");
     console.log("idProducto: "+ idProducto);
      if(idProducto != null){
       this.productService.getProductInterfaceById(idProducto)
