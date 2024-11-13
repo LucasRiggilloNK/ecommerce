@@ -43,7 +43,9 @@ export class CartComponent {
 
   // Método para eliminar un producto del carrito
   removeProduct(productId: string): void {
-    const index = this.carrito.findIndex((p) => Number(p.id) === Number(productId));
+    const index = this.carrito.findIndex(
+      (p) => Number(p.id) === Number(productId)
+    );
     if (index !== -1) {
       const product = this.carrito[index];
       product.stock++; // Aumenta stock al eliminar del carrito
@@ -58,14 +60,14 @@ export class CartComponent {
       product.stock += 1; // Aumenta el stock de cada producto
     });
     this.carrito = [];
-    localStorage.removeItem('carrito'); // Vacia el carrito en localStorage
+    localStorage.removeItem('cart'); // Vacia el carrito en localStorage
     this.saveCart(); // Vacia el carrito en localStorage
   }
 
   // Método para guardar el carrito en localStorage
   loadCart(): void {
     if (typeof window !== 'undefined') {
-      const savedCart = localStorage.getItem('carrito');
+      const savedCart = localStorage.getItem('cart');
       if (savedCart) {
         this.carrito = JSON.parse(savedCart) as ProductInterface[];
       }
@@ -74,7 +76,7 @@ export class CartComponent {
 
   saveCart(): void {
     if (typeof window !== 'undefined') {
-      localStorage.setItem('carrito', JSON.stringify(this.carrito));
+      localStorage.setItem('cart', JSON.stringify(this.carrito));
     }
   }
 }
