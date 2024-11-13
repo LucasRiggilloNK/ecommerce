@@ -46,24 +46,7 @@
   <br />
   <input type="text" formControlName="model" class="form-control" />
 
-  <app-air-conditioning-characteristics
-    *ngIf="getSelectedCategory() == 'Aire Acondicionado'"
-  ></app-air-conditioning-characteristics>
-  <app-fan-characteristics
-    *ngIf="getSelectedCategory() == 'Ventiladores'"
-  ></app-fan-characteristics>
-  <app-tv-characteristics
-    *ngIf="getSelectedCategory() == 'Televisores'"
-  ></app-tv-characteristics>
-  <app-heapphones-characteristics
-    *ngIf="getSelectedCategory() == 'Auriculares'"
-  ></app-heapphones-characteristics>
-  <app-refrigerator-characteristics
-    *ngIf="getSelectedCategory() == 'Heladeras'"
-  ></app-refrigerator-characteristics>
-
-  <button type="submit">Crear</button>
-  =======
+  
   <app-air-conditioning-characteristics
     *ngIf="addProduct.get('category')?.value == 'Aire Acondicionado'"
   ></app-air-conditioning-characteristics>
@@ -106,5 +89,5 @@
 
   <button type="submit" [disabled]="!addProduct.valid">Crear</button>
   <!-- si todas las validaciones pasaron con exito lo habilita -->
-  >>>>>>> creacion-nav-y-aside-filtros
+ 
 </form>

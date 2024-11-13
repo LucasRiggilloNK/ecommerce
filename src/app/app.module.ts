@@ -32,7 +32,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/login/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
-import { RouterModule } from '@angular/router';
+import { BuyFormComponent } from './components/buy-form/buy-form.component';
 
 @NgModule({
   declarations: [
@@ -59,23 +59,7 @@ import { RouterModule } from '@angular/router';
     RegisterComponent,
     LoginComponent,
     PrivateComponent,
-    AddProductComponent,
-    AirConditioningCharacteristicsComponent,
-    TvCharacteristicsComponent,
-    FanCharacteristicsComponent,
-    HeapphonesCharacteristicsComponent,
-    RefrigeratorCharacteristicsComponent,
-    WashingCharacteristicsComponent,
-    ViewProductComponent,
-    ProductDetailsComponent,
-    NotebooksCharacteristicsComponent,
-    SmartphonesCharacteristicsComponent,
-    MicrowaveCharacteristicsComponent,
-    TabletCharacteristicsComponent,
-    PrinterCharacteristicsComponent,
-    KeyboardCharacteristicsComponent,
-    MouseCharacteristicsComponent,
-    ViewProductComponent,
+    BuyFormComponent
   ],
 
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],

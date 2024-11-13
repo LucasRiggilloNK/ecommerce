@@ -22,6 +22,7 @@
       </div>
     </div>
   </div>
+  
 </div>
 
 <!-- Si no hay productos, muestra un mensaje -->
@@ -31,5 +32,7 @@
   </div>
 </ng-template>
 
+
+<button *ngIf="carrito.length > 0">Comprar carrito</button>
 <!-- Botón para vaciar el carrito -->
 <button *ngIf="carrito.length > 0" (click)="clearCart()">Vaciar carrito</button>
