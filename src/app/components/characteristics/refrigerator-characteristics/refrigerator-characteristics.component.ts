@@ -8,7 +8,7 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
   styleUrl: './refrigerator-characteristics.component.css'
 })
 export class RefrigeratorCharacteristicsComponent {
-  coolingSystemList: string[] = ['no frost', 'ciclico', 'cycle defrost', 'cilcico', 'cycle desfrost', 'mono cooling', 'skin condenser'];
+  refrigeratorCoolingSystemList: string[] = ['No frost', 'Ciclico', 'Cycle defrost', 'Mono cooling', 'Skin condenser'];
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
   
@@ -17,7 +17,7 @@ export class RefrigeratorCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "sistEnfriamiento": new FormControl("no frost", [Validators.required])
+      "refrigeratorCoolingSystem": new FormControl(this.refrigeratorCoolingSystemList[0], [Validators.required])
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString

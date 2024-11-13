@@ -10,7 +10,7 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
 export class WashingCharacteristicsComponent {
 
 
-  washingCapacityList: string[] = ['6 kg', '7 kg', '8 kg', '9 kg', '10 kg', '11 kg'];
+  washingCapacityList: string[] = ['6 kg', "6.5 kg", '7 kg', '8 kg', '9 kg', '10 kg', '11 kg'];
 
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
@@ -19,8 +19,7 @@ export class WashingCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "tecnologia": new FormControl("LED", [Validators.required]),
-      "pulgadas": new FormControl("32", [Validators.required])
+      "washingCapacity": new FormControl(this.washingCapacityList[0], [Validators.required]),
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString

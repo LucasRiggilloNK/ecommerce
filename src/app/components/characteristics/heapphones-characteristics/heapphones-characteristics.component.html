@@ -1,8 +1,7 @@
 <form action="" [formGroup]="characteristicsFormGroup">
     <p> Tipo </p>
-        <select id="tipoAuricular" formControlName="tipoAuricular">
-            <option value="inEar"> In ear </option>
-            <option value="headBand"> Vincha </option>
+        <select id="headphoneType" formControlName="headphoneType">
+            <option *ngFor="let type of hedphonesTypeList" [value]="type">{{ type }}</option>
         </select>
 
 </form>

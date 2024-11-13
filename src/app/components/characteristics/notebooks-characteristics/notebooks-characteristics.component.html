@@ -1,0 +1,18 @@
+<form action="" [formGroup]="characteristicsFormGroup">
+    <P> Tamaño </P>
+    <select id="notebookScreenSize" formControlName="notebookScreenSize"> 
+        <option *ngFor="let inch of notebookScreenSizesList" [value]="inch">{{ inch }}</option>
+    </select>    
+    <P> RAM </P>
+    <select id="notebookRam" formControlName="notebookRam"> 
+        <option *ngFor="let ram of notebookRamList" [value]="ram">{{ ram }}</option>
+    </select>    
+    <P> Procesador </P>
+    <select id="notebookProcessor" formControlName="notebookProcessor"> 
+        <option *ngFor="let processor of notebookProcessorsList" [value]="processor">{{ processor }}</option>
+    </select>    
+    <P> Almacenamiento </P>
+    <select id="notebookStorageSize" formControlName="notebookStorageSize"> 
+        <option *ngFor="let storageSize of notebookStorageSizesList" [value]="storageSize">{{ storageSize }}</option>
+    </select>    
+</form>

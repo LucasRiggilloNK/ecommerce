@@ -1,0 +1,149 @@
+p {
+  max-width: 500px;
+}
+
+.header {
+  padding: 20px 0px 10px 0px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.buttons-gap {
+  display: flex;
+}
+
+.categories {
+  display: flex;
+  align-items: end;
+  gap: 5px;
+  color: white;
+  margin-bottom: 5px;
+}
+
+label {
+  color: white !important;
+}
+
+aside {
+  margin: 30px;
+  width: 100%;
+  min-width: 250px;
+  max-width: max-content;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  select {
+    width: 100%;
+  }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100%;
+  gap: 10px;
+  margin-top: 20px;
+  margin-right: 30px;
+}
+
+.card {
+  border: 1px solid white;
+  background-color: black;
+  height: 100%;
+}
+
+.card-text {
+  color: black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.marca {
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+.inner-button {
+  min-width: 100px;
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-products {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  transition: 0.3s ease;
+  align-items: center;
+}
+
+.button-products::after {
+  content: "";
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: -2%;
+  left: 2.5%;
+  width: 0px;
+  height: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  transition: 0.3s ease;
+}
+
+.button-products:hover::after {
+  width: 90%;
+}
+
+.add-cart {
+  background-color: transparent;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: baseline;
+  padding: 0;
+  margin-top: 5px;
+  border: 1px solid white;
+  max-width: max-content;
+  padding: 5px;
+  border-radius: 5px;
+  transition: 0.3s ease;
+}
+
+.add-cart:hover {
+  background-color: white;
+  color: black;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.precio {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.inner-precio {
+  display: flex;
+  gap: 5px;
+}
+
+.no-products {
+  margin: 0 auto;
+  margin-top: 100px;
+  font-size: 2.5rem;
+}

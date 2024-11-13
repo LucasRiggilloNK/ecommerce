@@ -1,5 +1,6 @@
 export enum Brand {
-    NONE = 'Ninguno',
+    NONE = '',
+    ALL = 'Todos',
     ATMA = 'Atma',
     AXEL = 'Axel',
     BARCALA = 'Barcala',
@@ -44,5 +45,18 @@ export enum Brand {
     FUJIFILM = 'Fujifilm',
     WHIRLPOOL = 'Whirlpool',
     JABRA = 'Jabra',
-    SENNHEISER = 'Sennheiser'
+    SENNHEISER = 'Sennheiser',
+    NOBLEX = "Noblex",
+    MONSTER = "Monster",
+    BLACKPOINT ="Blackpoint",
+    GAFA = "Gafa",
+    HISENSE = "Hisense",
+    PCBOX = "Pcbox",
+    EPSON = "Epson",
+    EXO = "Exo",
+    SHENLONG = "Shenlong",
+    STROMBERG = "Stromberg",
+    GENIUS = "Genius",
+    IPHONE = "Iphone",
+    NOGANET = "Noganet"
 }

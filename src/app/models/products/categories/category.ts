@@ -1,7 +1,7 @@
 export enum Category {
-    NONE = 'Ninguno',
+    NONE = '',
     AIRE_ACONDICIONADO = 'Aire Acondicionado',
-    VENTILADOR = 'Ventilador', 
+    VENTILADOR = 'Ventiladores', 
     TELEVISORES = 'Televisores', 
     AURICULARES = 'Auriculares', 
     PARLANTES = 'Parlantes', 
@@ -9,7 +9,6 @@ export enum Category {
     LAVARROPAS = 'Lavarropas',
     ASPIRADORAS = 'Aspiradoras',
     MICROONDAS = 'Microondas', 
-    TOSTADORA = 'Tostadora',
     CELULARES = 'Celulares',
     NOTEBOOKS = 'Notebooks',
     TABLETS = 'Tablets', 

@@ -1,0 +1,10 @@
+<form action="" [formGroup]="characteristicsFormGroup">
+    <P> Pulgadas </P>
+    <select id="smartphoneInches" formControlName="smartphoneInches"> 
+        <option *ngFor="let inch of smartphoneInchesList" [value]="inch">{{ inch }}</option>
+    </select>    
+    <P> RAM </P>
+    <select id="smartphoneRam" formControlName="smartphoneRam"> 
+        <option *ngFor="let ram of smartphoneRamList" [value]="ram">{{ ram }}</option>
+    </select>    
+</form>

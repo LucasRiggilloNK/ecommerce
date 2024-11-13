@@ -1,7 +1,7 @@
 <form action="" [formGroup]="characteristicsFormGroup">
     <p> Sistema de enfriamiento </p>
-    <select id="sistEnfriamiento" formControlName="sistEnfriamiento">
-        <option *ngFor="let coolingSystem of coolingSystemList" [value]="coolingSystem">{{ coolingSystem }}</option>
+    <select id="refrigeratorCoolingSystem" formControlName="refrigeratorCoolingSystem">
+        <option *ngFor="let coolingSystem of refrigeratorCoolingSystemList" [value]="coolingSystem">{{ coolingSystem }}</option>
     </select>
 
 </form>

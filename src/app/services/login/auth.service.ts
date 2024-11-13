@@ -7,7 +7,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'http://localhost:3001';
 
   constructor(private http: HttpClient) {}
 
@@ -19,7 +19,9 @@ export class AuthService {
       .pipe(
         map((users) => {
           if (users.length > 0) {
-            localStorage.setItem('auth_token', 'your_token');
+            if (typeof window !== 'undefined') {
+              localStorage.setItem('auth_token', 'your_token');
+            }
             return true;
           } else {
             return false;
@@ -36,7 +38,9 @@ export class AuthService {
 
   logout(): void {
     if (confirm('Are you sure you want to logout?')) {
-      localStorage.removeItem('auth_token');
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('auth_token');
+      }
     }
   }
 

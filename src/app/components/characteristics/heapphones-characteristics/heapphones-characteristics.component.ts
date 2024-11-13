@@ -8,7 +8,7 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
   styleUrl: './heapphones-characteristics.component.css'
 })
 export class HeapphonesCharacteristicsComponent {
-  typeList = ["inEar","headBand"];
+  hedphonesTypeList = ["inEar","headBand"];
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
   
@@ -17,7 +17,7 @@ export class HeapphonesCharacteristicsComponent {
   
   
     this.characteristicsFormGroup = new FormGroup({
-      "tipoAuricular": new FormControl("inEar", [Validators.required])
+      "headphoneType": new FormControl(this.hedphonesTypeList[0], [Validators.required])
     });
 
     this.getCharacteristicsString();//asigna por defecto el characteristicString
