@@ -3,7 +3,7 @@
     <div class="nav-links">
       <div class="left-links">
         <div class="link" routerLink="/home" routerLinkActive="active">
-          Home
+          <img src="/home.svg" alt="register" width="25px" height="25px" />
         </div>
         <div
           class="link"
@@ -11,11 +11,9 @@
           *ngIf="!isLoggedIn()"
           routerLinkActive="active"
         >
-          Registro
+          <img src="/register.svg" alt="register" width="25px" height="25px" />
         </div>
-        <div class="user-name" *ngIf="isLoggedIn()">Bienvenido, {{ name }}</div>
-      </div>
-      <div class="end-icons">
+
         <div
           class="link"
           routerLink="/login"
@@ -27,9 +25,17 @@
         <div class="link logout" (click)="logout()" *ngIf="isLoggedIn()">
           <img src="/logout.svg" alt="login" width="25px" height="25px" />
         </div>
-        <div class="link" routerLinkActive="active" routerLink="/cart">
+        <div
+          *ngIf="isLoggedIn()"
+          class="link"
+          routerLinkActive="active"
+          routerLink="/cart"
+        >
           <img src="/cart.svg" alt="cart" width="25px" height="25px" />
         </div>
+      </div>
+      <div class="end-icons">
+        <div class="user-name" *ngIf="isLoggedIn()">Bienvenido, {{ name }}</div>
       </div>
     </div>
   </nav>
