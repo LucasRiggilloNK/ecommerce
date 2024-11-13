@@ -1,5 +1,7 @@
 <div class="login-container">
-  <h2 class="login-title">Login</h2>
+  <div class="face">
+    <img src="/login.png" alt="face" width="150px" height="150px" />
+  </div>
   <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
     <div class="form-group">
       <label>Nombre:</label>
@@ -15,7 +17,7 @@
         *ngIf="loginForm.get('name')?.invalid && loginForm.get('name')?.touched"
         class="error-message"
       >
-        *name is required
+        * Ingresar el nombre
       </div>
     </div>
     <div class="form-group">
@@ -35,7 +37,7 @@
         "
         class="error-message"
       >
-        *Password is required
+        * Ingresar la contraseña
       </div>
     </div>
     <div *ngIf="errorMessage" class="error-message">

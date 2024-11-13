@@ -19,7 +19,6 @@ label {
 input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 15px;
   border: 1px solid #5c5c5c;
   border-radius: 4px;
   color: black;
@@ -43,4 +42,23 @@ button {
 button:hover {
   background-color: white;
   color: black;
+}
+
+.face {
+  display: flex;
+  justify-content: center;
+}
+
+.login-container {
+  margin-top: 50px;
+}
+
+.error-message {
+  color: red;
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.form-group {
+  margin-bottom: 20px;
 }

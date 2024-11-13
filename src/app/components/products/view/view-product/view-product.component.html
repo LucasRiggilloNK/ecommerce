@@ -339,6 +339,7 @@
                 {{ product.category }} {{ product.brand }} {{ product.model }}
               </p>
               <p>Precio: ${{ product.price }}</p>
+
               <button
                 class="add-cart"
                 type="button"
@@ -347,10 +348,11 @@
                 Añadir al carrito
               </button>
               <button
+                class="add-cart"
                 type="button"
                 [routerLink]="['/productDetails', product.id]"
               >
-                Detalles
+                Ver detalle
               </button>
             </div>
           </div>

@@ -1,21 +1,19 @@
-<div  style="width: 30rem;">
 <div>
-  <img src="{{ productToVievDetails?.urlImage }}" alt="Imagen {{ productToVievDetails?.model }}" class="card-img-top" />
-</div>
-    <div style="display: block;">
-      <p>{{ productToVievDetails?.brand }}</p>
-      <p>{{ productToVievDetails?.category }} {{ productToVievDetails?.price}} {{ productToVievDetails?.model }}</p>
-      <p>Descripción:</p>
-      <p>{{productToVievDetails?.description}}</p>
-      <p>Precio: ${{ productToVievDetails?.price }}</p>
-      <p>{{productToVievDetails?.characteristics}}</p>
-      
-        
-        <!-- <button type="button" (click)="addToCart(productToVievDetails)">
-          Añadir al carrito
-        </button> -->
-      
-      
-    </div>
-
+  <div>
+    <img
+      src="{{ productToVievDetails?.urlImage }}"
+      alt="Imagen {{ productToVievDetails?.model }}"
+    />
   </div>
+  <div>
+    <p>{{ productToVievDetails?.brand }}</p>
+    <p>
+      {{ productToVievDetails?.category }} {{ productToVievDetails?.price }}
+      {{ productToVievDetails?.model }}
+    </p>
+    <p>Descripción:</p>
+    <p>{{ productToVievDetails?.description }}</p>
+    <p>Precio: ${{ productToVievDetails?.price }}</p>
+    <p>{{ productToVievDetails?.characteristics }}</p>
+  </div>
+</div>

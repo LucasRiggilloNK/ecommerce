@@ -39,7 +39,7 @@ aside {
 
 .cards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   height: 100%;
   gap: 10px;
   margin-top: 20px;
@@ -116,6 +116,8 @@ aside {
   padding: 5px;
   border-radius: 5px;
   transition: 0.3s ease;
+  min-width: 150px;
+  justify-content: center;
 }
 
 .add-cart:hover {

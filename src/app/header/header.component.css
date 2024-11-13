@@ -39,3 +39,16 @@
   transform: scale(1.05);
   transition: 0.2s;
 }
+
+.end-icons {
+  display: flex;
+  gap: 5px;
+}
+
+.user-name {
+  color: white;
+  font-size: 0.9rem;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}

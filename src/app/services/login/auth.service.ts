@@ -13,14 +13,16 @@ export class AuthService {
 
   login(name: string, password: string): Observable<boolean> {
     return this.http
-      .get<{ id: number; username: string; password: string }[]>(
+      .get<{ id: number; name: string; password: string }[]>(
         `${this.apiUrl}/users?username=${name}&password=${password}`
       )
       .pipe(
         map((users) => {
           if (users.length > 0) {
             if (typeof window !== 'undefined') {
+              console.log('Usuario logueado:', users[0].name);
               localStorage.setItem('auth_token', 'your_token');
+              localStorage.setItem('name', users[0].name);
             }
             return true;
           } else {
@@ -34,6 +36,13 @@ export class AuthService {
           );
         })
       );
+  }
+
+  getUserName(): string | null {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('name');
+    }
+    return null;
   }
 
   logout(): void {
