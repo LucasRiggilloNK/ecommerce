@@ -36,6 +36,20 @@
   <br />
   <input type="text" formControlName="model" class="form-control" />
 
+  <p>Precio</p>
+  <input type="number" formControlName="price" class="form-control" />
+
+  <p>Stock</p>
+  <input type="number" formControlName="stock" class="form-control" />
+
+  <p>Modelo</p>
+  <br />
+  <input type="text" formControlName="model" class="form-control" />
+
+  
+
+  <button type="submit">Crear</button>
+  =======
   <app-air-conditioning-characteristics
     *ngIf="addProduct.get('category')?.value == 'Aire Acondicionado'"
   ></app-air-conditioning-characteristics>
@@ -78,4 +92,5 @@
 
   <button type="submit" [disabled]="!addProduct.valid">Crear</button>
   <!-- si todas las validaciones pasaron con exito lo habilita -->
+  >>>>>>> creacion-nav-y-aside-filtros
 </form>

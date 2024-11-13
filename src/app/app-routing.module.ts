@@ -7,6 +7,7 @@ import { AuthGuard } from './services/login/auth.guard';
 import { PrivateComponent } from './private/private.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductDetailsComponent } from './components/products/details/product-details/product-details.component';
+import { BuyFormComponent } from './components/buy-form/buy-form.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'private', component: PrivateComponent, canActivate: [AuthGuard] },
   { path: 'cart', component: CartComponent },
   { path: 'productDetails/:id', component: ProductDetailsComponent },
+  {path: "buyForm", component: BuyFormComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' },
 ];
