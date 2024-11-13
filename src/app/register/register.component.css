@@ -59,3 +59,7 @@ button:hover {
 .inner-flex {
   width: 100%;
 }
+
+.background-button {
+  background-color: black;
+}

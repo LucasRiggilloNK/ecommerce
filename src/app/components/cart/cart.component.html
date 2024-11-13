@@ -15,14 +15,21 @@
         <p>
           <strong>{{ product.brand }} {{ product.model }}</strong>
         </p>
-        <p>Precio: {{ product.price }} USD</p>
-        <p>Stock disponible: {{ product.stock }}</p>
+        <p>Precio: ${{ product.price | number : "1.0" }}</p>
         <!-- Muestra el stock disponible -->
-        <button (click)="removeProduct(product.id)">Eliminar</button>
+        <div class="flex-buttons">
+          <button (click)="removeProduct(product.id)">Eliminar</button>
+          <button
+            class="add-cart"
+            type="button"
+            [routerLink]="['/productDetails', product.id]"
+          >
+            Ver detalle
+          </button>
+        </div>
       </div>
     </div>
   </div>
-  
 </div>
 
 <!-- Si no hay productos, muestra un mensaje -->
@@ -33,6 +40,6 @@
 </ng-template>
 
 
-<button *ngIf="carrito.length > 0">Comprar carrito</button>
+<button *ngIf="carrito.length > 0" [routerLink]="['/buyForm']">Comprar carrito</button>
 <!-- Botón para vaciar el carrito -->
 <button *ngIf="carrito.length > 0" (click)="clearCart()">Vaciar carrito</button>

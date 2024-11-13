@@ -13,20 +13,23 @@
         >
           Registro
         </div>
+        <div class="user-name" *ngIf="isLoggedIn()">Bienvenido, {{ name }}</div>
+      </div>
+      <div class="end-icons">
         <div
           class="link"
           routerLink="/login"
           *ngIf="!isLoggedIn()"
           routerLinkActive="active"
         >
-          Login
+          <img src="/login.svg" alt="login" width="25px" height="25px" />
         </div>
         <div class="link logout" (click)="logout()" *ngIf="isLoggedIn()">
-          Logout
+          <img src="/logout.svg" alt="login" width="25px" height="25px" />
         </div>
-      </div>
-      <div class="link" routerLinkActive="active" routerLink="/cart">
-        <img src="/cart.svg" alt="cart" width="25px" height="25px" />
+        <div class="link" routerLinkActive="active" routerLink="/cart">
+          <img src="/cart.svg" alt="cart" width="25px" height="25px" />
+        </div>
       </div>
     </div>
   </nav>

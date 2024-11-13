@@ -38,17 +38,21 @@ export class CartComponent {
 
     console.log(this.carrito); // Verifica el carrito después de agregar un producto
     this.saveCart(); // Guardar el carrito en localStorage
-    location.reload(); // Actualiza página
+  }
+
+  getTotalPrice(): number {
+    return this.carrito.reduce(
+      (total, item) => total + item.price * item.stock,
+      0
+    );
   }
 
   // Método para eliminar un producto del carrito
   removeProduct(productId: string): void {
     const index = this.carrito.findIndex(
-      (p) => Number(p.id) === Number(productId)
+      (p) => String(p.id) === String(productId)
     );
     if (index !== -1) {
-      const product = this.carrito[index];
-      product.stock++; // Aumenta stock al eliminar del carrito
       this.carrito.splice(index, 1);
       this.saveCart(); // Guarda el carrito después de eliminar un producto
     }
@@ -56,12 +60,10 @@ export class CartComponent {
 
   // Método para vaciar el carrito
   clearCart(): void {
-    this.carrito.forEach((product) => {
-      product.stock += 1; // Aumenta el stock de cada producto
-    });
     this.carrito = [];
     localStorage.removeItem('cart'); // Vacia el carrito en localStorage
     this.saveCart(); // Vacia el carrito en localStorage
+    window.location.reload(); // Actualiza página
   }
 
   // Método para guardar el carrito en localStorage

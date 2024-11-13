@@ -30,6 +30,7 @@ import { LoginComponent } from './login/login.component';
 import { PrivateComponent } from './private/private.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/login/auth.interceptor';
+
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
 import { BuyFormComponent } from './components/buy-form/buy-form.component';
