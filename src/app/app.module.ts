@@ -33,7 +33,7 @@ import { AuthInterceptor } from './services/login/auth.interceptor';
 
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
- 
+ import{ BuyFormComponent } from './components/buy-form/buy-form.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +59,8 @@ import { CartComponent } from './components/cart/cart.component';
     MouseCharacteristicsComponent,
     RegisterComponent,
     LoginComponent,
-    PrivateComponent
+    PrivateComponent,
+    BuyFormComponent
   ],
 
   imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],

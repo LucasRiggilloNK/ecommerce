@@ -7,7 +7,7 @@ import { Purchase } from '../../models/purchases/purchase';
   selector: 'app-purchase',
   templateUrl: './buy-form.Component.html'
 })
-export class PurchaseComponent {
+export class BuyFormComponent {
   compraForm: FormGroup;
 
   constructor(private fb: FormBuilder, private purchaseService: PurchaseService) {
