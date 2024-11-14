@@ -11,10 +11,11 @@ export class BuyService{
 
   private cartItems: ProductInterface[] = [];
   private user: User | null;
-  
+  subTotalPrice: number;
 
   constructor(private cartService: CarritoService, private authService: AuthService){
     this.user = null;
+    this.subTotalPrice = 0;
   }
 
 
@@ -30,6 +31,7 @@ export class BuyService{
   }
 
   getSubtotal(){
-
+    this.subTotalPrice = this.cartService.getTotalPrice();
+    return this.subTotalPrice;
   }
 }

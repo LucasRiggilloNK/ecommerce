@@ -19,6 +19,16 @@
       "postalCode": "7600",
       "email": "prismic.veritran@gmail.com",
       "password": "wefeg3r"
+    },
+    {
+      "id": "f8cd",
+      "name": "Marcos",
+      "lastname": "Carrizo",
+      "birthdate": "1985-10-10",
+      "address": "Vergara",
+      "postalCode": "222",
+      "email": "marquitos1985@hotmail.com",
+      "password": "1234"
     }
   ]
 }

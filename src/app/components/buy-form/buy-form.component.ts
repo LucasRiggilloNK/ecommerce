@@ -12,16 +12,21 @@ import { User } from '../../services/register-service/register.service';
 export class BuyFormComponent implements OnInit{
    cartItems: ProductInterface[] = [];
    user: User | null;
+   subTotalPrice: number;
 
   constructor(private buySeervice: BuyService){
     this.user = null;
+    this.subTotalPrice = 0;
   }
 
   ngOnInit(): void {
       this.cartItems = this.buySeervice.getCartItemsToBuy();
-      
+      this.subTotalPrice = this.buySeervice.getSubtotal();
   }
 
+  getSubtotal(){
+    return this.buySeervice.getSubtotal();
+  }
 
 
 }
