@@ -1,4 +1,5 @@
 <h3>Carrito de Compras</h3>
+
 <!-- Verifica si hay productos en el carrito -->
 <div class="items" *ngIf="carrito.length > 0; else noProducts">
   <!-- Recorre el carrito y muestra los productos -->
@@ -29,6 +30,7 @@
       </div>
     </div>
   </div>
+
   <div class="total">
     <div>
       <button
@@ -43,6 +45,9 @@
   </div>
 </div>
 
-<!-- <button *ngIf="carrito.length > 0" [routerLink]="['/buyForm']">
-  Comprar carrito
-</button> -->
+<!-- Si no hay productos, muestra un mensaje -->
+<ng-template #noProducts>
+  <div class="vacio">
+    <p>Carrito vacio.</p>
+  </div>
+</ng-template>
