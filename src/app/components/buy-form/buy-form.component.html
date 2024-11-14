@@ -1,10 +1,42 @@
-<p>buy-form works!</p>
+<p>datos d la compra</p>
+<p>Items compra</p>
+<div class="items" *ngIf="cartItems.length > 0">
+    <!-- Recorre el carrito y muestra los productos -->
+    <div *ngFor="let product of cartItems">
+      <div class="product-item">
+        <!-- Muestra la información del producto -->
+        <img
+          class="product-img"
+          src="{{ product.urlImage }}"
+          alt="Imagen {{ product.model }}"
+        />
+        <div class="item-text">
+          <p>
+            <strong>{{ product.brand }} {{ product.model }}</strong>
+          </p>
+          <p>Precio: ${{ product.price | number : "1.0" }}</p>
+          <label for="">Cantidad</label>
+          <input type="number" name="" id="" placeholder="" value="1">
+
+        </div>
+      </div>
+      
+    </div>
+    <p>Subtotal:</p>
+  </div>
 
 
 
+<p>Datos cliente</p>
+
+<p>total + costo envio</p>
+<p>datos de pago</p>
+
+<p>si se validan se habilita boton confirmar compra</p>
 
 
 
+  
 
 
 
