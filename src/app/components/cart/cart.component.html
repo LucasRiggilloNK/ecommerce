@@ -32,13 +32,16 @@
   </div>
 
   <div class="total">
-    <div>
+    <div class="flex">
       <button
         class="clear-cart-button"
         *ngIf="carrito.length > 0"
         (click)="clearCart()"
       >
         Vaciar carrito
+      </button>
+      <button *ngIf="carrito.length > 0" [routerLink]="['/buyForm']">
+        Comprar carrito
       </button>
     </div>
     <div>Total: {{ getTotalPrice() | number : "1.0-0" }}</div>
