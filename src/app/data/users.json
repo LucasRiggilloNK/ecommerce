@@ -19,6 +19,16 @@
       "postalCode": "7600",
       "email": "prismic.veritran@gmail.com",
       "password": "wefeg3r"
+    },
+    {
+      "id": "e862",
+      "name": "Nicolas",
+      "lastname": "Blanco rio",
+      "birthdate": "2024-11-03",
+      "address": "Beltrami Al 1560",
+      "postalCode": "7600",
+      "email": "nicolasuxmal@gmail.com",
+      "password": "123"
     }
   ]
 }
