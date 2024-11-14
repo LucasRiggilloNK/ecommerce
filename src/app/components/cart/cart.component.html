@@ -13,9 +13,10 @@
       />
       <div class="item-text">
         <p>
-          <strong>{{ product.brand }} {{ product.model }}</strong>
+          <strong class="marca">{{ product.brand }} {{ product.model }}</strong>
         </p>
         <p>Precio: ${{ product.price | number : "1.0" }}</p>
+        <p class="price">Cantidad: {{ product.stock }}</p>
         <!-- Muestra el stock disponible -->
         <div class="flex-buttons">
           <button (click)="removeProduct(product.id)">Eliminar</button>

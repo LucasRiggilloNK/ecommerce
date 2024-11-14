@@ -11,6 +11,7 @@
       </option>
     </select>
   </div>
+
   <div class="buttons-gap">
     <button
       href=""
@@ -19,7 +20,6 @@
       class="button-products"
     >
       <div class="inner-button">
-        <img src="/tv.svg" alt="tv" width="20px" height="20px" />
         <p>Televisores</p>
       </div>
     </button>
@@ -30,7 +30,6 @@
       type="button"
     >
       <div class="inner-button">
-        <img src="/phone.svg" alt="tv" width="20px" height="20px" />
         <p>Celulares</p>
       </div>
     </button>
@@ -41,7 +40,6 @@
       class="button-products"
     >
       <div class="inner-button">
-        <img src="/laptop.svg" alt="tv" width="20px" height="20px" />
         <p>Notebooks</p>
       </div>
     </button>
@@ -52,7 +50,6 @@
       class="button-products"
     >
       <div class="inner-button">
-        <img src="/printer.svg" alt="tv" width="20px" height="20px" />
         <p>Impresoras</p>
       </div>
     </button>
@@ -63,13 +60,6 @@
       class="button-products"
     >
       <div class="inner-button">
-        <img
-          src="/split.svg"
-          class="split"
-          alt="tv"
-          width="25px"
-          height="25px"
-        />
         <p>Aires</p>
       </div>
     </button>
@@ -80,7 +70,6 @@
       class="button-products"
     >
       <div class="inner-button">
-        <img src="/refrigerator.svg" alt="tv" width="20px" height="20px" />
         <p>Heladeras</p>
       </div>
     </button>
@@ -91,7 +80,6 @@
       type="button"
     >
       <div class="inner-button">
-        <img src="/washing-machine.svg" alt="tv" width="20px" height="20px" />
         <p>Lavarropas</p>
       </div>
     </button>
@@ -100,7 +88,7 @@
 
 <form action="" [formGroup]="formGrupSubfilters">
   <div style="display: flex; justify-content: flex-start">
-    <aside class="aside">
+    <aside *ngIf="productListFilteredByCategory.length != 0" class="aside">
       <div *ngIf="productListFilteredByCategory.length != 0">
         <div class="filters">
           <p>Marca</p>
@@ -333,7 +321,7 @@
     <div *ngIf="productListSubFiltered.length != 0">
       <div class="cards">
         <div *ngFor="let product of productListSubFiltered">
-          <div class="card">
+          <div [routerLink]="['/productDetails', product.id]" class="card">
             <img
               src="{{ product.urlImage }}"
               alt="Imagen {{ product.model }}"
@@ -349,7 +337,7 @@
               <button
                 class="add-cart"
                 type="button"
-                (click)="addToCart(product)"
+                (click)="addToCart(product); $event.stopPropagation()"
               >
                 Añadir al carrito
               </button>

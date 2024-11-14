@@ -4,9 +4,10 @@ p {
 }
 
 .header {
-  padding: 20px 0 10px 0;
+  padding: 20px 20px 20px 20px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+
   background-color: #333;
   border-bottom: 2px solid #555;
 }
@@ -74,6 +75,9 @@ aside select:hover {
   height: 100%;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  img {
+    min-height: 240px;
+  }
 }
 
 .card:hover {
@@ -106,6 +110,15 @@ aside select:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #222;
+  padding: 15px;
+  transition: 0.3s;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.inner-button:hover {
+  transform: scale(1.05);
 }
 
 .button-products {
@@ -119,25 +132,6 @@ aside select:hover {
 
 .button-products:hover {
   color: #fff;
-}
-.inner-button {
-  transition: 0.3s;
-  p::after {
-    content: "";
-    position: absolute;
-    bottom: -10%;
-    left: 0%;
-    width: 0;
-    height: 2px;
-    background-color: #fff;
-    transition: width 0.3s ease;
-  }
-}
-
-.inner-button {
-  p:hover::after {
-    width: 100%;
-  }
 }
 
 .add-cart {

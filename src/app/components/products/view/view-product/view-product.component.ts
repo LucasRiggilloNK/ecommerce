@@ -31,17 +31,14 @@ import {
 })
 export class ViewProductComponent implements OnInit, OnDestroy {
   productsListInt: ProductInterface[] = [];
-
+  filteredProducts: ProductInterface[] = [];
   productInterfaceById: ProductInterface | null = null;
-
   //subscriptionGetProductListInterface: Subscription;
   subscriptionGetProductInterfaceById: Subscription;
-
   formControlById: FormControl;
-
   categoryList: string[] = Object.values(Category);
   brandList: string[] = [];
-
+  searchTerm: string = '';
   productListFilteredByCategory: ProductInterface[] = [];
   productListSubFiltered: ProductInterface[] = [];
   formControlCategory: FormControl;
@@ -81,6 +78,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
     //Elimina el elemento none en categoryList
     let indiceNONE = this.categoryList.indexOf(Category.NONE);
+
     this.categoryList.splice(indiceNONE, 1);
 
     this.formControlCategory = new FormControl();
@@ -616,6 +614,16 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   addToCart(product: ProductInterface): void {
     this.carritoService.addToCart(product);
+  }
+
+  filterProducts() {
+    const term = this.searchTerm.toLowerCase();
+    this.filteredProducts = this.productListSubFiltered.filter(
+      (product) =>
+        product.model.toLowerCase().includes(term) ||
+        product.brand.toLowerCase().includes(term) ||
+        product.category.toLowerCase().includes(term)
+    );
   }
 
   obtainBrandListFilteredByCategory(productListInterface: ProductInterface[]) {

@@ -26,6 +26,7 @@
   text-decoration: none;
   padding: 10px 15px;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .link:hover {
@@ -55,4 +56,13 @@
   border-radius: 8px;
   padding: 15px;
   text-transform: capitalize;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  min-width: 55px;
 }

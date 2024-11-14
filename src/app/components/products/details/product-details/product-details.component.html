@@ -13,7 +13,6 @@
     </p>
     <p>Descripción:</p>
     <p>{{ productToVievDetails?.description }}</p>
-    <p>Precio: ${{ productToVievDetails?.price }}</p>
-    <p>{{ productToVievDetails?.characteristics }}</p>
+    <p>Precio: ${{ productToVievDetails?.price | number : "1.0-0" }}</p>
   </div>
 </div>
