@@ -1,4 +1,3 @@
-<p>datos d la compra</p>
 <p>Items compra</p>
 <div class="items" *ngIf="cartItems.length > 0">
     <!-- Recorre el carrito y muestra los productos -->
@@ -56,31 +55,32 @@
   <br>
   <p>Dirección: </p>
   <input type="text" formControlName="address" > <!-- Ver que la dirección debería ser calle, numero, piso y depto en el json usuarios -->
-  
-
 
   <br>
-
   <!-- ENVIO -->
   <button (click)="getShippingPrice()">Calcular envio</button>
-
-  <label> ${{shippingPrice}}</label>
+<div>
+  <label style="color: white;"> ${{shippingPrice}}</label>
   <br>
-  <label for="">Total ${{getTotalBuy()}}</label>
-
- 
-
+  <label style="color: white;" for="">Total ${{getTotalBuy()}}</label>
+</div>
   
-<br>
-  <label for=""><!-- crear json de tarjeta y crear el form validando que los datos de la tarjeta existan en el json -->
-    cargar datos de la tarjeta
-  </label>
+<br>  
+  <select name="" id="" formControlName="cardType">
+    <option value="debit">Débito</option>
+    <option value="credit">Crédito</option>
+  </select><br>
+  <input type="text" formControlName="cardHolder" placeholder='Nombre y apellido como figura en la tarjeta'><br>
+  <input type="text" formControlName="cardNumber" placeholder="Número de tarjeta"><br>
+  <input type="text" formControlName="expirationDate" placeholder="Vencimiento"><br>
+  <input type="text" formControlName="cvv" placeholder="CVV"><br>
+  <select name="" id="" formControlName="cardIssuer">
+    <option value="Visa">Visa</option>
+    <option value="Mastercard">Mastercard</option>
+  </select><br>
+  <button type="button" (click)="cardExists()">Verificar tarjeta</button><br>
 
-  <p>datos de pago</p>
-
-  <p>si se validan se habilita boton confirmar compra</p>
-
-
+  <button type="button">Confirmar compra</button>
 
 </form>
 
@@ -93,4 +93,3 @@
 
 
 
-<button type="button">Confirmar compra</button>

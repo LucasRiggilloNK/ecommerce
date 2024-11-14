@@ -13,7 +13,6 @@ import { ActivatedRoute, Route } from '@angular/router';
 })
 export class ProductService {
   private productsApiUrl = 'http://localhost:3000/products';
-  private maxId = 100000000;
   private productsListInt: ProductInterface[] = [];
   private productInt: ProductInterface | null = null;
   private productToVievDetails: ProductInterface;
@@ -69,10 +68,6 @@ export class ProductService {
   }
 
   //////////////////////    GET PRODUCTS     ////////////////////////////////////////////////////
-
-  public getProductsListInterfaceObservable() {
-    return this.asyncService.getAll(this.productsApiUrl);
-  }
 
   public async getAllProductsListInterface(): Promise<ProductInterface[]> {
     try {

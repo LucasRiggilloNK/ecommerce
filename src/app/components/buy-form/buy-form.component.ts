@@ -8,6 +8,7 @@ import { error } from 'console';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DistanceMatrixService } from '../../services/distance/distance-matrix.service';
 import { DistanceMatrix } from '../../interfaces/distance-matrix';
+import { Card } from '../../interfaces/cards/card';
 
 @Component({
   selector: 'app-buy-form',
@@ -24,9 +25,6 @@ export class BuyFormComponent implements OnInit{
    distanceMatrixObject: DistanceMatrix;
    calculateDistance: number;
 
-
-   
-
   constructor(private buyService: BuyService, private authService: AuthService){
     this.user = null;
     this.subTotalPrice = 0;
@@ -39,7 +37,13 @@ export class BuyFormComponent implements OnInit{
       "email": new FormControl('', Validators.required),
       "country": new FormControl('', Validators.required),
       "province": new FormControl('', Validators.required),
-      "city": new FormControl('', Validators.required)
+      "city": new FormControl('', Validators.required),
+      "cardType": new FormControl('', Validators.required),
+      "cardHolder": new FormControl('', Validators.required),
+      "cardNumber": new FormControl('', Validators.required),
+      "expirationDate": new FormControl('', Validators.required),
+      "cvv": new FormControl('', Validators.required),
+      "cardIssuer": new FormControl('', Validators.required)      
     });
 
     this.distanceMatrixObject = {
@@ -114,16 +118,10 @@ export class BuyFormComponent implements OnInit{
   }
 
 
-
-
   getShippingPrice(){
-    
-
     let destiny = this.userDataForm.get("address")?.value + ", " + this.userDataForm.get("city")?.value + ", " + 
                   this.userDataForm.get("province")?.value + ", " + this.userDataForm.get("country")?.value;
     console.log("Destino: " + destiny);
-
-
 
     //this.distanceMatrixService.getApiDistanceMatrix(destiny)
     this.buyService.getShippingPrice(destiny)
@@ -144,6 +142,26 @@ export class BuyFormComponent implements OnInit{
 
   getTotalBuy(){
     return (this.subTotalPrice + this.shippingPrice);
+  }
+
+  cardExists(): boolean{
+    let card: Card = {
+      type: '', 
+      cardHolder: '', 
+      cardNumber: '',
+      expirationDate: '',
+      cvv: '',
+      issuer: ''
+    }
+
+    card.type = this.userDataForm.get('cardType')?.value;
+    card.cardHolder = this.userDataForm.get('cardHolder')?.value;
+    card.cardNumber = this.userDataForm.get('cardNumber')?.value;
+    card.expirationDate = this.userDataForm.get('expirationDate')?.value;
+    card.cvv = this.userDataForm.get('cvv')?.value;
+    card.issuer = this.userDataForm.get('cardIssuer')?.value;
+
+    return this.buyService.existsCard(card);
   }
 
 
