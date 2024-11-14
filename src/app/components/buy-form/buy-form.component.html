@@ -28,6 +28,31 @@
 
 <p>Datos cliente</p>
 
+<form [formGroup]="userDataForm">
+  <input type="text" formControlName="name" value={{user?.name}}>
+  <input type="text" formControlName="name" value={{user?.lastname}}>
+  <input type="text" formControlName="name" value={{user?.birthdate}}>
+  <input type="text" formControlName="name" value={{user?.address}}>
+  <input type="text" formControlName="name" value={{user?.postalCode}}>
+  <input type="text" formControlName="name" value={{user?.email}}>
+
+  <button>calcular envio</button><!-- hacer metodo que con la api de distancias calcule el costo de envio -->
+  <label for="">
+    mostrar costo de envio
+  </label>
+
+  <label for="">
+    mostrar el total
+  </label>
+
+  <label for=""><!-- crear json de tarjeta y crear el form validando que los datos de la tarjeta existan en el json -->
+    cargar datos de la tarjeta
+  </label>
+
+</form>
+
+
+
 <p>total + costo envio</p>
 <p>datos de pago</p>
 

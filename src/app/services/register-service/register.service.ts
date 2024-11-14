@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export interface User {
-  id?: number;
+  id?: string;
   name: string;
   lastname: string;
   birthdate: Date;
@@ -39,7 +39,7 @@ export class RegisterService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  getUserById(id: number): Observable<User> {
+  getUserById(id: string): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/${id}`);
   }
 
