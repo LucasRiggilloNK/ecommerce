@@ -4,6 +4,7 @@ import { CarritoService } from './cart.service';
 import { RegisterService, User } from './register-service/register.service';
 import { AuthService } from './login/auth.service';
 import { response } from 'express';
+import { DistanceMatrixService } from './distance/distance-matrix.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,9 @@ export class BuyService{
   private user: User | null;
   subTotalPrice: number;
 
-  constructor(private cartService: CarritoService, private authService: AuthService, private registerService: RegisterService){
+  constructor(private cartService: CarritoService, private authService: AuthService, private registerService: RegisterService,
+                private distanceMatrixService: DistanceMatrixService
+  ){
     this.user = null;
     this.subTotalPrice = 0;
   }
@@ -34,4 +37,10 @@ export class BuyService{
     this.subTotalPrice = this.cartService.getTotalPrice();
     return this.subTotalPrice;
   }
+
+
+  getShippingPrice(destiny: string){
+    return this.distanceMatrixService.getApiDistanceMatrix(destiny);
+  }
+
 }
