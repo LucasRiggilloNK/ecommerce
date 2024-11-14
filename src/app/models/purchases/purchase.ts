@@ -5,4 +5,5 @@ export interface Purchase {
     cantidad: number;
   }[];
   fecha: string;
+  total: number;
 }

@@ -32,7 +32,8 @@ export class BuyFormComponent {
     const nuevaCompra: Purchase = {
       clienteId: this.compraForm.value.clienteId,
       productos: this.compraForm.value.productos,
-      fecha: new Date().toISOString()
+      total: this.compraForm.value.total,
+      fecha: new Date().toISOString(),
     };
 
     this.purchaseService.agregarCompra(nuevaCompra).subscribe(response => {
