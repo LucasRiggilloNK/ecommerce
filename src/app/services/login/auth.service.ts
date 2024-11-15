@@ -23,6 +23,7 @@ export class AuthService {
               console.log('Usuario logueado:', users[0].name);
               localStorage.setItem('auth_token', 'your_token');
               localStorage.setItem('name', users[0].name);
+              localStorage.setItem('userId', String(users[0].id)); //agregado
             }
             return true;
           } else {
@@ -41,6 +42,13 @@ export class AuthService {
   getUserName(): string | null {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('name');
+    }
+    return null;
+  }
+  
+  getUserId(): string | null {//agregado
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('userId');
     }
     return null;
   }

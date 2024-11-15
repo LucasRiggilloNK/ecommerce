@@ -1,11 +1,96 @@
-<p>buy-form works!</p>
+<p>Items compra</p>
+<div class="items" *ngIf="cartItems.length > 0">
+  <!-- Recorre el carrito y muestra los productos -->
+  <div *ngFor="let product of cartItems">
+    <div class="product-item">
+      <!-- Muestra la información del producto -->
+      <img
+        class="product-img"
+        src="{{ product.urlImage }}"
+        alt="Imagen {{ product.model }}"
+      />
+      <div class="item-text">
+        <p>
+          <strong>{{ product.brand }} {{ product.model }}</strong>
+        </p>
+        <p>Precio: ${{ product.price | number : "1.0" }}</p>
 
+        <p>Cantidad: {{ product.stock }}</p>
+      </div>
+    </div>
+  </div>
+  <p>Subtotal: ${{ getSubtotal() }}</p>
+</div>
 
+<p>Datos cliente</p>
 
+<form [formGroup]="userDataForm" (ngSubmit)="onSubmit()">
+  <p>Nombre:</p>
+  <input type="text" formControlName="name" />
+  <br />
+  <p>Apellido:</p>
+  <input type="text" formControlName="lastname" />
+  <br />
+  <p>email:</p>
+  <input type="text" formControlName="email" />
+  <br />
+  <p>Pais:</p>
+  <select name="" id="" formControlName="country">
+    <option value="Argentina">Argentina</option>
+  </select>
 
+  <p>Provincia:</p>
+  <select name="" id="" formControlName="province">
+    <option value="Buenos Aires">Buenos Aires</option>
+  </select>
+  <br />
+  <p>Ciudad:</p>
+  <select name="" id="" formControlName="city">
+    <option value="Balcarce">Balcarce</option>
+    <option value="Mar del Plata">Mar del Plata</option>
+    <option value="Miramar">Miramar</option>
+    <option value="Necochea">Necochea</option>
+  </select>
+  <br />
+  <p>Dirección:</p>
+  <input type="text" formControlName="address" />
+  <!-- Ver que la dirección debería ser calle, numero, piso y depto en el json usuarios -->
 
+  <br />
+  <!-- ENVIO -->
+  <button (click)="getShippingPrice()">Calcular envio</button>
+  <div>
+    <label style="color: white"> ${{ shippingPrice }}</label>
+    <br />
+    <label style="color: white" for="">Total ${{ getTotalBuy() }}</label>
+  </div>
 
+  <br />
+  <select name="" id="" formControlName="cardType">
+    <option value="debit">Débito</option>
+    <option value="credit">Crédito</option></select
+  ><br />
+  <input
+    type="text"
+    formControlName="cardHolder"
+    placeholder="Nombre y apellido como figura en la tarjeta"
+  /><br />
+  <input
+    type="text"
+    formControlName="cardNumber"
+    placeholder="Número de tarjeta"
+  /><br />
+  <input
+    type="text"
+    formControlName="expirationDate"
+    placeholder="Vencimiento"
+  /><br />
+  <input type="text" formControlName="cvv" placeholder="CVV" /><br />
+  <select name="" id="" formControlName="cardIssuer">
+    <option value="Visa">Visa</option>
+    <option value="Mastercard">Mastercard</option></select
+  ><br />
+  <button type="button" (click)="cardExists()">Verificar tarjeta</button><br />
 
-
-
-<button type="button">Confirmar compra</button>
+  <button type="submit">Confirmar compra</button>
+</form>

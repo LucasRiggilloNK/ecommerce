@@ -1,0 +1,36 @@
+{
+  "cards": [
+    {
+      "type": "credit",
+      "cardHolder": "John Doe",
+      "cardNumber": "4111111111111111",
+      "expirationDate": "12/25",
+      "cvv": "123",
+      "issuer": "Visa"
+    },
+    {
+      "type": "debit",
+      "cardHolder": "Jane Smith",
+      "cardNumber": "5500000000000004",
+      "expirationDate": "08/24",
+      "cvv": "456",
+      "issuer": "MasterCard"
+    },
+    {
+      "type": "credit",
+      "cardHolder": "Mike Johnson",
+      "cardNumber": "340000000000009",
+      "expirationDate": "03/26",
+      "cvv": "789",
+      "issuer": "American Express"
+    },
+    {
+      "type": "debit",
+      "cardHolder": "Alice Brown",
+      "cardNumber": "6011000000000004",
+      "expirationDate": "11/23",
+      "cvv": "321",
+      "issuer": "Discover"
+    }
+  ]
+}
