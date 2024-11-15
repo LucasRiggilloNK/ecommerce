@@ -1,4 +1,3 @@
-<p>Items compra</p>
 <div class="items" *ngIf="cartItems.length > 0">
   <!-- Recorre el carrito y muestra los productos -->
   <div *ngFor="let product of cartItems">
@@ -24,7 +23,7 @@
 
 <p>Datos cliente</p>
 
-<form [formGroup]="userDataForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="userDataForm">
   <p>Nombre:</p>
   <input type="text" formControlName="name" />
   <br />

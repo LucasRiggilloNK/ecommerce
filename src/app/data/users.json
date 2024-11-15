@@ -29,6 +29,16 @@
       "postalCode": "7600",
       "email": "nicolasuxmal@gmail.com",
       "password": "123"
+    },
+    {
+      "id": "921a",
+      "name": "agustin ",
+      "lastname": "lapenna",
+      "birthdate": "2024-11-14",
+      "address": "asd 1000",
+      "postalCode": "7600",
+      "email": "asd@gmail.com",
+      "password": "1234"
     }
   ]
 }

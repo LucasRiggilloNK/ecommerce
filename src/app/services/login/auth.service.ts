@@ -45,8 +45,8 @@ export class AuthService {
     }
     return null;
   }
-  
-  getUserId(): string | null {//agregado
+
+  getUserId(): string | null {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('userId');
     }
