@@ -87,8 +87,10 @@
   <input type="text" formControlName="cvv" placeholder="CVV" /><br />
   <select name="" id="" formControlName="cardIssuer">
     <option value="Visa">Visa</option>
-    <option value="Mastercard">Mastercard</option></select
-  ><br />
+    <option value="Mastercard">Mastercard</option>
+    <option value="American Express">American Express</option>
+    <option value="Discover">Discover</option>
+    </select><br />
   <button type="button" (click)="cardExists()">Verificar tarjeta</button><br />
 
   <button type="submit">Confirmar compra</button>
