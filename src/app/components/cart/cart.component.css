@@ -94,3 +94,8 @@ button:hover {
   width: 100%;
   background-color: black;
 }
+
+.flex {
+  display: flex;
+  gap: 10px;
+}

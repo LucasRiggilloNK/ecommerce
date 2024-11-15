@@ -12,36 +12,171 @@ import { ActivatedRoute, Route } from '@angular/router';
   providedIn: 'root',
 })
 export class ProductService {
-  private productsApiUrl = 'http://localhost:3000/products';
+  private productsApiUrl = 'http://localhost:3003/products';
   private productsListInt: ProductInterface[] = [];
   private productInt: ProductInterface | null = null;
   private productToVievDetails: ProductInterface;
-  	
 
-  airTypesList: string[] = ["Todos", "Split", "Portatil", "Split inverter", "Ventana"];
-  heatColdList: string[] = ['Todos','Si', 'No'];
-  fanTypeList: string[] = ['Todos','Pie', 'Turbo'];
-  tvTechnologiesList: string[] = ['Todos','LED', 'OLED', 'AMOLED', 'QLED', 'NanoCell', 'FHD'];
-  tvInchesList: string[] = ['Todos','32"', '43"', '55"', '60"', '70"', '75"'];
-  headphonesTypeList = ['Todos','inEar', 'headBand'];
-  refrigeratorCoolingSystemList: string[] =  ['Todos','No frost', 'Ciclico', 'Cycle defrost', 'Mono cooling', 'Skin condenser'];
-  washingCapacityList: string[] = ['Todos','6 kg', "6.5 kg",'7 kg', '8 kg', '9 kg', '10 kg', '11 kg'];
-  microwaveCapacityList: string[] = ['Todos','15 lts', '17 lts', '20 lts', '23 lts', '25 lts', '28 lts', '30 lts', '32 lts', '35 lts', '40 lts', '42 lts', '45 lts'];
-  smartPhoneInchesList: string[] = ['Todos','4.0"', '4.7"', '5.0"', '5.5"', '5.8"', '6.1"', '6.3"', '6.5"', '6.6"', '6.7"', '6.8"', '7.0"'];
-  smartPhoneRamList: string[] = ['Todos','4 GB', '6 GB', '8 GB', '12 GB', '16 GB', '18 GB'];
-  notebookScreenSizesList: string[] = ['Todos', '13"', '14"', '15"', '15.6"', '16"', '17"'];
-  notebookRamList: string[] = ['Todos','4 GB', '8 GB', '12 GB', '16 GB', '32 GB', '64 GB'];
-  notebookProcessorsList: string[] = ['Todos','Intel Core i3', 'Intel Core i5', 'Intel Core i7', 'Intel Core i9', 'AMD Ryzen 3', 'AMD Ryzen 5', 'AMD Ryzen 7', 'AMD Ryzen 9', 'Apple M1', 'Apple M2', 'Intel Pentium Gold'];
-  notebookStorageSizesList: string[] = ['Todos','128GB', '256GB', '512GB', '1TB', '2TB', '4TB', '8TB', '16TB', '32TB', '64TB'];
-  tabletScreenSizesList: string[] = ['Todos','7"', '8"', '9"', '10"', '10.1"', '10.5"', '11"', '12.4"', '12.9"', '13"', '14"'];
-  tabletRamList: string[] = ['Todos','2 GB', '3 GB', '4 GB', '6 GB', '8 GB', '12 GB', '16 GB'];
-  printerTypeList: string[] = ["Todos","Color", "Monocromática", "3D"];
-  keyboardConnectivityTypeList: string[] = ["Todos","Cable","Wireless","Bluetooth"];
-  mouseConnectivityTypeList: string[] = ["Todos","Cable","Wireless","Bluetooth"];
+  airTypesList: string[] = [
+    'Todos',
+    'Split',
+    'Portatil',
+    'Split inverter',
+    'Ventana',
+  ];
+  heatColdList: string[] = ['Todos', 'Si', 'No'];
+  fanTypeList: string[] = ['Todos', 'Pie', 'Turbo'];
+  tvTechnologiesList: string[] = [
+    'Todos',
+    'LED',
+    'OLED',
+    'AMOLED',
+    'QLED',
+    'NanoCell',
+    'FHD',
+  ];
+  tvInchesList: string[] = ['Todos', '32"', '43"', '55"', '60"', '70"', '75"'];
+  headphonesTypeList = ['Todos', 'inEar', 'headBand'];
+  refrigeratorCoolingSystemList: string[] = [
+    'Todos',
+    'No frost',
+    'Ciclico',
+    'Cycle defrost',
+    'Mono cooling',
+    'Skin condenser',
+  ];
+  washingCapacityList: string[] = [
+    'Todos',
+    '6 kg',
+    '6.5 kg',
+    '7 kg',
+    '8 kg',
+    '9 kg',
+    '10 kg',
+    '11 kg',
+  ];
+  microwaveCapacityList: string[] = [
+    'Todos',
+    '15 lts',
+    '17 lts',
+    '20 lts',
+    '23 lts',
+    '25 lts',
+    '28 lts',
+    '30 lts',
+    '32 lts',
+    '35 lts',
+    '40 lts',
+    '42 lts',
+    '45 lts',
+  ];
+  smartPhoneInchesList: string[] = [
+    'Todos',
+    '4.0"',
+    '4.7"',
+    '5.0"',
+    '5.5"',
+    '5.8"',
+    '6.1"',
+    '6.3"',
+    '6.5"',
+    '6.6"',
+    '6.7"',
+    '6.8"',
+    '7.0"',
+  ];
+  smartPhoneRamList: string[] = [
+    'Todos',
+    '4 GB',
+    '6 GB',
+    '8 GB',
+    '12 GB',
+    '16 GB',
+    '18 GB',
+  ];
+  notebookScreenSizesList: string[] = [
+    'Todos',
+    '13"',
+    '14"',
+    '15"',
+    '15.6"',
+    '16"',
+    '17"',
+  ];
+  notebookRamList: string[] = [
+    'Todos',
+    '4 GB',
+    '8 GB',
+    '12 GB',
+    '16 GB',
+    '32 GB',
+    '64 GB',
+  ];
+  notebookProcessorsList: string[] = [
+    'Todos',
+    'Intel Core i3',
+    'Intel Core i5',
+    'Intel Core i7',
+    'Intel Core i9',
+    'AMD Ryzen 3',
+    'AMD Ryzen 5',
+    'AMD Ryzen 7',
+    'AMD Ryzen 9',
+    'Apple M1',
+    'Apple M2',
+    'Intel Pentium Gold',
+  ];
+  notebookStorageSizesList: string[] = [
+    'Todos',
+    '128GB',
+    '256GB',
+    '512GB',
+    '1TB',
+    '2TB',
+    '4TB',
+    '8TB',
+    '16TB',
+    '32TB',
+    '64TB',
+  ];
+  tabletScreenSizesList: string[] = [
+    'Todos',
+    '7"',
+    '8"',
+    '9"',
+    '10"',
+    '10.1"',
+    '10.5"',
+    '11"',
+    '12.4"',
+    '12.9"',
+    '13"',
+    '14"',
+  ];
+  tabletRamList: string[] = [
+    'Todos',
+    '2 GB',
+    '3 GB',
+    '4 GB',
+    '6 GB',
+    '8 GB',
+    '12 GB',
+    '16 GB',
+  ];
+  printerTypeList: string[] = ['Todos', 'Color', 'Monocromática', '3D'];
+  keyboardConnectivityTypeList: string[] = [
+    'Todos',
+    'Cable',
+    'Wireless',
+    'Bluetooth',
+  ];
+  mouseConnectivityTypeList: string[] = [
+    'Todos',
+    'Cable',
+    'Wireless',
+    'Bluetooth',
+  ];
 
-
-
-  
   constructor(private asyncService: AsyncService) {
     this.productInt = {
       brand: Brand.NONE,
@@ -52,7 +187,7 @@ export class ProductService {
       stock: 0,
       characteristics: '',
       model: '',
-      id: "1",
+      id: '1',
     };
     this.productToVievDetails = {
       brand: Brand.NONE,
@@ -63,7 +198,7 @@ export class ProductService {
       stock: 0,
       characteristics: '',
       model: '',
-      id: "1",
+      id: '1',
     };
   }
 
@@ -138,81 +273,78 @@ export class ProductService {
     return producListInterface.filter((product) => product.brand === brand);
   }
 
-    //////////////////////    GET CHARACTERISTICS     ////////////////////////////////////////////////////
+  //////////////////////    GET CHARACTERISTICS     ////////////////////////////////////////////////////
 
   getCharacteristicsList(type: string): string[] {
     let out: string[] = [];
-    switch(type) {
-        case 'airTypes': 
-          out = this.airTypesList;
-          break;
-        case 'heatCold': 
-          out = this.heatColdList;
-          break;
-        case 'fanType': 
-          out = this.fanTypeList;
-          break;
-        case 'headphoneType': 
-          out = this.headphonesTypeList;
-          break;
-        case 'microwaveCapacity': 
-          out = this.microwaveCapacityList;
-          break;
-        case 'notebookScreenSize': 
-          out = this.notebookScreenSizesList;
-          break;
-        case 'notebookRam': 
-          out = this.notebookRamList;
-          break;
-        case 'notebookProcessor': 
-          out = this.notebookProcessorsList;
-          break;
-        case 'notebookStorageSize': 
-          out = this.notebookStorageSizesList;
-          break;
-        case 'printerType': 
-          out = this.printerTypeList;
-          break;
-        case 'refrigeratorCoolingSystem': 
-          out = this.refrigeratorCoolingSystemList;
-          break;
-        case 'smartphoneInches': 
-          out = this.smartPhoneInchesList;
-          break;
-        case 'smartphoneRam': 
-          out = this.smartPhoneRamList;
-          break;
-        case 'tabletScreenSize': 
-          out = this.tabletScreenSizesList;
-          break;
-        case 'tabletRam': 
-          out = this.tabletRamList;
-          break;
-        case 'tvTecnology':  
-          out = this.tvTechnologiesList;
-          break;
-        case 'tvInches':  
-          out = this.tvInchesList;
-          break;
-        case 'washingCapacity':
-          out = this.washingCapacityList;
-          break;
-        case 'keyboardConnectivityType':
-          out = this.keyboardConnectivityTypeList;
-          break;
-        case 'mouseConnectivityType':
-          out = this.mouseConnectivityTypeList;
-          break;
-
-
-    } 
+    switch (type) {
+      case 'airTypes':
+        out = this.airTypesList;
+        break;
+      case 'heatCold':
+        out = this.heatColdList;
+        break;
+      case 'fanType':
+        out = this.fanTypeList;
+        break;
+      case 'headphoneType':
+        out = this.headphonesTypeList;
+        break;
+      case 'microwaveCapacity':
+        out = this.microwaveCapacityList;
+        break;
+      case 'notebookScreenSize':
+        out = this.notebookScreenSizesList;
+        break;
+      case 'notebookRam':
+        out = this.notebookRamList;
+        break;
+      case 'notebookProcessor':
+        out = this.notebookProcessorsList;
+        break;
+      case 'notebookStorageSize':
+        out = this.notebookStorageSizesList;
+        break;
+      case 'printerType':
+        out = this.printerTypeList;
+        break;
+      case 'refrigeratorCoolingSystem':
+        out = this.refrigeratorCoolingSystemList;
+        break;
+      case 'smartphoneInches':
+        out = this.smartPhoneInchesList;
+        break;
+      case 'smartphoneRam':
+        out = this.smartPhoneRamList;
+        break;
+      case 'tabletScreenSize':
+        out = this.tabletScreenSizesList;
+        break;
+      case 'tabletRam':
+        out = this.tabletRamList;
+        break;
+      case 'tvTecnology':
+        out = this.tvTechnologiesList;
+        break;
+      case 'tvInches':
+        out = this.tvInchesList;
+        break;
+      case 'washingCapacity':
+        out = this.washingCapacityList;
+        break;
+      case 'keyboardConnectivityType':
+        out = this.keyboardConnectivityTypeList;
+        break;
+      case 'mouseConnectivityType':
+        out = this.mouseConnectivityTypeList;
+        break;
+    }
     return out;
-         
   }
 
   ////////////////////////////////////    DETALLES PRODUCTO    //////////////////////////////////////////
 
-/* public async setProductToViewDetailsById(id: number){
+  /* public async setProductToViewDetailsById(id: number){
   
   await this.asyncService.getByIdPromise(id, this.productsApiUrl)
   .then(response =>{
@@ -231,13 +363,10 @@ getProductToVievDetails(){
   return this.productToVievDetails;
 } */
 
-async getLatestProductId(): Promise<number>{
-  let allProducts: ProductInterface[] = [];
-  allProducts = await this.getAllProductsListInterface();
-  
-  return Math.max(...allProducts.map(product => Number(product.id)));
-}
+  async getLatestProductId(): Promise<number> {
+    let allProducts: ProductInterface[] = [];
+    allProducts = await this.getAllProductsListInterface();
 
-
-
+    return Math.max(...allProducts.map((product) => Number(product.id)));
+  }
 }
