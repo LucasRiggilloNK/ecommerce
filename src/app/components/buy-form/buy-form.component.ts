@@ -12,6 +12,8 @@ import { Card } from '../../interfaces/cards/card';
 import { FormBuilder, FormArray } from '@angular/forms';
 import { PurchaseService } from '../../services/purchase-service/purchase-service.service';
 import { Purchase } from '../../models/purchases/purchase';
+import { CustomValidators } from '../../common/custom-validators';
+import { validateHeaderName } from 'http';
 
 @Component({
   selector: 'app-purchase',
@@ -41,21 +43,20 @@ export class BuyFormComponent implements OnInit {
     this.user = null;
     this.subTotalPrice = 0;
     this.userDataForm = new FormGroup({
-      name: new FormControl('', Validators.required),
-      lastname: new FormControl('', Validators.required),
-      birthdate: new FormControl('', Validators.required),
-      address: new FormControl('', Validators.required),
-      postalCode: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
+      name: new FormControl('', [Validators.required, CustomValidators.lettersOnly()]),
+      lastname: new FormControl('', [Validators.required, CustomValidators.lettersOnly()]),
+      address: new FormControl('', [Validators.required]),
+      postalCode: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, CustomValidators.emailDomainValidator]),
       country: new FormControl('', Validators.required),
       province: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
       cardType: new FormControl('', Validators.required),
       cardHolder: new FormControl('', Validators.required),
-      cardNumber: new FormControl('', Validators.required),
+      cardNumber: new FormControl('', [Validators.required, Validators.maxLength(16)]),
       expirationDate: new FormControl('', Validators.required),
-      cvv: new FormControl('', Validators.required),
-      cardIssuer: new FormControl('', Validators.required),
+      cvv: new FormControl('', [Validators.required, Validators.maxLength(3), CustomValidators.numbersOnly()]),
+      cardIssuer: new FormControl('', Validators.required)
     });
 
     this.distanceMatrixObject = {

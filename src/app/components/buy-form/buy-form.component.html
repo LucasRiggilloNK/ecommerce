@@ -24,14 +24,46 @@
 <p>Datos cliente</p>
 
 <form [formGroup]="userDataForm">
+
   <p>Nombre:</p>
   <input type="text" formControlName="name" />
+
+  <div *ngIf="!userDataForm.valid &&(userDataForm.get('name')?.dirty || userDataForm.get('name')?.touched)">
+    <div *ngIf="userDataForm.get('name')?.errors?.['required']">
+      Campo requerido...
+    </div>
+    <div *ngIf="userDataForm.get('name')?.errors?.['lettersOnly']">
+      Debe ingresar sólo letras...
+    </div>
+  </div>
   <br />
+
   <p>Apellido:</p>
   <input type="text" formControlName="lastname" />
+  
+  <div *ngIf="!userDataForm.valid &&(userDataForm.get('lastname')?.dirty || userDataForm.get('lastname')?.touched)">
+    <div *ngIf="userDataForm.get('lastname')?.errors?.['required']">
+      Campo requerido...
+    </div>
+    <div *ngIf="userDataForm.get('lastname')?.errors?.['lettersOnly']">
+      Debe ingresar sólo letras...
+    </div>
+  </div>
   <br />
+
   <p>email:</p>
   <input type="text" formControlName="email" />
+  <div *ngIf="!userDataForm.valid &&(userDataForm.get('email')?.dirty || userDataForm.get('email')?.touched)">
+    <div *ngIf="userDataForm.get('email')?.errors?.['required']">
+      Campo requerido...
+    </div>
+    <div *ngIf="userDataForm.get('email')?.errors?.['email']">
+      email no válido...
+    </div>
+    <div *ngIf="userDataForm.get('email')?.errors?.['invalidDomain']">
+      Dominio no válido...
+    </div>
+  </div>
   <br />
   <p>Pais:</p>
   <select name="" id="" formControlName="country">
@@ -85,6 +117,7 @@
     placeholder="Vencimiento"
   /><br />
   <input type="text" formControlName="cvv" placeholder="CVV" /><br />
+  <div >CVV debe ser sólo números</div>
   <select name="" id="" formControlName="cardIssuer">
     <option value="Visa">Visa</option>
     <option value="Mastercard">Mastercard</option>
