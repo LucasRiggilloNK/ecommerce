@@ -27,13 +27,12 @@
 
   <p>Nombre:</p>
   <input type="text" formControlName="name" />
-
-  <div *ngIf="!userDataForm.valid &&(userDataForm.get('name')?.dirty || userDataForm.get('name')?.touched)">
-    <div *ngIf="userDataForm.get('name')?.errors?.['required']">
+  <div style="color: red" *ngIf="!userDataForm.valid &&(userDataForm.get('name')?.dirty || userDataForm.get('name')?.touched)">
+    <div  *ngIf="userDataForm.get('name')?.errors?.['required']" >
       Campo requerido...
     </div>
     <div *ngIf="userDataForm.get('name')?.errors?.['lettersOnly']">
-      Debe ingresar sólo letras...
+      Debe ingresar solo letras...
     </div>
   </div>
   <br />
@@ -41,24 +40,24 @@
   <p>Apellido:</p>
   <input type="text" formControlName="lastname" />
   
-  <div *ngIf="!userDataForm.valid &&(userDataForm.get('lastname')?.dirty || userDataForm.get('lastname')?.touched)">
+  <div style="color: red" *ngIf="!userDataForm.valid &&(userDataForm.get('lastname')?.dirty || userDataForm.get('lastname')?.touched)">
     <div *ngIf="userDataForm.get('lastname')?.errors?.['required']">
       Campo requerido...
     </div>
     <div *ngIf="userDataForm.get('lastname')?.errors?.['lettersOnly']">
-      Debe ingresar sólo letras...
+      Debe ingresar solo letras...
     </div>
   </div>
   <br />
 
-  <p>email:</p>
+  <p>Email:</p>
   <input type="text" formControlName="email" />
-  <div *ngIf="!userDataForm.valid &&(userDataForm.get('email')?.dirty || userDataForm.get('email')?.touched)">
+  <div style="color: red" *ngIf="!userDataForm.valid &&(userDataForm.get('email')?.dirty || userDataForm.get('email')?.touched)">
     <div *ngIf="userDataForm.get('email')?.errors?.['required']">
       Campo requerido...
     </div>
     <div *ngIf="userDataForm.get('email')?.errors?.['email']">
-      email no válido...
+      Email no válido...
     </div>
     <div *ngIf="userDataForm.get('email')?.errors?.['invalidDomain']">
       Dominio no válido...
@@ -83,14 +82,23 @@
     <option value="Necochea">Necochea</option>
   </select>
   <br />
-  <p>Dirección:</p>
-  <input type="text" formControlName="address" />
+  <p>Calle:</p>
+  <input type="text" formControlName="street"/>
+  <p>Número:</p>
+  <input type="text" formControlName="streetNumber"/>
+  <p>Piso:</p>
+  <input type="text" formControlName="floor"/>
+  <p>Departamento:</p>
+  <input type="text" formControlName="flat"/>
+
   <!-- Ver que la dirección debería ser calle, numero, piso y depto en el json usuarios -->
 
   <br />
   <!-- ENVIO -->
-  <button (click)="getShippingPrice()">Calcular envio</button>
-  <div>
+  <div *ngIf="userDataForm.get('street')?.valid && userDataForm.get('streetNumber')?.valid">
+    <button [disabled]="!userDataForm.get('street')?.valid && !userDataForm.get('streetNumber')?.valid" (click)="getShippingPrice()"> Calcular envio</button>
+  </div>
+ <div>
     <label style="color: white"> ${{ shippingPrice }}</label>
     <br />
     <label style="color: white" for="">Total ${{ getTotalBuy() }}</label>

@@ -54,7 +54,7 @@ export class AuthService {
   }
 
   logout(): void {
-    if (confirm('Estas seguro que queres cerrar secion?')) {
+    if (confirm('Estas seguro que queres cerrar sesión?')) {
       if (typeof window !== 'undefined') {
         localStorage.removeItem('auth_token');
       }

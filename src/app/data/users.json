@@ -25,7 +25,7 @@
       "name": "Nicolas",
       "lastname": "Blanco rio",
       "birthdate": "2024-11-03",
-      "address": "Beltrami Al 1560",
+      "address": "Beltrami 1560",
       "postalCode": "7600",
       "email": "nicolasuxmal@gmail.com",
       "password": "123"
@@ -39,6 +39,16 @@
       "postalCode": "7600",
       "email": "asd@gmail.com",
       "password": "1234"
+    },
+    {
+      "id": "c473",
+      "name": "Serena",
+      "lastname": "Jeckeln",
+      "birthdate": "2000-09-14",
+      "address": "Urquiza 4290",
+      "postalCode": "7600",
+      "email": "jeckelnserena0@gmail.com",
+      "password": "123"
     }
   ]
 }

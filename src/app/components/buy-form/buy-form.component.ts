@@ -46,7 +46,10 @@ export class BuyFormComponent implements OnInit {
       name: new FormControl('', [Validators.required, CustomValidators.lettersOnly()]),
       lastname: new FormControl('', [Validators.required, CustomValidators.lettersOnly()]),
       address: new FormControl('', [Validators.required]),
-      postalCode: new FormControl('', [Validators.required]),
+      street: new FormControl('', [Validators.required]),
+      streetNumber: new FormControl('', [Validators.required, CustomValidators.numbersOnly()]),
+      flat: new FormControl(''),
+      floor: new FormControl(''),
       email: new FormControl('', [Validators.required, CustomValidators.emailDomainValidator]),
       country: new FormControl('', Validators.required),
       province: new FormControl('', Validators.required),
@@ -133,7 +136,8 @@ export class BuyFormComponent implements OnInit {
     this.userDataForm.get('country')?.setValue('Argentina');
     this.userDataForm.get('province')?.setValue('Buenos Aires');
     this.userDataForm.get('city')?.setValue('Mar del Plata');
-    this.userDataForm.get('address')?.setValue(user.address);
+/*     this.userDataForm.get('address')?.setValue(user.address);
+ */ 
   }
 
   getSubtotal() {
@@ -142,7 +146,9 @@ export class BuyFormComponent implements OnInit {
 
   getShippingPrice() {
     let destiny =
-      this.userDataForm.get('address')?.value +
+      this.userDataForm.get('street')?.value +
+      ' ' +
+      this.userDataForm.get('streetNumber')?.value +
       ', ' +
       this.userDataForm.get('city')?.value +
       ', ' +
@@ -165,7 +171,8 @@ export class BuyFormComponent implements OnInit {
         this.userDataForm.get('sendPrice')?.setValue(this.shippingPrice);
       })
       .catch((error) => {
-        alert('Dirección inexistente...');
+        console.error(error);
+        //alert('Dirección inexistente...');
       });
   }
 
