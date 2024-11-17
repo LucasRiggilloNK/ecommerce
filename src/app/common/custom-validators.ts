@@ -32,5 +32,26 @@ export class CustomValidators {
         return null;
     }
     
+    static ageRangeLimitator(minAge: number, maxAge: number) {
+        return (control: AbstractControl): ValidationErrors | null => {
+          const birthdate = new Date(control.value);
+          const today = new Date();
+          
+          // Calcula la edad inclusive verificando el mes y el día
+          const age = today.getFullYear() - birthdate.getFullYear();
+          const monthDifference = today.getMonth() - birthdate.getMonth();
+          const dayDifference = today.getDate() - birthdate.getDate();
+    
+          // Ajustar edad si el mes o día no ha pasado
+          const adjustedAge = monthDifference < 0 || (monthDifference === 0 && dayDifference < 0) ? age - 1 : age;
+    
+          // Validar que se cumpla rango de edades pasado por parámetro
+          if (adjustedAge < minAge || adjustedAge > maxAge) {
+            return { ageRange: true }; // Error
+          }
+    
+          return null; // Válido
+        };
+      }
 
 }

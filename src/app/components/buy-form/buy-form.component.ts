@@ -136,8 +136,6 @@ export class BuyFormComponent implements OnInit {
     this.userDataForm.get('country')?.setValue('Argentina');
     this.userDataForm.get('province')?.setValue('Buenos Aires');
     this.userDataForm.get('city')?.setValue('Mar del Plata');
-/*     this.userDataForm.get('address')?.setValue(user.address);
- */ 
   }
 
   getSubtotal() {
@@ -157,7 +155,6 @@ export class BuyFormComponent implements OnInit {
       this.userDataForm.get('country')?.value;
     console.log('Destino: ' + destiny);
 
-    //this.distanceMatrixService.getApiDistanceMatrix(destiny)
     this.buyService
       .getShippingPrice(destiny)
       .then((response) => {

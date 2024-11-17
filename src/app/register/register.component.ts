@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterService, User } from '../services/register-service/register.service';
 import { EmailService } from '../services/email-service/email.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/login/auth.service';
+import { CustomValidators } from '../common/custom-validators';
 
 @Component({
   selector: 'app-register',
@@ -16,15 +18,16 @@ export class RegisterComponent {
     private fb: FormBuilder,
     private registerService: RegisterService,
     private emailService: EmailService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.registerForm = this.fb.group({
-      name: ['', Validators.required],
-      lastname: ['', Validators.required],
-      birthdate: ['', Validators.required],
+      name: ['', [Validators.required, CustomValidators.lettersOnly()]],
+      lastname: ['', [Validators.required, CustomValidators.lettersOnly()]],
+      birthdate: ['',[Validators.required, CustomValidators.ageRangeLimitator(18, 100)]],
       address: ['', Validators.required],
       postalCode: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email, CustomValidators.emailDomainValidator]],
       password: ['', Validators.required]
     });
   }
@@ -41,8 +44,18 @@ export class RegisterComponent {
           } else {
             this.registerService.registerUser(nuevoUsuario).subscribe(
               (response) => {
-                this.router.navigate(['/']);
-                this.sendConfirmationEmail(email);
+                /* this.router.navigate(['/']); */
+                //this.sendConfirmationEmail(email); 
+                this.authService.login(nuevoUsuario.name, nuevoUsuario.password).subscribe({
+                  next: (success) => {
+                    if (success) {
+                      this.router.navigate(['/']);
+                    }
+                  },
+                  error: (error) => {
+                    console.error(error);
+                  },
+                });
               },
               (error) => {
                 console.error('Error al registrar el usuario:', error);
@@ -57,7 +70,8 @@ export class RegisterComponent {
     }
   }
 
-  sendConfirmationEmail(email: string) {
+
+/*   sendConfirmationEmail(email: string) {
     const subject = 'Confirmación de registro';
     const message = 'Gracias por registrarte en nuestra aplicación.';
     this.emailService.sendConfirmationEmail(email, subject, message).subscribe(
@@ -68,5 +82,5 @@ export class RegisterComponent {
         console.error('Error al enviar el correo:', error);
       }
     );
-  }
+  } */
 }

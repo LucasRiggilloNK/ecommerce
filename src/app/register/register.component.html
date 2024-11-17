@@ -24,6 +24,7 @@
     <label for="birthdate">Fecha de Nacimiento:</label>
     <input id="birthdate" formControlName="birthdate" type="date" />
 
+
     <div class="flex">
       <div class="inner-flex">
         <label for="address">Dirección:</label>
@@ -65,5 +66,33 @@
         Registrarme
       </button>
     </div>
+
+    <div style="color: red" *ngIf="!registerForm.valid &&(registerForm.get('name')?.dirty || registerForm.get('name')?.touched)">
+      <div  *ngIf="registerForm.get('name')?.errors?.['required']" >
+        Nombre requerido...
+      </div>
+      <div *ngIf="!registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.errors?.['lettersOnly']">
+        Debe ingresar solo letras...
+      </div>
+    </div>
+
+    <div style="color: red" *ngIf="!registerForm.valid &&(registerForm.get('lastname')?.dirty || registerForm.get('lastname')?.touched)">
+      <div  *ngIf="registerForm.get('lastname')?.errors?.['required']" >
+        Nombre requerido...
+      </div>
+      <div *ngIf="!registerForm.get('lastname')?.errors?.['required'] && registerForm.get('lastname')?.errors?.['lettersOnly']">
+        Debe ingresar solo letras...
+      </div>
+    </div>
+
+    <div style="color: red" *ngIf="!registerForm.valid &&(registerForm.get('birthdate')?.dirty || registerForm.get('birthdate')?.touched)">
+      <div  *ngIf="registerForm.get('birthdate')?.errors?.['required']" >
+        Fecha de nacimiento requerida...
+      </div>
+      <div *ngIf="!registerForm.get('birthdate')?.errors?.['required'] && !registerForm.get('birthdate')?.errors?.['ageRangeLimitator']">
+        Debe ser mayor a 18 años...
+      </div>
+    </div>
+
   </form>
 </div>

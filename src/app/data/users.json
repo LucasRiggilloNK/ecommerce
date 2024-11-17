@@ -49,6 +49,26 @@
       "postalCode": "7600",
       "email": "jeckelnserena0@gmail.com",
       "password": "123"
+    },
+    {
+      "id": "1c63",
+      "name": "Marquitos",
+      "lastname": "Carrizo",
+      "birthdate": "1985-10-10",
+      "address": "vvvvv",
+      "postalCode": "7600",
+      "email": "marquitos1985@hotmail.com",
+      "password": "1234"
+    },
+    {
+      "id": "9744",
+      "name": "laura",
+      "lastname": "sanchez",
+      "birthdate": "1999-05-14",
+      "address": "Viamonte 123",
+      "postalCode": "7600",
+      "email": "laurasanchez@outlook.com",
+      "password": "1234"
     }
   ]
 }
