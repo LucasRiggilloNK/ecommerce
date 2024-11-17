@@ -12,7 +12,7 @@ import { ActivatedRoute, Route } from '@angular/router';
   providedIn: 'root',
 })
 export class ProductService {
-  private productsApiUrl = 'http://localhost:3001/products';
+  private productsApiUrl = 'http://localhost:3003/products';
   private productsListInt: ProductInterface[] = [];
   private productInt: ProductInterface | null = null;
   private productToVievDetails: ProductInterface;

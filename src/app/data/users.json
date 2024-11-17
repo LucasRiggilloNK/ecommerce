@@ -1,74 +1,54 @@
 {
   "users": [
     {
-      "id": "0440",
+      "id": "11f4",
       "name": "lucas",
       "lastname": "riggillo",
       "birthdate": "2003-04-14",
       "address": "aguado 1601",
       "postalCode": "7600",
       "email": "lucasriggillo@gmail.com",
-      "password": "1234"
+      "password": "hola"
     },
     {
-      "id": "4355",
-      "name": "nicolas",
-      "lastname": "blanco rio ",
-      "birthdate": "2024-11-07",
-      "address": "erverberb",
+      "id": "547e",
+      "name": "a",
+      "lastname": "b",
+      "birthdate": "2000-03-12",
+      "address": "afef 23",
       "postalCode": "7600",
-      "email": "prismic.veritran@gmail.com",
-      "password": "wefeg3r"
+      "email": "test@test.com",
+      "password": "abc"
     },
     {
-      "id": "e862",
+      "id": "bacd",
+      "name": "test",
+      "lastname": "test",
+      "birthdate": "2003-10-12",
+      "address": "rfrev 200",
+      "postalCode": "2342",
+      "email": "test@co.com",
+      "password": "test"
+    },
+    {
+      "id": "9480",
       "name": "Nicolas",
       "lastname": "Blanco rio",
-      "birthdate": "2024-11-03",
-      "address": "Beltrami 1560",
-      "postalCode": "7600",
-      "email": "nicolasuxmal@gmail.com",
-      "password": "123"
+      "birthdate": "2000-11-06",
+      "address": "asfsf 122",
+      "postalCode": "123123",
+      "email": "test@gmail.com",
+      "password": "acb"
     },
     {
-      "id": "921a",
-      "name": "agustin ",
-      "lastname": "lapenna",
-      "birthdate": "2024-11-14",
-      "address": "asd 1000",
-      "postalCode": "7600",
-      "email": "asd@gmail.com",
-      "password": "1234"
-    },
-    {
-      "id": "c473",
-      "name": "Serena",
-      "lastname": "Jeckeln",
-      "birthdate": "2000-09-14",
-      "address": "Urquiza 4290",
-      "postalCode": "7600",
-      "email": "jeckelnserena0@gmail.com",
-      "password": "123"
-    },
-    {
-      "id": "1c63",
-      "name": "Marquitos",
+      "id": "b435",
+      "name": "Marcos ",
       "lastname": "Carrizo",
       "birthdate": "1985-10-10",
-      "address": "vvvvv",
+      "address": "safw 200",
       "postalCode": "7600",
-      "email": "marquitos1985@hotmail.com",
-      "password": "1234"
-    },
-    {
-      "id": "9744",
-      "name": "laura",
-      "lastname": "sanchez",
-      "birthdate": "1999-05-14",
-      "address": "Viamonte 123",
-      "postalCode": "7600",
-      "email": "laurasanchez@outlook.com",
-      "password": "1234"
+      "email": "marquitos@gmail.com",
+      "password": "marquitos"
     }
   ]
 }

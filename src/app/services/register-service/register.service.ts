@@ -19,7 +19,7 @@ export interface User {
   providedIn: 'root',
 })
 export class RegisterService {
-  private apiUrl = 'http://localhost:3000/users';
+  private apiUrl = 'http://localhost:3001/users';
 
   constructor(private http: HttpClient) {}
 
