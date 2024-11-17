@@ -27,21 +27,72 @@
 
     <div class="flex">
       <div class="inner-flex">
-        <label for="address">Dirección:</label>
+        <label for="country">País</label>
         <input
-          id="address"
-          formControlName="address"
+          id="country"
+          formControlName="country"
           type="text"
-          placeholder="Dirección"
+          placeholder="País"
         />
       </div>
       <div class="inner-flex">
-        <label for="postalCode">Código Postal:</label>
+        <label for="province">Provincia:</label>
         <input
-          id="postalCode"
-          formControlName="postalCode"
+          id="province"
+          formControlName="province"
           type="text"
-          placeholder="Código Postal"
+          placeholder="Provincia"
+        />
+      </div>
+      
+    </div>
+
+    <label for="city">Ciudad:</label>
+    <input
+      id="city"
+      formControlName="city"
+      type="city"
+      placeholder="Ciudad"
+    />
+
+    <div class="flex">
+      <div class="inner-flex">
+        <label for="street">Calle:</label>
+        <input
+          id="street"
+          formControlName="street"
+          type="text"
+          placeholder="Calle"
+        />
+      </div>
+      <div class="inner-flex">
+        <label for="streetNumber">Número:</label>
+        <input
+          id="streetNumber"
+          formControlName="streetNumber"
+          type="text"
+          placeholder="Calle"
+        />
+      </div>
+    </div>
+
+    <div class="flex">
+      <div class="inner-flex">
+        <label for="floor">Piso:</label>
+        <input
+          id="floor"
+          formControlName="floor"
+          type="text"
+          placeholder="Piso"
+        />
+      </div>
+      <div class="inner-flex">
+        <label for="flat">Departamento:</label>
+        <input
+          id="flat"
+          formControlName="flat"
+          type="text"
+          placeholder="Departamento"
         />
       </div>
     </div>
