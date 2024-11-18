@@ -334,13 +334,25 @@
               </p>
               <p>Precio: ${{ product.price }}</p>
 
-              <button
-                class="add-cart"
-                type="button"
-                (click)="addToCart(product); $event.stopPropagation()"
-              >
-                Añadir al carrito
-              </button>
+              <div class="controls">
+                <button
+                  class="add-cart"
+                  type="button"
+                  (click)="
+                    decreaseQuantity(product.id); $event.stopPropagation()
+                  "
+                >
+                  -
+                </button>
+
+                <button
+                  class="add-cart"
+                  type="button"
+                  (click)="addToCart(product); $event.stopPropagation()"
+                >
+                  +
+                </button>
+              </div>
               <button
                 class="add-cart"
                 type="button"

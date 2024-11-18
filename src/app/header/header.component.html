@@ -31,7 +31,10 @@
           routerLinkActive="active"
           routerLink="/cart"
         >
-          <img src="/cart.svg" alt="cart" width="25px" height="25px" />
+          <div class="cart-link">
+            <div class="qty" *ngIf="totalQty > 0">{{ totalQty }}</div>
+            <img src="/cart.svg" alt="cart" width="25px" height="25px" />
+          </div>
         </div>
       </div>
       <div class="end-icons">

@@ -16,12 +16,22 @@
           <strong class="marca">{{ product.brand }} {{ product.model }}</strong>
         </p>
         <p>Precio: ${{ product.price | number : "1.0" }}</p>
-        <p class="price">Cantidad: {{ product.stock }}</p>
         <!-- Muestra el stock disponible -->
         <div class="flex-buttons">
-          <button (click)="removeProduct(product.id)">Eliminar</button>
+          <div class="controls">
+            <button
+              class="button-controls"
+              (click)="decreaseQuantity(product.id)"
+            >
+              -
+            </button>
+            <button class="button-controls" (click)="addToCart(product)">
+              +
+            </button>
+            <div class="qty">{{ product.quantity }}</div>
+          </div>
           <button
-            class="add-cart"
+            class="button"
             type="button"
             [routerLink]="['/productDetails', product.id]"
           >
@@ -41,7 +51,11 @@
       >
         Vaciar carrito
       </button>
-      <button *ngIf="carrito.length > 0" [routerLink]="['/buyForm']">
+      <button
+        class="button"
+        *ngIf="carrito.length > 0"
+        [routerLink]="['/buyForm']"
+      >
         Comprar carrito
       </button>
     </div>

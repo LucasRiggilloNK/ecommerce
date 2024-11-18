@@ -8,4 +8,5 @@ export interface ProductInterface {
   stock: number;
   characteristics: string;
   model: string;
+  quantity: number;
 }

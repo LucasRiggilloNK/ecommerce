@@ -43,23 +43,42 @@ export class BuyFormComponent implements OnInit {
     this.user = null;
     this.subTotalPrice = 0;
     this.userDataForm = new FormGroup({
-      name: new FormControl('', [Validators.required, CustomValidators.lettersOnly()]),
-      lastname: new FormControl('', [Validators.required, CustomValidators.lettersOnly()]),
+      name: new FormControl('', [
+        Validators.required,
+        CustomValidators.lettersOnly(),
+      ]),
+      lastname: new FormControl('', [
+        Validators.required,
+        CustomValidators.lettersOnly(),
+      ]),
       address: new FormControl('', [Validators.required]),
       street: new FormControl('', [Validators.required]),
-      streetNumber: new FormControl('', [Validators.required, CustomValidators.numbersOnly()]),
+      streetNumber: new FormControl('', [
+        Validators.required,
+        CustomValidators.numbersOnly(),
+      ]),
       flat: new FormControl(''),
       floor: new FormControl(''),
-      email: new FormControl('', [Validators.required, CustomValidators.emailDomainValidator]),
+      email: new FormControl('', [
+        Validators.required,
+        CustomValidators.emailDomainValidator,
+      ]),
       country: new FormControl('', Validators.required),
       province: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
       cardType: new FormControl('', Validators.required),
       cardHolder: new FormControl('', Validators.required),
-      cardNumber: new FormControl('', [Validators.required, Validators.maxLength(16)]),
+      cardNumber: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(16),
+      ]),
       expirationDate: new FormControl('', Validators.required),
-      cvv: new FormControl('', [Validators.required, Validators.maxLength(3), CustomValidators.numbersOnly()]),
-      cardIssuer: new FormControl('', Validators.required)
+      cvv: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(3),
+        CustomValidators.numbersOnly(),
+      ]),
+      cardIssuer: new FormControl('', Validators.required),
     });
 
     this.distanceMatrixObject = {
@@ -109,7 +128,9 @@ export class BuyFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cartItems = this.buyService.getCartItemsToBuy();
+    this.buyService.getCartItemsToBuy().subscribe((items) => {
+      this.cartItems = items;
+    });
     this.subTotalPrice = this.buyService.getSubtotal();
 
     let userId: string | null = this.authService.getUserId();

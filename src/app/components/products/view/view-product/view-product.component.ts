@@ -616,6 +616,10 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.carritoService.addToCart(product);
   }
 
+  decreaseQuantity(productId: string) {
+    this.carritoService.decreaseQuantity(productId);
+  }
+
   filterProducts() {
     const term = this.searchTerm.toLowerCase();
     this.filteredProducts = this.productListSubFiltered.filter(
@@ -640,8 +644,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   //////////////////////////////////////////   nav   /////////////////////////////////////////////////////
   getListFiltersByButtonNav(category: string) {
-    console.log('ATRODEN BUTTON');
-
     let filteredProductsListInterface = [];
 
     this.productListFilteredByCategory = this.getFilterByCategory(

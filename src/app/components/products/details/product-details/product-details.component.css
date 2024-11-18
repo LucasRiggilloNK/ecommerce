@@ -79,3 +79,19 @@ div > div:nth-child(2) p:nth-child(5) {
   gap: 5px;
   color: #bbb;
 }
+
+button {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  max-width: 50px;
+  display: flex;
+  align-items: flex-start;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}

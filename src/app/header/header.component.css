@@ -8,12 +8,26 @@
   padding: 15px 30px;
 }
 
+.qty {
+  color: white;
+  background-color: red;
+  border-radius: 30%;
+  padding: 3px;
+  position: absolute;
+}
+
 .nav-links {
   display: flex;
   gap: 20px;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  gap: 3px;
 }
 
 .left-links {

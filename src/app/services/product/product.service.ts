@@ -188,6 +188,7 @@ export class ProductService {
       characteristics: '',
       model: '',
       id: '1',
+      quantity: 0,
     };
     this.productToVievDetails = {
       brand: Brand.NONE,
@@ -199,6 +200,7 @@ export class ProductService {
       characteristics: '',
       model: '',
       id: '1',
+      quantity: 0,
     };
   }
 

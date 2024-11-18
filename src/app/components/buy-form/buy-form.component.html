@@ -14,7 +14,7 @@
         </p>
         <p>Precio: ${{ product.price | number : "1.0" }}</p>
 
-        <p>Cantidad: {{ product.stock }}</p>
+        <p>Cantidad: {{ product.quantity }}</p>
       </div>
     </div>
   </div>
@@ -24,11 +24,16 @@
 <p>Datos cliente</p>
 
 <form [formGroup]="userDataForm">
-
   <p>Nombre:</p>
   <input type="text" formControlName="name" />
-  <div style="color: red" *ngIf="!userDataForm.valid &&(userDataForm.get('name')?.dirty || userDataForm.get('name')?.touched)">
-    <div  *ngIf="userDataForm.get('name')?.errors?.['required']" >
+  <div
+    style="color: red"
+    *ngIf="
+      !userDataForm.valid &&
+      (userDataForm.get('name')?.dirty || userDataForm.get('name')?.touched)
+    "
+  >
+    <div *ngIf="userDataForm.get('name')?.errors?.['required']">
       Campo requerido...
     </div>
     <div *ngIf="userDataForm.get('name')?.errors?.['lettersOnly']">
@@ -39,8 +44,15 @@
 
   <p>Apellido:</p>
   <input type="text" formControlName="lastname" />
-  
-  <div style="color: red" *ngIf="!userDataForm.valid &&(userDataForm.get('lastname')?.dirty || userDataForm.get('lastname')?.touched)">
+
+  <div
+    style="color: red"
+    *ngIf="
+      !userDataForm.valid &&
+      (userDataForm.get('lastname')?.dirty ||
+        userDataForm.get('lastname')?.touched)
+    "
+  >
     <div *ngIf="userDataForm.get('lastname')?.errors?.['required']">
       Campo requerido...
     </div>
@@ -52,7 +64,13 @@
 
   <p>Email:</p>
   <input type="text" formControlName="email" />
-  <div style="color: red" *ngIf="!userDataForm.valid &&(userDataForm.get('email')?.dirty || userDataForm.get('email')?.touched)">
+  <div
+    style="color: red"
+    *ngIf="
+      !userDataForm.valid &&
+      (userDataForm.get('email')?.dirty || userDataForm.get('email')?.touched)
+    "
+  >
     <div *ngIf="userDataForm.get('email')?.errors?.['required']">
       Campo requerido...
     </div>
@@ -83,22 +101,35 @@
   </select>
   <br />
   <p>Calle:</p>
-  <input type="text" formControlName="street"/>
+  <input type="text" formControlName="street" />
   <p>Número:</p>
-  <input type="text" formControlName="streetNumber"/>
+  <input type="text" formControlName="streetNumber" />
   <p>Piso:</p>
-  <input type="text" formControlName="floor"/>
+  <input type="text" formControlName="floor" />
   <p>Departamento:</p>
-  <input type="text" formControlName="flat"/>
+  <input type="text" formControlName="flat" />
 
   <!-- Ver que la dirección debería ser calle, numero, piso y depto en el json usuarios -->
 
   <br />
   <!-- ENVIO -->
-  <div *ngIf="userDataForm.get('street')?.valid && userDataForm.get('streetNumber')?.valid">
-    <button [disabled]="!userDataForm.get('street')?.valid && !userDataForm.get('streetNumber')?.valid" (click)="getShippingPrice()"> Calcular envio</button>
+  <div
+    *ngIf="
+      userDataForm.get('street')?.valid &&
+      userDataForm.get('streetNumber')?.valid
+    "
+  >
+    <button
+      [disabled]="
+        !userDataForm.get('street')?.valid &&
+        !userDataForm.get('streetNumber')?.valid
+      "
+      (click)="getShippingPrice()"
+    >
+      Calcular envio
+    </button>
   </div>
- <div>
+  <div>
     <label style="color: white"> ${{ shippingPrice }}</label>
     <br />
     <label style="color: white" for="">Total ${{ getTotalBuy() }}</label>
@@ -125,13 +156,13 @@
     placeholder="Vencimiento"
   /><br />
   <input type="text" formControlName="cvv" placeholder="CVV" /><br />
-  <div >CVV debe ser sólo números</div>
+  <div>CVV debe ser sólo números</div>
   <select name="" id="" formControlName="cardIssuer">
     <option value="Visa">Visa</option>
     <option value="Mastercard">Mastercard</option>
     <option value="American Express">American Express</option>
-    <option value="Discover">Discover</option>
-    </select><br />
+    <option value="Discover">Discover</option></select
+  ><br />
   <button type="button" (click)="cardExists()">Verificar tarjeta</button><br />
 
   <button type="submit">Confirmar compra</button>
