@@ -26,7 +26,7 @@ export class CustomValidators {
         const email = control.value;
         const emailRegex = /^[^@]+@[^@]+.[a-zA-Z]{2,}$/;
         if (email && !emailRegex.test(email)) {
-          return { invalidDomain: true };
+          return { emailDomainValidator: true };
         }
       
         return null;

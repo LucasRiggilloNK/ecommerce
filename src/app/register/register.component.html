@@ -22,7 +22,7 @@
     </div>
 
     <label for="birthdate">Fecha de Nacimiento:</label>
-    <input id="birthdate" formControlName="birthdate" type="date" [min]="1924-01-01"/>
+    <input id="birthdate" formControlName="birthdate" type="date"/>
 
 
     <div class="flex">
@@ -59,7 +59,7 @@
           id="streetNumber"
           formControlName="streetNumber"
           type="text"
-          placeholder="Calle"
+          placeholder="Número"
         />
       </div>
     </div>
@@ -138,8 +138,38 @@
         Fecha de nacimiento requerida...
       </div>
       <div *ngIf="registerForm.get('birthdate')?.errors?.['ageRangeLimitator']">
-        Debe ser mayor a 18 años...
+        Edad debe ser entre 18 y 100 años...
       </div>
+    </div>
+
+    <div style="color: red" *ngIf="!registerForm.valid &&(registerForm.get('street')?.dirty || registerForm.get('street')?.touched)">
+      <div *ngIf="registerForm.get('street')?.errors?.['required']">
+        Nombre de calle requerido...
+      </div>
+      
+    </div>
+    <div style="color: red" *ngIf="!registerForm.valid &&(registerForm.get('streetNumber')?.dirty || registerForm.get('streetNumber')?.touched)">
+      <div *ngIf="registerForm.get('streetNumber')?.errors?.['required']">
+        Número de dirección requerido...
+      </div>
+      <div *ngIf="registerForm.get('streetNumber')?.errors?.['numbersOnly']">
+        Número de dirección debe ser sólo numeros...
+      </div>
+    </div>
+
+    <div style="color: red" *ngIf="!registerForm.valid &&(registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+      <div *ngIf="registerForm.get('email')?.errors?.['required']">
+        Email es requerido...
+      </div>
+      <div *ngIf="registerForm.get('email')?.errors?.['emailDomainValidator']">
+        Email inválido...
+      </div>
+    </div>
+    <div style="color: red" *ngIf="!registerForm.valid &&(registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
+      <div *ngIf="registerForm.get('password')?.errors?.['required']">
+        Contraseña es requerido...
+      </div>
+      
     </div>
     
 

@@ -8,6 +8,7 @@ import { CustomValidators } from '../common/custom-validators';
 import { BsasCity } from '../models/bsas-city';
 import { Province } from '../models/province';
 import { Usuario } from '../models/users/user';
+import { strict } from 'assert';
 
 @Component({
   selector: 'app-register',
@@ -18,6 +19,7 @@ export class RegisterComponent {
   registerForm: FormGroup;
   provincesList: string[] = Object.values(Province);
   bsasCityList: string[] = Object.values(BsasCity);
+  
 
   constructor(
     private fb: FormBuilder,
@@ -33,12 +35,14 @@ export class RegisterComponent {
       province: [Province.BuenosAires, Validators.required],
       city: [BsasCity.MarDelPlata, Validators.required],
       street: ['', Validators.required],
-      streetNumber: ['', Validators.required],
+      streetNumber: ['', [Validators.required, CustomValidators.numbersOnly()]],
       floor: [''],
       flat: [''],
       email: ['', [Validators.required, Validators.email, CustomValidators.emailDomainValidator]],
       password: ['', Validators.required]
     });
+
+    
   }
 
   onSubmit() {
@@ -77,5 +81,7 @@ export class RegisterComponent {
     }
   }
 
+
+  
 
 }
