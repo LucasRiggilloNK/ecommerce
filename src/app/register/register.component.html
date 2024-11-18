@@ -24,17 +24,78 @@
     <label for="birthdate">Fecha de Nacimiento:</label>
     <input id="birthdate" formControlName="birthdate" type="date" />
 
+    <div class="flex">
+      <div class="inner-flex">
+        <label for="country">País:</label>
+        <input
+          id="country"
+          formControlName="country"
+          type="text"
+          placeholder="País"
+        />
+      </div>
+      <div class="inner-flex">
+        <label for="province">Provincia:</label>
+        <input
+          id="province"
+          formControlName="province"
+          type="text"
+          placeholder="Provincia"
+        />
+      </div>
+    </div>
 
     <div class="flex">
       <div class="inner-flex">
-        <label for="address">Dirección:</label>
+        <label for="city">Ciudad:</label>
         <input
-          id="address"
-          formControlName="address"
+          id="city"
+          formControlName="city"
           type="text"
-          placeholder="Dirección"
+          placeholder="Ciudad"
         />
       </div>
+      <div class="inner-flex">
+        <label for="street">Calle:</label>
+        <input
+          id="street"
+          formControlName="street"
+          type="text"
+          placeholder="Calle"
+        />
+      </div>
+    </div>
+
+    <div class="flex">
+      <div class="inner-flex">
+        <label for="streetNumber">Número de Calle:</label>
+        <input
+          id="streetNumber"
+          formControlName="streetNumber"
+          type="text"
+          placeholder="Número de Calle"
+        />
+      </div>
+      <div class="inner-flex">
+        <label for="floor">Piso (opcional):</label>
+        <input
+          id="floor"
+          formControlName="floor"
+          type="text"
+          placeholder="Piso"
+        />
+      </div>
+    </div>
+
+    <label for="departmentNumber">Número de Departamento (opcional):</label>
+    <input
+      id="departmentNumber"
+      formControlName="departmentNumber"
+      type="text"
+      placeholder="Número de Departamento"
+    />
+
+    <div class="flex">
       <div class="inner-flex">
         <label for="postalCode">Código Postal:</label>
         <input
@@ -61,38 +122,9 @@
       type="password"
       placeholder="Contraseña"
     />
+
     <div class="background-button">
       <button type="submit" [disabled]="registerForm.invalid">
         Registrarme
       </button>
     </div>
-
-    <div style="color: red" *ngIf="!registerForm.valid &&(registerForm.get('name')?.dirty || registerForm.get('name')?.touched)">
-      <div  *ngIf="registerForm.get('name')?.errors?.['required']" >
-        Nombre requerido...
-      </div>
-      <div *ngIf="!registerForm.get('name')?.errors?.['required'] && registerForm.get('name')?.errors?.['lettersOnly']">
-        Debe ingresar solo letras...
-      </div>
-    </div>
-
-    <div style="color: red" *ngIf="!registerForm.valid &&(registerForm.get('lastname')?.dirty || registerForm.get('lastname')?.touched)">
-      <div  *ngIf="registerForm.get('lastname')?.errors?.['required']" >
-        Nombre requerido...
-      </div>
-      <div *ngIf="!registerForm.get('lastname')?.errors?.['required'] && registerForm.get('lastname')?.errors?.['lettersOnly']">
-        Debe ingresar solo letras...
-      </div>
-    </div>
-
-    <div style="color: red" *ngIf="!registerForm.valid &&(registerForm.get('birthdate')?.dirty || registerForm.get('birthdate')?.touched)">
-      <div  *ngIf="registerForm.get('birthdate')?.errors?.['required']" >
-        Fecha de nacimiento requerida...
-      </div>
-      <div *ngIf="!registerForm.get('birthdate')?.errors?.['required'] && !registerForm.get('birthdate')?.errors?.['ageRangeLimitator']">
-        Debe ser mayor a 18 años...
-      </div>
-    </div>
-
-  </form>
-</div>
