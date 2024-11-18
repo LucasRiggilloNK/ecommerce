@@ -12,6 +12,10 @@
   max-height: max-content;
 }
 
+.buy {
+  display: flex;
+}
+
 .product-item {
   display: flex;
   align-items: center;
@@ -171,6 +175,10 @@ label {
   background: #222;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   min-width: 500px;
+  margin-bottom: 10px;
+  button {
+    min-width: 150px;
+  }
 }
 
 .card {
@@ -179,6 +187,20 @@ label {
   background: #222;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   min-width: 500px;
+  color: white;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.total-price {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: flex-end;
+  width: 100%;
 }
 
 .inner-flex {

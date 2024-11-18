@@ -30,7 +30,6 @@ import { LoginComponent } from './login/login.component';
 import { PrivateComponent } from './private/private.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/login/auth.interceptor';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
 import { BuyFormComponent } from './components/buy-form/buy-form.component';
@@ -64,13 +63,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     BuyFormComponent,
   ],
 
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    CollapseModule.forRoot(),
-  ],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, FormsModule],
 
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

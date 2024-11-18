@@ -1,50 +1,47 @@
-<div class="login-container">
+<form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
   <div class="face">
     <img src="/login.png" alt="face" width="150px" height="150px" />
   </div>
-  <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
-    <div class="form-group">
-      <label>Nombre:</label>
-      <input
-        type="text"
-        id="name"
-        formControlName="name"
-        required
-        class="form-input"
-        placeholder="Nombre"
-      />
-      <div
-        *ngIf="loginForm.get('name')?.invalid && loginForm.get('name')?.touched"
-        class="error-message"
-      >
-        * Ingresar el nombre
-      </div>
+  <div class="form-group">
+    <label>Nombre:</label>
+    <input
+      type="text"
+      id="name"
+      formControlName="name"
+      required
+      class="form-input"
+      placeholder="Nombre"
+    />
+    <div
+      *ngIf="loginForm.get('name')?.invalid && loginForm.get('name')?.touched"
+      class="error-message"
+    >
+      * Ingresar el nombre
     </div>
-    <div class="form-group">
-      <label>Contraseña:</label>
-      <input
-        type="password"
-        id="password"
-        formControlName="password"
-        required
-        class="form-input"
-        placeholder="Contraseña"
-      />
-      <div
-        *ngIf="
-          loginForm.get('password')?.invalid &&
-          loginForm.get('password')?.touched
-        "
-        class="error-message"
-      >
-        * Ingresar la contraseña
-      </div>
+  </div>
+  <div class="form-group">
+    <label>Contraseña:</label>
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+      required
+      class="form-input"
+      placeholder="Contraseña"
+    />
+    <div
+      *ngIf="
+        loginForm.get('password')?.invalid && loginForm.get('password')?.touched
+      "
+      class="error-message"
+    >
+      * Ingresar la contraseña
     </div>
-    <div *ngIf="errorMessage" class="error-message">
-      {{ errorMessage }}
-    </div>
-    <button type="submit" [disabled]="loginForm.invalid" class="submit-button">
-      Login
-    </button>
-  </form>
-</div>
+  </div>
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+  <button type="submit" [disabled]="loginForm.invalid" class="submit-button">
+    Login
+  </button>
+</form>

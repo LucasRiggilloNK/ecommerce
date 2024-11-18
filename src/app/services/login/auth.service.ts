@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { catchError, map } from 'rxjs/operators';
 export class AuthService {
   private apiUrl = 'http://localhost:3001';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(name: string, password: string): Observable<boolean> {
     return this.http

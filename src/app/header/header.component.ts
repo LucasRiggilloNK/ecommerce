@@ -47,7 +47,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Desuscribirse para evitar fugas de memoria
     if (this.qtySubscription) {
       this.qtySubscription.unsubscribe();
     }

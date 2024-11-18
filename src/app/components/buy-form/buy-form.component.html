@@ -1,4 +1,4 @@
-<div>
+<div class="buy">
   <div class="items" *ngIf="cartItems.length > 0">
     <!-- Recorre el carrito y muestra los productos -->
     <div *ngFor="let product of cartItems">
@@ -25,174 +25,174 @@
   </div>
 
   <form class="form-buy" [formGroup]="userDataForm">
-    <div class="flex">
-      <div class="user">
-        <div>
-          <div class="flex">
-            <div class="inner-flex">
-              <label>Nombre:</label>
-              <input type="text" formControlName="name" />
-              <div
-                style="color: red"
-                *ngIf="
-                  !userDataForm.valid &&
-                  (userDataForm.get('name')?.dirty ||
-                    userDataForm.get('name')?.touched)
-                "
-              >
-                <div *ngIf="userDataForm.get('name')?.errors?.['required']">
-                  Campo requerido...
-                </div>
-                <div *ngIf="userDataForm.get('name')?.errors?.['lettersOnly']">
-                  Debe ingresar solo letras...
-                </div>
+    <div class="user">
+      <div>
+        <div class="flex">
+          <div class="inner-flex">
+            <label>Nombre:</label>
+            <input type="text" formControlName="name" />
+            <div
+              style="color: red"
+              *ngIf="
+                !userDataForm.valid &&
+                (userDataForm.get('name')?.dirty ||
+                  userDataForm.get('name')?.touched)
+              "
+            >
+              <div *ngIf="userDataForm.get('name')?.errors?.['required']">
+                Campo requerido...
+              </div>
+              <div *ngIf="userDataForm.get('name')?.errors?.['lettersOnly']">
+                Debe ingresar solo letras...
               </div>
             </div>
-            <div class="inner-flex">
-              <label>Apellido:</label>
-              <input type="text" formControlName="lastname" />
+          </div>
+          <div class="inner-flex">
+            <label>Apellido:</label>
+            <input type="text" formControlName="lastname" />
 
-              <div
-                style="color: red"
-                *ngIf="
-                  !userDataForm.valid &&
-                  (userDataForm.get('lastname')?.dirty ||
-                    userDataForm.get('lastname')?.touched)
-                "
-              >
-                <div *ngIf="userDataForm.get('lastname')?.errors?.['required']">
-                  Campo requerido...
-                </div>
-                <div
-                  *ngIf="userDataForm.get('lastname')?.errors?.['lettersOnly']"
-                >
-                  Debe ingresar solo letras...
-                </div>
+            <div
+              style="color: red"
+              *ngIf="
+                !userDataForm.valid &&
+                (userDataForm.get('lastname')?.dirty ||
+                  userDataForm.get('lastname')?.touched)
+              "
+            >
+              <div *ngIf="userDataForm.get('lastname')?.errors?.['required']">
+                Campo requerido...
               </div>
-            </div>
-          </div>
-          <label>Email:</label>
-          <input type="text" formControlName="email" />
-          <div
-            style="color: red"
-            *ngIf="
-              !userDataForm.valid &&
-              (userDataForm.get('email')?.dirty ||
-                userDataForm.get('email')?.touched)
-            "
-          >
-            <div *ngIf="userDataForm.get('email')?.errors?.['required']">
-              Campo requerido...
-            </div>
-            <div *ngIf="userDataForm.get('email')?.errors?.['email']">
-              Email no válido...
-            </div>
-            <div *ngIf="userDataForm.get('email')?.errors?.['invalidDomain']">
-              Dominio no válido...
-            </div>
-          </div>
-          <div class="flex">
-            <div class="inner-flex">
-              <label>Pais:</label>
-              <select name="" id="" formControlName="country">
-                <option value="Argentina">Argentina</option>
-              </select>
-            </div>
-            <div class="inner-flex">
-              <label>Provincia:</label>
-              <select name="" id="" formControlName="province">
-                <option value="Buenos Aires">Buenos Aires</option>
-              </select>
-            </div>
-            <div class="inner-flex">
-              <label>Ciudad:</label>
-              <select name="" id="" formControlName="city">
-                <option value="Balcarce">Balcarce</option>
-                <option value="Mar del Plata">Mar del Plata</option>
-                <option value="Miramar">Miramar</option>
-                <option value="Necochea">Necochea</option>
-              </select>
-            </div>
-          </div>
-          <div class="flex">
-            <div class="inner-flex">
-              <label>Calle:</label>
-              <input type="text" formControlName="street" />
-            </div>
-            <div class="inner-flex">
-              <label>Número:</label>
-              <input type="text" formControlName="streetNumber" />
-            </div>
-          </div>
-          <div class="flex">
-            <div class="inner-flex">
-              <label>Piso:</label>
-              <input type="text" formControlName="floor" />
-            </div>
-            <div class="inner-flex">
-              <label>Departamento:</label>
-              <input type="text" formControlName="flat" />
+              <div
+                *ngIf="userDataForm.get('lastname')?.errors?.['lettersOnly']"
+              >
+                Debe ingresar solo letras...
+              </div>
             </div>
           </div>
         </div>
-
-        <!-- Ver que la dirección debería ser calle, numero, piso y depto en el json usuarios -->
-
-        <!-- ENVIO -->
-        <div class="flex">
-          <div
-            *ngIf="
-              userDataForm.get('street')?.valid &&
-              userDataForm.get('streetNumber')?.valid
-            "
-          >
-            <button
-              [disabled]="
-                !userDataForm.get('street')?.valid &&
-                !userDataForm.get('streetNumber')?.valid
-              "
-              (click)="getShippingPrice()"
-            >
-              Calcular envio
-            </button>
+        <label>Email:</label>
+        <input type="text" formControlName="email" />
+        <div
+          style="color: red"
+          *ngIf="
+            !userDataForm.valid &&
+            (userDataForm.get('email')?.dirty ||
+              userDataForm.get('email')?.touched)
+          "
+        >
+          <div *ngIf="userDataForm.get('email')?.errors?.['required']">
+            Campo requerido...
           </div>
-          <div>
-            <label style="color: white">Envio: ${{ shippingPrice }}</label>
-
-            <label style="color: white" for=""
-              >Total ${{ getTotalBuy() }}</label
-            >
+          <div *ngIf="userDataForm.get('email')?.errors?.['email']">
+            Email no válido...
+          </div>
+          <div *ngIf="userDataForm.get('email')?.errors?.['invalidDomain']">
+            Dominio no válido...
+          </div>
+        </div>
+        <div class="flex">
+          <div class="inner-flex">
+            <label>Pais:</label>
+            <select name="" id="" formControlName="country">
+              <option value="Argentina">Argentina</option>
+            </select>
+          </div>
+          <div class="inner-flex">
+            <label>Provincia:</label>
+            <select name="" id="" formControlName="province">
+              <option value="Buenos Aires">Buenos Aires</option>
+            </select>
+          </div>
+          <div class="inner-flex">
+            <label>Ciudad:</label>
+            <select name="" id="" formControlName="city">
+              <option value="Balcarce">Balcarce</option>
+              <option value="Mar del Plata">Mar del Plata</option>
+              <option value="Miramar">Miramar</option>
+              <option value="Necochea">Necochea</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex">
+          <div class="inner-flex">
+            <label>Calle:</label>
+            <input type="text" formControlName="street" />
+          </div>
+          <div class="inner-flex">
+            <label>Número:</label>
+            <input type="text" formControlName="streetNumber" />
+          </div>
+        </div>
+        <div class="flex">
+          <div class="inner-flex">
+            <label>Piso:</label>
+            <input type="text" formControlName="floor" />
+          </div>
+          <div class="inner-flex">
+            <label>Departamento:</label>
+            <input type="text" formControlName="flat" />
           </div>
         </div>
       </div>
-      <div class="card">
-        <select name="" id="" formControlName="cardType">
-          <option value="debit">Débito</option>
-          <option value="credit">Crédito</option>
-        </select>
-        <input
-          type="text"
-          formControlName="cardHolder"
-          placeholder="Nombre y apellido como figura en la tarjeta"
-        />
-        <input
-          type="text"
-          formControlName="cardNumber"
-          placeholder="Número de tarjeta"
-        />
-        <input
-          type="text"
-          formControlName="expirationDate"
-          placeholder="Vencimiento"
-        />
-        <input type="text" formControlName="cvv" placeholder="CVV" />
-        <div>CVV debe ser sólo números</div>
-        <select name="" id="" formControlName="cardIssuer">
-          <option value="Visa">Visa</option>
-          <option value="Mastercard">Mastercard</option>
-          <option value="American Express">American Express</option>
-          <option value="Discover">Discover</option>
-        </select>
+
+      <!-- Ver que la dirección debería ser calle, numero, piso y depto en el json usuarios -->
+
+      <!-- ENVIO -->
+      <div class="flex">
+        <div>
+          <button
+            [disabled]="
+              !userDataForm.get('street')?.valid &&
+              !userDataForm.get('streetNumber')?.valid
+            "
+            (click)="getShippingPrice()"
+          >
+            Calcular envio
+          </button>
+        </div>
+        <div class="total-price">
+          <label>Envio: ${{ shippingPrice }}</label>
+
+          <label>Total: ${{ getTotalBuy() }}</label>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <label>Tipo de tarjeta</label>
+      <select name="" id="" formControlName="cardType">
+        <option value="" disabled>Seleccione su tarjeta</option>
+        <option value="debit">Débito</option>
+        <option value="credit">Crédito</option>
+      </select>
+      <label for="">Nombre y apellido</label>
+      <input
+        type="text"
+        formControlName="cardHolder"
+        placeholder="Nombre y apellido como figura en la tarjeta"
+      />
+      <label for="">Numero de tarjeta</label>
+      <input
+        type="text"
+        formControlName="cardNumber"
+        placeholder="Número de tarjeta"
+      />
+      <label for="">Fecha de vencimiento</label>
+      <input
+        type="text"
+        formControlName="expirationDate"
+        placeholder="Vencimiento"
+      />
+      <label for="">Codigo de seguridad</label>
+      <input type="text" formControlName="cvv" placeholder="CVV" />
+      <label for="">Banco emisor</label>
+      <select name="" id="" formControlName="cardIssuer">
+        <option value="" disabled>Seleccione su banco</option>
+        <option value="Visa">Visa</option>
+        <option value="Mastercard">Mastercard</option>
+        <option value="American Express">American Express</option>
+        <option value="Discover">Discover</option>
+      </select>
+      <div class="card-buttons">
         <button type="button" (click)="cardExists()">Verificar tarjeta</button>
 
         <button type="submit">Confirmar compra</button>
