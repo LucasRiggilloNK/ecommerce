@@ -49,6 +49,20 @@
       "postalCode": "7600",
       "email": "marquitos@gmail.com",
       "password": "marquitos"
+    },
+    {
+      "id": "2e1f",
+      "name": "Nicolas",
+      "lastname": "Blanco Rio",
+      "birthdate": "2000-06-11",
+      "country": "Argentina",
+      "province": "Buenos Aires",
+      "city": "Mar Del Plata",
+      "street": "Beltrami Al",
+      "streetNumber": "1560",
+      "postalCode": "7600",
+      "email": "nicolasuxmal@gmail.com",
+      "password": "123456"
     }
   ]
 }

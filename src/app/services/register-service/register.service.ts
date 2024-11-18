@@ -9,7 +9,13 @@ export interface User {
   lastname: string;
   birthdate: Date;
   age?: number;
-  address: string;
+  country: string,
+  province: string,
+  city: string, 
+  street: string,
+  streetNumber: string,
+  floor?: string,
+  departmentNumber?: string,
   postalCode: string;
   email: string;
   password: string;
@@ -28,6 +34,7 @@ export class RegisterService {
   }
 
   registerUser(user: User): Observable<User> {
+    console.log(user);
     return this.http.post<User>(this.apiUrl, user);
   }
 

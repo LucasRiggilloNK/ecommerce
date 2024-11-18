@@ -31,8 +31,14 @@ export class RegisterComponent {
         '',
         [Validators.required, CustomValidators.ageRangeLimitator(18, 100)],
       ],
-      address: ['', Validators.required],
-      postalCode: ['', Validators.required],
+      country: ['', [Validators.required, CustomValidators.lettersOnly()]],
+      province: ['', [Validators.required, CustomValidators.lettersOnly()]],
+      city: ['', [Validators.required, CustomValidators.lettersOnly()]],
+      street:['',[Validators.required, CustomValidators.lettersOnly()]],
+      streetNumber: ['', [Validators.required, CustomValidators.numbersOnly()]],
+      floor: [''],
+      departmentNumber:[''],
+      postalCode: ['', [Validators.required, CustomValidators.numbersOnly()]],
       email: [
         '',
         [
@@ -41,7 +47,7 @@ export class RegisterComponent {
           CustomValidators.emailDomainValidator,
         ],
       ],
-      password: ['', Validators.required],
+      password: ['', [Validators.required]],
     });
   }
 
@@ -51,7 +57,13 @@ export class RegisterComponent {
         name,
         lastname,
         birthdate,
-        address,
+        country,
+        province,
+        city,
+        street,
+        streetNumber,
+        floor,
+        departmentNumber,
         postalCode,
         email,
         password,
@@ -60,7 +72,13 @@ export class RegisterComponent {
         name,
         lastname,
         birthdate,
-        address,
+        country,
+        province,
+        city,
+        street,
+        streetNumber,
+        floor: floor || undefined,
+        departmentNumber: departmentNumber || undefined, 
         postalCode,
         email,
         password,
@@ -98,17 +116,4 @@ export class RegisterComponent {
       );
     }
   }
-
-  /*   sendConfirmationEmail(email: string) {
-    const subject = 'Confirmación de registro';
-    const message = 'Gracias por registrarte en nuestra aplicación.';
-    this.emailService.sendConfirmationEmail(email, subject, message).subscribe(
-      (response) => {
-        console.log('Correo de confirmación enviado:', response);
-      },
-      (error) => {
-        console.error('Error al enviar el correo:', error);
-      }
-    );
-  } */
 }
