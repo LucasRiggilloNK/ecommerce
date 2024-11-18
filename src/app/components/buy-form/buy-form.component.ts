@@ -29,6 +29,8 @@ export class BuyFormComponent implements OnInit {
   shippingPrice: number;
   distanceMatrixObject: DistanceMatrix;
   calculateDistance: number;
+  isVisible: boolean = false;
+  isCollapsed = false;
 
   constructor(
     private buyService: BuyService,
@@ -161,6 +163,10 @@ export class BuyFormComponent implements OnInit {
 
   getSubtotal() {
     return this.buyService.getSubtotal();
+  }
+
+  toggleVisibility() {
+    this.isVisible = !this.isVisible;
   }
 
   getShippingPrice() {
