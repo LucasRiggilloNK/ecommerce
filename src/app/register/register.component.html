@@ -22,38 +22,26 @@
     </div>
 
     <label for="birthdate">Fecha de Nacimiento:</label>
-    <input id="birthdate" formControlName="birthdate" type="date" />
+    <input id="birthdate" formControlName="birthdate" type="date" [min]="1924-01-01"/>
 
 
     <div class="flex">
       <div class="inner-flex">
-        <label for="country">País</label>
-        <input
-          id="country"
-          formControlName="country"
-          type="text"
-          placeholder="País"
-        />
+        <label for="province">Provincia:</label>
+        <select id="province" formControlName="province">
+          <option *ngFor="let province of provincesList" [value]="province">{{ province }}</option>
+        </select>
       </div>
       <div class="inner-flex">
-        <label for="province">Provincia:</label>
-        <input
-          id="province"
-          formControlName="province"
-          type="text"
-          placeholder="Provincia"
-        />
+        <label for="city">Ciudad:</label>
+        <select id="city" formControlName="city">
+          <option *ngFor="let city of bsasCityList" [value]="city">{{ city }}</option>
+        </select>
       </div>
       
     </div>
 
-    <label for="city">Ciudad:</label>
-    <input
-      id="city"
-      formControlName="city"
-      type="city"
-      placeholder="Ciudad"
-    />
+
 
     <div class="flex">
       <div class="inner-flex">
@@ -129,21 +117,31 @@
 
     <div style="color: red" *ngIf="!registerForm.valid &&(registerForm.get('lastname')?.dirty || registerForm.get('lastname')?.touched)">
       <div  *ngIf="registerForm.get('lastname')?.errors?.['required']" >
-        Nombre requerido...
+        Apellido requerido...
       </div>
       <div *ngIf="!registerForm.get('lastname')?.errors?.['required'] && registerForm.get('lastname')?.errors?.['lettersOnly']">
         Debe ingresar solo letras...
       </div>
     </div>
 
-    <div style="color: red" *ngIf="!registerForm.valid &&(registerForm.get('birthdate')?.dirty || registerForm.get('birthdate')?.touched)">
-      <div  *ngIf="registerForm.get('birthdate')?.errors?.['required']" >
+<!--     <div style="color: red" *ngIf="!registerForm.valid &&(registerForm.get('birthdate')?.dirty || registerForm.get('birthdate')?.touched)">
+      <div  *ngIf="registerForm.get('birthdate')?.errors?.['required']">
         Fecha de nacimiento requerida...
       </div>
       <div *ngIf="!registerForm.get('birthdate')?.errors?.['required'] && !registerForm.get('birthdate')?.errors?.['ageRangeLimitator']">
         Debe ser mayor a 18 años...
       </div>
+    </div> -->
+
+    <div style="color: red" *ngIf="!registerForm.valid &&(registerForm.get('birthdate')?.dirty || registerForm.get('birthdate')?.touched)">
+      <div *ngIf="registerForm.get('birthdate')?.errors?.['required']">
+        Fecha de nacimiento requerida...
+      </div>
+      <div *ngIf="registerForm.get('birthdate')?.errors?.['ageRangeLimitator']">
+        Debe ser mayor a 18 años...
+      </div>
     </div>
+    
 
   </form>
 </div>

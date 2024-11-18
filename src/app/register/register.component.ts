@@ -5,6 +5,9 @@ import { EmailService } from '../services/email-service/email.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/login/auth.service';
 import { CustomValidators } from '../common/custom-validators';
+import { BsasCity } from '../models/bsas-city';
+import { Province } from '../models/province';
+import { Usuario } from '../models/users/user';
 
 @Component({
   selector: 'app-register',
@@ -13,26 +16,26 @@ import { CustomValidators } from '../common/custom-validators';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  provincesList: string[] = Object.values(Province);
+  bsasCityList: string[] = Object.values(BsasCity);
 
   constructor(
     private fb: FormBuilder,
     private registerService: RegisterService,
-    private emailService: EmailService,
     private router: Router,
     private authService: AuthService
   ) {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required, CustomValidators.lettersOnly()]],
       lastname: ['', [Validators.required, CustomValidators.lettersOnly()]],
-      birthdate: ['',[Validators.required, CustomValidators.ageRangeLimitator(18, 100)]],
-      country: ['', Validators.required],
-      province: ['', Validators.required],
-      city: ['', Validators.required],
+      birthdate: ['', [Validators.required, CustomValidators.ageRangeLimitator(18, 100)]],
+      //country: ['Argentina', Validators.required],
+      province: [Province.BuenosAires, Validators.required],
+      city: [BsasCity.MarDelPlata, Validators.required],
       street: ['', Validators.required],
       streetNumber: ['', Validators.required],
       floor: [''],
       flat: [''],
-      postalCode: ['', Validators.required],
       email: ['', [Validators.required, Validators.email, CustomValidators.emailDomainValidator]],
       password: ['', Validators.required]
     });
@@ -40,8 +43,8 @@ export class RegisterComponent {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      const { name, lastname, birthdate, address, postalCode, email, password } = this.registerForm.value;
-      const nuevoUsuario: User = { name, lastname, birthdate, address, postalCode, email, password };
+      const { name, lastname, birthdate, province, city, street, streetNumber, floor, flat, email, password } = this.registerForm.value;
+      const nuevoUsuario: Usuario = { name, lastname, birthdate, province, city, street, streetNumber, floor, flat, email, password };
 
       this.registerService.checkEmailExists(email).subscribe(
         (exists) => {
@@ -50,8 +53,6 @@ export class RegisterComponent {
           } else {
             this.registerService.registerUser(nuevoUsuario).subscribe(
               (response) => {
-                /* this.router.navigate(['/']); */
-                //this.sendConfirmationEmail(email); 
                 this.authService.login(nuevoUsuario.name, nuevoUsuario.password).subscribe({
                   next: (success) => {
                     if (success) {
@@ -77,16 +78,4 @@ export class RegisterComponent {
   }
 
 
-/*   sendConfirmationEmail(email: string) {
-    const subject = 'Confirmación de registro';
-    const message = 'Gracias por registrarte en nuestra aplicación.';
-    this.emailService.sendConfirmationEmail(email, subject, message).subscribe(
-      (response) => {
-        console.log('Correo de confirmación enviado:', response);
-      },
-      (error) => {
-        console.error('Error al enviar el correo:', error);
-      }
-    );
-  } */
 }

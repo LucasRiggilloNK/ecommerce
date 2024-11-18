@@ -131,7 +131,6 @@ export class BuyFormComponent implements OnInit {
     this.userDataForm.get('name')?.setValue(user.name);
     this.userDataForm.get('lastname')?.setValue(user.lastname);
     this.userDataForm.get('birthdate')?.setValue(user.birthdate);
-    this.userDataForm.get('postalCode')?.setValue(user.postalCode);
     this.userDataForm.get('email')?.setValue(user.email);
     this.userDataForm.get('country')?.setValue('Argentina');
     this.userDataForm.get('province')?.setValue('Buenos Aires');

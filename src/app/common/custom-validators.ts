@@ -47,11 +47,11 @@ export class CustomValidators {
     
           // Validar que se cumpla rango de edades pasado por parámetro
           if (adjustedAge < minAge || adjustedAge > maxAge) {
-            return { ageRange: true }; // Error
+            return { ageRangeLimitator: true }; // Error
           }
     
           return null; // Válido
         };
-      }
+    }
 
 }
