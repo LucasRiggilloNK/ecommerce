@@ -1,98 +1,18 @@
 {
   "users": [
     {
-      "id": "0440",
-      "name": "lucas",
-      "lastname": "riggillo",
+      "id": "e844",
+      "name": "Lucas",
+      "lastname": "Riggillo",
       "birthdate": "2003-04-14",
-      "address": "aguado 1601",
-      "postalCode": "7600",
-      "email": "lucasriggillo@gmail.com",
-      "password": "1234"
-    },
-    {
-      "id": "4355",
-      "name": "nicolas",
-      "lastname": "blanco rio ",
-      "birthdate": "2024-11-07",
       "province": "Buenos Aires",
       "city": "Mar del Plata",
-      "street": "Rodriguez Peña",
-      "streetNumber": "1987",
+      "street": "aguado",
+      "streetNumber": "1601",
       "floor": "",
       "flat": "",
-      "email": "prismic.veritran@gmail.com",
-      "password": "wefeg3r"
-    },
-    {
-      "id": "e862",
-      "name": "Nicolas",
-      "lastname": "Blanco rio",
-      "birthdate": "2024-11-03",
-      "province": "Buenos Aires",
-      "city": "Mar del Plata",
-      "street": "Beltrami",
-      "streetNumber": "123",
-      "floor": "",
-      "flat": "",      
-      "email": "nicolasuxmal@gmail.com",
-      "password": "123"
-    },
-    {
-      "id": "921a",
-      "name": "agustin ",
-      "lastname": "lapenna",
-      "birthdate": "2024-11-14",
-      "province": "Buenos Aires",
-      "city": "Mar del Plata",
-      "street": "Paso",
-      "streetNumber": "400",
-      "floor": "",
-      "flat": "",
-      "email": "asd@gmail.com",
-      "password": "1234"
-    },
-    {
-      "id": "c473",
-      "name": "Serena",
-      "lastname": "Jeckeln",
-      "birthdate": "2000-09-14",
-      "province": "Buenos Aires",
-      "city": "Mar del Plata",
-      "street": "Urquiza",
-      "streetNumber": "4290",
-      "floor": "",
-      "flat": "",
-      "email": "jeckelnserena0@gmail.com",
-      "password": "123"
-    },
-    {
-      "id": "1c63",
-      "name": "Marquitos",
-      "lastname": "Carrizo",
-      "birthdate": "1985-10-10",
-      "province": "Buenos Aires",
-      "city": "Mar del Plata",
-      "street": "Puan",
-      "streetNumber": "123",
-      "floor": "",
-      "flat": "",
-      "email": "marquitos1985@hotmail.com",
-      "password": "1234"
-    },
-    {
-      "id": "9744",
-      "name": "laura",
-      "lastname": "sanchez",
-      "birthdate": "1999-05-14",
-      "province": "Buenos Aires",
-      "city": "Mar del Plata",
-      "street": "Viamonte",
-      "streetNumber": "4200",
-      "floor": "",
-      "flat": "",
-      "email": "laurasanchez@outlook.com",
-      "password": "1234"
+      "email": "lucasjoaquinriggillo@gmail.com",
+      "password": "hola"
     }
   ]
 }

@@ -17,6 +17,15 @@ p {
   gap: 15px;
 }
 
+.controls {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  button {
+    width: 100%;
+  }
+}
+
 .categories {
   display: flex;
   align-items: center;

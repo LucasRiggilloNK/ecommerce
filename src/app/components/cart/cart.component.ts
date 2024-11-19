@@ -1,84 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductInterface } from '../../interfaces/product/product-interface';
 import { CarritoService } from '../../services/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
 })
-export class CartComponent {
-  carrito: ProductInterface[] = []; // Usando la interfaz ProductInterface
+export class CartComponent implements OnInit, OnDestroy {
+  carrito: ProductInterface[] = [];
+  quantity: number;
+  totalQty: number = 0;
+  private qtySubscription: Subscription = new Subscription();
 
-  constructor(carritoService: CarritoService) {
-    this.loadCart(); // Cargar el carrito al inicio
-    this.carrito = carritoService.getCartItems();
+  constructor(private carritoService: CarritoService) {
+    this.quantity = 0;
   }
 
-  // Método para agregar productos al carrito
+  ngOnInit(): void {
+    // Obtener el carrito y la cantidad total
+    this.carritoService.getCartItems().subscribe((cart) => {
+      this.carrito = cart;
+    });
+
+    // Suscribirse a la cantidad total para actualizarla dinámicamente
+    this.qtySubscription = this.carritoService
+      .getTotalQuantity()
+      .subscribe((qty) => {
+        this.totalQty = qty;
+      });
+  }
+
   addToCart(product: ProductInterface): void {
-    const existingProduct = this.carrito.find((p) => p.id === product.id);
-    if (product.stock <= 0) {
-      alert('No hay suficiente stock disponible.');
-      return;
-    }
+    this.carritoService.addToCart(product);
+  }
 
-    if (existingProduct) {
-      if (existingProduct.stock > 0) {
-        existingProduct.stock--; // Reduce el stock del producto en el carrito
-      } else {
-        alert('No hay más stock disponible.');
-      }
-    } else {
-      // Si no está en el carrito, agregarlo con stock reducido
-      const newProduct = { ...product, stock: product.stock - 1 }; // Crear una copia del producto
-      this.carrito.push(newProduct); // Agregar el producto con stock reducido
-      localStorage.setItem('cart', JSON.stringify(this.carrito));
-    }
-
-    console.log(this.carrito); // Verifica el carrito después de agregar un producto
-    this.saveCart(); // Guardar el carrito en localStorage
+  decreaseQuantity(productId: string): void {
+    this.carritoService.decreaseQuantity(productId);
   }
 
   getTotalPrice(): number {
     return this.carrito.reduce(
-      (total, item) => total + item.price * item.stock,
+      (total, item) => total + item.price * item.quantity,
       0
     );
   }
 
-  // Método para eliminar un producto del carrito
   removeProduct(productId: string): void {
-    const index = this.carrito.findIndex(
-      (p) => String(p.id) === String(productId)
-    );
-    if (index !== -1) {
-      this.carrito.splice(index, 1);
-      this.saveCart(); // Guarda el carrito después de eliminar un producto
-    }
+    this.carritoService.removeProduct(productId);
   }
 
-  // Método para vaciar el carrito
   clearCart(): void {
-    this.carrito = [];
-    localStorage.removeItem('cart'); // Vacia el carrito en localStorage
-    this.saveCart(); // Vacia el carrito en localStorage
-    window.location.reload(); // Actualiza página
+    this.carritoService.clearCart();
   }
 
-  // Método para guardar el carrito en localStorage
-  loadCart(): void {
-    if (typeof window !== 'undefined') {
-      const savedCart = localStorage.getItem('cart');
-      if (savedCart) {
-        this.carrito = JSON.parse(savedCart) as ProductInterface[];
-      }
-    }
-  }
-
-  saveCart(): void {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('cart', JSON.stringify(this.carrito));
+  ngOnDestroy(): void {
+    // Desuscribirse para evitar fugas de memoria
+    if (this.qtySubscription) {
+      this.qtySubscription.unsubscribe();
     }
   }
 }

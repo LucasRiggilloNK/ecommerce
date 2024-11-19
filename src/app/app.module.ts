@@ -30,10 +30,10 @@ import { LoginComponent } from './login/login.component';
 import { PrivateComponent } from './private/private.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/login/auth.interceptor';
-
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
- import{ BuyFormComponent } from './components/buy-form/buy-form.component';
+import { BuyFormComponent } from './components/buy-form/buy-form.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -69,6 +69,7 @@ import { CartComponent } from './components/cart/cart.component';
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     provideClientHydration(),
     provideHttpClient(withFetch()),
+    provideAnimationsAsync(),
   ],
   bootstrap: [AppComponent],
 })

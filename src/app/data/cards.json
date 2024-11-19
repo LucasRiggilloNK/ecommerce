@@ -1,7 +1,7 @@
 {
   "cards": [
     {
-      "type": "credit",
+      "type": "Crédito",
       "cardHolder": "John Doe",
       "cardNumber": "4111111111111111",
       "expirationDate": "12/25",
@@ -9,7 +9,7 @@
       "issuer": "Visa"
     },
     {
-      "type": "debit",
+      "type": "Débito",
       "cardHolder": "Jane Smith",
       "cardNumber": "5500000000000004",
       "expirationDate": "08/24",
@@ -17,7 +17,7 @@
       "issuer": "Mastercard"
     },
     {
-      "type": "credit",
+      "type": "Crédito",
       "cardHolder": "Mike Johnson",
       "cardNumber": "340000000000009",
       "expirationDate": "03/26",
@@ -25,7 +25,7 @@
       "issuer": "American Express"
     },
     {
-      "type": "debit",
+      "type": "Débito",
       "cardHolder": "Alice Brown",
       "cardNumber": "6011000000000004",
       "expirationDate": "11/23",

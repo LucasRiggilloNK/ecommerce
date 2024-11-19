@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { AuthGuard } from './services/login/auth.guard';
+import { AuthGuard } from '../guards/auth.guard';
+import { NoAuthGuard } from '../guards/no-auth.guard';
 import { PrivateComponent } from './private/private.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductDetailsComponent } from './components/products/details/product-details/product-details.component';
@@ -11,12 +12,18 @@ import { BuyFormComponent } from './components/buy-form/buy-form.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
-  { path: 'private', component: PrivateComponent, canActivate: [AuthGuard] },
-  { path: 'cart', component: CartComponent },
-  { path: 'productDetails/:id', component: ProductDetailsComponent },
-  {path: "buyForm", component: BuyFormComponent},
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [NoAuthGuard],
+  },
+  { path: 'login', component: LoginComponent, canActivate: [NoAuthGuard] },
+  { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
+  {
+    path: 'productDetails/:id',
+    component: ProductDetailsComponent,
+  },
+  { path: 'buyForm', component: BuyFormComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' },
 ];

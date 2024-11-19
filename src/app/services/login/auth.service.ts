@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { catchError, map } from 'rxjs/operators';
 export class AuthService {
   private apiUrl = 'http://localhost:3001';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(name: string, password: string): Observable<boolean> {
     return this.http
@@ -23,7 +24,7 @@ export class AuthService {
               console.log('Usuario logueado:', users[0].name);
               localStorage.setItem('auth_token', 'your_token');
               localStorage.setItem('name', users[0].name);
-              localStorage.setItem('userId', String(users[0].id)); //agregado
+              localStorage.setItem('userId', String(users[0].id));
             }
             return true;
           } else {
@@ -56,7 +57,6 @@ export class AuthService {
   logout(): void {
     if (confirm('Estas seguro que queres cerrar sesión?')) {
       if (typeof window !== 'undefined') {
-        localStorage.removeItem('auth_token');
         localStorage.clear();
         window.location.reload();
       }

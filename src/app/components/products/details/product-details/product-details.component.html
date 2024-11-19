@@ -14,5 +14,8 @@
     <p>Descripción:</p>
     <p>{{ productToVievDetails?.description }}</p>
     <p>Precio: ${{ productToVievDetails?.price | number : "1.0-0" }}</p>
+    <button class="button" (click)="goBack()">
+      <img src="/arrow-left.svg" alt="volver" width="25px" />
+    </button>
   </div>
 </div>

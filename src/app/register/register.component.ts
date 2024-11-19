@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegisterService, User } from '../services/register-service/register.service';
+import {
+  RegisterService,
+  User,
+} from '../services/register-service/register.service';
 import { EmailService } from '../services/email-service/email.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/login/auth.service';
@@ -13,13 +16,12 @@ import { strict } from 'assert';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
   registerForm: FormGroup;
   provincesList: string[] = Object.values(Province);
   bsasCityList: string[] = Object.values(BsasCity);
-  
 
   constructor(
     private fb: FormBuilder,
@@ -30,7 +32,10 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required, CustomValidators.lettersOnly()]],
       lastname: ['', [Validators.required, CustomValidators.lettersOnly()]],
-      birthdate: ['', [Validators.required, CustomValidators.ageRangeLimitator(18, 100)]],
+      birthdate: [
+        '',
+        [Validators.required, CustomValidators.ageRangeLimitator(18, 100)],
+      ],
       //country: ['Argentina', Validators.required],
       province: [Province.BuenosAires, Validators.required],
       city: [BsasCity.MarDelPlata, Validators.required],
@@ -38,17 +43,46 @@ export class RegisterComponent {
       streetNumber: ['', [Validators.required, CustomValidators.numbersOnly()]],
       floor: [''],
       flat: [''],
-      email: ['', [Validators.required, Validators.email, CustomValidators.emailDomainValidator]],
-      password: ['', Validators.required]
+      email: [
+        '',
+        [
+          Validators.required,
+          Validators.email,
+          CustomValidators.emailDomainValidator,
+        ],
+      ],
+      password: ['', Validators.required],
     });
-
-    
   }
 
   onSubmit() {
     if (this.registerForm.valid) {
-      const { name, lastname, birthdate, province, city, street, streetNumber, floor, flat, email, password } = this.registerForm.value;
-      const nuevoUsuario: Usuario = { name, lastname, birthdate, province, city, street, streetNumber, floor, flat, email, password };
+      const {
+        name,
+        lastname,
+        birthdate,
+        province,
+        city,
+        street,
+        streetNumber,
+        floor,
+        flat,
+        email,
+        password,
+      } = this.registerForm.value;
+      const nuevoUsuario: Usuario = {
+        name,
+        lastname,
+        birthdate,
+        province,
+        city,
+        street,
+        streetNumber,
+        floor,
+        flat,
+        email,
+        password,
+      };
 
       this.registerService.checkEmailExists(email).subscribe(
         (exists) => {
@@ -57,16 +91,18 @@ export class RegisterComponent {
           } else {
             this.registerService.registerUser(nuevoUsuario).subscribe(
               (response) => {
-                this.authService.login(nuevoUsuario.name, nuevoUsuario.password).subscribe({
-                  next: (success) => {
-                    if (success) {
-                      this.router.navigate(['/']);
-                    }
-                  },
-                  error: (error) => {
-                    console.error(error);
-                  },
-                });
+                this.authService
+                  .login(nuevoUsuario.name, nuevoUsuario.password)
+                  .subscribe({
+                    next: (success) => {
+                      if (success) {
+                        this.router.navigate(['/']);
+                      }
+                    },
+                    error: (error) => {
+                      console.error(error);
+                    },
+                  });
               },
               (error) => {
                 console.error('Error al registrar el usuario:', error);
@@ -80,8 +116,4 @@ export class RegisterComponent {
       );
     }
   }
-
-
-  
-
 }

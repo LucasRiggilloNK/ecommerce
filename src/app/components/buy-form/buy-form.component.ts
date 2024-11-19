@@ -29,7 +29,7 @@ export class BuyFormComponent implements OnInit {
   shippingCostByKm: number = 100;
   shippingPrice: number;
   distanceMatrixObject: DistanceMatrix;
-  destination_addresses: string = "";
+  destination_addresses: string = '';
   calculateDistance: number;
   provincesList: string[] = Object.values(Province);
   bsasCityList: string[] = Object.values(BsasCity);
@@ -49,23 +49,51 @@ export class BuyFormComponent implements OnInit {
     this.user = null;
     this.subTotalPrice = 0;
     this.userDataForm = new FormGroup({
-      name: new FormControl('', [Validators.required, CustomValidators.lettersOnly()]),
-      lastname: new FormControl('', [Validators.required, CustomValidators.lettersOnly()]),
+      name: new FormControl('', [
+        Validators.required,
+        CustomValidators.lettersOnly(),
+      ]),
+      lastname: new FormControl('', [
+        Validators.required,
+        CustomValidators.lettersOnly(),
+      ]),
       address: new FormControl('', [Validators.required]),
       street: new FormControl('', [Validators.required]),
-      streetNumber: new FormControl('', [Validators.required, CustomValidators.numbersOnly()]),
-      flat: new FormControl(''),
+      streetNumber: new FormControl('', [
+        Validators.required,
+        CustomValidators.numbersOnly(),
+      ]),
+      departmentNumber: new FormControl(''),
       floor: new FormControl(''),
-      email: new FormControl('', [Validators.required, CustomValidators.emailDomainValidator]),
+      email: new FormControl('', [
+        Validators.required,
+        CustomValidators.emailDomainValidator,
+      ]),
       country: new FormControl('', Validators.required),
       province: new FormControl(Province.BuenosAires, Validators.required),
       city: new FormControl('', Validators.required),
       cardType: new FormControl(CardType.CREDITO, Validators.required),
-      cardHolder: new FormControl('', [Validators.required, CustomValidators.lettersOnly()]),
-      cardNumber: new FormControl('', [Validators.required, Validators.maxLength(16), CustomValidators.numbersOnly()]),
-      expirationDate: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
-      cvv: new FormControl('', [Validators.required, Validators.maxLength(3), Validators.minLength(3), CustomValidators.numbersOnly()]),
-      cardIssuer: new FormControl('', Validators.required)
+      cardHolder: new FormControl('', [
+        Validators.required,
+        CustomValidators.lettersOnly(),
+      ]),
+      cardNumber: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(16),
+        CustomValidators.numbersOnly(),
+      ]),
+      expirationDate: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(5),
+      ]),
+      cvv: new FormControl('', [
+        Validators.required,
+        Validators.maxLength(3),
+        Validators.minLength(3),
+        CustomValidators.numbersOnly(),
+      ]),
+      cardIssuer: new FormControl('', Validators.required),
     });
 
     this.distanceMatrixObject = {
@@ -115,7 +143,9 @@ export class BuyFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cartItems = this.buyService.getCartItemsToBuy();
+    this.buyService.getCartItemsToBuy().subscribe((items) => {
+      this.cartItems = items;
+    });
     this.subTotalPrice = this.buyService.getSubtotal();
 
     let userId: string | null = this.authService.getUserId();
@@ -168,26 +198,30 @@ export class BuyFormComponent implements OnInit {
         this.distanceMatrixObject = response as DistanceMatrix;
         console.log(this.distanceMatrixObject);
 
-        if(this.distanceMatrixObject.rows[0].elements[0].status == "OK"){
+        if (this.distanceMatrixObject.rows[0].elements[0].status == 'OK') {
+          console.log(
+            'Domicilio entrega: ' +
+              this.distanceMatrixObject.destination_addresses[0]
+          );
+          this.destination_addresses =
+            this.distanceMatrixObject.destination_addresses[0];
 
-          console.log("Domicilio entrega: " + this.distanceMatrixObject.destination_addresses[0]);
-          this.destination_addresses = this.distanceMatrixObject.destination_addresses[0];
-  
           this.calculateDistance =
             this.distanceMatrixObject.rows[0].elements[0].distance.value;
           console.log('Distancia: ' + this.calculateDistance);
           this.shippingPrice =
             (this.calculateDistance * this.shippingCostByKm) / 1000;
           this.userDataForm.get('sendPrice')?.setValue(this.shippingPrice);
-        }else if(this.distanceMatrixObject.rows[0].elements[0].status == "ZERO_RESULTS"){
-          this.destination_addresses = "";
+        } else if (
+          this.distanceMatrixObject.rows[0].elements[0].status == 'ZERO_RESULTS'
+        ) {
+          this.destination_addresses = '';
           alert('Dirección inexistente...');
         }
-        
       })
       .catch((error) => {
-        this.destination_addresses = "";
-        console.log("Error calculo distancia...")
+        this.destination_addresses = '';
+        console.log('Error calculo distancia...');
         console.error(error);
         alert('Dirección inexistente...');
       });
@@ -229,9 +263,4 @@ export class BuyFormComponent implements OnInit {
 
     return this.buyService.existsCard(card);
   }
-
-
-
-
-
 }

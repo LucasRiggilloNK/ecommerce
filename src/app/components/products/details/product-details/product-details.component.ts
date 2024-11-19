@@ -5,6 +5,7 @@ import { CarritoService } from '../../../../services/cart.service';
 import { Brand } from '../../../../models/products/brands/brand';
 import { Category } from '../../../../models/products/categories/category';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
@@ -17,7 +18,8 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private carritoService: CarritoService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {
     this.productToVievDetails = {
       brand: Brand.NONE,
@@ -29,6 +31,7 @@ export class ProductDetailsComponent implements OnInit {
       characteristics: '',
       model: '',
       id: '1',
+      quantity: 0,
     };
   }
 
@@ -48,6 +51,10 @@ export class ProductDetailsComponent implements OnInit {
           );
         });
     }
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   addToCart(product: ProductInterface): void {

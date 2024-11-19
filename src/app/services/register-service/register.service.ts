@@ -4,27 +4,18 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 export interface User {
-/*   id?: string;
+  id?: string;
   name: string;
   lastname: string;
   birthdate: Date;
-  age?: number; 
-  address: string;
-  postalCode: string;
+  province: string;
+  city: string;
+  street: string;
+  streetNumber: string;
+  floor: string;
+  flat: string;
   email: string;
-  password: string; */
-  id?: string,
-  name: string,
-  lastname: string,
-  birthdate: Date,
-  province: string,
-  city: string,
-  street: string,
-  streetNumber: string,
-  floor: string,
-  flat: string,
-  email: string,
-  password: string
+  password: string;
 }
 
 @Injectable({
@@ -40,6 +31,7 @@ export class RegisterService {
   }
 
   registerUser(user: User): Observable<User> {
+    console.log(user);
     return this.http.post<User>(this.apiUrl, user);
   }
 

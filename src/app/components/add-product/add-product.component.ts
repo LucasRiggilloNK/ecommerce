@@ -47,6 +47,7 @@ export class AddProductComponent {
       stock: 1,
       characteristics: '',
       model: '',
+      quantity: 0,
     };
 
     this.addProduct = new FormGroup({
@@ -114,6 +115,7 @@ export class AddProductComponent {
       stock: 1,
       characteristics: '',
       model: '',
+      quantity: 0,
     };
 
     product.brand = this.addProduct.get('brand')?.value;
