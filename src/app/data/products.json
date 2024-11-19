@@ -51,14 +51,14 @@
       "description": "Pot.1600W. Ciclonica. Contenedor de polvo extraible/lavable/transparente de 2L. Encendido de pie. Filtro HEPA. Control electronico y manual de capac.de succion. Cepillo y Boquilla duales. Enrollacable aut. Manguera c/rotacion 360. Ruedas grandes.",
       "price": "199999",
       "stock": "100",
-      "characteristics": "fanType,Pie",
+      "characteristics": "fanType,Turbo",
       "model": "LA910 ALLCLEAN",
       "id": "5"
     },
     {
       "brand": "TCL",
       "category": "Televisores",
-      "urlImage": "https://medias.musimundo.com/medias/size515-151395-01.jpg?context=bWFzdGVyfGltYWdlc3w2NjA3MnxpbWFnZS9qcGVnfGFEY3pMMmcxTWk4eE1EWXhNakUzTWpJeU5qVTVNQzl6YVhwbE5URTFYekUxTVRNNU5WOHdNUzVxY0djfDRhMTdhZWZlNjJmYjYzMDBhNjJjZTNmZTZmMDBkZTg4OWI4ZTc2YTQyZmMyMTViOWVlZGNjMjYzMWU1NDEzOTg",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151395-01.jpg?context=bWFzdGVyfGltYWdlc3w2NjA3MnxpbWFnZS9qcGVnfGFHWXpMMmcwTlM4eE1EWXpNRGt3TlRjNU1EUTVOQzl6YVhwbE5URTFYekUxTVRNNU5WOHdNUzVxY0djfDY5MjNjODIwNWM5OTg5N2E1MTFhOWJmNmUxMWQ1NmUxYWIxMzljZmIwNzU4NWRkOGM1Y2E5MTI0YjBiYWQ0ODA",
       "description": "Televisor Smart LED Google. Pantalla 55\" 4K UHD 3840 x 2160 Px. Procesador Quad core x4 @1.1GHz. Memoria: 8 GB eMMC5.1. Salidas de audio. Potencia: 2 x 9.5 W. Conexiones: WIFI 2.4, Bluetooth 5.0, HDMI, USB y Optica Digital. Sintonizador TDA. Soporte Vesa: 200 x 200. Medidas con base: Alto 76.6 / Ancho 122.6 / Profundidad 26.5. Peso: 10.2 Kg. Incluye: 1 Soporte de Pie Central, 1 Control Remoto Multimedia, 1 Adaptador AV IN y cable de alimentacion.",
       "price": "769999",
       "stock": "100",
@@ -505,6 +505,102 @@
       "stock": 12,
       "characteristics": "keyboardConnectivityType,Cable",
       "model": "NKB-T100"
+    },
+    {
+      "id": "5588",
+      "brand": "BGH",
+      "category": "Aire Acondicionado",
+      "urlImage": "https://medias.musimundo.com/medias/00560126-178033-178033-01.png-178033-01.png-size515?context=bWFzdGVyfGltYWdlc3wxNTExMjF8aW1hZ2UvcG5nfGFEUTFMMmcyTnk4eE1EUXdOVE01TkRjeE1EVTFPQzh3TURVMk1ERXlOaTB4Tnpnd016TXRNVGM0TURNelh6QXhMbkJ1WnkweE56Z3dNek5mTURFdWNHNW5YM05wZW1VMU1UVXxkZjZlZjQ5NzcxYTg3MzJjODhkZDhlNDgxYTEzOWIzODIxNmE0MmMzODU2MjE0M2MyM2Q2YjNhNTE3MDUzMzM2",
+      "description": "Aire acondicionado Split frio / calor. Frigorias 5590 fg/h / Calorias 5590 Kcal/h Control remoto. Display LED. Timer programable 24Hs. Funcion sleep. Eficiencia energetica A. Tipo de gas refrigerante R410A. ALTO:UNID INTERIOR 22.6 UNID EXTERIOR 67.3 ANCHO: UNID INTERIOR 108 UNID EXTERIOR 89 PROFUNDIDAD: UNID INTERIOR 33.5 UNID EXTERIOR 34.2 PESO:UNID INTERIOR 15 UNID EXTERIOR 49.9",
+      "price": 1699999.99,
+      "stock": 12,
+      "characteristics": "heatCold,Si,airTypes,Split",
+      "model": "BS65WCCR",
+      "quantity": 0
+    },
+    {
+      "id": "26a3",
+      "brand": "LG",
+      "category": "Aire Acondicionado",
+      "urlImage": "https://medias.musimundo.com/medias/size515-179204-01.png?context=bWFzdGVyfGltYWdlc3wzMDY2NzF8aW1hZ2UvcG5nfGFESTFMMmczWlM4eE1EWXdPVGsyT0RZME5ERXlOaTl6YVhwbE5URTFYekUzT1RJd05GOHdNUzV3Ym1jfGJiZTdhODAyY2RjNmVmMjUwOGJkZGY5MGFmMGQyYjZlNjcxOWYyY2Q2ZmM3ZTEwNWYyNjU1YjJlZWM2YzU0OGM",
+      "description": "SPLIT FRIO CALOR INVERTER 5200 WATTS EQUIVALENTE A 4420 FRIGORÍAS EFICIENCIA ENERGÉTICA \"A\" COMPRESOR DUAL. TIMER PROGRAMABLE FUNCIÓN SELF CLEAN FUNCIÓN FOLLOW ME FUNCIÓN SUEÑO CONTROL REMOTO MULTIFUNCIÓN AUTO RESTART REFRIGERANTE ECOLÓGICO R410A BARRIDO DE AIRE AUTOMÁTICO FILTROS LAVABLES. COLOR GRIS",
+      "price": 2199999,
+      "stock": 12,
+      "characteristics": "heatCold,Si,airTypes,Split",
+      "model": "W18KLRPA",
+      "quantity": 0
+    },
+    {
+      "id": "076b",
+      "brand": "Philco",
+      "category": "Aire Acondicionado",
+      "urlImage": "https://medias.musimundo.com/medias/size515-175151-01.png?context=bWFzdGVyfGltYWdlc3w2MTI1NzZ8aW1hZ2UvcG5nfGFESXpMMmcxTlM4eE1EVTJPRE0wTkRrMk1UQTFOQzl6YVhwbE5URTFYekUzTlRFMU1WOHdNUzV3Ym1jfDkwYjYyMDU3OGNiZjU1NWJmMjczNzJkOWUwMjk3OTgwOWQwMWYzY2IyNjViY2Y2ZWVkY2M4ZWEzZmUwNTNlNmQ",
+      "description": "Aire acondicionado Ventana potencia en 3500 watts refrigerante ecologico R410 eficiencia energetica A control remoto multifuncion funcion sleep timer programable.",
+      "price": 839999,
+      "stock": 25,
+      "characteristics": "heatCold,No,airTypes,Ventana",
+      "model": "PHW32CA3ANPHW32CA3AN",
+      "quantity": 0
+    },
+    {
+      "id": "876a",
+      "brand": "Philco",
+      "category": "Aire Acondicionado",
+      "urlImage": "https://medias.musimundo.com/medias/size515-179762-01.png?context=bWFzdGVyfGltYWdlc3wyMzQzODd8aW1hZ2UvcG5nfGFHTTJMMmhpTWk4eE1EWXlNVFEwTWpnMU1EZzBOaTl6YVhwbE5URTFYekUzT1RjMk1sOHdNUzV3Ym1jfDg0ZTdhNWRmZWM2ZGQ4ZjI4MjNmNTIzZGIzNWU0MDkzNDgyZjQ1NGUxY2E2MGU4ZTBhZTQ1MGE1OTNkNmYzMjU",
+      "description": "ESPECIFICACIONES TÉCNICAS • REFRIGERANTE ECOLÓGICO: R410A • CAPACIDAD FRÍO: 3400 W • CONSUMO ELÉCTRICO FRÍO: 1130 W • CAPACIDAD CALOR: 3400 W • CONSUMO ELÉCTRICO CALOR: 1060 W • ALIMENTACIÓN ELÉCTRICA: 220-240V~ 50HZ • FICHA DE ALIMENTACIÓN 10A S/IRAM 2073 • NIVEL DE RUIDO MÁXIMO: 53 DB • ESTIBAJE: 3 UNIDADES • MEDIDAS UNIDAD: 433 X 708 X 320 MM • MEDIDAS BULTO: 396 X 855 X 482 MM • PESO NETO: 26 KG • PESO BRUTO: 30 KG • CONTROL REMOTO MULTIFUNCIÓN • INCLUYE KIT DE INSTALACIÓNESPECIFICACIONES TÉCNICAS • REFRIGERANTE ECOLÓGICO: R410A • CAPACIDAD FRÍO: 3400 W • CONSUMO ELÉCTRICO FRÍO: 1130 W • CAPACIDAD CALOR: 3400 W • CONSUMO ELÉCTRICO CALOR: 1060 W • ALIMENTACIÓN ELÉCTRICA: 220-240V~ 50HZ • FICHA DE ALIMENTACIÓN 10A S/IRAM 2073 • NIVEL DE RUIDO MÁXIMO: 53 DB • ESTIBAJE: 3 UNIDADES • MEDIDAS UNIDAD: 433 X 708 X 320 MM • MEDIDAS BULTO: 396 X 855 X 482 MM • PESO NETO: 26 KG • PESO BRUTO: 30 KG • CONTROL REMOTO MULTIFUNCIÓN • INCLUYE KIT DE INSTALACIÓN",
+      "price": 799999,
+      "stock": 31,
+      "characteristics": "heatCold,Si,airTypes,Portatil",
+      "model": "PBKP32HA4PBKP32HA4",
+      "quantity": 0
+    },
+    {
+      "id": "4a03",
+      "brand": "Hisense",
+      "category": "Aire Acondicionado",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152212-01.jpg?context=bWFzdGVyfGltYWdlc3wxNzc3N3xpbWFnZS9qcGVnfGFESmxMMmc0Wmk4eE1EWXhOelExTkRNNU5UUXlNaTl6YVhwbE5URTFYekUxTWpJeE1sOHdNUzVxY0djfDQ4MTUxNTY3MzE4N2IxMzNjOTFlZTM3MzY3ZjkxN2IwYjUxZDE3NTY3ZTJkNGVlYjBmYjY1MTNhZjM3NTdkYjQ",
+      "description": "Aire acondicionado split inverter frio / calor. Potencia frio 3300 W. Potencia calor 3600 W. Frigorias 2838 FG/H. Calorias 3096 KCAL/H. Eficiencia energetica A. Tipo de gas refrigerante R410A. Funcion I FEEL. Display LED con Dimmer. Funcion sleep. Timer programable. Barrido de aire automatico. Filtros lavables. Alimentacion: 220-240 VCA 50 Hz. Potencia Electrica Nominal (Frio / Calor): 1550 W / 1600 W. Nivel de ruido maximo: 39 dB. Incluye control remoto multifuncion.Aire acondicionado split inverter frio / calor. Potencia frio 3300 W. Potencia calor 3600 W. Frigorias 2838 FG/H. Calorias 3096 KCAL/H. Eficiencia energetica A. Tipo de gas refrigerante R410A. Funcion I FEEL. Display LED con Dimmer. Funcion sleep. Timer programable. Barrido de aire automatico. Filtros lavables. Alimentacion: 220-240 VCA 50 Hz. Potencia Electrica Nominal (Frio / Calor): 1550 W / 1600 W. Nivel de ruido maximo: 39 dB. Incluye control remoto multifuncion.",
+      "price": 979.999,
+      "stock": 18,
+      "characteristics": "heatCold,Si,airTypes,Split inverter",
+      "model": "AS12UR40PX4N",
+      "quantity": 0
+    },
+    {
+      "id": "a878",
+      "brand": "Hyundai",
+      "category": "Aire Acondicionado",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151857-01.jpg?context=bWFzdGVyfGltYWdlc3wxMTE3NXxpbWFnZS9qcGVnfGFEaGtMMmcxTWk4eE1EWXdOalEyT1RBeU1UY3lOaTl6YVhwbE5URTFYekUxTVRnMU4xOHdNUzVxY0djfGNjNDA0MDg1YzBhZjVkMTM5OGM1NDA5ZTMxZTc4ZWZmNTcwZmUzOGQ4ZDE3ZTIzZmE4ZTViOTY0OGM5N2IzMDg",
+      "description": "Aire acondicionado split inverter frio / calor. Frigorias 2752 FG/H. Calorias 2752 KCAL/H. Eficiencia energetica (Coeficiente IEEE) A++. Eficiencia energetica (Coeficiente COP) A. Potencia frio 1600W. Potencia calor 1400W. Tipo de gas refrigerante R32. Display. Timer. Funciones: modo sleep, modo encendido automatico, modo apagado automatico, modo ventilacion, modo deshumificacion, modo enfriamiento rapido (turbo). Auto Swing deflector Horizontal. Control de velocidad del ventilador IDU. Apagado de Luz Display del panel frontal. Ahorro de Energia. Terminacion GOLD FIN del evapordor. Terminacion GOLD FIN del condensador. Filtros de Nylon. Control remoto.",
+      "price": 959999,
+      "stock": 90,
+      "characteristics": "heatCold,Si,airTypes,Split inverter",
+      "model": "HY11INV-3200FC",
+      "quantity": 0
+    },
+    {
+      "id": "84ca",
+      "brand": "Philco",
+      "category": "Aire Acondicionado",
+      "urlImage": "https://medias.musimundo.com/medias/size515-150028-01.jpg?context=bWFzdGVyfGltYWdlc3wxNDQ0NnxpbWFnZS9qcGVnfGFEUmlMMmczWVM4eE1EWXhOVEl6TVRBNE5qWXlNaTl6YVhwbE5URTFYekUxTURBeU9GOHdNUzVxY0djfDVkNzM1MGI0MGM1YWUxMWI5MWZkNmU1YzBkOTAyMjgyZDJkYjY3MDUwZmI1ODZhZDc0NTRmNzc3OTg1YTFkYmE",
+      "description": "Aire acondicionado portatil. Tipo de climatizacion: Frio / Calor. Potencia frio: 3500 W. Frigorias: 3010 FG/H. Potencia calor: 3500 W. Calorias: 3010 Kcal/H. Display digital. Filtros Lavables. Timer programable. Funcion Follow Me. Funcion Sleep. Tipo de gas refrigerante R410A. Consumo electrico frio: 935 W. Consumo electrico calor: 1100 W. Alimentacion electrica: 220 VCA - 50 Hz. Ficha de alimentacion 10A s/IRAM 2073. Nivel de ruido maximo: 53 dB. Facil de Instalar. Incluye: Control remoto multifuncion y kit de instalacion.",
+      "price": 729999,
+      "stock": 36,
+      "characteristics": "heatCold,Si,airTypes,Portatil",
+      "model": "PHP35HC3API",
+      "quantity": 0
+    },
+    {
+      "id": "238c",
+      "brand": "Electra",
+      "category": "Aire Acondicionado",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151061-01.jpg?context=bWFzdGVyfGltYWdlc3wxMjk5MXxpbWFnZS9qcGVnfGFEaG1MMmhrTXk4eE1EVTNNemt6TmpJNU5UazJOaTl6YVhwbE5URTFYekUxTVRBMk1WOHdNUzVxY0djfGNmMzQ1YWNhYWRiYjY3YWY1MDkzM2YzZjI1YWNiMTAyNjAyMWRiODFjOTc5ODk5NjI2YmY3ODM3YjI3YTZmMzI",
+      "description": "Aire acondicionado split frio / calor. Potencia 5300W. Frigorias 4558 FG/H. Calorias 4558 KCAL/H. Eficiencia energetica A+. Tipo de gas refrigerante R410A. Display. Funcion Turbo. Reinicio Automatico. Timer Programable. Funcion Sleep. Dual Conexion Drenaje: posee doble salida de agua para un mejor drenaje. Bajo nivel sonoro. Nivel de ruido maximo: 50dB. Incluye control remoto.",
+      "price": 1269999,
+      "stock": 12,
+      "characteristics": "heatCold,Si,airTypes,Split",
+      "model": "ENTRDO53TC ",
+      "quantity": 0
     }
   ]
 }

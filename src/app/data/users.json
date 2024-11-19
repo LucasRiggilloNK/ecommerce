@@ -13,6 +13,20 @@
       "flat": "",
       "email": "lucasjoaquinriggillo@gmail.com",
       "password": "hola"
+    },
+    {
+      "id": "c9ad",
+      "name": "Juan",
+      "lastname": "Gomez",
+      "birthdate": "2000-12-12",
+      "province": "Buenos Aires",
+      "city": "Mar del Plata",
+      "street": "Rodriguez Peña",
+      "streetNumber": "1704",
+      "floor": "2",
+      "flat": "D",
+      "email": "juangomez@gmail.com",
+      "password": "123456"
     }
   ]
 }
