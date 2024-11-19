@@ -27,7 +27,7 @@
   <p>Nombre:</p>
   <input type="text" formControlName="name" />
   <div
-    style="color: red"
+    class="validation"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('name')?.dirty || userDataForm.get('name')?.touched)
@@ -45,7 +45,7 @@
   <input type="text" formControlName="lastname" />
 
   <div
-    style="color: red"
+    class="validation"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('lastname')?.dirty ||
@@ -63,7 +63,7 @@
   <p>Email:</p>
   <input type="text" formControlName="email" />
   <div
-    style="color: red"
+    class="validation"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('email')?.dirty || userDataForm.get('email')?.touched)
@@ -99,7 +99,7 @@
   <p>Calle:</p>
   <input type="text" formControlName="street" />
   <div
-    style="color: red"
+    class="validation"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('street')?.dirty || userDataForm.get('street')?.touched)
@@ -113,7 +113,7 @@
   <p>Número:</p>
   <input type="text" formControlName="streetNumber" />
   <div
-    style="color: red"
+    class="validation"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('streetNumber')?.dirty ||
@@ -151,13 +151,15 @@
     >
       Calcular envio
     </button>
-  </div>
-  <div>
-    <label for="">Destino de envío: {{ destination_addresses }}</label>
-    <br />
-    <label style="color: white">Precio de envío: ${{ shippingPrice }}</label>
+    <div>
+      <label for="">Destino de envío: {{ destination_addresses }}</label>
+      <br />
+      <label style="color: white">Precio de envío: ${{ shippingPrice }}</label>
 
-    <label style="color: white" for="">Total compra ${{ getTotalBuy() }}</label>
+      <label style="color: white" for=""
+        >Total compra ${{ getTotalBuy() }}</label
+      >
+    </div>
   </div>
 
   <select name="" id="" formControlName="cardType">
@@ -172,7 +174,7 @@
     placeholder="Nombre y apellido como figura en la tarjeta"
   />
   <div
-    style="color: red"
+    class="validation"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('cardHolder')?.dirty ||
@@ -193,7 +195,7 @@
     placeholder="Número de tarjeta"
   />
   <div
-    style="color: red"
+    class="validation"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('cardNumber')?.dirty ||
@@ -210,7 +212,7 @@
 
   <input type="text" placeholder="MM/YY" formControlName="expirationDate" />
   <div
-    style="color: red"
+    class="validation"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('expirationDate')?.dirty ||
@@ -224,7 +226,7 @@
 
   <input type="text" formControlName="cvv" placeholder="CVV" />
   <div
-    style="color: red"
+    class="validation"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('cvv')?.dirty || userDataForm.get('cvv')?.touched)

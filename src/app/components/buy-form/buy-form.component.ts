@@ -63,7 +63,7 @@ export class BuyFormComponent implements OnInit {
         Validators.required,
         CustomValidators.numbersOnly(),
       ]),
-      departmentNumber: new FormControl(''),
+      flat: new FormControl(''),
       floor: new FormControl(''),
       email: new FormControl('', [
         Validators.required,
