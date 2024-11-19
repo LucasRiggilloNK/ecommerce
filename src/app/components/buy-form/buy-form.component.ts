@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductInterface } from '../../interfaces/product/product-interface';
-import { CarritoService } from '../../services/cart.service';
 import { BuyService } from '../../services/buy.service';
 import { User } from '../../services/register-service/register.service';
 import { AuthService } from '../../services/login/auth.service';
-import { error } from 'console';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DistanceMatrixService } from '../../services/distance/distance-matrix.service';
 import { DistanceMatrix } from '../../interfaces/distance-matrix';
@@ -13,7 +11,10 @@ import { FormBuilder, FormArray } from '@angular/forms';
 import { PurchaseService } from '../../services/purchase-service/purchase-service.service';
 import { Purchase } from '../../models/purchases/purchase';
 import { CustomValidators } from '../../common/custom-validators';
-import { validateHeaderName } from 'http';
+import { Province } from '../../models/province';
+import { BsasCity } from '../../models/bsas-city';
+import { CardType } from '../../models/cardType';
+import { CardIssuer } from '../../models/card-issuer';
 
 @Component({
   selector: 'app-purchase',
@@ -28,7 +29,12 @@ export class BuyFormComponent implements OnInit {
   shippingCostByKm: number = 100;
   shippingPrice: number;
   distanceMatrixObject: DistanceMatrix;
+  destination_addresses: string = "";
   calculateDistance: number;
+  provincesList: string[] = Object.values(Province);
+  bsasCityList: string[] = Object.values(BsasCity);
+  cardsTypesList: string[] = Object.values(CardType);
+  cardIssuerList: string[] = Object.values(CardIssuer);
 
   constructor(
     private buyService: BuyService,
@@ -52,13 +58,13 @@ export class BuyFormComponent implements OnInit {
       floor: new FormControl(''),
       email: new FormControl('', [Validators.required, CustomValidators.emailDomainValidator]),
       country: new FormControl('', Validators.required),
-      province: new FormControl('', Validators.required),
+      province: new FormControl(Province.BuenosAires, Validators.required),
       city: new FormControl('', Validators.required),
-      cardType: new FormControl('', Validators.required),
-      cardHolder: new FormControl('', Validators.required),
-      cardNumber: new FormControl('', [Validators.required, Validators.maxLength(16)]),
-      expirationDate: new FormControl('', Validators.required),
-      cvv: new FormControl('', [Validators.required, Validators.maxLength(3), CustomValidators.numbersOnly()]),
+      cardType: new FormControl(CardType.CREDITO, Validators.required),
+      cardHolder: new FormControl('', [Validators.required, CustomValidators.lettersOnly()]),
+      cardNumber: new FormControl('', [Validators.required, Validators.maxLength(16), CustomValidators.numbersOnly()]),
+      expirationDate: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]),
+      cvv: new FormControl('', [Validators.required, Validators.maxLength(3), Validators.minLength(3), CustomValidators.numbersOnly()]),
       cardIssuer: new FormControl('', Validators.required)
     });
 
@@ -133,8 +139,10 @@ export class BuyFormComponent implements OnInit {
     this.userDataForm.get('birthdate')?.setValue(user.birthdate);
     this.userDataForm.get('email')?.setValue(user.email);
     this.userDataForm.get('country')?.setValue('Argentina');
-    this.userDataForm.get('province')?.setValue('Buenos Aires');
-    this.userDataForm.get('city')?.setValue('Mar del Plata');
+    this.userDataForm.get('province')?.setValue(Province.BuenosAires);
+    this.userDataForm.get('city')?.setValue(BsasCity.MarDelPlata);
+    this.userDataForm.get('cardType')?.setValue(CardType.CREDITO);
+    this.userDataForm.get('cardIssuer')?.setValue(CardIssuer.VISA);
   }
 
   getSubtotal() {
@@ -158,17 +166,30 @@ export class BuyFormComponent implements OnInit {
       .getShippingPrice(destiny)
       .then((response) => {
         this.distanceMatrixObject = response as DistanceMatrix;
+        console.log(this.distanceMatrixObject);
 
-        this.calculateDistance =
-          this.distanceMatrixObject.rows[0].elements[0].distance.value;
-        console.log('Distancia: ' + this.calculateDistance);
-        this.shippingPrice =
-          (this.calculateDistance * this.shippingCostByKm) / 1000;
-        this.userDataForm.get('sendPrice')?.setValue(this.shippingPrice);
+        if(this.distanceMatrixObject.rows[0].elements[0].status == "OK"){
+
+          console.log("Domicilio entrega: " + this.distanceMatrixObject.destination_addresses[0]);
+          this.destination_addresses = this.distanceMatrixObject.destination_addresses[0];
+  
+          this.calculateDistance =
+            this.distanceMatrixObject.rows[0].elements[0].distance.value;
+          console.log('Distancia: ' + this.calculateDistance);
+          this.shippingPrice =
+            (this.calculateDistance * this.shippingCostByKm) / 1000;
+          this.userDataForm.get('sendPrice')?.setValue(this.shippingPrice);
+        }else if(this.distanceMatrixObject.rows[0].elements[0].status == "ZERO_RESULTS"){
+          this.destination_addresses = "";
+          alert('Dirección inexistente...');
+        }
+        
       })
       .catch((error) => {
+        this.destination_addresses = "";
+        console.log("Error calculo distancia...")
         console.error(error);
-        //alert('Dirección inexistente...');
+        alert('Dirección inexistente...');
       });
   }
 
@@ -208,4 +229,9 @@ export class BuyFormComponent implements OnInit {
 
     return this.buyService.existsCard(card);
   }
+
+
+
+
+
 }

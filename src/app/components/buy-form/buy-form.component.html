@@ -52,16 +52,14 @@
 
   <p>Email:</p>
   <input type="text" formControlName="email" />
-  <div style="color: red" *ngIf="!userDataForm.valid &&(userDataForm.get('email')?.dirty || userDataForm.get('email')?.touched)">
+  <div style="color: red" *ngIf="!userDataForm.valid && (userDataForm.get('email')?.dirty || userDataForm.get('email')?.touched)">
     <div *ngIf="userDataForm.get('email')?.errors?.['required']">
       Campo requerido...
     </div>
-    <div *ngIf="userDataForm.get('email')?.errors?.['email']">
+    <div *ngIf="userDataForm.get('email')?.errors?.['email'] || userDataForm.get('email')?.errors?.['emailDomainValidator']">
       Email no válido...
     </div>
-    <div *ngIf="userDataForm.get('email')?.errors?.['invalidDomain']">
-      Dominio no válido...
-    </div>
+
   </div>
   <br />
   <p>Pais:</p>
@@ -70,22 +68,37 @@
   </select>
 
   <p>Provincia:</p>
-  <select name="" id="" formControlName="province">
-    <option value="Buenos Aires">Buenos Aires</option>
+  <select name="" id="" formControlName="province" >
+    <option  *ngFor="let province of provincesList" [value]="province">{{province}}</option>
   </select>
+
   <br />
   <p>Ciudad:</p>
   <select name="" id="" formControlName="city">
-    <option value="Balcarce">Balcarce</option>
-    <option value="Mar del Plata">Mar del Plata</option>
-    <option value="Miramar">Miramar</option>
-    <option value="Necochea">Necochea</option>
+    <option *ngFor="let city of bsasCityList" [value]="city">{{city}}</option>
   </select>
   <br />
   <p>Calle:</p>
   <input type="text" formControlName="street"/>
+  <div style="color: red" *ngIf="!userDataForm.valid && (userDataForm.get('street')?.dirty || userDataForm.get('street')?.touched)">
+    <div *ngIf="userDataForm.get('street')?.errors?.['required']">
+      Campo requerido...
+    </div>
+  </div>
+
+
   <p>Número:</p>
   <input type="text" formControlName="streetNumber"/>
+  <div style="color: red" *ngIf="!userDataForm.valid && (userDataForm.get('streetNumber')?.dirty || userDataForm.get('streetNumber')?.touched)">
+    <div *ngIf="userDataForm.get('streetNumber')?.errors?.['required']">
+      Campo requerido...
+    </div>
+    <div *ngIf="userDataForm.get('streetNumber')?.errors?.['numbersOnly']">
+      Debe ingresar solo números...
+    </div>
+  </div>
+
+
   <p>Piso:</p>
   <input type="text" formControlName="floor"/>
   <p>Departamento:</p>
@@ -96,42 +109,73 @@
   <br />
   <!-- ENVIO -->
   <div *ngIf="userDataForm.get('street')?.valid && userDataForm.get('streetNumber')?.valid">
+    
     <button [disabled]="!userDataForm.get('street')?.valid && !userDataForm.get('streetNumber')?.valid" (click)="getShippingPrice()"> Calcular envio</button>
   </div>
  <div>
-    <label style="color: white"> ${{ shippingPrice }}</label>
+    <label for="">Destino de envío: {{destination_addresses}}</label>
+    <br>
+    <label style="color: white">Precio de envío: ${{ shippingPrice }}</label>
     <br />
-    <label style="color: white" for="">Total ${{ getTotalBuy() }}</label>
+    <label style="color: white" for="">Total compra ${{ getTotalBuy() }}</label>
   </div>
 
   <br />
   <select name="" id="" formControlName="cardType">
-    <option value="debit">Débito</option>
-    <option value="credit">Crédito</option></select
-  ><br />
-  <input
-    type="text"
-    formControlName="cardHolder"
-    placeholder="Nombre y apellido como figura en la tarjeta"
-  /><br />
-  <input
-    type="text"
-    formControlName="cardNumber"
-    placeholder="Número de tarjeta"
-  /><br />
-  <input
-    type="text"
-    formControlName="expirationDate"
-    placeholder="Vencimiento"
-  /><br />
-  <input type="text" formControlName="cvv" placeholder="CVV" /><br />
-  <div >CVV debe ser sólo números</div>
-  <select name="" id="" formControlName="cardIssuer">
-    <option value="Visa">Visa</option>
-    <option value="Mastercard">Mastercard</option>
-    <option value="American Express">American Express</option>
-    <option value="Discover">Discover</option>
+    <option *ngFor="let type of cardsTypesList" [value]="type">{{type}}</option>
     </select><br />
+
+  <input type="text" formControlName="cardHolder" placeholder="Nombre y apellido como figura en la tarjeta"/>
+  <div style="color: red" *ngIf="!userDataForm.valid && (userDataForm.get('cardHolder')?.dirty || userDataForm.get('cardHolder')?.touched)">
+    <div *ngIf="userDataForm.get('cardHolder')?.errors?.['required']">
+      Campo requerido...
+    </div>
+    <div *ngIf="userDataForm.get('cardHolder')?.errors?.['lettersOnly']">
+      Debe ingresar solo letras...
+    </div>
+  </div>
+  
+  <br />
+  <input type="text" formControlName="cardNumber"placeholder="Número de tarjeta"/><br />
+  <div style="color: red" *ngIf="!userDataForm.valid && (userDataForm.get('cardNumber')?.dirty || userDataForm.get('cardNumber')?.touched)">
+    <div *ngIf="userDataForm.get('cardNumber')?.errors?.['required']">
+      Campo requerido...
+    </div>
+    <div *ngIf="userDataForm.get('cardNumber')?.errors?.['numbersOnly']">
+      Debe ingresar solo números...
+    </div>
+  </div>
+
+  <input type="text" placeholder="MM/YY" formControlName="expirationDate"/>
+  <div style="color: red" *ngIf="!userDataForm.valid && (userDataForm.get('expirationDate')?.dirty || userDataForm.get('expirationDate')?.touched)">
+    <div *ngIf="userDataForm.get('expirationDate')?.errors?.['required']">
+      Campo requerido...
+    </div>
+  </div>
+
+
+  <br />
+  <input type="text" formControlName="cvv" placeholder="CVV" /><br />
+  <div style="color: red" *ngIf="!userDataForm.valid && (userDataForm.get('cvv')?.dirty || userDataForm.get('cvv')?.touched)">
+    <div *ngIf="userDataForm.get('cvv')?.errors?.['required']">
+      Campo requerido...
+    </div>
+    <div *ngIf="userDataForm.get('cvv')?.errors?.['numbersOnly']">
+      Debe ingresar solo números...
+    </div>
+  </div>
+
+  
+  <select name="" id="" formControlName="cardIssuer">
+    <option *ngFor="let cardIssuer of cardIssuerList" [value]="cardIssuer">{{cardIssuer}}</option>
+    
+    </select><br />
+
+
+    <!-- <div *ngIf="cardExists()" >
+      Ingrese una tarjeta existente...
+    </div> -->
+
   <button type="button" (click)="cardExists()">Verificar tarjeta</button><br />
 
   <button type="submit">Confirmar compra</button>

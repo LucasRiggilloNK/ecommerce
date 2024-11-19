@@ -16,9 +16,9 @@ export class CustomValidators {
         let regExp: RegExp = /^[0-9\s]*$/;
 
         return (control: AbstractControl): {[key: string]: any} | null => {                     
-            const lettersOnly = regExp.test(control.value);
+            const numbersOnly = regExp.test(control.value);
 
-            return !lettersOnly ? { 'numbersOnly': {value: control.value} } : null;
+            return !numbersOnly ? { 'numbersOnly': {value: control.value} } : null;
         };
     }
 
@@ -54,4 +54,7 @@ export class CustomValidators {
         };
     }
 
+
+
+   
 }
