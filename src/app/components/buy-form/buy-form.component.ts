@@ -59,7 +59,7 @@ export class BuyFormComponent implements OnInit {
         Validators.required,
         CustomValidators.numbersOnly(),
       ]),
-      flat: new FormControl(''),
+      departmentNumber: new FormControl(''),
       floor: new FormControl(''),
       email: new FormControl('', [
         Validators.required,
@@ -156,9 +156,12 @@ export class BuyFormComponent implements OnInit {
     this.userDataForm.get('birthdate')?.setValue(user.birthdate);
     this.userDataForm.get('postalCode')?.setValue(user.postalCode);
     this.userDataForm.get('email')?.setValue(user.email);
-    this.userDataForm.get('country')?.setValue('Argentina');
-    this.userDataForm.get('province')?.setValue('Buenos Aires');
-    this.userDataForm.get('city')?.setValue('Mar del Plata');
+    this.userDataForm.get('country')?.setValue(user.country);
+    this.userDataForm.get('province')?.setValue(user.province);
+    this.userDataForm.get('city')?.setValue(user.city);
+    this.userDataForm.get('street')?.setValue(user.street);
+    this.userDataForm.get('streetNumber')?.setValue(user.streetNumber);
+    this.userDataForm.get('departmentNumber')?.setValue(user.departmentNumber);
   }
 
   getSubtotal() {
