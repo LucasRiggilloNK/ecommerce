@@ -76,10 +76,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.subscriptionGetProductInterfaceById = new Subscription();
     this.formControlById = new FormControl();
 
-    //Elimina el elemento none en categoryList
-    let indiceNONE = this.categoryList.indexOf(Category.NONE);
-
-    this.categoryList.splice(indiceNONE, 1);
+    
 
     this.formControlCategory = new FormControl();
     this.formGrupSubfilters = new FormGroup({
@@ -159,6 +156,13 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    //Elimina el elemento none en categoryList
+    let indiceNONE = this.categoryList.indexOf(Category.NONE);
+
+    this.categoryList.splice(indiceNONE, 1);
+
+
+
     this.getProductListInterface();
     this.valueChangesSubscription =
       this.formControlCategory.valueChanges.subscribe((form) => {
@@ -173,6 +177,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
           this.formControlCategory.value
         );
       });
+
+      this.formControlCategory.setValue(Category.ALL);//seteo inicial de muestra de home 
   }
   ngOnDestroy(): void {
     this.valueChangesSubscription?.unsubscribe();
@@ -212,10 +218,9 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     return await this.productService.getAllProductsListInterface();
   }
 
-  async getListFilteredByCategory(category: string) {
-    //funciona
+  async getListFilteredByCategory(category: string) {//Función que se ejecuta al hacer cambios en el select categoría
 
-    //Función que se ejecuta al hacer cambios en el select categoría
+    
     let filteredProductsListInterface: ProductInterface[] = [];
 
     if (category != Category.NONE) {
@@ -225,10 +230,13 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       this.productListFilteredByCategory =
         await this.getAllProductsListInterface(); // carga todos los productos en productListFilteredByCategory
 
-      this.productListFilteredByCategory = this.getFilterByCategory(
-        this.productListFilteredByCategory,
-        category
-      ); //filtro categoria
+        if(category != Category.ALL){
+          this.productListFilteredByCategory = this.getFilterByCategory(
+            this.productListFilteredByCategory,
+            category
+          ); //filtro categoria
+        }
+      
       filteredProductsListInterface = this.productListFilteredByCategory; // la iguala a filteredProductsListInterface para poder filtrar desde ahi y no perder el punto de inicio de la categoria
 
       //limpiar todos los subfiltros

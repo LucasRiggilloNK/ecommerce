@@ -73,7 +73,7 @@
       "description": "Auricular inalambrico tipo vincha. Microfono. Control de volumen. Conexion bluetooth 5.3, frecuencia 2.4 GHz - 2.4835 GHz. Plegable. Driver de 40mm. Frecuencia 20Hz - 20 kHz. Impendancia 30 ohm. Sensivilidad 101 dB. Sensibilidad del microfono 40 dBV. Bateria de 500 mAh / 3.7V. Tiempo de reproduccion 76 Hs. Tiempo de carga 2Hs. Incluye cable de carga tipo C.",
       "price": "110999",
       "stock": "125",
-      "characteristics": "headphoneType,inEar",
+      "characteristics": "headphoneType,headBand",
       "model": "TUNE 720",
       "id": "7"
     },
@@ -205,7 +205,7 @@
       "description": "Auricular inalambrico tipo vincha. Conexion inalambrica bluetooth. Microfono. Control de volumen. Plegable. Driver de 40mm. Bateria de 400 mAh. Duracion de reproduccion o conversacion 25 hs. Rango 10m de distancia. Carga en 2 hs. Cable de carga USB-C.",
       "price": 64999,
       "stock": 25,
-      "characteristics": "headphoneType,inEar",
+      "characteristics": "headphoneType,headBand",
       "model": "XKH03",
       "id": "19"
     },
@@ -256,7 +256,7 @@
     {
       "brand": "Motorola",
       "category": "Celulares",
-      "urlImage": "https://medias.musimundo.com/medias/size515-151459-01.jpg?context=bWFzdGVyfGltYWdlc3w2NTMzNXxpbWFnZS9qcGVnfGFHUTRMMmd4WlM4eE1EVTVNamswTmpjME9UUTNNQzl6YVhwbE5URTFYekUxTVRRMU9WOHdNUzVxY0djfDBkZjA2MTA0N2E5ODc0MzFlZTUzNWY5Y2Q0OWNlNDMwNDhkNzBmOTM4ZTg2YmRhZWFkMjYxN2YxOTlmMGMzY2Q",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151463-01.jpg?context=bWFzdGVyfGltYWdlc3w1ODU0MXxpbWFnZS9qcGVnfGFEVTFMMmc0TlM4eE1EVTVNamsxTlRjNU16UXpPQzl6YVhwbE5URTFYekUxTVRRMk0xOHdNUzVxY0djfDdjNThjOTAyMTM2NDllNjA1MmZmYjM5ODk4MTc2M2YyZmY2YzZlNWQ2ZjQ1YTE2MjRhNWQ0YzljY2UzYzdlMWU",
       "description": "Celular. Pantalla pOLED de 6.67\" (20:9), FHD+ (1080 x 2400) 395ppi, HiD, 120 Hz. Vidrio corning gorilla glass 5 3D. Procesador Qualcomm Snapdragon 6 Gen 1 (SM6450), Octa core (2.2 GHz). Capacidad 256 Gb. RAM 8 Gb (hasta 16 Gb con RAMBoost). Camara Principal: 50 MP (84.1) F1.88, Gran angular y macro: 13 MP (120) F2.2. Zoom combinado (10x fotos / 6x videos) sensor Sony LYTIA. Flash LED. Camara frontal 32 MP (80.53) F2.45. Conexiones: Wi Fi 802.11 a/b/g/n/ac - WIFI 5 (2.4 y 5 Ghz). Bluetooth 5.2. NFC. USB-C 2.0 / OTG. Sistema operativo Android 14. Bateria de 5000 mAh. Sensores: acelerometro, de proximidad, brujula, giroscopio, huella dactilcar (bajo display), luz ambiente, desbloqueo facial. GPS, AGPS, Glonass, Galileo, Beidou. Resistencia IP68. Incluye cargador turbopower de 68W.",
       "price": 799999,
       "stock": 6,
@@ -600,6 +600,102 @@
       "stock": 12,
       "characteristics": "heatCold,Si,airTypes,Split",
       "model": "ENTRDO53TC ",
+      "quantity": 0
+    },
+    {
+      "id": "39e2",
+      "brand": "Philco",
+      "category": "Ventiladores",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151684-01.jpg?context=bWFzdGVyfGltYWdlc3wzODU5OXxpbWFnZS9qcGVnfGFHSXlMMmhoTXk4eE1EVTVPVFE0Tnpnek1qQTVOQzl6YVhwbE5URTFYekUxTVRZNE5GOHdNUzVxY0djfGJmODlhOTMzMzFjZWZjMDI5YTM4MDg2OTE2NTM3ZjFlNmFjY2JiZjAyNmNmMGJkNTgxZGRiNzAzMGViOTI3ZjU",
+      "description": "Ventilador de pie industrial 26\". 180 W De potencia. 3 Velocidades. Alto caudal de aire. Helice y rejillas metalicas. Base redonda. Altura regulable. Proteccion contra sobrecalentamiento.",
+      "price": 133199,
+      "stock": 2,
+      "characteristics": "fanType,Pie",
+      "model": "VPIP2623P",
+      "quantity": 0
+    },
+    {
+      "id": "339e",
+      "brand": "Peabody",
+      "category": "Ventiladores",
+      "urlImage": "https://medias.musimundo.com/medias/size515-136954-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDMyMDF8aW1hZ2UvanBlZ3xhR1ExTDJobFpTOHhNRFl5TmpNMU1EZzBNVGc0Tmk5emFYcGxOVEUxWHpFek5qazFORjh3TVM1cWNHY3wyMDEzOTU0MWI3ZGNjMGI3NTFjMjEyNzRjNjA3ZTcxN2RhNTk2YjFhNzJmODE3Y2RjNDE3MDVhNDFiNTQwYjA0",
+      "description": "20 Pulgadas. 3 Velocidades.Cabezal oscilante y regulable p/direccionar el viento. Pie antideslizante. Rejilla de alambre. Paletas de metal nacional (calibradas y balanceadas). Tamano de la base 53 x 30 cm.",
+      "price": 129999,
+      "stock": 6,
+      "characteristics": "fanType,Turbo",
+      "model": "PE-VP150",
+      "quantity": 0
+    },
+    {
+      "id": "b1ba",
+      "brand": "Motorola",
+      "category": "Televisores",
+      "urlImage": "https://medias.musimundo.com/medias/size515-151128-01.jpg?context=bWFzdGVyfGltYWdlc3w3ODc5MnxpbWFnZS9qcGVnfGFEWTJMMmhoTmk4eE1EVTNPRGMzTmpZMU16ZzFOQzl6YVhwbE5URTFYekUxTVRFeU9GOHdNUzVxY0djfGZkYmFiODUwNzk0MGMxZjMxMGU5ZDUzZDMyYmU1OTNiNzdjOTA1M2JjMTU3NGRjYTk0NDM1NWZmMjNlNWM2MzI",
+      "description": "Televisor Smart DLED. Pantalla de 32\" HD (1366x768). Frecuencia de barrido 60Hz. Brillo 180 nit. Radio contraste 3000:1. Tiempo de respuesta 6.5ms. Procesador MT9216, Host CPU A55, Quad core, Frecuencia CPU 1.5 Ghz, DDR 1 G. EMMC 8 G. Tcon integrada. Sistema operativo Android TV. 2 Salidas de audio. Potencia 6W x2. Ecualizador de audio, Dolby digital, Dolby digial plus, DTS HD, DTS virtual X, reduccion de ruido. Conexiones: Wi Fi 2.4 / 5.0 GHz. Bluetooth 5.0. USB tipo 2.0: 2 / USB 1, USB 2. 2 Entradas HDMI. Puerto de red (RJ45). SPDIF. Conector de 3.5mm. Google assistant. Control por voz. Soporte VESA 100x100 mm. Medidas con base (alt-anch-prof) 45.7 x 72.6 x 22.1 cm.",
+      "price": 339999,
+      "stock": 10,
+      "characteristics": "tvTecnology,FHD,tvInches,32\"",
+      "model": "MT3200",
+      "quantity": 0
+    },
+    {
+      "id": "eb99",
+      "brand": "Samsung",
+      "category": "Televisores",
+      "urlImage": "https://medias.musimundo.com/medias/size515-149710-01.jpg?context=bWFzdGVyfGltYWdlc3w3ODI1NXxpbWFnZS9qcGVnfGFEVmtMMmhoTnk4eE1EWXhPVGs0TkRjME1ETTRNaTl6YVhwbE5URTFYekUwT1RjeE1GOHdNUzVxY0djfDI2OGQ4NDNjZDZlN2VlY2JkNjYyZmJiZTBmNTUzOTM4ZGQxZjQzMjNiOWJiMzc1YTA4YTdjYTgwODI0ZTI3OWE",
+      "description": "Televisor smart OLED de 55\". Resolucion OLED 4K (3840x2160). Formato de pantalla wide. Procesador Neural Quantum 4K. Tipo de sonido: Dolby Atmos. Salida de sonido 40 W (RMS). Sonido adaptativo. Conexiones: Wifi. Bluetooth 5.2. 2 USB. 4 HDMI. Ethernet (LAN). 1 Salida de audio digital (optica). Entrada de video compuesto. Entrada de video componente. Sintonizador TDA. Soporte VESA 300x200 mm. Control remoto ecologico: Permite recargarlo con luz solar, ambiente, USB-C y radiofrecuencia. Tecnologia OLED: Negros realmente profundos gracias a sus pixeles autoiluminados impulsados por Quantum Dot. Quantum HDR OLED: Disfruta de brillo potente y amplio rango de contraste a traves de los pixeles auto iluminados. Real depth enhancer: Aumenta el contraste del primer plano para reflejar una imagen mas profunda. Rendimiento superior en juegos (144 hz en 4K). Game pass: Juga sin consola. Medidas con base (alt-anch-prof) 77.2x122.4x26.6 cm. Incluye: Control remoto ecologico y cable de alimentacion.",
+      "price": 3299999,
+      "stock": 12,
+      "characteristics": "tvTecnology,OLED,tvInches,55\"",
+      "model": "QN55S90CAGCZB",
+      "quantity": 0
+    },
+    {
+      "id": "f333",
+      "brand": "Samsung",
+      "category": "Televisores",
+      "urlImage": "https://medias.musimundo.com/medias/size515-150193-01.jpg?context=bWFzdGVyfGltYWdlc3w5MDQ2OHxpbWFnZS9qcGVnfGFERXpMMmhrTnk4eE1EVTRORFl3TXprMU1URXpOQzl6YVhwbE5URTFYekUxTURFNU0xOHdNUzVxY0djfDMzYzc0ZWY1MGFiNDYwMjk0MjQzYTE1ZGE1OGU4YzViMWQ5MjY2NjU4YzI4MmRjZTM2ZjQ1YjhlMTIxMmYyYjA",
+      "description": "Televisor smart QLED. Pantalla de 98\" 4k (3840x2160), wide. Frecuencia de barrido 120 Hz (100Hz UY, PY). Contraste ultrafino de colores negros profundos y blancos puros. Quantum HDR+. Mil millones de colores con Quantum DOT. Procesador neural quantum 4K. Sonido adaptativo e inteligente: 40W de potencia. Conexiones: Wifi. Bluetooth. 4 HDMI. 2 USB. Entrada de video componente. Entrada de video compuesto. Sintonizador TDA. Sistema operativo: Tizen. Gaming: Motion Xcelerator Turbo+, 4K a 120Hz. Smart things. Medidas con soporte (altxanchxprof):130.68x218.06x38.73 cm. Incluye: Cable de alimentacion y control remoto ecologico.",
+      "price": 10299999,
+      "stock": 12,
+      "characteristics": "tvTecnology,QLED,tvInches,98\"",
+      "model": "QN98Q80CAGCZBB",
+      "quantity": 0
+    },
+    {
+      "id": "edbd",
+      "brand": "Logitech",
+      "category": "Auriculares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152335-01.jpg?context=bWFzdGVyfGltYWdlc3wzNzc0N3xpbWFnZS9qcGVnfGFETmlMMmcxWWk4eE1EWXlORFEwTWpNek5USTJNaTl6YVhwbE5URTFYekUxTWpNek5WOHdNUzVxY0djfGRmZTc2MGUwZjQxYmFhOGVlNTM4MTg5MjEyNDcyMDQ3ZjRhMmRiZWI5NzVhOGQ5NTM0ZGIxNDNjNzUwNWU5MDI",
+      "description": "Hecho para jugar con el innovador playsinc. Conectate a Xbox, PS5, PC y mac a la vez y toca en los 3 sistemas. Los transductores de audio Pro G Graphite logran una nitidez y una respuesta sin precedentes. Lightspeed permite los niveles mas altos de desempeno de audio inalambrico.",
+      "price": 841975,
+      "stock": 9,
+      "characteristics": "headphoneType,headBand",
+      "model": "A50 X",
+      "quantity": 0
+    },
+    {
+      "id": "1c08",
+      "brand": "Philips",
+      "category": "Auriculares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-149617-01.jpg?context=bWFzdGVyfGltYWdlc3wxNDkyM3xpbWFnZS9qcGVnfGFHTmhMMmhqTWk4eE1EVXdNVE0zTmpnd01qZzBOaTl6YVhwbE5URTFYekUwT1RZeE4xOHdNUzVxY0djfGQwZTI5OTYyNDdlNTg3NDJkZGEyNWZlZGNjZGZmZTZhY2FjOWQ2MjM4NzliNzk2MTI3YjYxNWM3OWU0NDIxMmU",
+      "description": "Auricular neckband in ear inalambrico. Microfono incorporado con cancelacion de eco. Control de volumen. Impendancia 32 Ohm. Diametro del driver 12.2mm. Rango de frecuencia 20-20000Hz. Bluetooth 5.0. Resistencia IPX4. 3 Almohadillas de goma intercambiables. Reproduccion hasta 15 Hs.",
+      "price": 30999,
+      "stock": 28,
+      "characteristics": "headphoneType,inEar",
+      "model": "TAN1207BK/00",
+      "quantity": 0
+    },
+    {
+      "id": "dab9",
+      "brand": "Daewoo",
+      "category": "Auriculares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-179083-01.png?context=bWFzdGVyfGltYWdlc3w1MTg2NDN8aW1hZ2UvcG5nfGFEWmpMMmhtT1M4eE1EUTVORE00T0RVMk9EQTVOQzl6YVhwbE5URTFYekUzT1RBNE0xOHdNUzV3Ym1jfDdlZjBmOTdhM2U1Yzg3YTAwZTIyNWMzNzBhMGZhMDU2MTQ0MDZjMGM3ZDhhZTNkMGE0ZjVmZGM5ZjUwZmZhZTI",
+      "description": "Auricular in ear inalambrico. Tecnologia TWS. Driver de 13 mm. Rango de frecuencia: 2.4 hz - 2.485 GHz. Autonomia: 4 hs de reproduccion. Tiempo de carga: 2 hs. Bateria auricular: Litio 30 mAh. Bateria base de carga: Litio 300 mAh. Puerto de carga: Tipo C. Microfono incorporado.",
+      "price": 22999,
+      "stock": 15,
+      "characteristics": "headphoneType,inEar",
+      "model": "DW-PR431 KI",
       "quantity": 0
     }
   ]

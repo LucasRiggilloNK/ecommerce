@@ -22,7 +22,7 @@ export class ProductDetailsComponent implements OnInit {
     private location: Location
   ) {
     this.productToVievDetails = {
-      brand: Brand.NONE,
+      brand:  Brand.NONE,
       category: Category.NONE,
       urlImage: '',
       description: '',

@@ -35,7 +35,7 @@ export class ProductService {
     'NanoCell',
     'FHD',
   ];
-  tvInchesList: string[] = ['Todos', '32"', '43"', '55"', '60"', '70"', '75"'];
+  tvInchesList: string[] = ['Todos', '32"', '43"', '55"', '60"', '70"', '75"', '98"'];
   headphonesTypeList = ['Todos', 'inEar', 'headBand'];
   refrigeratorCoolingSystemList: string[] = [
     'Todos',
@@ -346,29 +346,41 @@ export class ProductService {
 
   ////////////////////////////////////    DETALLES PRODUCTO    //////////////////////////////////////////
 
-  /* public async setProductToViewDetailsById(id: number){
-  
-  await this.asyncService.getByIdPromise(id, this.productsApiUrl)
-  .then(response =>{
-    this.productToVievDetails = response;
-    
-  })
-  .catch(error =>{
-    console.log("Error al obtener producto por id**");
-    
-  });
-
-
-}
-
-getProductToVievDetails(){
-  return this.productToVievDetails;
-} */
+ 
 
   async getLatestProductId(): Promise<number> {
     let allProducts: ProductInterface[] = [];
     allProducts = await this.getAllProductsListInterface();
 
     return Math.max(...allProducts.map((product) => Number(product.id)));
+  }
+
+  async productExists(product: ProductInterface):Promise<boolean>{
+    let productsInterfaceList: ProductInterface[] | undefined = []; 
+    let out = false;
+    let p: ProductInterface | undefined;
+
+    await this.asyncService.getAllPromise(this.productsApiUrl)
+    .then(response =>{
+      productsInterfaceList = response;
+      
+      if(productsInterfaceList != undefined){
+        p = productsInterfaceList.find(prod => product.brand === prod.brand && product.model === prod.model);
+        console.log("p");
+        console.log(p);
+        if(p != undefined){
+          out = true;
+        }
+       
+      }
+
+    })
+    .catch(error =>{
+      alert("No se pudo verificar si existe el producto...");
+      
+    });
+
+    console.log("Out: " + out);
+    return out;
   }
 }

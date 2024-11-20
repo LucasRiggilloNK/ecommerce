@@ -1,5 +1,6 @@
 export enum Category {
     NONE = '',
+    ALL = "Todas",
     AIRE_ACONDICIONADO = 'Aire Acondicionado',
     VENTILADOR = 'Ventiladores', 
     TELEVISORES = 'Televisores', 

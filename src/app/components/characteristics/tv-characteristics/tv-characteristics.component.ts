@@ -9,7 +9,7 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
 })
 export class TvCharacteristicsComponent {
   tvTechnologiesList: string[] = ["LED", "OLED", "AMOLED", "QLED", "NanoCell", "FHD"];
-  tvInchesList: string[] = ['32"', '43"', '55"', '60"', '70"', '75"'];
+  tvInchesList: string[] = ['32"', '43"', '55"', '60"', '70"', '75"','98"'];
   characteristicsFormGroup: FormGroup;
   characteristicsString: string = "";
 
