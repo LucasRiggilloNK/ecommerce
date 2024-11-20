@@ -27,6 +27,20 @@
       "flat": "D",
       "email": "juangomez@gmail.com",
       "password": "123456"
+    },
+    {
+      "id": "ccc1",
+      "name": "Marcos",
+      "lastname": "Marrizo",
+      "birthdate": "1985-10-10",
+      "province": "Buenos Aires",
+      "city": "Mar del Plata",
+      "street": "Alguna",
+      "streetNumber": "123",
+      "floor": "",
+      "flat": "",
+      "email": "marquitos@hotmail",
+      "password": "Marcos"
     }
   ]
 }

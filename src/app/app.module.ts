@@ -10,7 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { AirConditioningCharacteristicsComponent } from './components/characteristics/air-conditioning-characteristics/air-conditioning-characteristics.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TvCharacteristicsComponent } from './components/characteristics/tv-characteristics/tv-characteristics.component';
 import { FanCharacteristicsComponent } from './components/characteristics/fan-characteristics/fan-characteristics.component';
 import { HeapphonesCharacteristicsComponent } from './components/characteristics/heapphones-characteristics/heapphones-characteristics.component';
@@ -25,15 +24,16 @@ import { TabletCharacteristicsComponent } from './components/characteristics/tab
 import { PrinterCharacteristicsComponent } from './components/characteristics/printer-characteristics/printer-characteristics.component';
 import { KeyboardCharacteristicsComponent } from './components/characteristics/keyboard-characteristics/keyboard-characteristics.component';
 import { MouseCharacteristicsComponent } from './components/characteristics/mouse-characteristics/mouse-characteristics.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
 import { PrivateComponent } from './private/private.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/login/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { CartComponent } from './components/cart/cart.component';
-import { BuyFormComponent } from './components/buy-form/buy-form.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { BuyFormComponent } from './components/buy-form/buy-form.component';
 
 @NgModule({
   declarations: [
@@ -57,13 +57,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     PrinterCharacteristicsComponent,
     KeyboardCharacteristicsComponent,
     MouseCharacteristicsComponent,
+    PrivateComponent,
     RegisterComponent,
     LoginComponent,
-    PrivateComponent,
-    BuyFormComponent,
+    BuyFormComponent
+ 
   ],
 
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
 
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
