@@ -15,6 +15,8 @@ import { Province } from '../../models/province';
 import { BsasCity } from '../../models/bsas-city';
 import { CardType } from '../../models/cardType';
 import { CardIssuer } from '../../models/card-issuer';
+import { Router } from '@angular/router';
+import { ProductService } from '../../services/product/product.service';
 
 @Component({
   selector: 'app-purchase',
@@ -40,7 +42,9 @@ export class BuyFormComponent implements OnInit {
     private buyService: BuyService,
     private fb: FormBuilder,
     private purchaseService: PurchaseService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
+    private productService: ProductService
   ) {
     this.userDataForm = this.fb.group({
       clienteId: [''],
@@ -125,23 +129,6 @@ export class BuyFormComponent implements OnInit {
     this.calculateDistance = 0;
   }
 
-  onsubmit() {
-    const nuevaCompra: Purchase = {
-      clienteId: this.userDataForm.value.clienteId,
-      productos: this.userDataForm.value.productos,
-      total: this.userDataForm.value.total,
-      fecha: new Date().toISOString(),
-    };
-    this.purchaseService.agregarCompra(nuevaCompra).subscribe(
-      (response) => {
-        console.log('Compra registrada con éxito:', response);
-      },
-      (error) => {
-        console.error('Error al registrar la compra:', error);
-      }
-    );
-  }
-
   ngOnInit(): void {
     this.buyService.getCartItemsToBuy().subscribe((items) => {
       this.cartItems = items;
@@ -173,6 +160,10 @@ export class BuyFormComponent implements OnInit {
     this.userDataForm.get('city')?.setValue(BsasCity.MarDelPlata);
     this.userDataForm.get('cardType')?.setValue(CardType.CREDITO);
     this.userDataForm.get('cardIssuer')?.setValue(CardIssuer.VISA);
+    this.userDataForm.get('street')?.setValue(user.street);
+    this.userDataForm.get('streetNumber')?.setValue(user.streetNumber);
+    this.userDataForm.get('flat')?.setValue(user.flat);
+    this.userDataForm.get('floor')?.setValue(user.floor);
   }
 
   getSubtotal() {
@@ -233,6 +224,45 @@ export class BuyFormComponent implements OnInit {
 
   get productos(): FormArray {
     return this.userDataForm.get('productos') as FormArray;
+  }
+
+  generatePurchase() {
+    const productos: { id: string; quantity: number }[] = [];
+    this.cartItems.forEach(({ id, quantity }) => {
+      productos.push({ id, quantity });
+    });
+
+    const idCliente = this.authService.getUserId();
+    const total = this.getTotalBuy();
+    const nuevaCompra: Purchase = {
+      clienteId: idCliente,
+      productos: productos,
+      fecha: new Date(),
+      total: total,
+    };
+
+    // Registrar la compra
+    this.purchaseService.agregarCompra(nuevaCompra).subscribe(
+      (response) => {
+        console.log('Compra registrada con éxito:', response);
+
+        productos.forEach((producto) => {
+          this.productService.updateProductStock(
+            producto.id,
+            producto.quantity
+          );
+        });
+
+        localStorage.removeItem('cart');
+        this.router.navigate(['/']);
+        setTimeout(() => {
+          window.location.reload();
+        }, 100);
+      },
+      (error) => {
+        console.error('Error al registrar la compra:', error);
+      }
+    );
   }
 
   agregarProducto() {

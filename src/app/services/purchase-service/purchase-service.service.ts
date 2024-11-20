@@ -7,7 +7,7 @@ import { Purchase } from '../../models/purchases/purchase';
   providedIn: 'root',
 })
 export class PurchaseService {
-  private apiUrl = 'http://localhost:3002/compras';
+  private apiUrl = 'http://localhost:3002/purchases';
 
   constructor(private http: HttpClient) {}
 

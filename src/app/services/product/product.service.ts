@@ -7,6 +7,9 @@ import { ProductInterface } from '../../interfaces/product/product-interface';
 import { response, Router } from 'express';
 import { error } from 'console';
 import { ActivatedRoute, Route } from '@angular/router';
+import { Purchase } from '../../models/purchases/purchase';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +19,7 @@ export class ProductService {
   private productsListInt: ProductInterface[] = [];
   private productInt: ProductInterface | null = null;
   private productToVievDetails: ProductInterface;
+  private purchase: Purchase | null = null;
 
   airTypesList: string[] = [
     'Todos',
@@ -177,7 +181,7 @@ export class ProductService {
     'Bluetooth',
   ];
 
-  constructor(private asyncService: AsyncService) {
+  constructor(private asyncService: AsyncService, private http: HttpClient) {
     this.productInt = {
       brand: Brand.NONE,
       category: Category.NONE,
@@ -244,7 +248,6 @@ export class ProductService {
     try {
       const response = await this.asyncService.getByIdPromise(
         id,
-        /* `${this.productsApiUrl}/` */
         `${this.productsApiUrl}`
       );
       return response;
@@ -267,6 +270,41 @@ export class ProductService {
       (product) => product.category === category
     );
   }
+
+  updateProductStock(productId: string, quantitySold: number): void {
+    this.getProductById(productId).subscribe((product) => {
+      const updatedStock = product.stock - quantitySold;
+
+      if (updatedStock < 0) {
+        console.error(`No hay suficiente stock para el producto ${productId}`);
+        return;
+      }
+
+      this.http
+        .patch(`http://localhost:3003/products/${productId}`, {
+          stock: updatedStock,
+        })
+        .subscribe(
+          () => {
+            console.log(`Stock actualizado para el producto ${productId}`);
+          },
+          (error) => {
+            console.error(
+              `Error al actualizar el stock para ${productId}`,
+              error
+            );
+          }
+        );
+    });
+  }
+
+  getProductById(productId: string): Observable<ProductInterface> {
+    return this.http.get<ProductInterface>(
+      `http://localhost:3003/products/${productId}`
+    );
+  }
+
+  pathProducts() {}
 
   filterByBrand(
     producListInterface: ProductInterface[],

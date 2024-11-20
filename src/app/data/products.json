@@ -6,7 +6,7 @@
       "urlImage": "https://medias.musimundo.com/medias/size515-179769-02.png?context=bWFzdGVyfGltYWdlc3w5MTQwMnxpbWFnZS9wbmd8YUdObEwyaGtaQzh4TURZd01USTBPVEl4TURNNU9DOXphWHBsTlRFMVh6RTNPVGMyT1Y4d01pNXdibWN8MTg0NGJjOGVlMmRhZTZiODgwMmI4M2Q3OWIzZjgzM2MxYTVlMzQzYzI5YmQ2NzlhNjBjY2RhMGE5ZjFiNjY4Mg",
       "description": "AIRE ACONDICIONADO SPLIT FRIO/CALOR. POTENCIA DE 3200 W. FRIGORIAS: 2752 FG/H. CALORIAS: 2752. KCAL/H. EFICIENCIA ENERGETICA A. TIPO DE GAS REFRIGERANTE R410A. FUNCIONES: TIMER. FUNCION SLEEP. DESHUMIDIFICACION. REINICIO AUTOMATICO. DUAL CONEXION DRENAJE. BAJO NIVEL SONORO. DISPLAY. EL NUEVO EQUIPO TREND A (ON/OFF) COMBINA DISENO Y FUNCIONES PARA UN CLIMA PERFECTO. SU FUNCION TURBO PERMITE CLIMATIZAR EL AMBIENTE DE MANERA RAPIDA AL COMBINAR MAYOR POTENCIA Y DISTANCIA DEL FLUJO DE AIRE.",
       "price": "839999",
-      "stock": "100",
+      "stock": 98,
       "characteristics": "heatCold,Si,airTypes,Split",
       "model": "ENTRDO32TC",
       "id": "1"
@@ -17,7 +17,7 @@
       "urlImage": "https://medias.musimundo.com/medias/00611018-147101-147101-01-147101-01.jpg-size515?context=bWFzdGVyfGltYWdlc3wyMjQxOHxpbWFnZS9qcGVnfGFEY3lMMmhqTnk4eE1EUTBOVGM0TVRNek5qQTVOQzh3TURZeE1UQXhPQzB4TkRjeE1ERXRNVFEzTVRBeFh6QXhMVEUwTnpFd01WOHdNUzVxY0dkZmMybDZaVFV4TlF8NDE4NmE5ZWVlYzc5ZmY4OGU4NDA5YmE5ODg3NTUxMTY4NmI5MzIzMjQxNjMwOTJkNWJmODIxNjE3NDM1MDNlYg",
       "description": "Climatización: Frio Calor - Potencia Refrigeración: 3200W - Frigorías: 2.838 Fg - Hidden Display - Eficiencia Energetica Clase A/A. - Refrigerante Ecologico R410a. - Control Remoto Multifuncion. - Barrido de Aire Automático. -Funcion Sleep - Timer Programable - Filtros Lavables - Control de flujo - Medida de caños (Alta - Baja): 1/4 - 1/2",
       "price": "809999",
-      "stock": "100",
+      "stock": 100,
       "characteristics": "heatCold,Si,airTypes,Ventana",
       "model": "PHS32HA4CN",
       "id": "2"
@@ -28,7 +28,7 @@
       "urlImage": "https://medias.musimundo.com/medias/size515-152238-01.jpg?context=bWFzdGVyfGltYWdlc3wzMDY1MnxpbWFnZS9qcGVnfGFHWXdMMmhoT1M4eE1EWXhPRGt4T0RNek9EVTVNQzl6YVhwbE5URTFYekUxTWpJek9GOHdNUzVxY0djfDAyZTcxYjFkMDJlNzNmYWRlMjU0YTk0ZDMxNWQ2NWM0YWViNzQzMGY1NDBkM2U0OTA5ODgxNzBkZDI3OTdjZmM",
       "description": "Aspiradora trineo. Potencia 1300W. Capacidad 2 litros. Enrollacable: cable de 5 metros. Indicador de deposito lleno. Deposito lavable. Sistema ciclonico sin bolsa. Micro filtro hepa: reduce los alergenos del ambiente. Recoge pelo de mascotas. Manija transportadora. Diseno liviano con ruedas. Pedal encendido / apagado. Regulador del caudal de aire. Boquillas para zonas estrechas. Cepillo para pisos duros, blandos y alfombras.",
       "price": "125309",
-      "stock": "100",
+      "stock": 100,
       "characteristics": "",
       "model": "AS8920PI",
       "id": "3"
@@ -39,7 +39,7 @@
       "urlImage": "https://medias.musimundo.com/medias/size515-135463-01.jpg?context=bWFzdGVyfGltYWdlc3w4NDQ4NXxpbWFnZS9qcGVnfGFESmtMMmd6TlM4eE1EWXdOelV6TnpZeE9EazNOQzl6YVhwbE5URTFYekV6TlRRMk0xOHdNUzVxY0djfDM2MzlmZTI3MzIzNWQzOGVlZjFhNjkwODQxOWM5NWM5MWRkNWZhNTgzYWQ5ZTYwNDcwZjA1N2QzYjQwYzk4ZWI",
       "description": "Pot.1600W. Ciclonica. Contenedor de polvo extraible/lavable/transparente de 2L. Encendido de pie. Filtro HEPA. Control electronico y manual de capac.de succion. Cepillo y Boquilla duales. Enrollacable aut. Manguera c/rotacion 360. Ruedas grandes.",
       "price": "199999",
-      "stock": "100",
+      "stock": 100,
       "characteristics": "",
       "model": "LA910 ALLCLEAN",
       "id": "4"
@@ -50,7 +50,7 @@
       "urlImage": "https://medias.musimundo.com/medias/size300-135898-01.jpg?context=bWFzdGVyfGltYWdlc3w0ODI1OXxpbWFnZS9qcGVnfGFHSmhMMmhsTXk4eE1EWXdOamczTWpFMk5qUXpNQzl6YVhwbE16QXdYekV6TlRnNU9GOHdNUzVxY0djfGMxNGMzZmY2ZGQyYjdhNmU0MWMxMTk3M2Y0NjZkMGRkNTNmNDYyMzcwYTM1MjY5Njg5OTg0YmIzMGRkNjk3M2M",
       "description": "Pot.1600W. Ciclonica. Contenedor de polvo extraible/lavable/transparente de 2L. Encendido de pie. Filtro HEPA. Control electronico y manual de capac.de succion. Cepillo y Boquilla duales. Enrollacable aut. Manguera c/rotacion 360. Ruedas grandes.",
       "price": "199999",
-      "stock": "100",
+      "stock": 100,
       "characteristics": "fanType,Pie",
       "model": "LA910 ALLCLEAN",
       "id": "5"
@@ -61,7 +61,7 @@
       "urlImage": "https://medias.musimundo.com/medias/size515-151395-01.jpg?context=bWFzdGVyfGltYWdlc3w2NjA3MnxpbWFnZS9qcGVnfGFEY3pMMmcxTWk4eE1EWXhNakUzTWpJeU5qVTVNQzl6YVhwbE5URTFYekUxTVRNNU5WOHdNUzVxY0djfDRhMTdhZWZlNjJmYjYzMDBhNjJjZTNmZTZmMDBkZTg4OWI4ZTc2YTQyZmMyMTViOWVlZGNjMjYzMWU1NDEzOTg",
       "description": "Televisor Smart LED Google. Pantalla 55\" 4K UHD 3840 x 2160 Px. Procesador Quad core x4 @1.1GHz. Memoria: 8 GB eMMC5.1. Salidas de audio. Potencia: 2 x 9.5 W. Conexiones: WIFI 2.4, Bluetooth 5.0, HDMI, USB y Optica Digital. Sintonizador TDA. Soporte Vesa: 200 x 200. Medidas con base: Alto 76.6 / Ancho 122.6 / Profundidad 26.5. Peso: 10.2 Kg. Incluye: 1 Soporte de Pie Central, 1 Control Remoto Multimedia, 1 Adaptador AV IN y cable de alimentacion.",
       "price": "769999",
-      "stock": "100",
+      "stock": 100,
       "characteristics": "tvTecnology,LED,tvInches,55\"",
       "model": "L55P635-F",
       "id": "6"
@@ -72,7 +72,7 @@
       "urlImage": "https://medias.musimundo.com/medias/size515-152183-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg3OXxpbWFnZS9qcGVnfGFHUXhMMmhoWWk4eE1EWXhOVFUxTVRReU5qVTVNQzl6YVhwbE5URTFYekUxTWpFNE0xOHdNaTVxY0djfGFkMjgxZTU4NTA4NGVhNjg1YzU3MzZkMmQ1MWQ1M2NkZjg5MzA2OTFmNWNlOWI5ODU4OWIzMmMwMjZjNjc4NDI",
       "description": "Auricular inalambrico tipo vincha. Microfono. Control de volumen. Conexion bluetooth 5.3, frecuencia 2.4 GHz - 2.4835 GHz. Plegable. Driver de 40mm. Frecuencia 20Hz - 20 kHz. Impendancia 30 ohm. Sensivilidad 101 dB. Sensibilidad del microfono 40 dBV. Bateria de 500 mAh / 3.7V. Tiempo de reproduccion 76 Hs. Tiempo de carga 2Hs. Incluye cable de carga tipo C.",
       "price": "110999",
-      "stock": "125",
+      "stock": 125,
       "characteristics": "headphoneType,inEar",
       "model": "TUNE 720",
       "id": "7"
@@ -127,7 +127,7 @@
       "urlImage": "https://medias.musimundo.com/medias/size515-146615-03.jpg?context=bWFzdGVyfGltYWdlc3w3NjQyNXxpbWFnZS9qcGVnfGFEazVMMmcyTUM4eE1EVTRPVGN6TkRnNU5UWTBOaTl6YVhwbE5URTFYekUwTmpZeE5WOHdNeTVxY0djfDRlMDNlZTc0ZTY4MDkyNzg4MmZjMzljZjM5MzEwNjVmOTIzMjQxNTZkOTA2NjdlY2ViNGNlNWMwODU2Y2NmYzY",
       "description": " Televisor Smart / Android. Pantalla: TV LED HD. Resolucion de panel: 1366 x 768 p. Relacion de aspecto: 16:9. Optimizacion de la imagen: HDR10, HLG (Hybrid Log Gamma), Pixel Plus alta definicion. Tamano diagonal de pantalla: 32 pulgadas / 80 cm. Cantidad de conexiones HDMI: 3. Cantidad de puertos USB: 2. WIFI. Bluetooth. Potencia de salida (RMS): 10 W. Configuracion del parlante: Altavoz de 5 W x2. Optimizacion del sonido: Nivelador automatico de volumen, Dialogo nitido, Dolby Atmos, Mejora de graves Dolby. Sistema operativo: Android TV 10 (Q). Aplicaciones preinstaladas: YouTube, Amazon, Prime Video, Apple TV, Disney+, Aplicacion de fitness, Google Play Movies, Google Play Music, Busqueda de Google, Netflix, YouTube Music. Tamano de la memoria (flash): 8 GB. Control por voz con IA: Presiona un boton del control remoto para hablar con el Asistente de Google. Controla el televisor o los dispositivos inteligentes para el hogar compatibles con el Asistente de Google usando tu voz.",
       "price": 319999,
-      "stock": 126,
+      "stock": 124,
       "characteristics": "tvTecnology,LED,tvInches,32\"",
       "model": "32PHD6927/77",
       "id": "12"
@@ -138,7 +138,7 @@
       "urlImage": "https://medias.musimundo.com/medias/size515-150909-01.jpg?context=bWFzdGVyfGltYWdlc3w5MzAzMXxpbWFnZS9qcGVnfGFEZGlMMmcwWWk4eE1EWXhPVGs0T0RZM01qVTBNaTl6YVhwbE5URTFYekUxTURrd09WOHdNUzVxY0djfDAxZGQwOTBlMjE3ZTE2MDkzMGY4NjRiZWU2MzllY2NhOGZhNWFkOTllN2Q1NDlhZDlmZWE5YTVhMDNlYWI2NTM",
       "description": "SMART LED TV SAMSUNG 43\" PULGADAS 4K UHD UN43CU7000GCZB",
       "price": 650999,
-      "stock": 99,
+      "stock": 98,
       "characteristics": "tvTecnology,LED,tvInches,32\"",
       "model": "UN43CU7000GCZB",
       "id": "13"

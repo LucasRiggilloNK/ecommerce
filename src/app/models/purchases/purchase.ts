@@ -1,9 +1,9 @@
 export interface Purchase {
-  clienteId: string;
+  clienteId: string | null;
   productos: {
-    productoId: number;
-    cantidad: number;
+    id: string;
+    quantity: number;
   }[];
-  fecha: string;
+  fecha: Date;
   total: number;
 }
