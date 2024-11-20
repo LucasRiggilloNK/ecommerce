@@ -36,7 +36,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   //subscriptionGetProductListInterface: Subscription;
   subscriptionGetProductInterfaceById: Subscription;
   formControlById: FormControl;
-  categoryList: string[] = Object.values(Category);
+  categoryList: string[] = Object.values(Category).sort();
   brandList: string[] = [];
   searchTerm: string = '';
   productListFilteredByCategory: ProductInterface[] = [];
@@ -158,7 +158,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     //Elimina el elemento none en categoryList
     let indiceNONE = this.categoryList.indexOf(Category.NONE);
-
     this.categoryList.splice(indiceNONE, 1);
 
 

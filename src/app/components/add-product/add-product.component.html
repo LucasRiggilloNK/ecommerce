@@ -120,5 +120,17 @@
 
   <button class="inner-button" type="submit" [disabled]="!addProduct.valid">Crear</button>
   <!-- si todas las validaciones pasaron con exito lo habilita -->
+   <button class="inner-button" type="button" (click)="resetForm()" >Limpiar Campos</button>
+  
  
+  <div *ngIf="productAdded" class="alert alert-warning" role="alert">
+    Producto agregado con exito
+  </div>
+  <div *ngIf="productNotAdded" class="alert alert-danger"  role="alert">
+    Producto ya existente
+  </div>
+
+
+
 </form>
+

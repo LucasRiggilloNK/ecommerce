@@ -18,8 +18,8 @@ import { CustomValidators } from '../../common/custom-validators';
 })
 export class AddProductComponent implements OnInit{
   addProduct: FormGroup;
-  categoryList: string[] = Object.values(Category);
-  brandList: string[] = Object.values(Brand);
+  categoryList: string[] = Object.values(Category).sort();
+  brandList: string[] = Object.values(Brand).sort();
   selectedCategory: string = '';
 
   brand: string = '';
@@ -33,6 +33,9 @@ export class AddProductComponent implements OnInit{
 
   characteristicsString: string = '';
   productInt: ProductInterface;
+
+  productAdded: boolean = false;
+  productNotAdded: boolean = false;
 
   constructor(
     private productCharacteristicsService: ProductcCharacteristicsService,
@@ -71,6 +74,18 @@ export class AddProductComponent implements OnInit{
     let allCategoriesIndex = this.categoryList.indexOf(Category.ALL);
     this.categoryList.splice(allCategoriesIndex,1);
 
+    this.productAdded = false;
+    this.productNotAdded = false;
+
+    this.addProduct.valueChanges.subscribe(() =>{
+      this.productNotAddedAlert(false);
+      this.productAddedAlert(false);
+    }
+      
+        
+      
+    );
+
   }
 
 
@@ -89,8 +104,12 @@ export class AddProductComponent implements OnInit{
     console.log(this.productService.productExists(this.productInt));
     if(!(await this.productService.productExists(this.productInt))){
       await this.productService.addProductInterfaceApi(this.productInt);
+      this.productNotAddedAlert(false);
+      this.productAddedAlert(true);
     }else{
-      alert("Producto ya existente...");
+      //alert("Producto ya existente...");
+      this.productNotAddedAlert(true);
+      this.productAddedAlert(false);
     }
     
   }
@@ -121,6 +140,18 @@ export class AddProductComponent implements OnInit{
     return product;
   }
 
+ productAddedAlert(value: boolean){
+  this.productAdded = value;
+ }
+
+ productNotAddedAlert(value: boolean){
+  this.productNotAdded = value;
+ }
   
-  
+ resetForm(){
+  this.productNotAddedAlert(false);
+  this.productAddedAlert(false);
+  this.addProduct.reset();
+ }
+ 
 }
