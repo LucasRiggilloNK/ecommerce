@@ -1,3 +1,28 @@
 {
-  "purchases": []
+  "purchases": [
+    {
+      "id": "7525",
+      "clienteId": "e844",
+      "productos": [
+        {
+          "id": "12",
+          "quantity": 2
+        }
+      ],
+      "fecha": "2024-11-20T19:14:51.687Z",
+      "total": 640556.2
+    },
+    {
+      "id": "3dec",
+      "clienteId": "e844",
+      "productos": [
+        {
+          "id": "12",
+          "quantity": 3
+        }
+      ],
+      "fecha": "2024-11-20T19:18:42.909Z",
+      "total": 959997
+    }
+  ]
 }

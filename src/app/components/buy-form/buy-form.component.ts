@@ -241,7 +241,6 @@ export class BuyFormComponent implements OnInit {
       total: total,
     };
 
-    // Registrar la compra
     this.purchaseService.agregarCompra(nuevaCompra).subscribe(
       (response) => {
         console.log('Compra registrada con éxito:', response);
