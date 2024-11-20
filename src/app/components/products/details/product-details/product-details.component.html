@@ -14,6 +14,15 @@
     <p>Descripción:</p>
     <p>{{ productToVievDetails?.description }}</p>
     <p>Precio: ${{ productToVievDetails?.price | number : "1.0-0" }}</p>
+    <div class="controls">
+      <button
+        class="add-button"
+        type="button"
+        (click)="addToCart(productToVievDetails!); $event.stopPropagation()"
+      >
+        Agregar al carrito
+      </button>
+    </div>
     <button class="button" (click)="goBack()">
       <img src="/arrow-left.svg" alt="volver" width="25px" />
     </button>

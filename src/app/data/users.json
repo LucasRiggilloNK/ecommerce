@@ -27,6 +27,20 @@
       "flat": "D",
       "email": "juangomez@gmail.com",
       "password": "123456"
+    },
+    {
+      "id": "6f43",
+      "name": "Serena",
+      "lastname": "Jeckeln",
+      "birthdate": "2000-09-14",
+      "province": "Buenos Aires",
+      "city": "Mar del Plata",
+      "street": "Larrea",
+      "streetNumber": "236",
+      "floor": "1",
+      "flat": "B",
+      "email": "serenajeckeln@gmail.com",
+      "password": "123"
     }
   ]
 }

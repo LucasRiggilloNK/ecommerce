@@ -9,6 +9,7 @@ import { response } from 'express';
 import { error } from 'console';
 import { toUSVString } from 'util';
 import { resolveObjectURL } from 'buffer';
+import { CustomValidators } from '../../common/custom-validators';
 
 @Component({
   selector: 'app-add-product',
@@ -57,9 +58,7 @@ export class AddProductComponent implements OnInit{
       description: new FormControl(this.description, [Validators.required]),
       price: new FormControl('', [Validators.required, Validators.min(0.01)]),
       stock: new FormControl('', [Validators.required, Validators.min(1)]),
-      model: new FormControl(this.model, [Validators.required]),
-
-     
+      model: new FormControl(this.model, [Validators.required]),     
     });
 
     

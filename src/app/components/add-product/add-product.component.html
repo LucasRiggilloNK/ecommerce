@@ -13,30 +13,70 @@
     </option>
   </select>
   <br />
+  <div style="color: red" *ngIf="!addProduct.valid && (addProduct.get('category')?.dirty || addProduct.get('category')?.touched)">
+    <div *ngIf="addProduct.get('category')?.errors?.['required']">
+      Categoría requerida...
+    </div>
+  </div>
+
 
   <p>Marca</p>
   <select id="brand" formControlName="brand">
     <option *ngFor="let brand of brandList" [value]="brand">{{ brand }}</option>
   </select>
-  <br />
+  <div style="color: red" *ngIf="!addProduct.valid && (addProduct.get('brand')?.dirty || addProduct.get('brand')?.touched)">
+    <div *ngIf="addProduct.get('brand')?.errors?.['required']">
+      Marca requerida...
+    </div>
+  </div>
 
   <p>URL Imágen</p>
-  <input type="text" formControlName="urlImage" class="form-control" />
+  <input type="text" formControlName="urlImage" class="form-control"/>
   <img src="{{addProduct.get('urlImage')?.value}}" alt="">
+  <div style="color: red" *ngIf="!addProduct.valid && (addProduct.get('urlImage')?.dirty || addProduct.get('urlImage')?.touched)">
+    <div *ngIf="addProduct.get('urlImage')?.errors?.['required']">
+      Url de imágen requerido...
+    </div>
+  </div>
 
   <p>Descripción</p>
   <input type="text" formControlName="description" class="form-control" />
+  <div style="color: red" *ngIf="!addProduct.valid && (addProduct.get('description')?.dirty || addProduct.get('description')?.touched)">
+    <div *ngIf="addProduct.get('description')?.errors?.['required']">
+      Descripción requerida...
+    </div>
+  </div>
 
   <p>Precio</p>
   <input type="number" formControlName="price" class="form-control" />
+  <div style="color: red" *ngIf="!addProduct.valid && (addProduct.get('price')?.dirty || addProduct.get('price')?.touched)">
+    <div *ngIf="addProduct.get('price')?.errors?.['required']">
+      Precio requerido...
+    </div>
+    <div *ngIf="addProduct.get('price')?.errors?.['min']">
+      El valor ingresado es inválido...
+    </div>
+  </div>
 
   <p>Stock</p>
   <input type="number" formControlName="stock" class="form-control" />
+  <div style="color: red" *ngIf="!addProduct.valid && (addProduct.get('stock')?.dirty || addProduct.get('stock')?.touched)">
+    <div *ngIf="addProduct.get('stock')?.errors?.['required']">
+      Stock requerido...
+    </div>
+    <div *ngIf="addProduct.get('stock')?.errors?.['min']">
+      El valor ingresado es inválido...
+    </div>
+  </div>
+
 
   <p>Modelo</p>
-  <br />
   <input type="text" formControlName="model" class="form-control" />
- 
+  <div style="color: red" *ngIf="!addProduct.valid && (addProduct.get('model')?.dirty || addProduct.get('model')?.touched)">
+    <div *ngIf="addProduct.get('model')?.errors?.['required']">
+      Modelo requerido...
+    </div>
+  </div> 
   
   <app-air-conditioning-characteristics
     *ngIf="addProduct.get('category')?.value == 'Aire Acondicionado'"

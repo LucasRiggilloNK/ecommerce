@@ -60,4 +60,8 @@ export class ProductDetailsComponent implements OnInit {
   addToCart(product: ProductInterface): void {
     this.carritoService.addToCart(product);
   }
+
+  decreaseQuantity(productId: string) {
+    this.carritoService.decreaseQuantity(productId);
+  }
 }
