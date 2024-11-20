@@ -162,7 +162,7 @@
     </div>
   </div>
 
-  <!-- <select name="" id="" formControlName="cardType">
+  <select name="" id="" formControlName="cardType">
     <option *ngFor="let type of cardsTypesList" [value]="type">
       {{ type }}
     </option>
@@ -246,11 +246,9 @@
     </option>
   </select>
 
-   <div *ngIf="cardExists()" >
-      Ingrese una tarjeta existente...
-    </div> 
+  <div *ngIf="cardExists()">Ingrese una tarjeta existente...</div>
 
-  <button type="button" (click)="cardExists()">Verificar tarjeta</button> -->
+  <button type="button" (click)="cardExists()">Verificar tarjeta</button>
 
   <button (click)="generatePurchase()" type="submit">Confirmar compra</button>
 </form>

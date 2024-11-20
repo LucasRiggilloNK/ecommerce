@@ -1,28 +1,40 @@
 {
   "purchases": [
     {
-      "id": "7525",
+      "id": "60b3",
       "clienteId": "e844",
       "productos": [
         {
-          "id": "12",
+          "id": "6",
           "quantity": 2
         }
       ],
-      "fecha": "2024-11-20T19:14:51.687Z",
-      "total": 640556.2
+      "fecha": "2024-11-20T20:04:40.336Z",
+      "total": 1539998
     },
     {
-      "id": "3dec",
+      "id": "5f81",
       "clienteId": "e844",
       "productos": [
         {
-          "id": "12",
-          "quantity": 3
+          "id": "8",
+          "quantity": 1
         }
       ],
-      "fecha": "2024-11-20T19:18:42.909Z",
-      "total": 959997
+      "fecha": "2024-11-20T20:06:06.022Z",
+      "total": 549999
+    },
+    {
+      "id": "a8e0",
+      "clienteId": "e844",
+      "productos": [
+        {
+          "id": "9",
+          "quantity": 1
+        }
+      ],
+      "fecha": "2024-11-20T20:26:25.895Z",
+      "total": 2599558.2
     }
   ]
 }

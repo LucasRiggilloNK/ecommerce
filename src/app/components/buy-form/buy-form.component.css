@@ -245,3 +245,40 @@ select {
   color: black;
   box-sizing: border-box;
 }
+
+.custom-swal-dark {
+  background-color: #1e1e1e !important;
+  color: #f1f1f1 !important;
+  border: 1px solid #444;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.custom-title-dark {
+  color: #ffcc00;
+  font-size: 1.5rem;
+}
+
+.custom-confirm-button-dark {
+  background-color: #444;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.custom-confirm-button-dark:hover {
+  background-color: #666;
+}
+
+.custom-cancel-button-dark {
+  background-color: #333;
+  color: #bbb;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.custom-cancel-button-dark:hover {
+  background-color: #555;
+}

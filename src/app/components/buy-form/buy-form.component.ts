@@ -17,6 +17,7 @@ import { CardType } from '../../models/cardType';
 import { CardIssuer } from '../../models/card-issuer';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product/product.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-purchase',
@@ -207,7 +208,7 @@ export class BuyFormComponent implements OnInit {
           this.distanceMatrixObject.rows[0].elements[0].status == 'ZERO_RESULTS'
         ) {
           this.destination_addresses = '';
-          alert('Dirección inexistente...');
+          console.log('Dirección inexistente...');
         }
       })
       .catch((error) => {
@@ -227,41 +228,68 @@ export class BuyFormComponent implements OnInit {
   }
 
   generatePurchase() {
-    const productos: { id: string; quantity: number }[] = [];
-    this.cartItems.forEach(({ id, quantity }) => {
-      productos.push({ id, quantity });
-    });
-
-    const idCliente = this.authService.getUserId();
-    const total = this.getTotalBuy();
-    const nuevaCompra: Purchase = {
-      clienteId: idCliente,
-      productos: productos,
-      fecha: new Date(),
-      total: total,
-    };
-
-    this.purchaseService.agregarCompra(nuevaCompra).subscribe(
-      (response) => {
-        console.log('Compra registrada con éxito:', response);
-
-        productos.forEach((producto) => {
-          this.productService.updateProductStock(
-            producto.id,
-            producto.quantity
-          );
+    Swal.fire({
+      title: '¿Confirmar compra?',
+      text: 'Estás a punto de confirmar tu compra.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar',
+      cancelButtonText: 'Cancelar',
+      backdrop: true,
+      customClass: {
+        popup: 'custom-swal-dark',
+        title: 'custom-title-dark',
+        confirmButton: 'custom-confirm-button-dark',
+        cancelButton: 'custom-cancel-button-dark',
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const productos: { id: string; quantity: number }[] = [];
+        this.cartItems.forEach(({ id, quantity }) => {
+          productos.push({ id, quantity });
         });
 
-        localStorage.removeItem('cart');
-        this.router.navigate(['/']);
-        setTimeout(() => {
-          window.location.reload();
-        }, 100);
-      },
-      (error) => {
-        console.error('Error al registrar la compra:', error);
+        const idCliente = this.authService.getUserId();
+        const total = this.getTotalBuy();
+        const nuevaCompra: Purchase = {
+          clienteId: idCliente,
+          productos: productos,
+          fecha: new Date(),
+          total: total,
+        };
+
+        this.purchaseService.agregarCompra(nuevaCompra).subscribe(
+          (response) => {
+            console.log('Compra registrada con éxito:', response);
+
+            productos.forEach((producto) => {
+              this.productService.updateProductStock(
+                producto.id,
+                producto.quantity
+              );
+            });
+
+            localStorage.removeItem('cart');
+            this.router.navigate(['/']);
+            setTimeout(() => {
+              window.location.reload();
+            }, 100);
+          },
+          (error) => {
+            console.error('Error al registrar la compra:', error);
+          }
+        );
+      } else {
+        Swal.fire({
+          title: 'Compra cancelada',
+          text: 'No se realizaron cambios.',
+          icon: 'info',
+          customClass: {
+            popup: 'custom-swal-dark',
+          },
+        });
       }
-    );
+    });
   }
 
   agregarProducto() {

@@ -21,7 +21,6 @@ export class CardsService {
     this.getAllCardsPromise(this.cardsApiUrl)
       .then((response) => {
         let cardList: Card[] | undefined = response;
-        
         if (
           cardList?.find(
             (crd) =>
