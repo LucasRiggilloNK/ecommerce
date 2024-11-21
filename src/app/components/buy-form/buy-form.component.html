@@ -21,7 +21,7 @@
       <p>Subtotal: ${{ getSubtotal() | number : "1.0-0" }}</p>
     </div>
   </div>
-</div>
+
 
 <form [formGroup]="userDataForm">
 
@@ -29,17 +29,17 @@
   <p>Nombre:</p>
   <input type="text" formControlName="name" />
   <div
-    class="validation"
+    class="error-message"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('name')?.dirty || userDataForm.get('name')?.touched)
     "
   >
     <div *ngIf="userDataForm.get('name')?.errors?.['required']">
-      Campo requerido...
+      *Campo requerido
     </div>
     <div *ngIf="userDataForm.get('name')?.errors?.['lettersOnly']">
-      Debe ingresar solo letras...
+      *Debe ingresar solo letras
     </div>
   </div>
 
@@ -47,37 +47,37 @@
   <input type="text" formControlName="lastname" />
 
   <div
-    class="validation"
-    *ngIf="
+      class="error-message"
+      *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('lastname')?.dirty ||
         userDataForm.get('lastname')?.touched)
     "
   >
     <div *ngIf="userDataForm.get('lastname')?.errors?.['required']">
-      Campo requerido...
+      *Campo requerido
     </div>
     <div *ngIf="userDataForm.get('lastname')?.errors?.['lettersOnly']">
-      Debe ingresar solo letras...
+      *Debe ingresar solo letras
     </div>
   </div>
 
   <p>Email:</p>
   <input type="text" formControlName="email" />
   <div
-    class="validation"
+    class="error-message"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('email')?.dirty || userDataForm.get('email')?.touched)
     "
   >
     <div *ngIf="userDataForm.get('email')?.errors?.['required']">
-      Campo requerido...
+      *Campo requerido
     </div>
     <div
       *ngIf="userDataForm.get('email')?.errors?.['email'] || userDataForm.get('email')?.errors?.['emailDomainValidator']"
     >
-      Email no válido...
+      *Email no válido
     </div>
   </div>
 
@@ -101,21 +101,21 @@
   <p>Calle:</p>
   <input type="text" formControlName="street" />
   <div
-    class="validation"
+    class="error-message"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('street')?.dirty || userDataForm.get('street')?.touched)
     "
   >
     <div *ngIf="userDataForm.get('street')?.errors?.['required']">
-      Campo requerido...
+      *Campo requerido
     </div>
   </div>
 
   <p>Número:</p>
   <input type="text" formControlName="streetNumber" />
   <div
-    class="validation"
+    class="error-message"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('streetNumber')?.dirty ||
@@ -123,10 +123,10 @@
     "
   >
     <div *ngIf="userDataForm.get('streetNumber')?.errors?.['required']">
-      Campo requerido...
+      *Campo requerido
     </div>
     <div *ngIf="userDataForm.get('streetNumber')?.errors?.['numbersOnly']">
-      Debe ingresar solo números...
+      *Debe ingresar solo números
     </div>
   </div>
 
@@ -185,7 +185,7 @@
     placeholder="Nombre y apellido como figura en la tarjeta"
   />
   <div
-    class="validation"
+    class="error-message"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('cardHolder')?.dirty ||
@@ -193,10 +193,10 @@
     "
   >
     <div *ngIf="userDataForm.get('cardHolder')?.errors?.['required']">
-      Campo requerido...
+      *Campo requerido
     </div>
     <div *ngIf="userDataForm.get('cardHolder')?.errors?.['lettersOnly']">
-      Debe ingresar solo letras...
+      *Debe ingresar solo letras
     </div>
   </div>
 
@@ -206,7 +206,7 @@
     placeholder="Número de tarjeta"
     [maxlength]="16" [minlength]="16"  />
   <div
-    class="validation"
+   class="error-message"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('cardNumber')?.dirty ||
@@ -214,16 +214,16 @@
     "
   >
     <div *ngIf="userDataForm.get('cardNumber')?.errors?.['required']">
-      Campo requerido...
+      *Campo requerido
     </div>
     <div *ngIf="userDataForm.get('cardNumber')?.errors?.['numbersOnly']">
-      Debe ingresar solo números...
+      *Debe ingresar solo números
     </div>
   </div>
 
   <input type="text" placeholder="MM/YY" formControlName="expirationDate" [maxlength]="5" [minlength]="5" />
   <div
-    class="validation"
+    class="error-message"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('expirationDate')?.dirty ||
@@ -231,23 +231,23 @@
     "
   >
     <div *ngIf="userDataForm.get('expirationDate')?.errors?.['required']">
-      Campo requerido...
+      *Campo requerido
     </div>
   </div>
 
   <input type="text" formControlName="cvv" placeholder="CVV" [maxlength]="3" [minlength]="3" />
   <div
-    class="validation"
+    class="error-message"
     *ngIf="
       !userDataForm.valid &&
       (userDataForm.get('cvv')?.dirty || userDataForm.get('cvv')?.touched)
     "
   >
     <div *ngIf="userDataForm.get('cvv')?.errors?.['required']">
-      Campo requerido...
+      *Campo requerido
     </div>
     <div *ngIf="userDataForm.get('cvv')?.errors?.['numbersOnly']">
-      Debe ingresar solo números...
+      *Debe ingresar solo números
     </div>
   </div>
 
@@ -258,10 +258,10 @@
   </select>
 
   
-    <div class="validation" *ngIf="userDataForm.valid" >
+    <div class="error-message" *ngIf="userDataForm.valid" >
 
       <div *ngIf="!verifyCard" >
-        Tarjeta inválida...
+        *Tarjeta inválida
       </div>
 
           
@@ -270,3 +270,4 @@
 
   <button  (click)="generatePurchase()" type="submit" [disabled]="!(userDataForm.valid && verifyCard)" >Confirmar compra</button>
 </form>
+</div>
