@@ -99,3 +99,9 @@ select {
   color: black;
   box-sizing: border-box;
 }
+
+.error-message {
+  color: red;
+  margin: 0;
+  font-size: 0.8rem;
+}
