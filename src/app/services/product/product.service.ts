@@ -76,13 +76,7 @@ export class ProductService {
   ];
   smartPhoneInchesList: string[] = [
     'Todos',
-    '4.0"',
-    '4.7"',
-    '5.0"',
-    '5.5"',
-    '5.8"',
     '6.1"',
-    '6.3"',
     '6.5"',
     '6.6"',
     '6.7"',
@@ -94,9 +88,7 @@ export class ProductService {
     '4 GB',
     '6 GB',
     '8 GB',
-    '12 GB',
-    '16 GB',
-    '18 GB',
+    '12 GB'
   ];
   notebookScreenSizesList: string[] = [
     'Todos',
