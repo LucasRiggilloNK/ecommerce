@@ -1,5 +1,7 @@
 <h3>Carrito de Compras</h3>
-
+<button class="button" (click)="goBack()">
+  Volver
+</button>
 <!-- Verifica si hay productos en el carrito -->
 <div class="items" *ngIf="carrito.length > 0; else noProducts">
   <!-- Recorre el carrito y muestra los productos -->

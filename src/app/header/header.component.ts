@@ -24,8 +24,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.name = this.authService.getUserName();
 
-    
-
     // Suscribirse a los cambios de cantidad y stock
     this.qtySubscription = this.carritoService
       .getTotalQuantity()

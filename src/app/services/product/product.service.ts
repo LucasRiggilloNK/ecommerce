@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../../models/products/product';
 import { AsyncService } from '../async.service';
 import { Brand } from '../../models/products/brands/brand';
 import { Category } from '../../models/products/categories/category';
 import { ProductInterface } from '../../interfaces/product/product-interface';
-import { response, Router } from 'express';
-import { error } from 'console';
-import { ActivatedRoute, Route } from '@angular/router';
 import { Purchase } from '../../models/purchases/purchase';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -224,7 +220,6 @@ export class ProductService {
         productInt,
         this.productsApiUrl
       );
-      //alert('Producto agregado exitosamente');
       return response;
     } catch (error) {
       console.error('Error al agregar producto al archivo json', error);

@@ -19,6 +19,8 @@ import { Router } from '@angular/router';
 import { ProductService } from '../../services/product/product.service';
 import Swal from 'sweetalert2';
 import { CardsService } from '../../services/cards.service';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-purchase',
@@ -55,7 +57,8 @@ export class BuyFormComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private productService: ProductService,
-    private cardService: CardsService
+    private cardService: CardsService, 
+    private location: Location
   ) {
     this.userDataForm = this.fb.group({
       clienteId: [''],
@@ -138,6 +141,11 @@ export class BuyFormComponent implements OnInit {
 
     this.shippingPrice = 0;
     this.calculateDistance = 0;
+  }
+
+  
+  goBack(): void {
+    this.location.back();
   }
 
   ngOnInit(): void {
@@ -427,7 +435,6 @@ export class BuyFormComponent implements OnInit {
 
 
   }
-
 
 
 

@@ -4,14 +4,12 @@ import {
   RegisterService,
   User,
 } from '../services/register-service/register.service';
-import { EmailService } from '../services/email-service/email.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/login/auth.service';
 import { CustomValidators } from '../common/custom-validators';
 import { BsasCity } from '../models/bsas-city';
 import { Province } from '../models/province';
 import { Usuario } from '../models/users/user';
-import { strict } from 'assert';
 
 @Component({
   selector: 'app-register',
@@ -36,7 +34,6 @@ export class RegisterComponent {
         '',
         [Validators.required, CustomValidators.ageRangeLimitator(18, 100)],
       ],
-      //country: ['Argentina', Validators.required],
       province: [Province.BuenosAires, Validators.required],
       city: [BsasCity.MarDelPlata, Validators.required],
       street: ['', Validators.required],

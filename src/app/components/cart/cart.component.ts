@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductInterface } from '../../interfaces/product/product-interface';
 import { CarritoService } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +16,7 @@ export class CartComponent implements OnInit, OnDestroy {
   totalQty: number = 0;
   private qtySubscription: Subscription = new Subscription();
 
-  constructor(private carritoService: CarritoService) {
+  constructor(private carritoService: CarritoService, private location: Location) {
     this.quantity = 0;
   }
 
@@ -60,5 +62,10 @@ export class CartComponent implements OnInit, OnDestroy {
     if (this.qtySubscription) {
       this.qtySubscription.unsubscribe();
     }
+  }
+
+  
+  goBack(): void {
+    this.location.back();
   }
 }

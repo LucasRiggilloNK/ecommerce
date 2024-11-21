@@ -13,25 +13,7 @@ export class Product {
     private characteristics: string;
     private model: string;
     private image: Image;
-    
 
-	/*constructor(idProduct: string, brand: Brand, category: Category, image: Image, description: string, price: number,
-		stock: number,characteristics: string, model: string){
-		this.idProduct = idProduct;
-		this.brand = brand;
-		this.category = category;
-		this.image = image;
-		this.description = description;
-		this.price = price;
-		this.stock = stock;
-		this.characteristics = characteristics;
-		this.model = model;
-        
-        filterBycategory(recibis una lista): return lista filtrada{
-        
-        
-        }
-	}*/
 	constructor(){
             this.id = 0; // Valor por defecto
             this.brand = Brand.NONE;
@@ -44,12 +26,8 @@ export class Product {
             this.model = '';
 	}
 
-
-
-
-
     public getId(): number
- {
+    {
         return this.id;
     }
 
@@ -58,7 +36,7 @@ export class Product {
     }
 
     public getBrand(): Brand
- {
+    {
         return this.brand;
     }
 
@@ -67,17 +45,13 @@ export class Product {
     }
 
     public getCategory(): Category
- {
+    {
         return this.category;
     }
 
     public setCategory(category: Category) {
         this.category = category;
     }
-
-
-
-
 
      public getImage(): Image
     {
