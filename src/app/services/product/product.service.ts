@@ -35,7 +35,16 @@ export class ProductService {
     'NanoCell',
     'FHD',
   ];
-  tvInchesList: string[] = ['Todos', '32"', '43"', '55"', '60"', '70"', '75"', '98"'];
+  tvInchesList: string[] = [
+    'Todos',
+    '32"',
+    '43"',
+    '55"',
+    '60"',
+    '70"',
+    '75"',
+    '98"',
+  ];
   headphonesTypeList = ['Todos', 'inEar', 'headBand'];
   refrigeratorCoolingSystemList: string[] = [
     'Todos',
@@ -79,13 +88,7 @@ export class ProductService {
     '6.8"',
     '7.0"',
   ];
-  smartPhoneRamList: string[] = [
-    'Todos',
-    '4 GB',
-    '6 GB',
-    '8 GB',
-    '12 GB'
-  ];
+  smartPhoneRamList: string[] = ['Todos', '4 GB', '6 GB', '8 GB', '12 GB'];
   notebookScreenSizesList: string[] = [
     'Todos',
     '13"',
@@ -371,8 +374,6 @@ export class ProductService {
 
   ////////////////////////////////////    DETALLES PRODUCTO    //////////////////////////////////////////
 
- 
-
   async getLatestProductId(): Promise<number> {
     let allProducts: ProductInterface[] = [];
     allProducts = await this.getAllProductsListInterface();
@@ -380,32 +381,33 @@ export class ProductService {
     return Math.max(...allProducts.map((product) => Number(product.id)));
   }
 
-  async productExists(product: ProductInterface):Promise<boolean>{
-    let productsInterfaceList: ProductInterface[] | undefined = []; 
+  async productExists(product: ProductInterface): Promise<boolean> {
+    let productsInterfaceList: ProductInterface[] | undefined = [];
     let out = false;
     let p: ProductInterface | undefined;
 
-    await this.asyncService.getAllPromise(this.productsApiUrl)
-    .then(response =>{
-      productsInterfaceList = response;
-      
-      if(productsInterfaceList != undefined){
-        p = productsInterfaceList.find(prod => product.brand === prod.brand && product.model === prod.model);
-        console.log("p");
-        console.log(p);
-        if(p != undefined){
-          out = true;
+    await this.asyncService
+      .getAllPromise(this.productsApiUrl)
+      .then((response) => {
+        productsInterfaceList = response;
+
+        if (productsInterfaceList != undefined) {
+          p = productsInterfaceList.find(
+            (prod) =>
+              product.brand === prod.brand && product.model === prod.model
+          );
+          console.log('p');
+          console.log(p);
+          if (p != undefined) {
+            out = true;
+          }
         }
-       
-      }
+      })
+      .catch((error) => {
+        alert('No se pudo verificar si existe el producto...');
+      });
 
-    })
-    .catch(error =>{
-      alert("No se pudo verificar si existe el producto...");
-      
-    });
-
-    console.log("Out: " + out);
+    console.log('Out: ' + out);
     return out;
   }
 }

@@ -14,23 +14,24 @@
 
   <div class="buttons-gap">
     <button
-    href=""
-    (click)="formControlCategory.setValue('Aire Acondicionado')"
-    type="button"
-    class="button-products">
-    <div class="inner-button">
-      <p>Aires</p>
-    </div>
+      href=""
+      (click)="formControlCategory.setValue('Aire Acondicionado')"
+      type="button"
+      class="button-products"
+    >
+      <div class="inner-button">
+        <p>Aires</p>
+      </div>
     </button>
     <button
       href=""
-     (click)="formControlCategory.setValue('Celulares')"
+      (click)="formControlCategory.setValue('Celulares')"
       class="button-products"
-     type="button"
+      type="button"
     >
-    <div class="inner-button">
-      <p>Celulares</p>
-    </div>
+      <div class="inner-button">
+        <p>Celulares</p>
+      </div>
     </button>
     <button
       href=""
@@ -63,29 +64,35 @@
       </div>
     </button>
     <button
-    href=""
-    (click)="formControlCategory.setValue('Notebooks')"
-    type="button"
-    class="button-products"
-  >
-    <div class="inner-button">
-      <p>Notebooks</p>
-    </div>
-  </button>
+      href=""
+      (click)="formControlCategory.setValue('Notebooks')"
+      type="button"
+      class="button-products"
+    >
+      <div class="inner-button">
+        <p>Notebooks</p>
+      </div>
+    </button>
     <button
-    href=""
-    (click)="formControlCategory.setValue('Microondas')"
-    type="button"
-    class="button-products">
-    <div class="inner-button">
-      <p>Microondas</p>
-    </div>
-  </button>
-  <button href="" (click)="formControlCategory.setValue('Televisores')" type="button" class="button-products">
+      href=""
+      (click)="formControlCategory.setValue('Microondas')"
+      type="button"
+      class="button-products"
+    >
+      <div class="inner-button">
+        <p>Microondas</p>
+      </div>
+    </button>
+    <button
+      href=""
+      (click)="formControlCategory.setValue('Televisores')"
+      type="button"
+      class="button-products"
+    >
       <div class="inner-button">
         <p>Televisores</p>
       </div>
-  </button>
+    </button>
   </div>
 </div>
 
@@ -370,11 +377,7 @@
     </div>
 
     <div class="no-products" *ngIf="productListSubFiltered.length == 0">
-      <div class="alert alert-info" role="alert">
-        SIN PRODUCTOS
-      </div>
-      </div>
+      <div class="alert alert-info" role="alert">SIN PRODUCTOS</div>
+    </div>
   </div>
 </form>
-
-

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ProductInterface } from '../interfaces/product/product-interface';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root',
@@ -29,8 +30,13 @@ export class CarritoService {
 
   addToCart(product: ProductInterface): void {
     const existingProduct = this.cart.find((p) => p.id === product.id);
+
     if (product.stock <= 0) {
-      alert('No hay suficiente stock disponible.');
+      Swal.fire({
+        icon: 'error',
+        title: 'No hay suficiente stock',
+        text: `Lo sentimos, no hay stock disponible para el producto ${product.description}.`,
+      });
       return;
     }
 
@@ -38,7 +44,11 @@ export class CarritoService {
       if (existingProduct.stock > 0) {
         existingProduct.quantity++;
       } else {
-        alert('No hay más stock disponible.');
+        Swal.fire({
+          icon: 'error',
+          title: 'No hay más stock disponible',
+          text: `No puedes añadir más unidades de ${product.model} al carrito porque no hay stock disponible.`,
+        });
       }
     } else {
       const newProduct = { ...product, quantity: 1 };

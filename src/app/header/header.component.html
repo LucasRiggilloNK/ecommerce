@@ -3,7 +3,12 @@
     <div class="nav-links">
       <div class="left-links">
         <div class="home" routerLink="/home" routerLinkActive="active">
-          <img src="/logoOriginal.jpg" alt="register" width="100px" height="40px" />
+          <img
+            src="/logoOriginal.jpg"
+            alt="register"
+            width="100px"
+            height="40px"
+          />
         </div>
         <div
           class="link"
@@ -26,18 +31,25 @@
         </div>
       </div>
       <div class="end-icons">
-        <div class="user-name" *ngIf="isLoggedIn()">Bienvenido, {{ getUserName() }}</div>
+        <div class="user-name">
+          <ng-container *ngIf="isLoggedIn(); else notLoggedIn">
+            Bienvenido, {{ getUserName() }}
+          </ng-container>
+          <ng-template #notLoggedIn>
+            Inicia sesión para comenzar a comprar!
+          </ng-template>
+        </div>
         <div
-        class="link"
-        routerLink="/login"
-        *ngIf="!isLoggedIn()"
-        routerLinkActive="active"
-      >
-        <img src="/login.svg" alt="login" width="25px" height="25px" />
-      </div>
-      <div class="link logout" (click)="logout()" *ngIf="isLoggedIn()">
-        <img src="/logout.svg" alt="login" width="25px" height="25px" />
-      </div>
+          class="link"
+          routerLink="/login"
+          *ngIf="!isLoggedIn()"
+          routerLinkActive="active"
+        >
+          <img src="/login.svg" alt="login" width="25px" height="25px" />
+        </div>
+        <div class="link logout" (click)="logout()" *ngIf="isLoggedIn()">
+          <img src="/logout.svg" alt="login" width="25px" height="25px" />
+        </div>
       </div>
     </div>
   </nav>
