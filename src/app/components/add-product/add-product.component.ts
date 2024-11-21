@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Brand } from '../../models/products/brands/brand';
 import { Category } from '../../models/products/categories/category';
@@ -9,16 +9,17 @@ import { response } from 'express';
 import { error } from 'console';
 import { toUSVString } from 'util';
 import { resolveObjectURL } from 'buffer';
+import { CustomValidators } from '../../common/custom-validators';
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css',
 })
-export class AddProductComponent {
+export class AddProductComponent implements OnInit{
   addProduct: FormGroup;
-  categoryList: string[] = Object.values(Category);
-  brandList: string[] = Object.values(Brand);
+  categoryList: string[] = Object.values(Category).sort();
+  brandList: string[] = Object.values(Brand).sort();
   selectedCategory: string = '';
 
   brand: string = '';
@@ -32,6 +33,9 @@ export class AddProductComponent {
 
   characteristicsString: string = '';
   productInt: ProductInterface;
+
+  productAdded: boolean = false;
+  productNotAdded: boolean = false;
 
   constructor(
     private productCharacteristicsService: ProductcCharacteristicsService,
@@ -51,31 +55,40 @@ export class AddProductComponent {
     };
 
     this.addProduct = new FormGroup({
-      brand: new FormControl(Brand.NONE, [Validators.required]),
-      category: new FormControl(Category.NONE, [Validators.required]),
+      brand: new FormControl("", [Validators.required]),
+      category: new FormControl("", [Validators.required]),
       urlImage: new FormControl(this.urlImage, [Validators.required]),
       description: new FormControl(this.description, [Validators.required]),
       price: new FormControl('', [Validators.required, Validators.min(0.01)]),
       stock: new FormControl('', [Validators.required, Validators.min(1)]),
-      model: new FormControl(this.model, [Validators.required]),
-
-      //VER VALIDATORS ARRIBA!!!----------------------------------------------------
-
-      /*       'brand': new FormControl(Brand.NONE),
-      'category': new FormControl(Category.NONE),
-      'urlImage': new FormControl(this.image),
-      'description': new FormControl(this.description),  
-      'price': new FormControl(''),
-      'stock': new FormControl(''),
-      'characteristics': new FormControl(this.characteristics),
-      'model': new FormControl(this.model) */
+      model: new FormControl(this.model, [Validators.required]),     
     });
+
+    
   }
 
-  /* getSelectedCategory(): string {
-    console.log("Category: " + this.addProduct.get('category')?.value);
-    return this.addProduct.get('category')?.value;
-  } */
+  ngOnInit(): void {
+    let allBrandsIndex = this.brandList.indexOf(Brand.ALL);
+    this.brandList.splice(allBrandsIndex,1);
+
+    let allCategoriesIndex = this.categoryList.indexOf(Category.ALL);
+    this.categoryList.splice(allCategoriesIndex,1);
+
+    this.productAdded = false;
+    this.productNotAdded = false;
+
+    this.addProduct.valueChanges.subscribe(() =>{
+      this.productNotAddedAlert(false);
+      this.productAddedAlert(false);
+    }
+      
+        
+      
+    );
+
+  }
+
+
 
   obtainCharacteristicsString() {
     //procesa y retorna un string de caracteristicas
@@ -83,25 +96,22 @@ export class AddProductComponent {
       this.productCharacteristicsService.sendCharacteristicsString();
   }
 
-  /* onSubmit(){//FUNCIONA
-
-    this.obtainCharacteristicsString();//obtiene string caracteristicas
-    this.productInt = this.addProductFromToProductInterface();//pasa el form a interface de producto
-    this.productService.addProductInterfaceApi(this.productInt).subscribe(
-      (response) => {
-        alert('Producto agregado...');
-      },
-      (error) => {
-        alert('No se pudo agregar el producto....');
-      }
-    );// agrega el productoInterface en el json
-
-  } */
+  
 
   async onSubmit() {
     this.obtainCharacteristicsString(); //obtiene string caracteristicas
     this.productInt = this.addProductFormToProductInterface(); //pasa el form a interface de producto
-    await this.productService.addProductInterfaceApi(this.productInt);
+    console.log(this.productService.productExists(this.productInt));
+    if(!(await this.productService.productExists(this.productInt))){
+      await this.productService.addProductInterfaceApi(this.productInt);
+      this.productNotAddedAlert(false);
+      this.productAddedAlert(true);
+    }else{
+      //alert("Producto ya existente...");
+      this.productNotAddedAlert(true);
+      this.productAddedAlert(false);
+    }
+    
   }
 
   addProductFormToProductInterface(): ProductInterface {
@@ -130,26 +140,18 @@ export class AddProductComponent {
     return product;
   }
 
-  /* public getHigherProductId(): number{
-    let productsListInt: ProductInterface[] = [];
-    let maxId = 0;
-    this.getProductsListInterfaceObservable().subscribe(
-      response =>{
-        productsListInt = response;
-        console.log("productsListInt");
-        console.log(this.productsListInt);
-        productsListInt.forEach(product =>{
-          if(product.id > maxId){
-            maxId = product.id;
-          }
-        });
-      }, error => {
-        alert("No se pudo leer el json productos...")
-      }
-    );
+ productAddedAlert(value: boolean){
+  this.productAdded = value;
+ }
+
+ productNotAddedAlert(value: boolean){
+  this.productNotAdded = value;
+ }
   
-    
-    return maxId;
-  
-  } */
+ resetForm(){
+  this.productNotAddedAlert(false);
+  this.productAddedAlert(false);
+  this.addProduct.reset();
+ }
+ 
 }

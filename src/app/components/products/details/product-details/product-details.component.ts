@@ -22,7 +22,7 @@ export class ProductDetailsComponent implements OnInit {
     private location: Location
   ) {
     this.productToVievDetails = {
-      brand: Brand.NONE,
+      brand:  Brand.NONE,
       category: Category.NONE,
       urlImage: '',
       description: '',
@@ -59,5 +59,9 @@ export class ProductDetailsComponent implements OnInit {
 
   addToCart(product: ProductInterface): void {
     this.carritoService.addToCart(product);
+  }
+
+  decreaseQuantity(productId: string) {
+    this.carritoService.decreaseQuantity(productId);
   }
 }
