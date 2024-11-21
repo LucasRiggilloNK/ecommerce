@@ -89,3 +89,13 @@ button:hover {
   flex-direction: column;
   margin-bottom: 50px;
 }
+
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #5c5c5c;
+  border-radius: 4px;
+  color: black;
+  box-sizing: border-box;
+}
