@@ -16,11 +16,22 @@
     <p>Precio: ${{ productToVievDetails?.price | number : "1.0-0" }}</p>
     <div class="controls">
       <button
-        class="add-button"
-        type="button"
-        (click)="addToCart(productToVievDetails!); $event.stopPropagation()"
+        class="button-controls"
+        (click)="decreaseQuantity(productToVievDetails?.id!)"
+        [disabled]="!productToVievDetails || productToVievDetails.quantity <= 0"
       >
-        Agregar al carrito
+        -
+      </button>
+      <span class="qty">{{ productToVievDetails?.quantity || 0 }}</span>
+      <button
+        class="button-controls"
+        (click)="addToCart(productToVievDetails!)"
+        [disabled]="
+          !productToVievDetails ||
+          productToVievDetails.quantity >= productToVievDetails.stock
+        "
+      >
+        +
       </button>
     </div>
     <button class="button" (click)="goBack()">

@@ -33,6 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { BuyFormComponent } from './components/buy-form/buy-form.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { BuyFormComponent } from './components/buy-form/buy-form.component';
     PrivateComponent,
     RegisterComponent,
     LoginComponent,
-    BuyFormComponent
+    BuyFormComponent,
+    FooterComponent
  
   ],
 
