@@ -41,6 +41,20 @@
       "flat": "",
       "email": "marquitos@hotmail",
       "password": "Marcos"
+    },
+    {
+      "id": "7c1c",
+      "name": "Paula",
+      "lastname": "Gomez",
+      "birthdate": "2000-12-12",
+      "province": "Buenos Aires",
+      "city": "Mar del Plata",
+      "street": "Urquiza",
+      "streetNumber": "4000",
+      "floor": "2",
+      "flat": "d",
+      "email": "paula@gmail.com",
+      "password": "123"
     }
   ]
 }

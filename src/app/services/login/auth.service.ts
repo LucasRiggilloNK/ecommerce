@@ -12,18 +12,18 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(name: string, password: string): Observable<boolean> {
+  login(email: string, password: string): Observable<boolean> {
     return this.http
-      .get<{ id: number; name: string; password: string }[]>(
-        `${this.apiUrl}/users?username=${name}&password=${password}`
+      .get<{ id: number; email: string; password: string }[]>(
+         `${this.apiUrl}/users?mail=${email}&password=${password}`
       )
       .pipe(
         map((users) => {
           if (users.length > 0) {
             if (typeof window !== 'undefined') {
-              console.log('Usuario logueado:', users[0].name);
+              console.log('Usuario logueado:', users[0].email);
               localStorage.setItem('auth_token', 'your_token');
-              localStorage.setItem('name', users[0].name);
+              localStorage.setItem('mail', users[0].email);
               localStorage.setItem('userId', String(users[0].id));
             }
             return true;
