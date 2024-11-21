@@ -24,6 +24,8 @@
 </div>
 
 <form [formGroup]="userDataForm">
+
+  <label style="color: white;" for="">Datos del cliente:</label>
   <p>Nombre:</p>
   <input type="text" formControlName="name" />
   <div
@@ -151,7 +153,12 @@
     >
       Calcular envio
     </button>
+
+
+  <br>
+  <br>
     <div>
+      <label style="color: white;" for="">Datos de envío:</label>
       <label for="">Destino de envío: {{ destination_addresses }}</label>
       <br />
       <label style="color: white">Precio de envío: ${{ shippingPrice }}</label>
@@ -161,7 +168,11 @@
       >
     </div>
   </div>
+  <br>
+  <br>
 
+
+  <label style="color: white;" for="">Datos de pago:</label>
   <select name="" id="" formControlName="cardType">
     <option *ngFor="let type of cardsTypesList" [value]="type">
       {{ type }}
