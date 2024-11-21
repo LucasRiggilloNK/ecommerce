@@ -14,22 +14,27 @@ export class AuthService {
 
   login(email: string, password: string): Observable<boolean> {
     return this.http
-      .get<{ id: number; email: string; password: string }[]>(
-         `${this.apiUrl}/users?mail=${email}&password=${password}`
+      .get<{ id: number; email: string; password: string; name: string }[]>(
+        `${this.apiUrl}/users?email=${email}&password=${password}`
       )
       .pipe(
         map((users) => {
-          if (users.length > 0) {
+          const user = users.find(
+            (u) => u.email === email && u.password === password
+          );
+  
+          if (user) {
             if (typeof window !== 'undefined') {
-              console.log('Usuario logueado:', users[0].email);
+              console.log('Usuario logueado:', user.email);
               localStorage.setItem('auth_token', 'your_token');
-              localStorage.setItem('mail', users[0].email);
-              localStorage.setItem('userId', String(users[0].id));
+              localStorage.setItem('email', user.email);
+              localStorage.setItem('userId', String(user.id));
+              localStorage.setItem('name', user.name); 
             }
+            window.location.reload();
             return true;
-          } else {
-            return false;
           }
+          return false;
         }),
         catchError((error) => {
           console.error('Error en login:', error);
@@ -39,7 +44,7 @@ export class AuthService {
         })
       );
   }
-
+  
   getUserName(): string | null {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('name');
