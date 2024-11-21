@@ -41,6 +41,20 @@
       "flat": "",
       "email": "marquitos@hotmail",
       "password": "Marcos"
+    },
+    {
+      "id": "0cff",
+      "name": "Nicolas",
+      "lastname": "Blanco Rio",
+      "birthdate": "1999-12-14",
+      "province": "Buenos Aires",
+      "city": "Mar del Plata",
+      "street": "Beltrami Al",
+      "streetNumber": "1560",
+      "floor": "",
+      "flat": "",
+      "email": "nicolasuxm12al@gmail.com",
+      "password": "123456"
     }
   ]
 }

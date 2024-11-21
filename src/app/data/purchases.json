@@ -35,6 +35,42 @@
       ],
       "fecha": "2024-11-20T20:26:25.895Z",
       "total": 2599558.2
+    },
+    {
+      "id": "0edc",
+      "clienteId": "c9ad",
+      "productos": [
+        {
+          "id": "26",
+          "quantity": 1
+        },
+        {
+          "id": "25",
+          "quantity": 1
+        }
+      ],
+      "fecha": "2024-11-21T01:13:02.807Z",
+      "total": 3039998
+    },
+    {
+      "id": "7bba",
+      "clienteId": "c9ad",
+      "productos": [
+        {
+          "id": "12",
+          "quantity": 1
+        },
+        {
+          "id": "13",
+          "quantity": 2
+        },
+        {
+          "id": "18",
+          "quantity": 1
+        }
+      ],
+      "fecha": "2024-11-21T01:21:38.841Z",
+      "total": 2041996
     }
   ]
 }

@@ -17,7 +17,7 @@ import { CardType } from '../../models/cardType';
 import { CardIssuer } from '../../models/card-issuer';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product/product.service';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2'; 
 
 @Component({
   selector: 'app-purchase',
@@ -228,12 +228,56 @@ export class BuyFormComponent implements OnInit {
   }
 
   generatePurchase() {
+    const productos = this.cartItems.map(({ id, quantity, urlImage, price, model }) => ({
+      id,
+      quantity,
+      urlImage,
+      price,
+      model,
+    }));
+  
+    const total = this.getTotalBuy();
+    const domicilio = `${this.userDataForm.get('street')?.value} ${this.userDataForm.get('streetNumber')?.value}, ${this.userDataForm.get('city')?.value}, ${this.userDataForm.get('province')?.value}, ${this.userDataForm.get('country')?.value}`;
+    const tarjeta = this.userDataForm.get('cardNumber')?.value;
+  
+    // Máscara para el número de tarjeta
+    const tarjetaMascara = tarjeta
+      ? tarjeta.replace(/\d(?=\d{4})/g, '*') // Enmascara excepto los últimos 4 dígitos
+      : 'No registrada';
+  
+    // Detalles del carrito con diseño estilizado
+    const detallesProductos = productos
+      .map(
+        (p) => `
+          <div style="display: flex; align-items: center; margin-bottom: 15px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+            <img 
+              src="${p.urlImage}" 
+              alt="${p.model}" 
+              style="width: 60px; height: 60px; object-fit: cover; margin-right: 15px; border-radius: 5px;"
+            />
+            <div style="flex-grow: 1;">
+              <strong style="display: block; font-size: 14px; margin-bottom: 5px;">${p.model}</strong>
+              <span style="font-size: 12px; color: #555;">Precio: $${p.price.toFixed(2)}</span><br>
+              <span style="font-size: 12px; color: #555;">Cantidad: x${p.quantity}</span>
+            </div>
+          </div>
+        `
+      )
+      .join('');
+  
     Swal.fire({
-      title: '¿Confirmar compra?',
-      text: 'Estás a punto de confirmar tu compra.',
-      icon: 'warning',
+      title: 'Resumen de la compra',
+      html: `
+        <strong>Productos:</strong>
+        <div style="max-height: 300px; overflow-y: auto; margin-top: 10px;">${detallesProductos}</div>
+        <br>
+        <strong>Total:</strong> $${total.toFixed(2)}<br>
+        <strong>Domicilio de envío:</strong> ${domicilio}<br>
+        <strong>Tarjeta:</strong> ${tarjetaMascara}
+      `,
+      icon: 'info',
       showCancelButton: true,
-      confirmButtonText: 'Confirmar',
+      confirmButtonText: 'Confirmar compra',
       cancelButtonText: 'Cancelar',
       backdrop: true,
       customClass: {
@@ -244,31 +288,24 @@ export class BuyFormComponent implements OnInit {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        const productos: { id: string; quantity: number }[] = [];
-        this.cartItems.forEach(({ id, quantity }) => {
-          productos.push({ id, quantity });
-        });
-
-        const idCliente = this.authService.getUserId();
-        const total = this.getTotalBuy();
         const nuevaCompra: Purchase = {
-          clienteId: idCliente,
-          productos: productos,
+          clienteId: this.authService.getUserId(),
+          productos: productos.map(({ id, quantity }) => ({ id, quantity })),
           fecha: new Date(),
-          total: total,
+          total,
         };
-
+  
         this.purchaseService.agregarCompra(nuevaCompra).subscribe(
           (response) => {
             console.log('Compra registrada con éxito:', response);
-
+  
             productos.forEach((producto) => {
               this.productService.updateProductStock(
                 producto.id,
                 producto.quantity
               );
             });
-
+  
             localStorage.removeItem('cart');
             this.router.navigate(['/']);
             setTimeout(() => {
@@ -291,7 +328,7 @@ export class BuyFormComponent implements OnInit {
       }
     });
   }
-
+    
   agregarProducto() {
     this.productos.push(
       this.fb.group({
