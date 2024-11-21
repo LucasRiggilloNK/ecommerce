@@ -17,7 +17,7 @@ import { error } from 'console';
 import { Observable, Subscription } from 'rxjs';
 import { BADNAME } from 'dns';
 import { CarritoService } from '../../../../services/cart.service';
-
+import { AuthService } from '../../../../services/login/auth.service';
 import {
   AbstractFormGroupDirective,
   FormControl,
@@ -69,7 +69,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   constructor(
     private productService: ProductService,
-    private carritoService: CarritoService
+    private carritoService: CarritoService,
+    private authService: AuthService
   ) {
     this.subscriptionGetProductInterfaceById = new Subscription();
     this.formControlById = new FormControl();
@@ -669,5 +670,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
     console.log(this.productListSubFiltered);
   }
-
+  
+  isLoggedIN(): boolean {
+    return this.authService.isLoggedIn();
+  }
 }

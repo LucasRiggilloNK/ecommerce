@@ -14,15 +14,18 @@
     <p>Descripción:</p>
     <p>{{ productToVievDetails?.description }}</p>
     <p>Precio: ${{ productToVievDetails?.price | number : "1.0-0" }}</p>
-    <div class="controls">
+    <div class="controls" [hidden]="!isLoggedIN()">
       <button
         class="button-controls"
         (click)="decreaseQuantity(productToVievDetails?.id!)"
         [disabled]="!productToVievDetails || productToVievDetails.quantity <= 0"
+        
       >
         -
       </button>
-      <span class="qty">{{ productToVievDetails?.quantity || 0 }}</span>
+      <span class="qty">
+        {{ productToVievDetails?.quantity || 0 }}
+      </span>
       <button
         class="button-controls"
         (click)="addToCart(productToVievDetails!)"
@@ -33,7 +36,7 @@
       >
         +
       </button>
-    </div>
+    </div>    
     <button class="button" (click)="goBack()">
       <img src="/arrow-left.svg" alt="volver" width="25px" />
     </button>

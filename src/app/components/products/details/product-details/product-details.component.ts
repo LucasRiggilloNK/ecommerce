@@ -7,6 +7,7 @@ import { Category } from '../../../../models/products/categories/category';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../../../services/login/auth.service';
 
 @Component({
   selector: 'app-product-details',
@@ -21,7 +22,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private carritoService: CarritoService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private authService: AuthService,
   ) {}
 
   ngOnInit(): void {
@@ -63,5 +65,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   decreaseQuantity(productId: string): void {
     this.carritoService.decreaseQuantity(productId);
+  }
+
+  isLoggedIN(): boolean {
+    return this.authService.isLoggedIn();
   }
 }

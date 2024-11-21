@@ -53,7 +53,7 @@ export class CarritoService {
   decreaseQuantity(productId: string): void {
     const existingProduct = this.cart.find((p) => p.id === productId);
     if (existingProduct) {
-      if (existingProduct.quantity > 1) {
+      if (existingProduct.quantity >= 1) {
         existingProduct.quantity--;
       } else {
         this.removeProduct(productId);
