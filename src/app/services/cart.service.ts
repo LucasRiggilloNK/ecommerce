@@ -28,26 +28,38 @@ export class CarritoService {
     return this.cartStockSource.asObservable();
   }
 
+  getDescriptionUntilFirstDot(description: string): string {
+    const firstDotIndex = description.indexOf('.');
+    if (firstDotIndex === -1) {
+      return description;
+    }
+
+    return description.slice(0, firstDotIndex + 1);
+  }
+
   addToCart(product: ProductInterface): void {
     const existingProduct = this.cart.find((p) => p.id === product.id);
+    const shortDescription = this.getDescriptionUntilFirstDot(
+      product.description
+    );
 
     if (product.stock <= 0) {
       Swal.fire({
         icon: 'error',
         title: 'No hay suficiente stock',
-        text: `Lo sentimos, no hay stock disponible para el producto ${product.description}.`,
+        text: `Lo sentimos, no hay stock disponible para el producto ${shortDescription}.`,
       });
       return;
     }
 
     if (existingProduct) {
-      if (existingProduct.stock > 0) {
+      if (existingProduct.quantity < product.stock) {
         existingProduct.quantity++;
       } else {
         Swal.fire({
           icon: 'error',
           title: 'No hay más stock disponible',
-          text: `No puedes añadir más unidades de ${product.model} al carrito porque no hay stock disponible.`,
+          text: `No puedes añadir más unidades de ${shortDescription} al carrito porque solo quedan ${product.stock} unidades disponibles.`,
         });
       }
     } else {
