@@ -30,11 +30,17 @@ export class BuyFormComponent implements OnInit {
   user: User | null;
   subTotalPrice: number;
   userDataForm: FormGroup;
+
+
   shippingCostByKm: number = 100;
   shippingPrice: number;
   distanceMatrixObject: DistanceMatrix;
   destination_addresses: string = '';
   calculateDistance: number;
+
+  addressNotExits: boolean = false; //agregado
+
+
   provincesList: string[] = Object.values(Province);
   bsasCityList: string[] = Object.values(BsasCity);
   cardsTypesList: string[] = Object.values(CardType);
@@ -170,10 +176,38 @@ export class BuyFormComponent implements OnInit {
             console.log("verifyCard: " + this.verifyCard);
           });
           
+          if(!this.userDataForm.get('province')?.valid ||
+          !this.userDataForm.get('city')?.valid  ||
+          !this.userDataForm.get('street')?.valid  ||
+          !this.userDataForm.get('streetNumber')?.valid){
+            this.addressNotExits = false;
+          }
           
 
       }
     });
+    
+    this.userDataForm.get('province')?.valueChanges.subscribe(() =>{
+      this.addressNotExits = false;
+      this.shippingPrice = 0;
+      this.destination_addresses = "";
+    });
+    this.userDataForm.get('city')?.valueChanges.subscribe(() =>{
+      this.addressNotExits = false;
+      this.shippingPrice = 0;
+      this.destination_addresses = "";
+    });
+    this.userDataForm.get('street')?.valueChanges.subscribe(() =>{
+      this.addressNotExits = false;
+      this.shippingPrice = 0;
+      this.destination_addresses = "";
+    });
+    this.userDataForm.get('streetNumber')?.valueChanges.subscribe(() =>{
+      this.addressNotExits = false;
+      this.shippingPrice = 0;
+      this.destination_addresses = "";
+    });
+
   }
 
   setInitialUserDataForm(user: User) {
@@ -212,26 +246,34 @@ export class BuyFormComponent implements OnInit {
       .getShippingPrice(destiny)
       .then((response) => {
         this.distanceMatrixObject = response as DistanceMatrix;
+
         console.log(this.distanceMatrixObject);
 
         if (this.distanceMatrixObject.rows[0].elements[0].status == 'OK') {
+
+          this.addressNotExits = false;
+
           console.log(
             'Domicilio entrega: ' +
               this.distanceMatrixObject.destination_addresses[0]
           );
-          this.destination_addresses =
-            this.distanceMatrixObject.destination_addresses[0];
 
-          this.calculateDistance =
-            this.distanceMatrixObject.rows[0].elements[0].distance.value;
+          this.destination_addresses = this.distanceMatrixObject.destination_addresses[0];
+
+          this.calculateDistance = this.distanceMatrixObject.rows[0].elements[0].distance.value;
+
           console.log('Distancia: ' + this.calculateDistance);
-          this.shippingPrice =
-            (this.calculateDistance * this.shippingCostByKm) / 1000;
+          this.shippingPrice = (this.calculateDistance * this.shippingCostByKm) / 1000;
           this.userDataForm.get('sendPrice')?.setValue(this.shippingPrice);
-        } else if (
-          this.distanceMatrixObject.rows[0].elements[0].status == 'ZERO_RESULTS'
-        ) {
+
+        } else if (this.distanceMatrixObject.rows[0].elements[0].status == 'ZERO_RESULTS') {
           this.destination_addresses = '';
+
+
+          this.addressNotExits = true;
+          this.shippingPrice = 0;
+
+
           console.log('Dirección inexistente...');
         }
       })

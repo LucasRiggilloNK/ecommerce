@@ -31,16 +31,16 @@
     {
       "id": "ccc1",
       "name": "Marcos",
-      "lastname": "Marrizo",
+      "lastname": "Carrizo",
       "birthdate": "1985-10-10",
       "province": "Buenos Aires",
       "city": "Mar del Plata",
-      "street": "Alguna",
-      "streetNumber": "123",
+      "street": "Vergara",
+      "streetNumber": "2722",
       "floor": "",
       "flat": "",
-      "email": "marquitos@hotmail",
-      "password": "Marcos"
+      "email": "marquitos@hotmail.com",
+      "password": "marquitos"
     },
     {
       "id": "0cff",

@@ -153,7 +153,9 @@
     >
       Calcular envio
     </button>
-
+    <div class="error-message" *ngIf="addressNotExits" >
+      Dirección inexistente
+    </div>
 
   <br>
   <br>
@@ -219,6 +221,9 @@
     <div *ngIf="userDataForm.get('cardNumber')?.errors?.['numbersOnly']">
       *Debe ingresar solo números
     </div>
+    <div *ngIf="userDataForm.get('cardNumber')?.errors?.['minlength']">
+      *Debe ingresar una cantidad de dígitos válida (16)
+    </div>
   </div>
 
   <input type="text" placeholder="MM/YY" formControlName="expirationDate" [maxlength]="5" [minlength]="5" />
@@ -249,6 +254,9 @@
     <div *ngIf="userDataForm.get('cvv')?.errors?.['numbersOnly']">
       *Debe ingresar solo números
     </div>
+    <div *ngIf="userDataForm.get('cvv')?.errors?.['minlength']">
+      *Debe ingresar una catidad de dígitos válida (3)
+    </div>
   </div>
 
   <select name="" id="" formControlName="cardIssuer">
@@ -263,11 +271,9 @@
       <div *ngIf="!verifyCard" >
         *Tarjeta inválida
       </div>
-
-          
     </div>
     
 
-  <button  (click)="generatePurchase()" type="submit" [disabled]="!(userDataForm.valid && verifyCard)" >Confirmar compra</button>
+  <button  (click)="generatePurchase()" type="submit" [disabled]="!(userDataForm.valid && verifyCard) || shippingPrice == 0 " >Confirmar compra</button>
 </form>
 </div>
