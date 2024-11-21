@@ -18,20 +18,20 @@ export class LoginComponent {
     private router: Router
   ) {
     this.loginForm = this.fb.group({
-      name: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
 
   login(): void {
     if (this.loginForm.valid) {
-      const { name, password } = this.loginForm.value;
-      this.authService.login(name, password).subscribe({
+      const { email, password } = this.loginForm.value;
+      this.authService.login(email, password).subscribe({
         next: (success) => {
           if (success) {
             this.router.navigate(['/']);
           } else {
-            this.errorMessage = 'Invalid name or password';
+            this.errorMessage = '*Email o constraseña incorrecto';
           }
         },
         error: (err) => {

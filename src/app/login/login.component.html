@@ -3,20 +3,20 @@
     <img src="/login.png" alt="face" width="150px" height="150px" />
   </div>
   <div class="form-group">
-    <label>Nombre:</label>
+    <label>Email:</label>
     <input
       type="text"
-      id="name"
-      formControlName="name"
+      id="email"
+      formControlName="email"
       required
       class="form-input"
-      placeholder="Nombre"
+      placeholder="Email"
     />
     <div
-      *ngIf="loginForm.get('name')?.invalid && loginForm.get('name')?.touched"
+      *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
       class="error-message"
     >
-      * Ingresar el nombre
+      * Ingresar el email
     </div>
   </div>
   <div class="form-group">
