@@ -374,9 +374,10 @@ export class BuyFormComponent implements OnInit {
   
             localStorage.removeItem('cart');
             this.router.navigate(['/']);
-            setTimeout(() => {
+             setTimeout(() => {
               window.location.reload();
-            }, 100);
+            }, 100); 
+            
           },
           (error) => {
             console.error('Error al registrar la compra:', error);

@@ -80,7 +80,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
     this.formControlCategory = new FormControl();
     this.formGrupSubfilters = new FormGroup({
-      brand: new FormControl(Brand.NONE),
+      brand: new FormControl(""),
       orderByPrice: new FormControl(''),
       // Aire acondicionado
       airTypes: new FormControl(''),

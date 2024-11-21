@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private apiUrl = 'http://localhost:3001';
+  
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -30,8 +31,9 @@ export class AuthService {
               localStorage.setItem('email', user.email);
               localStorage.setItem('userId', String(user.id));
               localStorage.setItem('name', user.name); 
+              
             }
-            window.location.reload();
+            //window.location.reload();
             return true;
           }
           return false;
