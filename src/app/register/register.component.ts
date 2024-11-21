@@ -92,7 +92,7 @@ export class RegisterComponent {
             this.registerService.registerUser(nuevoUsuario).subscribe(
               (response) => {
                 this.authService
-                  .login(nuevoUsuario.name, nuevoUsuario.password)
+                  .login(nuevoUsuario.email, nuevoUsuario.password)
                   .subscribe({
                     next: (success) => {
                       if (success) {

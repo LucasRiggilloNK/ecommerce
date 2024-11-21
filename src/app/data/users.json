@@ -56,7 +56,6 @@
       "email": "nicolasuxm12al@gmail.com",
       "password": "123456"
     },
-
     {
       "id": "6f43",
       "name": "Serena",
@@ -70,6 +69,20 @@
       "flat": "B",
       "email": "serenajeckeln@gmail.com",
       "password": "123"
+    },
+    {
+      "id": "d1ef",
+      "name": "martin",
+      "lastname": "marcelo",
+      "birthdate": "1985-10-10",
+      "province": "Buenos Aires",
+      "city": "Mar del Plata",
+      "street": "vvv",
+      "streetNumber": "111",
+      "floor": "",
+      "flat": "",
+      "email": "martincho@gmail.com",
+      "password": "123456"
     }
   ]
 }
