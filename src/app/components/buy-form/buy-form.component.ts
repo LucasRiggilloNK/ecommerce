@@ -18,6 +18,9 @@ import { CardIssuer } from '../../models/card-issuer';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product/product.service';
 import Swal from 'sweetalert2';
+import { CardsService } from '../../services/cards.service';
+import { response } from 'express';
+import { error } from 'console';
 
 @Component({
   selector: 'app-purchase',
@@ -39,13 +42,16 @@ export class BuyFormComponent implements OnInit {
   cardsTypesList: string[] = Object.values(CardType);
   cardIssuerList: string[] = Object.values(CardIssuer);
 
+  verifyCard: boolean = false;
+
   constructor(
     private buyService: BuyService,
     private fb: FormBuilder,
     private purchaseService: PurchaseService,
     private authService: AuthService,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+    private cardService: CardsService
   ) {
     this.userDataForm = this.fb.group({
       clienteId: [''],
@@ -62,7 +68,6 @@ export class BuyFormComponent implements OnInit {
         Validators.required,
         CustomValidators.lettersOnly(),
       ]),
-      address: new FormControl('', [Validators.required]),
       street: new FormControl('', [Validators.required]),
       streetNumber: new FormControl('', [
         Validators.required,
@@ -85,6 +90,7 @@ export class BuyFormComponent implements OnInit {
       cardNumber: new FormControl('', [
         Validators.required,
         Validators.maxLength(16),
+        Validators.minLength(16),
         CustomValidators.numbersOnly(),
       ]),
       expirationDate: new FormControl('', [
@@ -149,12 +155,32 @@ export class BuyFormComponent implements OnInit {
         }
       );
     }
+
+
+    this.userDataForm.valueChanges.subscribe(() => {
+      if (this.userDataForm.get('cardType')?.valid &&
+          this.userDataForm.get('cardHolder')?.valid &&
+          this.userDataForm.get('cardNumber')?.valid &&
+          this.userDataForm.get('expirationDate')?.valid &&
+          this.userDataForm.get('cardNumber')?.valid &&
+          this.userDataForm.get('cvv')?.valid &&
+          this.userDataForm.get('cardIssuer')?.valid){
+
+          this.cardExists()
+          .then(response =>{
+            this.verifyCard = response;
+            console.log("verifyCard: " + this.verifyCard);
+          });
+          
+          
+
+      }
+    });
   }
 
   setInitialUserDataForm(user: User) {
     this.userDataForm.get('name')?.setValue(user.name);
     this.userDataForm.get('lastname')?.setValue(user.lastname);
-    this.userDataForm.get('birthdate')?.setValue(user.birthdate);
     this.userDataForm.get('email')?.setValue(user.email);
     this.userDataForm.get('country')?.setValue('Argentina');
     this.userDataForm.get('province')?.setValue(Province.BuenosAires);
@@ -301,7 +327,8 @@ export class BuyFormComponent implements OnInit {
     );
   }
 
-  cardExists(): boolean {
+   async cardExists(): Promise<boolean> {
+    let out: boolean = false;
     let card: Card = {
       type: '',
       cardHolder: '',
@@ -317,7 +344,13 @@ export class BuyFormComponent implements OnInit {
     card.expirationDate = this.userDataForm.get('expirationDate')?.value;
     card.cvv = this.userDataForm.get('cvv')?.value;
     card.issuer = this.userDataForm.get('cardIssuer')?.value;
+    
+    return await this.cardService.existsCard(card);
 
-    return this.buyService.existsCard(card);
+
   }
+
+
+
+
 }

@@ -13,35 +13,40 @@ export class CardsService {
   constructor(private http: HttpClient) {}
 
   getAllCardsPromise(urlApi: string): Promise<Card[] | undefined> {
-    return this.http.get<Card[]>(urlApi).toPromise(); //lastValueFrom transforma el observable en promesa, ToPromise esta deprecado en versiones
+    return this.http.get<Card[]>(urlApi).toPromise();
   }
 
-  existsCard(card: Card): boolean {
-    let out: boolean = false;
-    this.getAllCardsPromise(this.cardsApiUrl)
-      .then((response) => {
-        let cardList: Card[] | undefined = response;
-        if (
-          cardList?.find(
-            (crd) =>
-              crd.type === card.type &&
-              crd.cardHolder === card.cardHolder &&
-              crd.cardNumber === card.cardNumber &&
-              crd.expirationDate === card.expirationDate &&
-              crd.cvv === card.cvv &&
-              crd.issuer === card.issuer
-          )
-        ) {
-          out = true;
-          alert('Tarjeta existente');
-        } else {
+
+    async existsCard(card: Card): Promise<boolean> {
+      let out: boolean = false;
+       await this.getAllCardsPromise(this.cardsApiUrl)
+        .then((response) => {
+          let cardList: Card[] | undefined = response;
+          if (
+            cardList?.find(
+              (crd) =>
+                crd.type === card.type &&
+                crd.cardHolder === card.cardHolder &&
+                crd.cardNumber === card.cardNumber &&
+                crd.expirationDate === card.expirationDate &&
+                crd.cvv === card.cvv &&
+                crd.issuer === card.issuer
+            )
+          ) {
+            out = true;
+            
+          } else {
+            out = false;
+            
+          }
+        })
+        .catch((error) => {
+          console.log(error);
           out = false;
-          alert('Tarjeta inexistente');
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    return out;
-  }
+          
+        });
+      return out;
+    }
+
+  
 }

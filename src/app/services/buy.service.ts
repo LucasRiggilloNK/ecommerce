@@ -44,7 +44,9 @@ export class BuyService {
     return this.distanceMatrixService.getApiDistanceMatrix(destiny);
   }
 
-  existsCard(card: Card) {
-    return this.cardsService.existsCard(card);
+  async existsCard(card: Card): Promise<boolean> {
+    let out:boolean = await this.cardsService.existsCard(card);
+    return out;
   }
+    
 }

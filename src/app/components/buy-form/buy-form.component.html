@@ -133,9 +133,9 @@
   <p>Departamento:</p>
   <input type="text" formControlName="flat" />
 
-  <!-- Ver que la dirección debería ser calle, numero, piso y depto en el json usuarios -->
+  
 
-  <!-- ENVIO -->
+ 
   <div
     *ngIf="
       userDataForm.get('street')?.valid &&
@@ -193,7 +193,7 @@
     type="text"
     formControlName="cardNumber"
     placeholder="Número de tarjeta"
-  />
+    [maxlength]="16" [minlength]="16"  />
   <div
     class="validation"
     *ngIf="
@@ -210,7 +210,7 @@
     </div>
   </div>
 
-  <input type="text" placeholder="MM/YY" formControlName="expirationDate" />
+  <input type="text" placeholder="MM/YY" formControlName="expirationDate" [maxlength]="5" [minlength]="5" />
   <div
     class="validation"
     *ngIf="
@@ -224,7 +224,7 @@
     </div>
   </div>
 
-  <input type="text" formControlName="cvv" placeholder="CVV" />
+  <input type="text" formControlName="cvv" placeholder="CVV" [maxlength]="3" [minlength]="3" />
   <div
     class="validation"
     *ngIf="
@@ -246,8 +246,16 @@
     </option>
   </select>
 
+  
+    <div class="validation" *ngIf="userDataForm.valid" >
 
-  <button type="button" (click)="cardExists()">Verificar tarjeta</button>
+      <div *ngIf="!verifyCard" >
+        Tarjeta inválida...
+      </div>
 
-  <button (click)="generatePurchase()" type="submit">Confirmar compra</button>
+          
+    </div>
+    
+
+  <button  (click)="generatePurchase()" type="submit" [disabled]="!(userDataForm.valid && verifyCard)" >Confirmar compra</button>
 </form>
