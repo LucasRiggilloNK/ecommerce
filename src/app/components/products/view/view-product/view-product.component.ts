@@ -33,7 +33,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   productsListInt: ProductInterface[] = [];
   filteredProducts: ProductInterface[] = [];
   productInterfaceById: ProductInterface | null = null;
-  //subscriptionGetProductListInterface: Subscription;
   subscriptionGetProductInterfaceById: Subscription;
   formControlById: FormControl;
   categoryList: string[] = Object.values(Category).sort();
@@ -72,7 +71,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     private productService: ProductService,
     private carritoService: CarritoService
   ) {
-    //this.subscriptionGetProductListInterface = new Subscription();
     this.subscriptionGetProductInterfaceById = new Subscription();
     this.formControlById = new FormControl();
 
@@ -201,9 +199,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     }
   }
 
-  /* buttonDetails(id: number) {
-    this.getProductInterfaceById(id);
-  } */
 
   getFilterByCategory(
     productsListInt: ProductInterface[],
@@ -238,6 +233,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       
       filteredProductsListInterface = this.productListFilteredByCategory; // la iguala a filteredProductsListInterface para poder filtrar desde ahi y no perder el punto de inicio de la categoria
 
+
       //limpiar todos los subfiltros
       this.valueChangesformGrupSubfiltersSubscription?.unsubscribe(); //desuscribo para poder cambiar los subfiltros y q no haya problemas de detección
 
@@ -256,6 +252,14 @@ export class ViewProductComponent implements OnInit, OnDestroy {
             this.formControlCategory.value
           );
         });
+
+      if (category == Category.ALL){
+        this.productListSubFiltered = this.productListFilteredByCategory.slice(0, 48);
+        if(this.formGrupSubfilters.get('brand')?.value === 'Todos'){
+          this.productListSubFiltered = this.productListSubFiltered.slice(0, 48);
+        }
+
+      }
     }
   }
 
@@ -302,26 +306,25 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   ) {
     let filteredProductsListInterface = productListSubFilteredByCategory;
 
-    console.log('ATRODEN SUB FILTERS');
     //FILTRA POR MARCA
     if (
       formGroup.get('brand')?.value != Brand.NONE &&
       formGroup.get('brand')?.value != Brand.ALL
     ) {
-      console.log('ATRODEN BRAND');
       filteredProductsListInterface = this.getListFilteredByBrand(
         filteredProductsListInterface,
         formGroup.get('brand')?.value
       );
     }
+    
+    // MUESTRA MAXIMO 48 PRODUCTOS CUANDO MUESTRA LA LISTA CON TODAS LAS CATEGORIAS 
+    if(category == Category.ALL && formGroup.get('brand')?.value == Brand.ALL){
+      filteredProductsListInterface = productListSubFilteredByCategory.slice(0, 48);
+    }
 
     // FILTRA ORDENADO POR PRECIO
     if (formGroup.get('orderByPrice')?.value != '') {
-      console.log('ATRODEN ORDERBYPRICE');
-      filteredProductsListInterface = this.getListOrderedByPrice(
-        filteredProductsListInterface,
-        formGroup.get('orderByPrice')?.value
-      );
+      filteredProductsListInterface = this.getListOrderedByPrice(filteredProductsListInterface,formGroup.get('orderByPrice')?.value).slice(0, 48);
     }
 
     // FILTRA POR CARACTERISTICAS DE CATEGORIA
@@ -605,20 +608,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     return producList;
   }
 
-  /* getListFilteredByFrioCalor(productsListInterface: ProductInterface[], frioCalor: string): ProductInterface[]{
-  let producList: ProductInterface[] = [];
-  productsListInterface.forEach(productinterface =>{
-    let characteristics = this.obtainCharacteristicsArrayOfStringCharacteristics(productinterface.characteristics);
-    if(characteristics[characteristics.indexOf("frioCalor") + 1]  == frioCalor ){
-      console.log("*");
-      console.log(productinterface);
-      producList.push(productinterface);
-    }
-  });
-  return producList;
-}
- */
-
   addToCart(product: ProductInterface): void {
     this.carritoService.addToCart(product);
   }
@@ -681,11 +670,4 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     console.log(this.productListSubFiltered);
   }
 
-  //////////////////////////////////   DETAILS    ///////////////////////////////////////////////////////////
-
-  /*   sendProductIdToViewDetails(id: number){
-   
-    this.productService.setProductToViewDetailsById(id);
-    
-  } */
 }
