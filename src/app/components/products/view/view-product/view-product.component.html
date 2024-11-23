@@ -375,5 +375,11 @@
         </div>
       </div>
     </div>
+    <!-- <div class="no-products" *ngIf="productListSubFiltered.length == 0"> -->
+      <div class="no-products" *ngIf="noProducts">
+      <div class="alert alert-info" role="alert">
+        SIN PRODUCTOS
+      </div>
+      </div>
   </div>
 </form>

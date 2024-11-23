@@ -67,6 +67,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   keyboardConnectivityTypeList: string[];
   mouseConnectivityTypeList: string[];
 
+  noProducts = false;
+
   constructor(
     private productService: ProductService,
     private carritoService: CarritoService,
@@ -158,7 +160,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     //Elimina el elemento none en categoryList
     let indiceNONE = this.categoryList.indexOf(Category.NONE);
     this.categoryList.splice(indiceNONE, 1);
-
+    this.noProducts = false;
 
 
     this.getProductListInterface();
@@ -214,7 +216,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   }
 
   async getListFilteredByCategory(category: string) {//Función que se ejecuta al hacer cambios en el select categoría
-
+    this.noProducts = false;
     
     let filteredProductsListInterface: ProductInterface[] = [];
 
@@ -244,6 +246,9 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
       //Asignar lista a mostrar
       this.productListSubFiltered = filteredProductsListInterface; // está sin subfiltros aplicados pero es lo q tiene q mostrar inicialmente
+      if(this.productListSubFiltered.length == 0){
+        this.noProducts = true;
+      }
 
       this.valueChangesformGrupSubfiltersSubscription =
         this.formGrupSubfilters.valueChanges.subscribe((form) => {
@@ -258,6 +263,9 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         this.productListSubFiltered = this.productListFilteredByCategory.slice(0, 48);
         if(this.formGrupSubfilters.get('brand')?.value === 'Todos'){
           this.productListSubFiltered = this.productListSubFiltered.slice(0, 48);
+        }
+        if(this.productListSubFiltered.length == 0){
+          this.noProducts = true;
         }
 
       }
@@ -306,6 +314,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     category: string
   ) {
     let filteredProductsListInterface = productListSubFilteredByCategory;
+    this.noProducts = false;
 
     //FILTRA POR MARCA
     if (
@@ -568,8 +577,13 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         break;
     }
 
+
+    
     //Asignar lista a mostrar
     this.productListSubFiltered = filteredProductsListInterface;
+    if(this.productListSubFiltered.length == 0){
+      this.noProducts = true;
+    }
   }
 
   private getListFilteredByBrand(
