@@ -49,7 +49,10 @@ export class RegisterComponent {
         ],
       ],
       password: ['', Validators.required],
-    });
+      passwordConfirmation: ['', Validators.required]
+    } ,
+    { validators: CustomValidators.samePasswordValidator }
+  );
   }
 
   onSubmit() {
