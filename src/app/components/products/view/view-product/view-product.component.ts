@@ -43,6 +43,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   formControlCategory: FormControl;
   formGrupSubfilters: FormGroup;
 
+  
+
   valueChangesSubscription?: Subscription;
   valueChangesformGrupSubfiltersSubscription?: Subscription;
 
@@ -154,20 +156,27 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.mouseConnectivityTypeList = this.productService.getCharacteristicsList(
       'mouseConnectivityType'
     );
+
+    this.categoryList.splice(this.categoryList.indexOf(Category.NONE), 1);
+
   }
 
   ngOnInit(): void {
     //Elimina el elemento none en categoryList
-    let indiceNONE = this.categoryList.indexOf(Category.NONE);
-    this.categoryList.splice(indiceNONE, 1);
+    
     this.noProducts = false;
 
 
     this.getProductListInterface();
+    
+
     this.valueChangesSubscription =
       this.formControlCategory.valueChanges.subscribe((form) => {
         this.getListFilteredByCategory(this.formControlCategory.value);
       });
+
+      
+       
 
     this.valueChangesformGrupSubfiltersSubscription =
       this.formGrupSubfilters.valueChanges.subscribe((form) => {
@@ -178,7 +187,17 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         );
       });
 
-      this.formControlCategory.setValue(Category.ALL);//seteo inicial de muestra de home 
+      if(this.productService.getFormControlCategorySesion().value === ""){
+        this.formControlCategory.setValue(Category.ALL);//seteo inicial de muestra de home 
+      }else{
+        
+        this.formControlCategory.setValue(this.productService.getFormControlCategorySesion().value);
+      }
+      
+      
+      //this.formControlCategory.setValue(Category.ALL);//seteo inicial de muestra de home 
+
+
   }
   ngOnDestroy(): void {
     this.valueChangesSubscription?.unsubscribe();
@@ -240,9 +259,13 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       //limpiar todos los subfiltros
       this.valueChangesformGrupSubfiltersSubscription?.unsubscribe(); //desuscribo para poder cambiar los subfiltros y q no haya problemas de detección
 
+      
       this.setInitialSubFiltersOfListProductsInterface(
         filteredProductsListInterface
       ); //setea el estado inicial de lo subfiltros
+      
+  
+      
 
       //Asignar lista a mostrar
       this.productListSubFiltered = filteredProductsListInterface; // está sin subfiltros aplicados pero es lo q tiene q mostrar inicialmente
@@ -269,6 +292,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         }
 
       }
+      this.productService.setFormControlCategorySesion(this.formControlCategory);//SEtea la categoría aplicada en la sesiónpara reutilizarla al volver atrás en alguna opción
+      
     }
   }
 
@@ -278,7 +303,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.brandList = this.obtainBrandListFilteredByCategory(
       productsListInterface
     ); // obtiene las marcas de los productos filtrados
-    this.formGrupSubfilters.get('brand')?.setValue(Brand.NONE);
+    this.formGrupSubfilters.get('brand')?.setValue("");
     this.formGrupSubfilters.get('orderByPrice')?.setValue('');
     this.formGrupSubfilters.get('airTypes')?.setValue('');
     this.formGrupSubfilters.get('heatCold')?.setValue('');
@@ -584,6 +609,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     if(this.productListSubFiltered.length == 0){
       this.noProducts = true;
     }
+
+    
   }
 
   private getListFilteredByBrand(

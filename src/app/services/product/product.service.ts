@@ -6,6 +6,7 @@ import { ProductInterface } from '../../interfaces/product/product-interface';
 import { Purchase } from '../../models/purchases/purchase';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,8 @@ export class ProductService {
   private productInt: ProductInterface | null = null;
   private productToVievDetails: ProductInterface;
   private purchase: Purchase | null = null;
+  private formControlCategorySesion: FormControl;
+  private formGroupSubfiltersSesion: FormGroup;
 
   airTypesList: string[] = [
     'Todos',
@@ -197,6 +200,45 @@ export class ProductService {
       id: '1',
       quantity: 0,
     };
+
+    this.formControlCategorySesion = new FormControl("");
+    //this.formGroupSubfiltersSesion = new FormGroup("");
+    this.formGroupSubfiltersSesion = new FormGroup({
+      brand: new FormControl(""),
+      orderByPrice: new FormControl(''),
+      // Aire acondicionado
+      airTypes: new FormControl(''),
+      heatCold: new FormControl(''),
+      // Ventiladores
+      fanType: new FormControl(''),
+      // Televisores
+      tvTecnology: new FormControl(''),
+      tvInches: new FormControl(''),
+      // Auriculares
+      headphoneType: new FormControl(''),
+      // Heladeras
+      refrigeratorCoolingSystem: new FormControl(''),
+      // Lavarropas
+      washingCapacity: new FormControl(''),
+      // Notebooks
+      notebookScreenSize: new FormControl(''),
+      notebookRam: new FormControl(''),
+      notebookProcessor: new FormControl(''),
+      notebookStorageSize: new FormControl(''),
+      // Microondas
+      microwaveCapacity: new FormControl(''),
+      // Celulares
+      smartphoneInches: new FormControl(''),
+      smartphoneRam: new FormControl(''),
+      // Tablets
+      tabletScreenSize: new FormControl(''),
+      tabletRam: new FormControl(''),
+      // Impresoras
+      printerType: new FormControl(''),
+      // Teclado, mouse
+      keyboardConnectivityType: new FormControl(''),
+      mouseConnectivityType: new FormControl(''),
+    });
   }
 
   //////////////////////    GET PRODUCTS     ////////////////////////////////////////////////////
@@ -410,4 +452,14 @@ export class ProductService {
     console.log('Out: ' + out);
     return out;
   }
+
+  ///////////////////////////  FORM CONTROL y GROUP  ///////////////////////////////////
+  setFormControlCategorySesion(form: FormControl){
+    this.formControlCategorySesion = form;
+  }
+  getFormControlCategorySesion(): FormControl{
+    return this.formControlCategorySesion;
+  }
+
+  
 }

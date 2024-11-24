@@ -27,6 +27,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    
     let idProducto = this.route.snapshot.paramMap.get('id');
     if (idProducto) {
       this.productService
