@@ -67,6 +67,12 @@ button:hover {
   color: black;
 }
 
+button:enabled{
+  background-color: red;
+  color: white;
+  border: 2px solid;
+}
+
 .flex {
   display: flex;
   gap: 10px;

@@ -97,25 +97,39 @@
         <input id="flat" formControlName="flat" type="text" placeholder="Departamento" />
       </div>
     </div>
-    <div class="flex">
-      <div class="inner-flex">
-        <label for="email">Email:</label>
-        <input id="email" formControlName="email" type="email" placeholder="Email" />
-        <div class="error-message" *ngIf="!registerForm.valid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
-          <div *ngIf="registerForm.get('email')?.errors?.['required']">
-            *Email requerido
-          </div>
-          <div *ngIf="registerForm.get('email')?.errors?.['emailDomainValidator']">
-            *Email inválido
-          </div>
+
+    <div class="inner-flex">
+      <label for="email">Email:</label>
+      <input id="email" formControlName="email" type="email" placeholder="Email" />
+      <div class="error-message" *ngIf="!registerForm.valid && (registerForm.get('email')?.dirty || registerForm.get('email')?.touched)">
+        <div *ngIf="registerForm.get('email')?.errors?.['required']">
+          *Email requerido
+        </div>
+        <div *ngIf="registerForm.get('email')?.errors?.['emailDomainValidator']">
+          *Email inválido
         </div>
       </div>
+    </div>
+
+    <div class="flex">
       <div class="inner-flex">
         <label for="password">Contraseña:</label>
         <input id="password" formControlName="password" type="password" placeholder="Contraseña" />
         <div class="error-message" *ngIf="!registerForm.valid && (registerForm.get('password')?.dirty || registerForm.get('password')?.touched)">
           <div *ngIf="registerForm.get('password')?.errors?.['required']">
             *Contraseña requerida
+          </div>
+        </div>
+      </div>
+      <div class="inner-flex">
+        <label for="passwordConfirmation">Confirmar contraseña:</label>
+        <input id="passwordConfirmation" formControlName="passwordConfirmation" type="password" placeholder="Confirmar contraseña">
+        <div class="error-message" *ngIf="!registerForm.valid && (registerForm.get('passwordConfirmation')?.dirty || registerForm.get('passwordConfirmation')?.touched)">
+          <div *ngIf="registerForm.get('passwordConfirmation')?.errors?.['required']">
+            *Confirmar contraseña
+          </div>
+          <div *ngIf="registerForm.hasError('samePasswordValidator') && !registerForm.get('passwordConfirmation')?.errors?.['required']">
+            *Las contraseñas deben coincidir
           </div>
         </div>
       </div>
