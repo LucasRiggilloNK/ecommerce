@@ -67,10 +67,19 @@ button:hover {
   color: black;
 }
 
-button:enabled{
-  background-color: green;
+button:enabled {
   color: white;
-  border: 2px solid;
+  background-color: transparent;
+  border: 2px solid white;
+}
+
+button:disabled {
+  opacity: 0.2;
+}
+
+button:disabled:hover {
+  background-color: transparent;
+  color: white;
 }
 
 .flex {

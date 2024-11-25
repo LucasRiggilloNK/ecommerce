@@ -16,7 +16,7 @@ import { CustomValidators } from '../../common/custom-validators';
   templateUrl: './add-product.component.html',
   styleUrl: './add-product.component.css',
 })
-export class AddProductComponent implements OnInit{
+export class AddProductComponent implements OnInit {
   addProduct: FormGroup;
   categoryList: string[] = Object.values(Category).sort();
   brandList: string[] = Object.values(Brand).sort();
@@ -55,40 +55,31 @@ export class AddProductComponent implements OnInit{
     };
 
     this.addProduct = new FormGroup({
-      brand: new FormControl("", [Validators.required]),
-      category: new FormControl("", [Validators.required]),
+      brand: new FormControl('', [Validators.required]),
+      category: new FormControl('', [Validators.required]),
       urlImage: new FormControl(this.urlImage, [Validators.required]),
       description: new FormControl(this.description, [Validators.required]),
       price: new FormControl('', [Validators.required, Validators.min(0.01)]),
       stock: new FormControl('', [Validators.required, Validators.min(1)]),
-      model: new FormControl(this.model, [Validators.required]),     
+      model: new FormControl(this.model, [Validators.required]),
     });
-
-    
   }
 
   ngOnInit(): void {
     let allBrandsIndex = this.brandList.indexOf(Brand.ALL);
-    this.brandList.splice(allBrandsIndex,1);
+    this.brandList.splice(allBrandsIndex, 1);
 
     let allCategoriesIndex = this.categoryList.indexOf(Category.ALL);
-    this.categoryList.splice(allCategoriesIndex,1);
+    this.categoryList.splice(allCategoriesIndex, 1);
 
     this.productAdded = false;
     this.productNotAdded = false;
 
-    this.addProduct.valueChanges.subscribe(() =>{
+    this.addProduct.valueChanges.subscribe(() => {
       this.productNotAddedAlert(false);
       this.productAddedAlert(false);
-    }
-      
-        
-      
-    );
-
+    });
   }
-
-
 
   obtainCharacteristicsString() {
     //procesa y retorna un string de caracteristicas
@@ -96,22 +87,19 @@ export class AddProductComponent implements OnInit{
       this.productCharacteristicsService.sendCharacteristicsString();
   }
 
-  
-
   async onSubmit() {
     this.obtainCharacteristicsString(); //obtiene string caracteristicas
     this.productInt = this.addProductFormToProductInterface(); //pasa el form a interface de producto
     console.log(this.productService.productExists(this.productInt));
-    if(!(await this.productService.productExists(this.productInt))){
+    if (!(await this.productService.productExists(this.productInt))) {
       await this.productService.addProductInterfaceApi(this.productInt);
       this.productNotAddedAlert(false);
       this.productAddedAlert(true);
-    }else{
+    } else {
       //alert("Producto ya existente...");
       this.productNotAddedAlert(true);
       this.productAddedAlert(false);
     }
-    
   }
 
   addProductFormToProductInterface(): ProductInterface {
@@ -140,18 +128,17 @@ export class AddProductComponent implements OnInit{
     return product;
   }
 
- productAddedAlert(value: boolean){
-  this.productAdded = value;
- }
+  productAddedAlert(value: boolean) {
+    this.productAdded = value;
+  }
 
- productNotAddedAlert(value: boolean){
-  this.productNotAdded = value;
- }
-  
- resetForm(){
-  this.productNotAddedAlert(false);
-  this.productAddedAlert(false);
-  this.addProduct.reset();
- }
- 
+  productNotAddedAlert(value: boolean) {
+    this.productNotAdded = value;
+  }
+
+  resetForm() {
+    this.productNotAddedAlert(false);
+    this.productAddedAlert(false);
+    this.addProduct.reset();
+  }
 }

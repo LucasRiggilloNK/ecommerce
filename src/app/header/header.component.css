@@ -24,6 +24,18 @@
   width: 100%;
 }
 
+.productos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  transition: 0.2s;
+  padding: 0;
+}
+
 .cart-link {
   display: flex;
   align-items: center;

@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../services/login/auth.service';
 import { CarritoService } from '../services/cart.service';
 import { Subscription } from 'rxjs';
+import { AuthGuard } from '../../guards/auth.guard';
+import { AdminGuard } from '../../guards/admin.guard';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +14,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
   name: string | null = null;
   stock: number = 0;
   totalQty: number = 0;
+  adminId: string | null = 'd1ef';
   private stockSubscription: Subscription = new Subscription();
   private qtySubscription: Subscription = new Subscription();
-  
 
   constructor(
     private authService: AuthService,
+    private adminGuard: AdminGuard,
     private carritoService: CarritoService
   ) {}
 
@@ -56,9 +59,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  
-getUserName(){
-  return this.authService.getUserName();
-}
-  
+  getAdmin(): boolean {
+    if (typeof window !== 'undefined') {
+      const id = localStorage.getItem('userId');
+      if (id === this.adminId) {
+        console.log(id);
+        return true;
+      }
+    }
+    return false;
+  }
+
+  getUserName() {
+    return this.authService.getUserName();
+  }
 }

@@ -29,6 +29,15 @@
             <img src="/cart.svg" alt="cart" width="25px" height="25px" />
           </div>
         </div>
+        <div class="link" *ngIf="getAdmin()">
+          <Button
+            class="productos"
+            routerLink="/addProduct"
+            routerLinkActive="active"
+          >
+            Agregar Productos
+          </Button>
+        </div>
       </div>
       <div class="end-icons">
         <div class="user-name">

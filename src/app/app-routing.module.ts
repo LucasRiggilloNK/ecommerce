@@ -9,9 +9,16 @@ import { PrivateComponent } from './private/private.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductDetailsComponent } from './components/products/details/product-details/product-details.component';
 import { BuyFormComponent } from './components/buy-form/buy-form.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
+import { AdminGuard } from '../guards/admin.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  {
+    path: 'addProduct',
+    component: AddProductComponent,
+    canActivate: [AdminGuard],
+  },
   {
     path: 'register',
     component: RegisterComponent,
