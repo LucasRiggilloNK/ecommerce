@@ -4,7 +4,6 @@ import { CarritoService } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
 
-
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -16,17 +15,18 @@ export class CartComponent implements OnInit, OnDestroy {
   totalQty: number = 0;
   private qtySubscription: Subscription = new Subscription();
 
-  constructor(private carritoService: CarritoService, private location: Location) {
+  constructor(
+    private carritoService: CarritoService,
+    private location: Location
+  ) {
     this.quantity = 0;
   }
 
   ngOnInit(): void {
-    // Obtener el carrito y la cantidad total
     this.carritoService.getCartItems().subscribe((cart) => {
       this.carrito = cart;
     });
 
-    // Suscribirse a la cantidad total para actualizarla dinámicamente
     this.qtySubscription = this.carritoService
       .getTotalQuantity()
       .subscribe((qty) => {
@@ -58,13 +58,11 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Desuscribirse para evitar fugas de memoria
     if (this.qtySubscription) {
       this.qtySubscription.unsubscribe();
     }
   }
 
-  
   goBack(): void {
     this.location.back();
   }
