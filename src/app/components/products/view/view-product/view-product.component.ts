@@ -161,45 +161,37 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.categoryList.splice(this.categoryList.indexOf(Category.NONE), 1);
 
   }
-
   ngOnInit(): void {
-    //Elimina el elemento none en categoryList
-    
+    // Elimina el elemento none en categoryList
     this.noProducts = false;
 
-
+    // Inicializa la lista de productos
     this.getProductListInterface();
-    
 
-    this.valueChangesSubscription =
-      this.formControlCategory.valueChanges.subscribe((form) => {
+    // Resetea la página cuando se cambia la categoría
+    this.valueChangesSubscription = this.formControlCategory.valueChanges.subscribe((form) => {
+        this.currentPage = 1; // Reinicia la página a la primera
         this.getListFilteredByCategory(this.formControlCategory.value);
-      });
+    });
 
-      
-       
-
-    this.valueChangesformGrupSubfiltersSubscription =
-      this.formGrupSubfilters.valueChanges.subscribe((form) => {
+    // Resetea la página cuando se cambian los subfiltros
+    this.valueChangesformGrupSubfiltersSubscription = this.formGrupSubfilters.valueChanges.subscribe((form) => {
+        this.currentPage = 1; // Reinicia la página a la primera
         this.getListFilteredBySubFilters(
-          this.productListFilteredByCategory,
-          this.formGrupSubfilters,
-          this.formControlCategory.value
+            this.productListFilteredByCategory,
+            this.formGrupSubfilters,
+            this.formControlCategory.value
         );
-      });
+    });
 
-      if(this.productService.getFormControlCategorySesion().value === ""){
-        this.formControlCategory.setValue(Category.ALL);//seteo inicial de muestra de home 
-      }else{
-        
+    // Control inicial del valor de la categoría
+    if (this.productService.getFormControlCategorySesion().value === "") {
+        this.formControlCategory.setValue(Category.ALL); // Seteo inicial de muestra de home
+    } else {
         this.formControlCategory.setValue(this.productService.getFormControlCategorySesion().value);
-      }
-      
-      
-      //this.formControlCategory.setValue(Category.ALL);//seteo inicial de muestra de home 
+    }
+}
 
-
-  }
   ngOnDestroy(): void {
     this.valueChangesSubscription?.unsubscribe();
     this.valueChangesformGrupSubfiltersSubscription?.unsubscribe();
@@ -716,4 +708,13 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   isLoggedIN(): boolean {
     return this.authService.isLoggedIn();
   }
+
+  onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' 
+    });
+  }
+  
 }

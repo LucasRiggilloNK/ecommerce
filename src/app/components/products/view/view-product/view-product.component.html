@@ -372,12 +372,12 @@
           </div>
         </div>
       </div>
-    
-    <pagination-controls
-      (pageChange)="currentPage = $event"
-       [autoHide]="false"
-    ></pagination-controls>
-
+      <div class="my-pagination">
+        <pagination-controls
+          (pageChange)="onPageChange($event)"
+          [autoHide]="false"
+        ></pagination-controls>
+      </div>
     </div>
     
       <ng-template #noProducts>
