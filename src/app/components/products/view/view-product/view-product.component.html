@@ -328,9 +328,9 @@
       </div>
     </aside>
 
-    <div *ngIf="productListSubFiltered.length != 0">
+    <div *ngIf="productListSubFiltered.length > 0; else noProducts">
       <div class="cards">
-        <div *ngFor="let product of productListSubFiltered">
+        <div *ngFor="let product of productListSubFiltered | paginate: { itemsPerPage: 8, currentPage: currentPage }">
           <div [routerLink]="['/productDetails', product.id]" class="card">
             <img
               src="{{ product.urlImage }}"
@@ -342,19 +342,17 @@
               <p>
                 {{ product.category }} {{ product.brand }} {{ product.model }}
               </p>
-              <p>Precio: ${{ product.price | number : "1.0-0" }}</p>
-
+              <p>Precio: ${{ product.price | number: '1.0-0' }}</p>
+    
               <div class="controls" [hidden]="!isLoggedIN()">
                 <button
                   class="add-cart"
                   type="button"
-                  (click)="
-                    decreaseQuantity(product.id); $event.stopPropagation()
-                  "
+                  (click)="decreaseQuantity(product.id); $event.stopPropagation()"
                 >
                   -
                 </button>
-
+    
                 <button
                   class="add-cart"
                   type="button"
@@ -363,7 +361,7 @@
                   +
                 </button>
               </div>
-              <button
+                <button
                 class="add-cart"
                 type="button"
                 [routerLink]="['/productDetails', product.id]"
@@ -374,12 +372,21 @@
           </div>
         </div>
       </div>
+    
+    <pagination-controls
+      (pageChange)="currentPage = $event"
+       [autoHide]="false"
+    ></pagination-controls>
+
     </div>
-    <!-- <div class="no-products" *ngIf="productListSubFiltered.length == 0"> -->
-      <div class="no-products" *ngIf="noProducts">
-      <div class="alert alert-info" role="alert">
-        SIN PRODUCTOS
-      </div>
-      </div>
+    
+      <ng-template #noProducts>
+        <div class="no-products">
+          <div class="alert alert-info" role="alert">
+            SIN PRODUCTOS
+          </div>
+        </div>
+      </ng-template>
+      
   </div>
 </form>

@@ -185,3 +185,61 @@ aside select:hover {
   font-size: 2rem;
   color: #ebca70;
 }
+
+.pagination-controls {
+  background-color: #333;  /* Fondo gris oscuro */
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #2199e8;  /* Borde azul para mejorar la visibilidad */
+  display: flex !important;  /* Usamos flex para un diseño más claro y alineado */
+  justify-content: center;  /* Centra los controles si es necesario */
+  gap: 10px; /* Espaciado entre los elementos de paginación */
+}
+
+.pagination-controls a {
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #ccc; /* Color de texto */
+  text-decoration: none; /* Quitar subrayado */
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.pagination-controls a:hover {
+  background-color: #333;  /* Fondo oscuro al pasar el mouse */
+  color: #fff;  /* Cambio de color de texto */
+}
+
+.pagination-controls .previous,
+.pagination-controls .next {
+  background-color: #2199e8;  /* Fondo azul para los botones */
+  color: #fff;  /* Asegura que el texto sea blanco */
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination-controls .previous:hover,
+.pagination-controls .next:hover {
+  background-color: #1a78c2;  /* Fondo más oscuro al hacer hover */
+}
+
+/* Asegura que los controles siempre sean visibles */
+.pagination-controls {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.pagination-controls .previous,
+.pagination-controls .next {
+  background-color: #444;  /* Fondo para los botones anterior/siguiente */
+  color: #fff;  /* Color de texto */
+  padding: 5px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pagination-controls .previous:hover,
+.pagination-controls .next:hover {
+  background-color: #555;  /* Cambio de fondo en hover */
+}

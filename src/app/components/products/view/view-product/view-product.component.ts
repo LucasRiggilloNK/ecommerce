@@ -42,7 +42,8 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   productListSubFiltered: ProductInterface[] = [];
   formControlCategory: FormControl;
   formGrupSubfilters: FormGroup;
-
+  currentPage: number = 1;        
+  itemsPerPage: number = 10; 
   
 
   valueChangesSubscription?: Subscription;

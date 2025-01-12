@@ -34,6 +34,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { BuyFormComponent } from './components/buy-form/buy-form.component';
 import { FooterComponent } from './footer/footer.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,7 @@ import { FooterComponent } from './footer/footer.component';
  
   ],
 
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule,BrowserModule, NgxPaginationModule],
 
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
