@@ -61,7 +61,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   getAdmin(): boolean {
     if (typeof window !== 'undefined') {
-      const id = localStorage.getItem('userId');
+      const id = sessionStorage.getItem('userId');
       if (id === this.adminId) {
         console.log(id);
         return true;

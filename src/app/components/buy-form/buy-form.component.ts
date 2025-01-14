@@ -380,7 +380,7 @@ export class BuyFormComponent implements OnInit {
               );
             });
   
-            localStorage.removeItem('cart');
+            sessionStorage.removeItem('cart');
             this.router.navigate(['/']);
              setTimeout(() => {
               window.location.reload();

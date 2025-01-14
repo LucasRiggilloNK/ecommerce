@@ -27,10 +27,10 @@ export class AuthService {
           if (user) {
             if (typeof window !== 'undefined') {
               console.log('Usuario logueado:', user.email);
-              localStorage.setItem('auth_token', 'your_token');
-              localStorage.setItem('email', user.email);
-              localStorage.setItem('userId', String(user.id));
-              localStorage.setItem('name', user.name); 
+              sessionStorage.setItem('auth_token', 'your_token');
+              sessionStorage.setItem('email', user.email);
+              sessionStorage.setItem('userId', String(user.id));
+              sessionStorage.setItem('name', user.name); 
               
             }
             //window.location.reload();
@@ -49,14 +49,14 @@ export class AuthService {
   
   getUserName(): string | null {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('name');
+      return sessionStorage.getItem('name');
     }
     return null;
   }
 
   getUserId(): string | null {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('userId');
+      return sessionStorage.getItem('userId');
     }
     return null;
   }
@@ -64,7 +64,7 @@ export class AuthService {
   logout(): void {
     if (confirm('Estas seguro que queres cerrar sesión?')) {
       if (typeof window !== 'undefined') {
-        localStorage.clear();
+        sessionStorage.clear();
         window.location.reload();
       }
     }
@@ -72,7 +72,7 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     if (typeof window !== 'undefined') {
-      return !!localStorage.getItem('auth_token');
+      return !!sessionStorage.getItem('auth_token');
     }
     return false;
   }

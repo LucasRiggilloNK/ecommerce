@@ -105,14 +105,14 @@ export class CarritoService {
 
   clearCart(): void {
     this.cart = [];
-    localStorage.removeItem('cart');
+    sessionStorage.removeItem('cart');
     this.cartSubject.next(this.cart);
     this.updateCartInfo();
   }
 
   private loadCart(): void {
     if (typeof window !== 'undefined') {
-      const savedCart = localStorage.getItem('cart');
+      const savedCart = sessionStorage.getItem('cart');
       if (savedCart) {
         this.cart = JSON.parse(savedCart) as ProductInterface[];
         this.cartSubject.next(this.cart);
@@ -129,7 +129,7 @@ export class CarritoService {
   }
 
   private saveCart(): void {
-    localStorage.setItem('cart', JSON.stringify(this.cart));
+    sessionStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
   private updateCartInfo(): void {

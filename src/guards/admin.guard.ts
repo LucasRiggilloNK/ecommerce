@@ -11,7 +11,7 @@ export class AdminGuard implements CanActivate {
 
   canActivate(): boolean {
     if (typeof window !== 'undefined') {
-      const id = localStorage.getItem('userId');
+      const id = sessionStorage.getItem('userId');
       if (id === this.adminID) {
         console.log(id);
         return true;
