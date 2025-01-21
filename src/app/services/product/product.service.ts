@@ -292,6 +292,18 @@ export class ProductService {
     }
   }
 
+//////////////////////    UPDATE PRODUCTS     ////////////////////////////////////////////////////
+
+  public updateProduct(product: ProductInterface): Observable<ProductInterface>{
+    return this.asyncService.updateProduct(product.id, product, this.productsApiUrl);
+  }
+
+  //////////////////////    DELETE PRODUCTS     ////////////////////////////////////////////////////
+  public deleteProduct(product: ProductInterface): Observable<ProductInterface>{
+    return this.asyncService.deleteProduct(product.id, this.productsApiUrl);
+  }
+
+
   //////////////////////    FILTER PRODUCTS     ////////////////////////////////////////////////////
 
   filterByCategory(

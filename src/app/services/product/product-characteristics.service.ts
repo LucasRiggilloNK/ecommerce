@@ -1,12 +1,27 @@
 import { Injectable } from '@angular/core';
 import { producerAccessed } from '@angular/core/primitives/signals';
 import { FormGroup } from '@angular/forms';
+import { AirType } from '../../models/products/characteristics/air-conditioning/air-type';
+import { HeatCold } from '../../models/products/characteristics/air-conditioning/heat-cold';
+import { Color } from '../../models/products/characteristics/color';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductcCharacteristicsService {
   characteristicsString: string = "";
+  ////// CARACTERITICAS GENERALES  /////
+  private colorList = Object.values(Color).sort();
+
+  ///// AIRE ACOINDICIONADO  //////
+  private airTypeList: string[] = Object.values(AirType).sort();
+  private heatColdList: string[] = Object.values(HeatCold);
+
+
+
+
+
+  
   constructor() { }
 
   
@@ -48,5 +63,21 @@ export class ProductcCharacteristicsService {
       console.log("characteristicsString en SEND: " + this.characteristicsString);
       return this.characteristicsString;
     }
+
+
+    //////////////////////   GETS CARACTERISTICAS   ////////////////////////////////
+    public getColorList(){
+      return this.colorList;
+    }
+
+    public getAirTypeList(){
+      return this.airTypeList;
+    }
+
+    public getHeatColdList(){
+      return this.heatColdList;
+    }
+
+
 
 }

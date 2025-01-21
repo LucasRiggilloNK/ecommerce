@@ -30,4 +30,15 @@ export class AsyncService {
   getByIdPromise(productId: string, urlApi: string): Promise<ProductInterface> {
     return lastValueFrom(this.http.get<ProductInterface>(urlApi + "/" + productId));
   }
+
+  updateProduct(productId: string, product: ProductInterface, urlApi: string): Observable<ProductInterface>{
+    const httpOptions = {
+      headers: new HttpHeaders({'content-Type': 'application/json'}),
+    };
+    const { id, ...productWithoutId } = product;
+    return this.http.put<ProductInterface>(urlApi + "/" + productId, productWithoutId, httpOptions);
+  }
+  deleteProduct(id: string, urlApi: string): Observable<ProductInterface>{
+    return this.http.delete<ProductInterface>(urlApi + "/" + id);
+  }
 }

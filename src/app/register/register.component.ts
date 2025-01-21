@@ -10,6 +10,7 @@ import { CustomValidators } from '../common/custom-validators';
 import { BsasCity } from '../models/bsas-city';
 import { Province } from '../models/province';
 import { Usuario } from '../models/users/user';
+import { Role } from '../models/users/role';
 
 @Component({
   selector: 'app-register',
@@ -30,6 +31,7 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
       name: ['', [Validators.required, CustomValidators.lettersOnly()]],
       lastname: ['', [Validators.required, CustomValidators.lettersOnly()]],
+      dni: ["", [Validators.required, CustomValidators.numbersOnly()]],
       birthdate: [
         '',
         [Validators.required, CustomValidators.ageRangeLimitator(18, 100)],
@@ -49,7 +51,8 @@ export class RegisterComponent {
         ],
       ],
       password: ['', Validators.required],
-      passwordConfirmation: ['', Validators.required]
+      passwordConfirmation: ['', Validators.required],
+      role: [Role.USER]
     } ,
     { validators: CustomValidators.samePasswordValidator }
   );
@@ -60,6 +63,7 @@ export class RegisterComponent {
       const {
         name,
         lastname,
+        dni,
         birthdate,
         province,
         city,
@@ -69,10 +73,12 @@ export class RegisterComponent {
         flat,
         email,
         password,
+        role
       } = this.registerForm.value;
       const nuevoUsuario: Usuario = {
         name,
         lastname,
+        dni,
         birthdate,
         province,
         city,
@@ -82,6 +88,7 @@ export class RegisterComponent {
         flat,
         email,
         password,
+        role
       };
 
       this.registerService.checkEmailExists(email).subscribe(

@@ -34,6 +34,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { BuyFormComponent } from './components/buy-form/buy-form.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { FooterComponent } from './footer/footer.component';
     RegisterComponent,
     LoginComponent,
     BuyFormComponent,
-    FooterComponent
+    FooterComponent,
+    ProductEditComponent
  
   ],
 

@@ -1441,6 +1441,18 @@
       "characteristics": "smartphoneInches,6.8\",smartphoneRam,4 GB",
       "model": "40 SE NEGRO",
       "quantity": 0
+    },
+    {
+      "id": "ec91",
+      "brand": "Philco",
+      "category": "Aire Acondicionado",
+      "urlImage": "https://medias.musimundo.com/medias/size515-150360-01.jpg?context=bWFzdGVyfGltYWdlc3w2MzUzfGltYWdlL2pwZWd8YUdRMUwyZzRNUzh4TURZek56UTRNalE1TVRrek5DOXphWHBsTlRFMVh6RTFNRE0yTUY4d01TNXFjR2N8NDc3MmQyOTdiYjE1YzAwZDY3YTE2NDFhOWRkNTAyOGJlNjNkYWMxODYxZWNhOTI4Mjk5YzAwYmM0Mjk1MDM3ZQ",
+      "description": "Aire acondicionado split inverter frio / calor. Potencia frio 3550 W. Potencia calor 3600 W. Frigorias 3053 FG/H. Calorias 3096 KCAL/H. Eficiencia energetica A++. Tipo de gas refrigerante R410A. Funcion Follow Me. Super silencioso. Display LED (c/ opcion de apagado). Autodiagnostico inteligente. Tecnologia Golden Fin. Funcion turbo. Funcion smart (auto). Modo deshumidificacion. Filtros lavables antipolen. Timer programable. Funcion sleep. Barrido de aire automatico. Alimentacion: 220-240 VCA 50 Hz. Potencia Electrica Nominal (Frio / Calor): 2200 W. Nivel de ruido maximo: 40,5 dB. Incluye control remoto multifuncion.",
+      "price": 949999,
+      "stock": 20,
+      "characteristics": "heatCold,Si,airTypes,Split inverter,color,Blanco",
+      "model": "PHIN35HA3BN",
+      "quantity": 0
     }
   ]
 }

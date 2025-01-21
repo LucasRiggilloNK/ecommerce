@@ -715,4 +715,12 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   isLoggedIN(): boolean {
     return this.authService.isLoggedIn();
   }
+
+  isAdmin(){
+    return this.authService.isAdmin();
+  }
+
+  deleteProduct(){
+    alert("Generar metodo para eliminar");
+  }
 }

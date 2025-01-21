@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Role } from '../../models/users/role';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class AuthService {
 
   login(email: string, password: string): Observable<boolean> {
     return this.http
-      .get<{ id: number; email: string; password: string; name: string }[]>(
+      .get<{ id: number; email: string; password: string; name: string, role: Role }[]>(
         `${this.apiUrl}/users?email=${email}&password=${password}`
       )
       .pipe(
@@ -30,7 +31,8 @@ export class AuthService {
               sessionStorage.setItem('auth_token', 'your_token');
               sessionStorage.setItem('email', user.email);
               sessionStorage.setItem('userId', String(user.id));
-              sessionStorage.setItem('name', user.name); 
+              sessionStorage.setItem('name', user.name);
+              sessionStorage.setItem('role', String(user.role)); 
               
             }
             //window.location.reload();
@@ -73,6 +75,13 @@ export class AuthService {
   isLoggedIn(): boolean {
     if (typeof window !== 'undefined') {
       return !!sessionStorage.getItem('auth_token');
+    }
+    return false;
+  }
+
+  isAdmin(): boolean {
+    if (typeof window !== 'undefined') {
+      return sessionStorage.getItem('role') === "ADMIN";
     }
     return false;
   }
