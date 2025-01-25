@@ -14,4 +14,9 @@ export class PurchaseService {
   agregarCompra(compra: Purchase): Observable<Purchase> {
     return this.http.post<Purchase>(this.apiUrl, compra);
   }
+  obtenerComprasPorCliente(clienteId: string): Observable<Purchase[]> {
+    const url = `${this.apiUrl}?clienteId=${clienteId}`;
+    return this.http.get<Purchase[]>(url);
+  }
+  
 }

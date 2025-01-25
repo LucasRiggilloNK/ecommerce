@@ -4,7 +4,7 @@ import { CarritoService } from '../services/cart.service';
 import { Subscription } from 'rxjs';
 import { AuthGuard } from '../../guards/auth.guard';
 import { AdminGuard } from '../../guards/admin.guard';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -21,7 +21,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private adminGuard: AdminGuard,
-    private carritoService: CarritoService
+    private carritoService: CarritoService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -73,4 +74,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   getUserName() {
     return this.authService.getUserName();
   }
+  goToProfile() {
+    this.router.navigate(['/profile']);
+  }
+
 }

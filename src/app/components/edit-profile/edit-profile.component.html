@@ -1,0 +1,211 @@
+<div class="profile-container">
+    <div class="text">
+        <h1>Información Personal</h1>
+        <p>Tus datos personales</p>
+    </div>
+
+    <div class="part">
+        <div class="flex">
+            <div class="inner-flex">
+                <label>Nombre:</label>
+                <p class="profile-data">{{ user.name }}</p>
+            </div>
+            <div class="inner-flex">
+                <label>Apellido:</label>
+                <p class="profile-data">{{ user.lastname }}</p>
+            </div>
+            <div class="inner-flex">
+                <label>Fecha de Nacimiento:</label>
+                <p class="profile-data">{{ user.birthdate | date: 'dd/MM/yyyy' }}</p>
+            </div>
+        </div>
+
+        <div class="inner-flex">
+            <label>Email:</label>
+            <p class="profile-data">{{ user.email }}</p>
+        </div>
+
+        <!-- Botones de acciones -->
+        <div class="button-group">
+            <button data-bs-toggle="modal" data-bs-target="#editProfileModal">Editar Información</button>
+            <button data-bs-toggle="modal" data-bs-target="#addAddressModal">Agregar Dirección de Envío</button>
+            <button class="delete" data-bs-toggle="modal" data-bs-target="#deleteAddressModal">Eliminar Dirección de Envío</button>
+        </div>
+
+        <!-- Nueva fila de botones -->
+        <div class="button-group">
+            <button data-bs-toggle="modal" data-bs-target="#changePasswordModal">Cambiar Contraseña</button>
+            <button data-bs-toggle="modal" data-bs-target="#purchaseHistoryModal">Historial de Compras</button>
+            <button class="delete" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Eliminar Cuenta</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL PARA AGREGAR DIRECCIÓN -->
+<div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addAddressLabel">Agregar Dirección de Envío</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <label>Calle:</label>
+                    <input type="text" class="form-control" [(ngModel)]="user.street">
+
+                    <label>Número:</label>
+                    <input type="text" class="form-control" [(ngModel)]="user.streetNumber">
+
+                    <label>Ciudad:</label>
+                    <input type="text" class="form-control" [(ngModel)]="user.city">
+
+                    <label>Provincia:</label>
+                    <input type="text" class="form-control" [(ngModel)]="user.province">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="saveAddress()">Guardar Dirección</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL PARA ELIMINAR DIRECCIÓN -->
+<div class="modal fade" id="deleteAddressModal" tabindex="-1" aria-labelledby="deleteAddressLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="deleteAddressLabel">Eliminar Dirección de Envío</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>⚠️ <strong>¿Estás seguro de que deseas eliminar tu dirección de envío?</strong></p>
+                <p>Esta acción no se puede deshacer.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="deleteAddress()">Eliminar Dirección</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL PARA HISTORIAL DE COMPRAS -->
+<div class="modal fade" id="purchaseHistoryModal" tabindex="-1" aria-labelledby="purchaseHistoryLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="purchaseHistoryLabel">Historial de Compras</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div *ngIf="purchases.length > 0; else noPurchases">
+                <h3>Compras del usuario</h3>
+                <ul>
+                  <li *ngFor="let purchase of purchases">
+                    {{ purchase.productos }} - {{ purchase.fecha }} - {{ purchase.total }} 
+                  </li>
+                </ul>
+              </div>
+              <ng-template #noPurchases>
+                <p>No se encontraron compras para este usuario.</p>
+              </ng-template>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL PARA EDITAR PERFIL -->
+<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProfileLabel">Editar Información</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <label>Nombre:</label>
+                    <input type="text" class="form-control" [(ngModel)]="user.name">
+                    
+                    <label>Apellido:</label>
+                    <input type="text" class="form-control" [(ngModel)]="user.lastname">
+                    
+                    <label>Fecha de Nacimiento:</label>
+                    <input type="date" class="form-control" [(ngModel)]="user.birthdate">
+                    
+                    <label>Email:</label>
+                    <input type="email" class="form-control" [(ngModel)]="user.email">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="saveProfile()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL PARA CAMBIAR CONTRASEÑA -->
+<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="changePasswordLabel">Cambiar Contraseña</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <label>Contraseña Actual:</label>
+                    <input type="password" class="form-control">
+                    
+                    <label>Nueva Contraseña:</label>
+                    <input type="password" class="form-control">
+                    
+                    <label>Confirmar Nueva Contraseña:</label>
+                    <input type="password" class="form-control">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (click)="changePassword()">Actualizar Contraseña</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL PARA ELIMINAR CUENTA -->
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="deleteAccountLabel">Eliminar Cuenta</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>⚠️ <strong>¿Estás seguro de que deseas eliminar tu cuenta?</strong></p>
+                <p>Esta acción es irreversible y perderás todos tus datos.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" (click)="deleteAccount()">Eliminar Cuenta</button>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">Notificación</strong>
+        <small>Ahora</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        ¡La información se guardó correctamente!
+      </div>
+    </div>
+</div>

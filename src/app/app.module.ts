@@ -35,6 +35,7 @@ import { LoginComponent } from './login/login.component';
 import { BuyFormComponent } from './components/buy-form/buy-form.component';
 import { FooterComponent } from './footer/footer.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     RegisterComponent,
     LoginComponent,
     BuyFormComponent,
-    FooterComponent
+    FooterComponent,
+    EditProfileComponent
  
   ],
 

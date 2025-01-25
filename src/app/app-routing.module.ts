@@ -11,7 +11,7 @@ import { ProductDetailsComponent } from './components/products/details/product-d
 import { BuyFormComponent } from './components/buy-form/buy-form.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { AdminGuard } from '../guards/admin.guard';
-
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
@@ -30,6 +30,7 @@ const routes: Routes = [
     path: 'productDetails/:id',
     component: ProductDetailsComponent,
   },
+  { path: 'profile', component: EditProfileComponent, canActivate: [AuthGuard]},
   { path: 'buyForm', component: BuyFormComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '/home' },
