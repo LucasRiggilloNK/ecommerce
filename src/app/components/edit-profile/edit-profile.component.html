@@ -27,7 +27,7 @@
 
         <!-- Botones de acciones -->
         <div class="button-group">
-            <button data-bs-toggle="modal" data-bs-target="#editProfileModal">Editar Información</button>
+            <button (click)="openEditModal(user)"data-bs-toggle="modal" data-bs-target="#editProfileModal">Editar Información</button>
             <button data-bs-toggle="modal" data-bs-target="#addAddressModal">Agregar Dirección de Envío</button>
             <button class="delete" data-bs-toggle="modal" data-bs-target="#deleteAddressModal">Eliminar Dirección de Envío</button>
         </div>
@@ -128,21 +128,21 @@
             <div class="modal-body">
                 <form>
                     <label>Nombre:</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.name">
+                    <input type="text" class="form-control" [(ngModel)]="user.name" name="name">
                     
                     <label>Apellido:</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.lastname">
+                    <input type="text" class="form-control" [(ngModel)]="user.lastname" name="lastname">
                     
                     <label>Fecha de Nacimiento:</label>
-                    <input type="date" class="form-control" [(ngModel)]="user.birthdate">
+                    <input type="date" class="form-control" [(ngModel)]="user.birthdate" name="birthdate">
                     
                     <label>Email:</label>
-                    <input type="email" class="form-control" [(ngModel)]="user.email">
+                    <input type="email" class="form-control" [(ngModel)]="user.email" name= "email">
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" (click)="saveProfile()">Guardar Cambios</button>
+                <button type="button" class="btn btn-primary" >Guardar Cambios</button>
             </div>
         </div>
     </div>
@@ -196,16 +196,12 @@
     </div>
 </div> 
 
-<div class="toast-container position-fixed bottom-0 end-0 p-3">
-    <div id="successToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-      <div class="toast-header">
-        <img src="..." class="rounded me-2" alt="...">
-        <strong class="me-auto">Notificación</strong>
-        <small>Ahora</small>
+<div class="toast" id="successToast" data-bs-autohide="true" style="position: fixed; bottom: 20px; right: 20px;">
+    <div class="toast-header">
+        <strong class="me-auto">Éxito</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body">
-        ¡La información se guardó correctamente!
-      </div>
+    </div>
+    <div class="toast-body">
+        Los datos han sido actualizados correctamente.
     </div>
 </div>

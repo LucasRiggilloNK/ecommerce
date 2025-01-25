@@ -5,6 +5,7 @@ import { RegisterService, User } from '../../services/register-service/register.
 import { PurchaseService } from '../../services/purchase-service/purchase-service.service';
 import { Purchase } from '../../models/purchases/purchase';
 import { FormsModule } from '@angular/forms';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-edit-profile',
@@ -35,7 +36,8 @@ export class EditProfileComponent implements OnInit {
     private authService: AuthService,
     private registerService: RegisterService,
     private purchaseService: PurchaseService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private cd: ChangeDetectorRef
   ) {
     this.profileForm = this.fb.group({
       name: ['', Validators.required],
@@ -81,6 +83,16 @@ export class EditProfileComponent implements OnInit {
       },
     });
   }
+
+  openEditModal(userData: any) {
+    this.user = { ...userData };  // Clona los datos del usuario a la variable local
+    this.profileForm.patchValue(this.user); // Actualiza el formulario con los datos del usuario
+
+    setTimeout(() => {
+      this.cd.detectChanges(); // Fuerza la actualización del DOM de Angular
+    }, 0);
+  }
+  /*
   saveProfile() {
     if (this.profileForm.valid) {
       const updatedUser = { ...this.user, ...this.profileForm.value };
@@ -90,24 +102,35 @@ export class EditProfileComponent implements OnInit {
       this.registerService.updateUser(updatedUser).subscribe({
         next: (response) => {
           console.log("Usuario actualizado con éxito:", response);
-          
-          // Mostrar el Toast correctamente
-          const toastElement = document.getElementById('successToast');
-          if (toastElement) {
-          
-  
-          }
 
+          // Mostrar el Toast de éxito
+          this.showToast();
+
+          // Cerrar el modal automáticamente
+          const modal = document.getElementById('editProfileModal') as any;
+          if (modal) {
+            const modalInstance = bootstrap.Modal.getInstance(modal);
+            modalInstance.hide();  // Cerrar el modal
+          }
         },
         error: (error) => {
           console.error("Error al actualizar usuario:", error);
         }
       });
-
     } else {
       console.log('Formulario inválido');
     }
   }
+
+  // Función para mostrar el Toast
+  showToast() {
+    const toastElement = document.getElementById('successToast') as any;
+    if (toastElement) {
+      const toast = new bootstrap.Toast(toastElement);
+      toast.show();  // Mostrar el toast
+    }
+  } 
+  */
   changePassword() {
     console.log("Contraseña cambiada correctamente...");
     // Aquí puedes agregar lógica para actualizar la contraseña

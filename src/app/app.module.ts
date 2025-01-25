@@ -65,7 +65,6 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     BuyFormComponent,
     FooterComponent,
     EditProfileComponent
- 
   ],
 
   imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule,BrowserModule, NgxPaginationModule],
