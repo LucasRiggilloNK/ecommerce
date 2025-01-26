@@ -55,13 +55,10 @@ export class CustomValidators {
     }
 
     static samePasswordValidator(group: AbstractControl): ValidationErrors | null {
-        const password = group.get('password')?.value;
-        const passwordConfirmation = group.get('passwordConfirmation')?.value;
-    
+        const password = group.get('newPassword')?.value;
+        const passwordConfirmation = group.get('confirmPassword')?.value;
+        
         return password === passwordConfirmation ? null : { samePasswordValidator: true };
-    }
-
-
-
-   
+      }
+      
 }

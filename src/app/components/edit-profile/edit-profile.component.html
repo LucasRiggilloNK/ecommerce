@@ -28,26 +28,22 @@
         <!-- Botones de acciones -->
         <div class="button-group">
             <button (click)="openEditModal(user)"data-bs-toggle="modal" data-bs-target="#editProfileModal">Editar Información</button>
-            <button data-bs-toggle="modal" data-bs-target="#addAddressModal">Agregar Dirección de Envío</button>
-            <button class="delete" data-bs-toggle="modal" data-bs-target="#deleteAddressModal">Eliminar Dirección de Envío</button>
+            <button data-bs-toggle="modal" data-bs-target="#addAddressModal">Editar Dirección</button>
         </div>
-
         <!-- Nueva fila de botones -->
         <div class="button-group">
             <button data-bs-toggle="modal" data-bs-target="#changePasswordModal">Cambiar Contraseña</button>
             <button data-bs-toggle="modal" data-bs-target="#purchaseHistoryModal">Historial de Compras</button>
-            <button class="delete" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Eliminar Cuenta</button>
         </div>
     </div>
 </div>
-
-<!-- MODAL PARA AGREGAR DIRECCIÓN -->
-<div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressLabel" aria-hidden="true">
+<!-- MODAL PARA EDITAR DIRECCIÓN -->
+<div class="modal fade" id="editAddressModal" tabindex="-1" aria-labelledby="editAddressLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addAddressLabel">Agregar Dirección de Envío</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="editAddressLabel">Editar Dirección de Envío</h5>
+                <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form>
@@ -72,33 +68,13 @@
     </div>
 </div>
 
-<!-- MODAL PARA ELIMINAR DIRECCIÓN -->
-<div class="modal fade" id="deleteAddressModal" tabindex="-1" aria-labelledby="deleteAddressLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-danger" id="deleteAddressLabel">Eliminar Dirección de Envío</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>⚠️ <strong>¿Estás seguro de que deseas eliminar tu dirección de envío?</strong></p>
-                <p>Esta acción no se puede deshacer.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" (click)="deleteAddress()">Eliminar Dirección</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- MODAL PARA HISTORIAL DE COMPRAS -->
 <div class="modal fade" id="purchaseHistoryModal" tabindex="-1" aria-labelledby="purchaseHistoryLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="purchaseHistoryLabel">Historial de Compras</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div *ngIf="purchases.length > 0; else noPurchases">
                 <h3>Compras del usuario</h3>
@@ -117,13 +93,14 @@
         </div>
     </div>
 </div>
+
 <!-- MODAL PARA EDITAR PERFIL -->
 <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editProfileLabel">Editar Información</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form [formGroup]="profileForm">
@@ -170,61 +147,77 @@
     </div>
 </div>
 
-
 <!-- MODAL PARA CAMBIAR CONTRASEÑA -->
 <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="changePasswordLabel">Cambiar Contraseña</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <label>Contraseña Actual:</label>
-                    <input type="password" class="form-control">
-                    
-                    <label>Nueva Contraseña:</label>
-                    <input type="password" class="form-control">
-                    
-                    <label>Confirmar Nueva Contraseña:</label>
-                    <input type="password" class="form-control">
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" (click)="changePassword()">Actualizar Contraseña</button>
-            </div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="changePasswordLabel">Cambiar Contraseña</h5>
+          <button type="button" class="btn-close-custom" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-    </div>
-</div>
+        <div class="modal-body">
+          <form [formGroup]="changePasswordForm">
+            
+            <!-- Contraseña Actual -->
+          <div class="mb-3">
+            <label class="form-label">Contraseña Actual:</label>
+            <div class="input-group">
+              <input [type]="showCurrentPassword ? 'text' : 'password'" class="form-control" formControlName="currentPassword">
+              <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility('current')">
+                <img *ngIf="showCurrentPassword; else showIcon" src="/eyeHide-icon.png" alt="Ocultar Contraseña" width="20">
+                <ng-template #showIcon>
+                  <img src="/eye-icon.png" alt="Mostrar Contraseña" width="20">
+                </ng-template>
+              </button>
+            </div>
+            <div *ngIf="changePasswordForm.get('currentPassword')?.invalid && changePasswordForm.get('currentPassword')?.touched" class="text-danger">
+              La contraseña actual es obligatoria.
+            </div>
+          </div>
 
-<!-- MODAL PARA ELIMINAR CUENTA -->
-<div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-danger" id="deleteAccountLabel">Eliminar Cuenta</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <!-- Nueva Contraseña -->
+          <div class="mb-3">
+            <label class="form-label">Nueva Contraseña:</label>
+            <div class="input-group">
+              <input [type]="showNewPassword ? 'text' : 'password'" class="form-control" formControlName="newPassword">
+              <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility('new')">
+                <img *ngIf="showNewPassword; else showIcon" src="/eyeHide-icon.png" alt="Ocultar Contraseña" width="20">
+                <ng-template #showIcon>
+                  <img src="/eye-icon.png" alt="Mostrar Contraseña" width="20">
+                </ng-template>
+              </button>
             </div>
-            <div class="modal-body">
-                <p>⚠️ <strong>¿Estás seguro de que deseas eliminar tu cuenta?</strong></p>
-                <p>Esta acción es irreversible y perderás todos tus datos.</p>
+            <div *ngIf="changePasswordForm.get('newPassword')?.invalid && changePasswordForm.get('newPassword')?.touched" class="text-danger">
+              La nueva contraseña debe tener al menos 8 caracteres.
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" (click)="deleteAccount()">Eliminar Cuenta</button>
+          </div>
+
+          <!-- Confirmar Nueva Contraseña -->
+          <div class="mb-3">
+            <label class="form-label">Confirmar Nueva Contraseña:</label>
+            <div class="input-group">
+              <input [type]="showConfirmPassword ? 'text' : 'password'" class="form-control" formControlName="confirmPassword">
+              <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility('confirm')">
+                <img *ngIf="showConfirmPassword; else showIcon" src="/eyeHide-icon.png" alt="Ocultar Contraseña" width="20">
+                <ng-template #showIcon>
+                  <img src="/eye-icon.png" alt="Mostrar Contraseña" width="20">
+                </ng-template>
+              </button>
             </div>
+            <div *ngIf="changePasswordForm.hasError('samePasswordValidator')" class="text-danger">
+              Las contraseñas no coinciden.
+            </div>
+          </div>
+          </form>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" (click)="changePassword()">Actualizar Contraseña</button>
+        </div>
+      </div>
     </div>
-</div> 
+  </div>
+  
+  
 
-<div class="toast" id="successToast" data-bs-autohide="true" style="position: fixed; bottom: 20px; right: 20px;">
-    <div class="toast-header">
-        <strong class="me-auto">Éxito</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-    <div class="toast-body">
-        Los datos han sido actualizados correctamente.
-    </div>
-</div>
+<div id="genericToastContainer" class="toast-container position-fixed top-0 end-0 p-3"></div>

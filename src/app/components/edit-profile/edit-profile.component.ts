@@ -30,8 +30,11 @@ export class EditProfileComponent implements OnInit {
   };
 
   purchases: Purchase[] = [];  
-
   profileForm: FormGroup;
+  changePasswordForm: FormGroup;
+  showCurrentPassword: boolean = false;
+  showNewPassword: boolean = false;
+  showConfirmPassword: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -39,6 +42,7 @@ export class EditProfileComponent implements OnInit {
     private purchaseService: PurchaseService,
     private fb: FormBuilder,
     private cd: ChangeDetectorRef
+    
   ) {
     
     this.profileForm = this.fb.group({
@@ -51,6 +55,11 @@ export class EditProfileComponent implements OnInit {
       city: ['', Validators.required],
       province: ['', Validators.required]
     });
+    this.changePasswordForm = this.fb.group({
+      currentPassword: ['', Validators.required],
+      newPassword: ['', [Validators.required, Validators.minLength(8)]],
+      confirmPassword: ['', Validators.required]
+    }, { validator: CustomValidators.samePasswordValidator });
   }
   
   ngOnInit(): void {
@@ -60,8 +69,6 @@ export class EditProfileComponent implements OnInit {
       console.warn('No se encontró un ID de usuario en la sesión.');
       return;
     }
-
-    console.log('Obteniendo datos del usuario con ID:', userId);
 
     
     this.registerService.getUserById(userId).subscribe({
@@ -105,20 +112,11 @@ export class EditProfileComponent implements OnInit {
         next: (response) => {
           this.user = { ...updatedUser }; 
           this.profileForm.patchValue(updatedUser); 
-          this.showToast();
-          const modal = document.getElementById('editProfileModal') as any;
-          if (modal) {
-            const modalInstance = bootstrap.Modal.getInstance(modal);
-            modalInstance.hide();  
-            document.body.classList.remove('modal-open'); 
-          }
-          const backdrop = document.querySelector('.modal-backdrop');
-          if (backdrop) {
-            backdrop.remove();
-          }
+          this.showToast("Perfil actualizado correctamente.", "success");
+          this.closeModal('editProfileModal', 'success');
         },
         error: (error) => {
-          console.error("Error al actualizar usuario:", error);
+          this.showToast("Error al actualizar perfil.", "error");
         }
       });
     } else {
@@ -126,30 +124,79 @@ export class EditProfileComponent implements OnInit {
     }
   }
   
-  showToast() {
-    const toastElement = document.getElementById('successToast') as any;
-    if (toastElement) {
-      const toast = new bootstrap.Toast(toastElement);
-      toast.show();  
-    }
-  } 
   changePassword() {
-    console.log("Contraseña cambiada correctamente...");
-    // Aquí puedes agregar lógica para actualizar la contraseña
+    if (this.changePasswordForm.invalid) {
+      this.showToast("Por favor, complete todos los campos correctamente.", "error");
+      return;
+    }
+    const { currentPassword, newPassword } = this.changePasswordForm.value;
+    if (currentPassword !== this.user.password) {
+      this.showToast("La contraseña actual es incorrecta.", "error");
+      return;
+    }
+    if (newPassword === currentPassword) {
+      this.showToast("La nueva contraseña no puede ser igual a la anterior.", "error");
+      return;
+    }
+    const updatedUser = { ...this.user, password: newPassword };
+    this.registerService.updateUser(updatedUser).subscribe({
+      next: () => {
+        this.user.password = newPassword;
+        this.showToast("Contraseña actualizada correctamente.", "success");
+        this.closeModal('changePasswordModal', 'success');
+      },
+      error: () => {
+        this.showToast("Error al actualizar la contraseña.", "error");
+      }
+    });
   }
-
-  deleteAccount() {
-    console.log("Cuenta eliminada...");
-    // Aquí puedes agregar lógica para eliminar la cuenta del usuario
-  }
+  
 
   saveAddress() {
     console.log("Dirección guardada...");
     // Aquí puedes agregar lógica para agregar una nueva dirección de envío
   }
 
-  deleteAddress() {
-    console.log("Dirección eliminada...");
-    // Aquí puedes agregar lógica para eliminar una dirección de envío
+
+
+
+
+  showToast(message: string, type: 'success' | 'error') {
+    const toastContainer = document.getElementById('genericToastContainer');
+  
+    if (toastContainer) {
+      toastContainer.innerHTML = `
+        <div class="toast align-items-center text-bg-${type === 'success' ? 'success' : 'danger'} border-0" role="alert">
+          <div class="d-flex">
+            <div class="toast-body">${message}</div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+          </div>
+        </div>
+      `;
+      
+      const toast = new bootstrap.Toast(toastContainer.querySelector('.toast'));
+      toast.show();
+    }
+  }
+  closeModal (modalName: string, type: 'success' | 'error'){
+    const modal = document.getElementById(modalName) as any;
+    if (modal) {
+      const modalInstance = bootstrap.Modal.getInstance(modal);
+      modalInstance.hide();  
+      document.body.classList.remove('modal-open'); 
+    }
+    const backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) {
+      backdrop.remove();
+    }
+  }
+  togglePasswordVisibility(field: 'current' | 'new' | 'confirm') {
+    if (field === 'current') {
+      this.showCurrentPassword = !this.showCurrentPassword;
+    } else if (field === 'new') {
+      this.showNewPassword = !this.showNewPassword;
+    } else if (field === 'confirm') {
+      this.showConfirmPassword = !this.showConfirmPassword;
+    }
   }
 }

@@ -45,6 +45,7 @@ label {
   display: flex;
   gap: 10px;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .inner-flex {
@@ -59,81 +60,49 @@ label {
 }
 
 .button-group {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; 
+    margin-top: 20px; 
+  }
+  
 
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: transparent;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  border: 1px solid white;
-  transition: 0.3s;
-  max-width: 180px;
-}
+  .button-group button {
+    background-color: #444;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    transition: 0.3s;
+    flex-grow: 1; 
+    min-width: 150px; 
+    max-width: 200px; 
+    white-space: nowrap; 
+  }
+  
 
-button:hover {
-  background-color: white;
-  color: black;
-}
+  .button-group button:hover {
+    background-color: #555;
+    color: #fff;
+    border-color: #666;
+  }
+  
 
-.button-group {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: transparent;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  border: 1px solid white;
-  transition: 0.3s;
-  max-width: 180px;
-}
-
-button:hover {
-  background-color: white;
-  color: black;
-}
-
-button.delete {
-  border-color: red;
-  color: red;
-}
-
-button.delete:hover {
-  background-color: red;
-  color: white;
-}
+  .button-group button:disabled {
+    background-color: #777;
+    cursor: not-allowed;
+  }
 
 .modal-content {
-  background-color: #222 !important; 
-  color: white !important; 
-  border: 1px solid #555; 
-}
-.btn-close {
-  width: 20px;  
-  height: 20px; 
-  font-size: 14px; 
-  padding: 0;  
-  opacity: 0.7;  
+  background-color: #222 !important;
+  color: white !important;
+  border: 1px solid #555;
 }
 
-.btn-close:hover {
-  opacity: 1; 
-}
+
 .modal-backdrop {
-  opacity: 0.3 !important;  
+  opacity: 0.3 !important;
 }
