@@ -134,3 +134,6 @@ button.delete:hover {
 .btn-close:hover {
   opacity: 1; 
 }
+.modal-backdrop {
+  opacity: 0.3 !important;  
+}

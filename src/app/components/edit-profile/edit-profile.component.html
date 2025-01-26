@@ -126,27 +126,50 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form [formGroup]="profileForm">
+                    <!-- Nombre -->
                     <label>Nombre:</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.name" name="name">
-                    
+                    <input type="text" class="form-control" formControlName="name">
+                    <div *ngIf="profileForm.get('name')?.invalid && profileForm.get('name')?.touched" class="text-danger">
+                        <small *ngIf="profileForm.get('name')?.hasError('required')">El nombre es obligatorio.</small>
+                        <small *ngIf="profileForm.get('name')?.hasError('lettersOnly')">Solo se permiten letras y espacios.</small>
+                    </div>
+
+                    <!-- Apellido -->
                     <label>Apellido:</label>
-                    <input type="text" class="form-control" [(ngModel)]="user.lastname" name="lastname">
-                    
+                    <input type="text" class="form-control" formControlName="lastname">
+                    <div *ngIf="profileForm.get('lastname')?.invalid && profileForm.get('lastname')?.touched" class="text-danger">
+                        <small *ngIf="profileForm.get('lastname')?.hasError('required')">El apellido es obligatorio.</small>
+                        <small *ngIf="profileForm.get('lastname')?.hasError('lettersOnly')">Solo se permiten letras y espacios.</small>
+                    </div>
+
+                    <!-- Fecha de Nacimiento -->
                     <label>Fecha de Nacimiento:</label>
-                    <input type="date" class="form-control" [(ngModel)]="user.birthdate" name="birthdate">
-                    
+                    <input type="date" class="form-control" formControlName="birthdate">
+                    <div *ngIf="profileForm.get('birthdate')?.invalid && profileForm.get('birthdate')?.touched" class="text-danger">
+                        <small *ngIf="profileForm.get('birthdate')?.hasError('required')">La fecha de nacimiento es obligatoria.</small>
+                        <small *ngIf="profileForm.get('birthdate')?.hasError('ageRangeLimitator')">Debes tener entre 18 y 100 años.</small>
+                    </div>
+
+                    <!-- Email -->
                     <label>Email:</label>
-                    <input type="email" class="form-control" [(ngModel)]="user.email" name= "email">
+                    <input type="email" class="form-control" formControlName="email">
+                    <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched" class="text-danger">
+                        <small *ngIf="profileForm.get('email')?.hasError('required')">El email es obligatorio.</small>
+                        <small *ngIf="profileForm.get('email')?.hasError('email')">Debe ser un email válido.</small>
+                        <small *ngIf="profileForm.get('email')?.hasError('emailDomainValidator')">El dominio del email no es válido.</small>
+                    </div>
                 </form>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" >Guardar Cambios</button>
+                <button type="button" class="btn btn-primary" (click)="saveProfile()">Guardar Cambios</button>
             </div>
         </div>
     </div>
 </div>
+
 
 <!-- MODAL PARA CAMBIAR CONTRASEÑA -->
 <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">

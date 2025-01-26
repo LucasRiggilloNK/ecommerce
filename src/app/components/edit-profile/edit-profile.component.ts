@@ -1,3 +1,4 @@
+declare var bootstrap: any;
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/login/auth.service';
@@ -6,14 +7,14 @@ import { PurchaseService } from '../../services/purchase-service/purchase-servic
 import { Purchase } from '../../models/purchases/purchase';
 import { FormsModule } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
-
+import { CustomValidators } from '../../common/custom-validators';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
-
+  
   user: User = {
     name: '',
     lastname: '',
@@ -39,19 +40,21 @@ export class EditProfileComponent implements OnInit {
     private fb: FormBuilder,
     private cd: ChangeDetectorRef
   ) {
+    
     this.profileForm = this.fb.group({
-      name: ['', Validators.required],
-      lastname: ['', Validators.required],
-      birthdate: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      name: ['', [Validators.required, CustomValidators.lettersOnly()]], 
+      lastname: ['', [Validators.required, CustomValidators.lettersOnly()]],
+      birthdate: ['', [Validators.required, CustomValidators.ageRangeLimitator(18, 100)]], 
+      email: ['', [Validators.required, Validators.email, CustomValidators.emailDomainValidator]],
       street: ['', Validators.required],
-      streetNumber: ['', Validators.required],
+      streetNumber: ['', [Validators.required, CustomValidators.numbersOnly()]],
       city: ['', Validators.required],
       province: ['', Validators.required]
     });
   }
-
+  
   ngOnInit(): void {
+    
     const userId: string | null = this.authService.getUserId();
     if (!userId) {
       console.warn('No se encontró un ID de usuario en la sesión.');
@@ -60,19 +63,18 @@ export class EditProfileComponent implements OnInit {
 
     console.log('Obteniendo datos del usuario con ID:', userId);
 
-    // Obtener datos del usuario
+    
     this.registerService.getUserById(userId).subscribe({
       next: (response) => {
         this.user = response;
-        this.profileForm.patchValue(this.user); // Actualiza el formulario con los datos del usuario
+        this.profileForm.patchValue(this.user); 
         console.log('Datos del usuario cargados:', this.user);
       },
       error: (error) => {
         console.error(`Error al obtener usuario con ID ${userId}:`, error);
-      },
+      }
     });
 
-    // Obtener compras del usuario
     this.purchaseService.obtenerComprasPorCliente(userId).subscribe({
       next: (response) => {
         this.purchases = response;
@@ -85,32 +87,34 @@ export class EditProfileComponent implements OnInit {
   }
 
   openEditModal(userData: any) {
-    this.user = { ...userData };  // Clona los datos del usuario a la variable local
-    this.profileForm.patchValue(this.user); // Actualiza el formulario con los datos del usuario
+    this.user = { ...userData };  
+    this.profileForm.patchValue(this.user); 
 
     setTimeout(() => {
-      this.cd.detectChanges(); // Fuerza la actualización del DOM de Angular
+      this.cd.detectChanges(); 
     }, 0);
   }
-  /*
+ 
   saveProfile() {
     if (this.profileForm.valid) {
       const updatedUser = { ...this.user, ...this.profileForm.value };
-
+  
       console.log("Guardando cambios...", updatedUser);
-
+  
       this.registerService.updateUser(updatedUser).subscribe({
         next: (response) => {
-          console.log("Usuario actualizado con éxito:", response);
-
-          // Mostrar el Toast de éxito
+          this.user = { ...updatedUser }; 
+          this.profileForm.patchValue(updatedUser); 
           this.showToast();
-
-          // Cerrar el modal automáticamente
           const modal = document.getElementById('editProfileModal') as any;
           if (modal) {
             const modalInstance = bootstrap.Modal.getInstance(modal);
-            modalInstance.hide();  // Cerrar el modal
+            modalInstance.hide();  
+            document.body.classList.remove('modal-open'); 
+          }
+          const backdrop = document.querySelector('.modal-backdrop');
+          if (backdrop) {
+            backdrop.remove();
           }
         },
         error: (error) => {
@@ -121,16 +125,14 @@ export class EditProfileComponent implements OnInit {
       console.log('Formulario inválido');
     }
   }
-
-  // Función para mostrar el Toast
+  
   showToast() {
     const toastElement = document.getElementById('successToast') as any;
     if (toastElement) {
       const toast = new bootstrap.Toast(toastElement);
-      toast.show();  // Mostrar el toast
+      toast.show();  
     }
   } 
-  */
   changePassword() {
     console.log("Contraseña cambiada correctamente...");
     // Aquí puedes agregar lógica para actualizar la contraseña
