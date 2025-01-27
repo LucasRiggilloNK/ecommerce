@@ -167,7 +167,7 @@ export class BuyFormComponent implements OnInit {
         }
       );
     }
-
+    
 
     this.userDataForm.valueChanges.subscribe(() => {
       if (this.userDataForm.get('cardType')?.valid &&
@@ -302,12 +302,13 @@ export class BuyFormComponent implements OnInit {
   }
 
   generatePurchase() {
-    const productos = this.cartItems.map(({ id, quantity, urlImage, price, model }) => ({
+    const productos = this.cartItems.map(({ id, quantity, urlImage, price, model, brand }) => ({
       id,
       quantity,
       urlImage,
       price,
       model,
+      brand,
     }));
   
     const total = this.getTotalBuy();
@@ -321,88 +322,94 @@ export class BuyFormComponent implements OnInit {
   
     // Detalles del carrito con diseño estilizado
     const detallesProductos = productos
-      .map(
-        (p) => `
-          <div style="display: flex; align-items: center; margin-bottom: 15px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
-            <img 
-              src="${p.urlImage}" 
-              alt="${p.model}" 
-              style="width: 60px; height: 60px; object-fit: cover; margin-right: 15px; border-radius: 5px;"
-            />
-            <div style="flex-grow: 1;">
-              <strong style="display: block; font-size: 14px; margin-bottom: 5px;">${p.model}</strong>
-              <span style="font-size: 12px; color: #555;">Precio: $${p.price.toFixed(2)}</span><br>
-              <span style="font-size: 12px; color: #555;">Cantidad: x${p.quantity}</span>
-            </div>
+    .map(
+      (p) => `
+        <div style="display: flex; align-items: center; margin-bottom: 15px; padding: 10px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+          <img 
+            src="${p.urlImage}" 
+            alt="${p.model}" 
+            style="width: 60px; height: 60px; object-fit: cover; margin-right: 15px; border-radius: 5px;"
+          />
+          <div style="flex-grow: 1;">
+            <strong style="display: block; font-size: 14px; margin-bottom: 5px;">${p.model}</strong>
+            <span style="font-size: 12px; color: #555;">Marca: ${p.brand}</span><br> <!-- Agregado para mostrar la marca -->
+            <span style="font-size: 12px; color: #555;">Precio: $${p.price.toFixed(2)}</span><br>
+            <span style="font-size: 12px; color: #555;">Cantidad: x${p.quantity}</span>
           </div>
-        `
-      )
-      .join('');
+        </div>
+      `
+    )
+    .join('');
   
-    Swal.fire({
-      title: 'Resumen de la compra',
-      html: `
-        <strong>Productos:</strong>
-        <div style="max-height: 300px; overflow-y: auto; margin-top: 10px;">${detallesProductos}</div>
-        <br>
-        <strong>Total:</strong> $${total.toFixed(2)}<br>
-        <strong>Domicilio de envío:</strong> ${domicilio}<br>
-        <strong>Tarjeta:</strong> ${tarjetaMascara}
-      `,
-      icon: 'info',
-      showCancelButton: true,
-      confirmButtonText: 'Confirmar compra',
-      cancelButtonText: 'Cancelar',
-      backdrop: true,
-      customClass: {
-        popup: 'custom-swal-dark',
-        title: 'custom-title-dark',
-        confirmButton: 'custom-confirm-button-dark',
-        cancelButton: 'custom-cancel-button-dark',
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        const nuevaCompra: Purchase = {
-          clienteId: this.authService.getUserId(),
-          productos: productos.map(({ id, quantity }) => ({ id, quantity })),
-          fecha: new Date(),
-          total,
-        };
+  Swal.fire({
+    title: 'Resumen de la compra',
+    html: `
+      <strong>Productos:</strong>
+      <div style="max-height: 300px; overflow-y: auto; margin-top: 10px;">${detallesProductos}</div>
+      <br>
+      <strong>Total:</strong> $${total.toFixed(2)}<br>
+      <strong>Domicilio de envío:</strong> ${domicilio}<br>
+      <strong>Tarjeta:</strong> ${tarjetaMascara}
+    `,
+    icon: 'info',
+    showCancelButton: true,
+    confirmButtonText: 'Confirmar compra',
+    cancelButtonText: 'Cancelar',
+    backdrop: true,
+    customClass: {
+      popup: 'custom-swal-dark',
+      title: 'custom-title-dark',
+      confirmButton: 'custom-confirm-button-dark',
+      cancelButton: 'custom-cancel-button-dark',
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      const nuevaCompra: Purchase = {
+        clienteId: this.authService.getUserId(),
+        productos: productos.map(({ id, quantity, price, brand }) => ({
+          id,
+          quantity,
+          price,   // Incluir el precio aquí
+          brand,   // Mantener la marca
+        })),
+        fecha: new Date(),
+        total,
+      };
+      
+      this.purchaseService.agregarCompra(nuevaCompra).subscribe(
+        (response) => {
+          console.log('Compra registrada con éxito:', response);
   
-        this.purchaseService.agregarCompra(nuevaCompra).subscribe(
-          (response) => {
-            console.log('Compra registrada con éxito:', response);
+          productos.forEach((producto) => {
+            this.productService.updateProductStock(
+              producto.id,
+              producto.quantity
+            );
+          });
   
-            productos.forEach((producto) => {
-              this.productService.updateProductStock(
-                producto.id,
-                producto.quantity
-              );
-            });
-  
-            localStorage.removeItem('cart');
-            this.router.navigate(['/']);
-             setTimeout(() => {
-              window.location.reload();
-            }, 100); 
-            
-          },
-          (error) => {
-            console.error('Error al registrar la compra:', error);
-          }
-        );
-      } else {
-        Swal.fire({
-          title: 'Compra cancelada',
-          text: 'No se realizaron cambios.',
-          icon: 'info',
-          customClass: {
-            popup: 'custom-swal-dark',
-          },
-        });
-      }
-    });
-  }
+          localStorage.removeItem('cart');
+          this.router.navigate(['/']);
+          setTimeout(() => {
+            window.location.reload();
+          }, 100); 
+          
+        },
+        (error) => {
+          console.error('Error al registrar la compra:', error);
+        }
+      );
+    } else {
+      Swal.fire({
+        title: 'Compra cancelada',
+        text: 'No se realizaron cambios.',
+        icon: 'info',
+        customClass: {
+          popup: 'custom-swal-dark',
+        },
+      });
+    }
+  });
+}  
     
   agregarProducto() {
     this.productos.push(

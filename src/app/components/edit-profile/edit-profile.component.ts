@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
 import { CustomValidators } from '../../common/custom-validators';
 import { Router } from '@angular/router';
+import { ProductService } from '../../services/product/product.service';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -43,7 +44,8 @@ export class EditProfileComponent implements OnInit {
     private purchaseService: PurchaseService,
     private fb: FormBuilder,
     private cd: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private productService: ProductService
     
   ) {
     
@@ -65,7 +67,6 @@ export class EditProfileComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    
     const userId: string | null = this.authService.getUserId();
     if (!userId) {
       console.warn('No se encontró un ID de usuario en la sesión.');
@@ -230,4 +231,26 @@ export class EditProfileComponent implements OnInit {
   goHome(): void {
     this.router.navigate(['/home']);
   }
+
+  async loadProductDetails(purchase: Purchase) {
+    if (!purchase.productosCargados) {
+      purchase.productosCargados = [];  
+  
+      for (const product of purchase.productos) {
+        try {
+          const productData = await this.productService.getProductById(product.id);
+          if (productData) {
+            purchase.productosCargados.push({
+              cantidad: product.quantity,
+              precio: product.price,
+              brand: product.brand,
+            });
+          }
+        } catch (error) {
+          console.error(`Error al obtener datos del producto con ID ${product.id}`, error);
+        }
+      }
+    }
+  }
+  
 }

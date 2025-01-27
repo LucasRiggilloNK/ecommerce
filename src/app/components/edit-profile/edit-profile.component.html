@@ -39,7 +39,7 @@
     </div>
 </div>
 <!-- MODAL PARA EDITAR DIRECCIÓN -->
-<div class="modal fade" id="editAddressModal" tabindex="-1" aria-labelledby="editAddressLabel" aria-hidden="true">
+<div class="modal" id="editAddressModal" tabindex="-1" aria-labelledby="editAddressLabel" aria-hidden="true">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header">
@@ -69,34 +69,67 @@
   </div>
 </div>
 
-<!-- MODAL PARA HISTORIAL DE COMPRAS -->
 <div class="modal fade" id="purchaseHistoryModal" tabindex="-1" aria-labelledby="purchaseHistoryLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="purchaseHistoryLabel">Historial de Compras</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div *ngIf="purchases.length > 0; else noPurchases">
-                <h3>Compras del usuario</h3>
-                <ul>
-                  <li *ngFor="let purchase of purchases">
-                    {{ purchase.productos }} - {{ purchase.fecha }} - {{ purchase.total }} 
-                  </li>
-                </ul>
-              </div>
-              <ng-template #noPurchases>
-                <p>No se encontraron compras para este usuario.</p>
-              </ng-template>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="purchaseHistoryLabel">Historial de Compras</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="purchases.length > 0; else noPurchases">
+          <h3 class="text-center mb-3">Compras del usuario</h3>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead class="table-dark">
+                <tr>
+                  <th>#</th>
+                  <th>Fecha</th>
+                  <th>Total</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let purchase of purchases; let i = index">
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ purchase.fecha }}</td>
+                  <td>${{ purchase.total | number:'1.2-2' }}</td>
+                  <td>
+                    <button class="btn btn-info btn-sm" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#details' + i">
+                      Ver Detalles
+                    </button>
+                  </td>
+                </tr>
+                <tr *ngFor="let purchase of purchases; let i = index" [id]="'details' + i" class="collapse">
+                  <td colspan="4">
+                    <div class="p-3 border rounded bg-light">
+                      <h6>Productos Comprados:</h6>
+                      <ul class="list-group">
+                        <li *ngFor="let product of purchase.productos" class="list-group-item">
+                            
+                        </li>
+                      </ul>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
+        <ng-template #noPurchases>
+          <p class="text-center">No se encontraron compras para este usuario.</p>
+        </ng-template>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
     </div>
+  </div>
 </div>
 
+
 <!-- MODAL PARA EDITAR PERFIL -->
-<div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
+<div class="modal" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -149,7 +182,7 @@
 </div>
 
 <!-- MODAL PARA CAMBIAR CONTRASEÑA -->
-<div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">
+<div class="modal" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
