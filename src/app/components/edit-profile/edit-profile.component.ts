@@ -8,6 +8,7 @@ import { Purchase } from '../../models/purchases/purchase';
 import { FormsModule } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
 import { CustomValidators } from '../../common/custom-validators';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -41,7 +42,8 @@ export class EditProfileComponent implements OnInit {
     private registerService: RegisterService,
     private purchaseService: PurchaseService,
     private fb: FormBuilder,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private router: Router
     
   ) {
     
@@ -69,7 +71,6 @@ export class EditProfileComponent implements OnInit {
       console.warn('No se encontró un ID de usuario en la sesión.');
       return;
     }
-
     
     this.registerService.getUserById(userId).subscribe({
       next: (response) => {
@@ -113,7 +114,7 @@ export class EditProfileComponent implements OnInit {
           this.user = { ...updatedUser }; 
           this.profileForm.patchValue(updatedUser); 
           this.showToast("Perfil actualizado correctamente.", "success");
-          this.closeModal('editProfileModal', 'success');
+          this.closeModal('editProfileModal');
         },
         error: (error) => {
           this.showToast("Error al actualizar perfil.", "error");
@@ -124,6 +125,30 @@ export class EditProfileComponent implements OnInit {
     }
   }
   
+
+  saveAddress() {
+    if (this.profileForm.valid) {
+      const updatedUser = { ...this.user, ...this.profileForm.value };
+  
+      console.log("Guardando cambios...", updatedUser);
+  
+      this.registerService.updateUser(updatedUser).subscribe({
+        next: (response) => {
+          this.user = { ...updatedUser };
+          this.profileForm.patchValue(updatedUser);
+          this.showToast("Dirección actualizada correctamente.", "success");
+          this.closeModal('editAddressModal');
+        },
+        error: (error) => {
+          this.showToast("Error al actualizar la dirección.", "error");
+        }
+      });
+    } else {
+      console.log('Formulario inválido');
+    }
+  }
+
+
   changePassword() {
     if (this.changePasswordForm.invalid) {
       this.showToast("Por favor, complete todos los campos correctamente.", "error");
@@ -143,53 +168,56 @@ export class EditProfileComponent implements OnInit {
       next: () => {
         this.user.password = newPassword;
         this.showToast("Contraseña actualizada correctamente.", "success");
-        this.closeModal('changePasswordModal', 'success');
+        this.closeModal('changePasswordModal');
       },
       error: () => {
         this.showToast("Error al actualizar la contraseña.", "error");
       }
     });
   }
-  
-
-  saveAddress() {
-    console.log("Dirección guardada...");
-    // Aquí puedes agregar lógica para agregar una nueva dirección de envío
-  }
-
-
-
-
 
   showToast(message: string, type: 'success' | 'error') {
-    const toastContainer = document.getElementById('genericToastContainer');
-  
+    const toastContainer = document.getElementById('toastContainer');
     if (toastContainer) {
-      toastContainer.innerHTML = `
-        <div class="toast align-items-center text-bg-${type === 'success' ? 'success' : 'danger'} border-0" role="alert">
-          <div class="d-flex">
-            <div class="toast-body">${message}</div>
-            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
-          </div>
+      const toastElement = document.createElement('div');
+      toastElement.className = `toast align-items-center text-bg-${type} border-0`;
+      toastElement.setAttribute('role', 'alert');
+      toastElement.innerHTML = `
+        <div class="d-flex">
+          <div class="toast-body">${message}</div>
+          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
         </div>
       `;
       
-      const toast = new bootstrap.Toast(toastContainer.querySelector('.toast'));
+      toastContainer.appendChild(toastElement);
+      const toast = new bootstrap.Toast(toastElement);
       toast.show();
     }
   }
-  closeModal (modalName: string, type: 'success' | 'error'){
+  
+  closeModal(modalName: string) {
     const modal = document.getElementById(modalName) as any;
     if (modal) {
       const modalInstance = bootstrap.Modal.getInstance(modal);
-      modalInstance.hide();  
-      document.body.classList.remove('modal-open'); 
+      if (modalInstance) {
+        modalInstance.hide();
+      }
     }
+  
+    setTimeout(() => {
+      if (document.querySelector('.modal.show') === null) { 
+        document.body.classList.remove('modal-open');
+        document.body.style.overflow = ''; 
+      }
+    }, 300);
+  
     const backdrop = document.querySelector('.modal-backdrop');
     if (backdrop) {
       backdrop.remove();
     }
   }
+  
+  
   togglePasswordVisibility(field: 'current' | 'new' | 'confirm') {
     if (field === 'current') {
       this.showCurrentPassword = !this.showCurrentPassword;
@@ -198,5 +226,8 @@ export class EditProfileComponent implements OnInit {
     } else if (field === 'confirm') {
       this.showConfirmPassword = !this.showConfirmPassword;
     }
+  }
+  goHome(): void {
+    this.router.navigate(['/home']);
   }
 }
