@@ -1,75 +1,170 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductcCharacteristicsService } from '../../../services/product/product-characteristics.service';
+import { Processor } from '../../../models/products/characteristics/processor';
+import { CustomValidators } from '../../../common/custom-validators';
+import { ScreenSize } from '../../../interfaces/product/characteristics/screen-size';
+import { MemorySize } from '../../../interfaces/product/characteristics/memory-size';
+import { MemoryUnit } from '../../../models/products/characteristics/memory-unit';
+import { LengthUnit } from '../../../models/products/characteristics/length-unit';
+import { NotebookCharacteristics } from '../../../interfaces/product/characteristics/notebook-characteristics';
+import { Color } from '../../../models/products/characteristics/color';
+import { Country } from '../../../models/products/characteristics/country';
+import { GeneralCharacteristics } from '../../../interfaces/product/characteristics/general-characteristics';
+import { Observable } from 'rxjs';
+import { ProductInterface2 } from '../../../interfaces/product/product-interface2';
+import { ProductService } from '../../../services/product/product.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-notebooks-characteristics',
   templateUrl: './notebooks-characteristics.component.html',
-  styleUrl: './notebooks-characteristics.component.css'
+  styleUrl: './notebooks-characteristics.component.css',
 })
 export class NotebooksCharacteristicsComponent {
-
-  notebookScreenSizesList: string[] = ['13"', '14"', '15"', '15.6"', '16"', '17"'];
-  notebookRamList: string[] = ['4 GB', '8 GB', '12 GB', '16 GB', '32 GB', '64 GB'];
-  notebookProcessorsList: string[] = ['Intel Core i3', 'Intel Core i5', 'Intel Core i7', 'Intel Core i9', 'AMD Ryzen 3', 'AMD Ryzen 5', 'AMD Ryzen 7', 'AMD Ryzen 9', 'Apple M1', 'Apple M2', 'Intel Pentium Gold'];
-  notebookStorageSizesList: string[] = ['128GB', '256GB', '512GB', '1TB', '2TB', '4TB', '8TB', '16TB', '32TB', '64TB'];
-
-
-
+ 
+  @Output() 
+  characteristicsFormValid = new EventEmitter<boolean>();
   characteristicsFormGroup: FormGroup;
-  characteristicsString: string = "";
+ 
+  notebookProcessorsList: string[];
+  memoryUnitList: string[];
 
-  constructor(private productCharacteristicsService: ProductcCharacteristicsService){
   
-  
+   /// PRODUCT EDIT  //////////////////////
+    
+   productoToEdit: ProductInterface2;
+   id: string = "";
+   //////////////////////
+
+  constructor(
+    private productCharacteristicsService: ProductcCharacteristicsService,
+    private productService: ProductService, private route: ActivatedRoute
+
+  ) {
+    
+    this.notebookProcessorsList =
+      this.productCharacteristicsService.getProcessorsList();
+    this.memoryUnitList =
+      this.productCharacteristicsService.getMemoryUnitList();
     this.characteristicsFormGroup = new FormGroup({
-      "notebookScreenSize": new FormControl(this.notebookScreenSizesList[0], [Validators.required]),
-      "notebookRam": new FormControl(this.notebookRamList[0], [Validators.required]),
-      "notebookProcessor": new FormControl(this.notebookProcessorsList[0], [Validators.required]),
-      "notebookStorageSize": new FormControl(this.notebookStorageSizesList[0], [Validators.required])
+      notebookScreenSize: new FormControl('', [Validators.required]),
+      notebookRam: new FormControl('', [
+        Validators.required,
+        CustomValidators.numbersOnly(),
+      ]),
+      notebookProcessor: new FormControl(Processor.AMD_Ryzen_3, [
+        Validators.required,
+      ]),
+      notebookStorageSize: new FormControl('', [
+        Validators.required,
+        CustomValidators.numbersOnly(),
+      ]),
+      storageUnit: new FormControl(MemoryUnit.GB, [Validators.required]),
     });
+    /// PRODUCT EDIT  //////////////////////
+   
+   this.productoToEdit = this.productService.initProductInterface();/// carga un producto vacío para reemplazar y editar
 
-    this.getCharacteristicsString();//asigna por defecto el characteristicString
-    console.log(this.characteristicsString);
+
   }
 
   ngOnInit(): void {
-      this.characteristicsFormGroup.valueChanges.subscribe(//suscripción a los cambios del formulario
-        form => {
-          this.getCharacteristicsString();//ejecuta la funcion q asigna el characteristicsString en cada cambio
-        }
-      )
-  }
 
-  getCharacteristicsString():void{//carga el string de caracteriticas
+    /// PRODUCT EDIT  //////////////////////
+   let id = this.route.snapshot.paramMap.get("id");
+   if(id != null){
+     this.id = id;
+     this.getProductoToEdit(id).subscribe({//busdcar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
+       next: response =>{
+         this.productoToEdit = response;
+         this.setFormGroupToEdit(this.productoToEdit.characteristics as NotebookCharacteristics);
+         
+       },
+       error: error =>{
+         console.log("Error al buscar producto a editar")
+       }
+     });
+   }
+////////////////////////
 
-    let keys: string[] = [];
-    let values: string[] = [];;
-    let out = "";
-    
 
-      keys = Object.keys(this.characteristicsFormGroup.controls);
-      values = Object.values(this.characteristicsFormGroup.value);
-  
-      for(let i = 0; i < keys.length; i++){
-        out = out + keys[i] + "," + values[i];
-      
-        if(i < keys.length-1){
-          out = out + ",";
-        }
+
+    this.productCharacteristicsService.setCharacteristics(
+      this.getCharacteristicsFromFormGroup(this.characteristicsFormGroup)
+    );
+
+   
+    this.productCharacteristicsService.setOnlyGeneralCharacteristics(false);
+    this.formValid();
+
+
+    this.characteristicsFormGroup.valueChanges.subscribe(
+      //suscripción a los cambios del formulario
+      (form) => {
+     
+        this.productCharacteristicsService.setCharacteristics(
+          this.getCharacteristicsFromFormGroup(this.characteristicsFormGroup)
+        );
+        
+        this.formValid();
       }
-    
-    
-    console.log("out: " + out);
-
-    this.characteristicsString = out;
-    
-    this.productCharacteristicsService.obtainCharacteristicsString(this.characteristicsString);
-    
-    
-
+    );
   }
+
+
+
+  private getCharacteristicsFromFormGroup(form: FormGroup) {
+    let sSize: ScreenSize = {
+      size: Number(form.get('notebookScreenSize')?.value),
+      unit: LengthUnit.INCH,
+    };
+    let _ram: MemorySize = {
+      size: Number(form.get('notebookRam')?.value),
+      unit: MemoryUnit.GB,
+    };
+
+    let _storage: MemorySize = {
+      size: Number(form.get('notebookStorageSize')?.value),
+      unit: form.get('storageUnit')?.value,
+    };
 
   
 
+    let initCharact: GeneralCharacteristics =
+      this.productCharacteristicsService.initCharacteristics();
+    let charact: NotebookCharacteristics = {
+      screenSize: sSize,
+      ram: _ram,
+      processor: form.get('notebookProcessor')?.value,
+      storageSize: _storage,
+      color: initCharact.color,
+      country: initCharact.country,
+      dimension: initCharact.dimension,
+      weight: initCharact.weight,
+    };
+
+    return charact;
+  }
+  
+  formValid(){
+    this.characteristicsFormValid.emit(this.characteristicsFormGroup.valid);
+  }
+
+
+ /////   EDIT PRODUCT  ///////
+getProductoToEdit(id: string):Observable<ProductInterface2>{
+   console.log("ID: " + id);
+   return this.productService._getProductById(id);
+
+ }
+
+ setFormGroupToEdit(characteristics: NotebookCharacteristics){
+   this.characteristicsFormGroup.get("notebookScreenSize")?.setValue(characteristics.screenSize.size);
+   this.characteristicsFormGroup.get("notebookRam")?.setValue(characteristics.ram.size);
+   this.characteristicsFormGroup.get("notebookProcessor")?.setValue(characteristics.processor);
+   this.characteristicsFormGroup.get("notebookStorageSize")?.setValue(characteristics.storageSize.size);
+   this.characteristicsFormGroup.get("storageUnit")?.setValue(characteristics.storageSize.unit);
+
+ }
 }

@@ -1,69 +1,136 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductcCharacteristicsService } from '../../../services/product/product-characteristics.service';
+import { Conectivity } from '../../../models/products/characteristics/conectivity';
+import { KeyboardCharacteristics } from '../../../interfaces/product/characteristics/keyboard-characteristics';
+import { Color } from '../../../models/products/characteristics/color';
+import { Country } from '../../../models/products/characteristics/country';
+import { GeneralCharacteristics } from '../../../interfaces/product/characteristics/general-characteristics';
+import { Observable } from 'rxjs';
+import { ProductInterface2 } from '../../../interfaces/product/product-interface2';
+import { ProductService } from '../../../services/product/product.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-keyboard-characteristics',
   templateUrl: './keyboard-characteristics.component.html',
-  styleUrl: './keyboard-characteristics.component.css'
+  styleUrl: './keyboard-characteristics.component.css',
 })
 export class KeyboardCharacteristicsComponent {
-
-
-  keyboardConnectivityTypeList: string[] = ["Cable","Wireless","Bluetooth"];
-
+  @Output() 
+  characteristicsFormValid = new EventEmitter<boolean>();
   characteristicsFormGroup: FormGroup;
-  characteristicsString: string = "";
 
-  constructor(private productCharacteristicsService: ProductcCharacteristicsService){
-  
-  
+  keyboardConnectivityTypeList: string[];
+
+
+   /// PRODUCT EDIT  //////////////////////
+    
+   productoToEdit: ProductInterface2;
+   id: string = "";
+   //////////////////////
+
+  constructor(
+    private productCharacteristicsService: ProductcCharacteristicsService,
+    private productService: ProductService, private route: ActivatedRoute
+  ) {
+    
+
+    this.keyboardConnectivityTypeList =
+      this.productCharacteristicsService.getConnectivityTypeList();
     this.characteristicsFormGroup = new FormGroup({
-      "keyboardConnectivityType": new FormControl(this.keyboardConnectivityTypeList[0], [Validators.required])
+      keyboardConnectivityType: new FormControl(Conectivity.BLUETOOTH, [
+        Validators.required,
+      ]),
     });
-
-    this.getCharacteristicsString();//asigna por defecto el characteristicString
-    console.log(this.characteristicsString);
+    /// PRODUCT EDIT  //////////////////////
+   
+   this.productoToEdit = this.productService.initProductInterface();/// carga un producto vacío para reemplazar y editar
   }
 
   ngOnInit(): void {
-      this.characteristicsFormGroup.valueChanges.subscribe(//suscripción a los cambios del formulario
-        form => {
-          this.getCharacteristicsString();//ejecuta la funcion q asigna el characteristicsString en cada cambio
-        }
-      )
-  }
 
-  getCharacteristicsString():void{//carga el string de caracteriticas
+    /// PRODUCT EDIT  //////////////////////
+   let id = this.route.snapshot.paramMap.get("id");
+   if(id != null){
+     this.id = id;
+     this.getProductoToEdit(id).subscribe({//busdcar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
+       next: response =>{
+         this.productoToEdit = response;
+         this.setFormGroupToEdit(this.productoToEdit.characteristics as KeyboardCharacteristics);
+         
+       },
+       error: error =>{
+         console.log("Error al buscar producto a editar")
+       }
+     });
+   }
+////////////////////////
 
-    let keys: string[] = [];
-    let values: string[] = [];;
-    let out = "";
-    
 
-      keys = Object.keys(this.characteristicsFormGroup.controls);
-      values = Object.values(this.characteristicsFormGroup.value);
-  
-      for(let i = 0; i < keys.length; i++){
-        out = out + keys[i] + "," + values[i];
-      
-        if(i < keys.length-1){
-          out = out + ",";
-        }
+
+    this.productCharacteristicsService.setCharacteristics(
+      this.getCharacteristicsFromFormGroup(this.characteristicsFormGroup)
+    );
+
+   
+    this.productCharacteristicsService.setOnlyGeneralCharacteristics(false);
+    this.formValid();
+
+
+    this.characteristicsFormGroup.valueChanges.subscribe(
+      //suscripción a los cambios del formulario
+      (form) => {
+        
+        this.productCharacteristicsService.setCharacteristics(
+          this.getCharacteristicsFromFormGroup(this.characteristicsFormGroup)
+        );
+        
+        this.formValid();
       }
-    
-    
-    console.log("out: " + out);
+    );
+  }
 
-    this.characteristicsString = out;
-    
-    this.productCharacteristicsService.obtainCharacteristicsString(this.characteristicsString);
-    
-    
+ 
 
+  private getCharacteristicsFromFormGroup(form: FormGroup) {
+    
+    let initCharact: GeneralCharacteristics =
+      this.productCharacteristicsService.initCharacteristics();
+    let charact: KeyboardCharacteristics = {
+      conectivity: form.get('keyboardConnectivityType')?.value,
+      color: initCharact.color,
+      country: initCharact.country,
+      dimension: initCharact.dimension,
+      weight: initCharact.weight,
+    };
+
+    return charact;
   }
 
   
+  formValid(){
+    this.characteristicsFormValid.emit(this.characteristicsFormGroup.valid);
+  }
+
+
+
+ /////   EDIT PRODUCT  ///////
+getProductoToEdit(id: string):Observable<ProductInterface2>{
+   console.log("ID: " + id);
+   return this.productService._getProductById(id);
+
+ }
+
+ setFormGroupToEdit(characteristics: KeyboardCharacteristics){
+   this.characteristicsFormGroup.get("keyboardConnectivityType")?.setValue(characteristics.conectivity);
+
+
+
+   
+
+
+
+ }
 
 }
-

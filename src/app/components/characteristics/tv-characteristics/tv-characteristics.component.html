@@ -1,13 +1,20 @@
 <form action="" [formGroup]="characteristicsFormGroup">
-    <p> Tecnología </p>
-    <select id="tvTecnology" formControlName="tvTecnology"> 
-        <option *ngFor="let technology of tvTechnologiesList" [value]="technology">{{ technology }}</option>
+    <p> Tipo de pantalla </p>
+    <select id="screenTechnology" formControlName="screenTechnology"> 
+        <option *ngFor="let screenTechnology of screenTechnologiesList" [value]="screenTechnology">{{ screenTechnology }}</option>
     </select>
 
-    <P> Pulgadas </P>
-    <select id="tvInches" formControlName="tvInches"> 
+    <p> Smart TV </p>
+    <select id="smart" formControlName="smart"> 
+        <option *ngFor="let smart of smartList" [value]="smart">{{ smart }}</option>
+    </select>
+    
+
+    <P> Tamaño </P>
+    <!-- <select id="tvInches" formControlName="tvInches"> 
         <option *ngFor="let inch of tvInchesList" [value]="inch">{{ inch }}</option>
-    </select>    
+    </select>   -->  
+    <input type="number" id="screenInches" formControlName="screenInches" min="0">Pulg
 
 
 

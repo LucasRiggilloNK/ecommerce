@@ -75,6 +75,7 @@ export class RegisterComponent {
         password,
         role
       } = this.registerForm.value;
+      
       const nuevoUsuario: Usuario = {
         name,
         lastname,

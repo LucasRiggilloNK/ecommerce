@@ -4,6 +4,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { ProductInterface } from '../interfaces/product/product-interface';
 import { lastValueFrom, Observable } from 'rxjs';
 import { Product } from '../models/products/product';
+import { ProductInterface2 } from '../interfaces/product/product-interface2';
 
 @Injectable({
   providedIn: 'root',
@@ -41,4 +42,30 @@ export class AsyncService {
   deleteProduct(id: string, urlApi: string): Observable<ProductInterface>{
     return this.http.delete<ProductInterface>(urlApi + "/" + id);
   }
+
+
+
+
+  ///////////////////////  AGREGADO   //////////////////////////////////////////7
+  
+  getAll(urlApi: string): Observable<ProductInterface2[]> {
+    return this.http.get<ProductInterface2[]>(urlApi); 
+  }
+
+
+  addProduct(product: ProductInterface2,urlApi: string): Observable<ProductInterface2> {
+    const httpOptions = {
+      headers: new HttpHeaders({'content-Type': 'application/json'}),
+    };
+
+    const { id, ...productWithoutId } = product;//producto sin id para q json server lo genere automaticamente
+
+    return this.http.post<ProductInterface2>(urlApi, productWithoutId, httpOptions);
+  }
+
+  getProductById(productId: string, urlApi: string): Observable<ProductInterface2> {
+    return this.http.get<ProductInterface2>(urlApi + "/" + productId);
+  }
+
+
 }

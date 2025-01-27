@@ -98,8 +98,10 @@
 
 <form action="" [formGroup]="formGrupSubfilters">
   <div style="display: flex; justify-content: flex-start">
-    <aside *ngIf="productListFilteredByCategory.length != 0" class="aside">
-      <div *ngIf="productListFilteredByCategory.length != 0">
+    <!-- <aside *ngIf="productListFilteredByCategory.length != 0" class="aside"> -->
+    <aside *ngIf="_productListFilteredByCategory.length != 0" class="aside">
+      <!-- <div *ngIf="productListFilteredByCategory.length != 0"> -->
+        <div *ngIf="_productListFilteredByCategory.length != 0">
         <div class="filters">
           <p>Marca</p>
           <select id="brand" formControlName="brand">
@@ -119,6 +121,8 @@
           </div>
         </div>
 
+
+        <!-- Condición para "Aire Acondicionado" -->
         <div
           class="filters"
           *ngIf="formControlCategory.value == 'Aire Acondicionado'"
@@ -137,6 +141,9 @@
           </select>
         </div>
 
+
+
+        
         <!-- Condición para "Ventiladores" -->
         <div
           class="filters"
@@ -328,9 +335,11 @@
       </div>
     </aside>
 
-    <div *ngIf="productListSubFiltered.length != 0">
+    <!-- <div *ngIf="productListSubFiltered.length != 0"> -->
+      <div *ngIf="_productListSubFiltered.length != 0">
       <div class="cards">
-        <div *ngFor="let product of productListSubFiltered">
+        <!-- <div *ngFor="let product of productListSubFiltered"> -->
+          <div *ngFor="let product of _productListSubFiltered">
           <div [routerLink]="['/productDetails', product.id]" class="card">
             <img
               src="{{ product.urlImage }}"

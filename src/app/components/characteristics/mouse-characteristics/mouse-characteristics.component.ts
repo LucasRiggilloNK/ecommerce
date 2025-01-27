@@ -1,69 +1,132 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductcCharacteristicsService } from '../../../services/product/product-characteristics.service';
-
+import { Conectivity } from '../../../models/products/characteristics/conectivity';
+import { MouseCharacteristics } from '../../../interfaces/product/characteristics/mouse-characteristics';
+import { Color } from '../../../models/products/characteristics/color';
+import { Country } from '../../../models/products/characteristics/country';
+import { GeneralCharacteristics } from '../../../interfaces/product/characteristics/general-characteristics';
+import { Observable } from 'rxjs';
+import { ProductInterface2 } from '../../../interfaces/product/product-interface2';
+import { ProductService } from '../../../services/product/product.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-mouse-characteristics',
   templateUrl: './mouse-characteristics.component.html',
-  styleUrl: './mouse-characteristics.component.css'
+  styleUrl: './mouse-characteristics.component.css',
 })
 export class MouseCharacteristicsComponent {
-
-  mouseConnectivityTypeList: string[] =["Cable","Wireless","Bluetooth"];
-
-
+  @Output() 
+  characteristicsFormValid = new EventEmitter<boolean>();
   characteristicsFormGroup: FormGroup;
-  characteristicsString: string = "";
 
-  constructor(private productCharacteristicsService: ProductcCharacteristicsService){
-  
-  
+  mouseConnectivityTypeList: string[];
+
+     /// PRODUCT EDIT  //////////////////////
+    
+     productoToEdit: ProductInterface2;
+     id: string = "";
+     //////////////////////
+
+  constructor(
+    private productCharacteristicsService: ProductcCharacteristicsService,
+    private productService: ProductService, private route: ActivatedRoute
+
+  ) {
+    
+    this.mouseConnectivityTypeList =
+      this.productCharacteristicsService.getConnectivityTypeList();
     this.characteristicsFormGroup = new FormGroup({
-      
-      "mouseConnectivityType": new FormControl(this.mouseConnectivityTypeList[0], [Validators.required])});
+      mouseConnectivityType: new FormControl(Conectivity.BLUETOOTH, [
+        Validators.required,
+      ]),
+    });
 
-    this.getCharacteristicsString();//asigna por defecto el characteristicString
-    console.log(this.characteristicsString);
+    /// PRODUCT EDIT  //////////////////////
+   
+   this.productoToEdit = this.productService.initProductInterface();/// carga un producto vacío para reemplazar y editar
+
   }
 
   ngOnInit(): void {
-      this.characteristicsFormGroup.valueChanges.subscribe(//suscripción a los cambios del formulario
-        form => {
-          this.getCharacteristicsString();//ejecuta la funcion q asigna el characteristicsString en cada cambio
-        }
-      )
-  }
 
-  getCharacteristicsString():void{//carga el string de caracteriticas
+    /// PRODUCT EDIT  //////////////////////
+   let id = this.route.snapshot.paramMap.get("id");
+   if(id != null){
+     this.id = id;
+     this.getProductoToEdit(id).subscribe({//busdcar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
+       next: response =>{
+         this.productoToEdit = response;
+         this.setFormGroupToEdit(this.productoToEdit.characteristics as MouseCharacteristics);
+         
+       },
+       error: error =>{
+         console.log("Error al buscar producto a editar")
+       }
+     });
+   }
+////////////////////////
 
-    let keys: string[] = [];
-    let values: string[] = [];;
-    let out = "";
-    
 
-      keys = Object.keys(this.characteristicsFormGroup.controls);
-      values = Object.values(this.characteristicsFormGroup.value);
+
+
+    this.productCharacteristicsService.setCharacteristics(
+      this.getCharacteristicsFromFormGroup(this.characteristicsFormGroup)
+    );
+
   
-      for(let i = 0; i < keys.length; i++){
-        out = out + keys[i] + "," + values[i];
-      
-        if(i < keys.length-1){
-          out = out + ",";
-        }
+    this.productCharacteristicsService.setOnlyGeneralCharacteristics(false);
+    this.formValid();
+
+
+    this.characteristicsFormGroup.valueChanges.subscribe(
+      //suscripción a los cambios del formulario
+      (form) => {
+        
+        this.productCharacteristicsService.setCharacteristics(
+          this.getCharacteristicsFromFormGroup(this.characteristicsFormGroup)
+        );
+       
+        this.formValid();
       }
-    
-    
-    console.log("out: " + out);
-
-    this.characteristicsString = out;
-    
-    this.productCharacteristicsService.obtainCharacteristicsString(this.characteristicsString);
-    
-    
-
+    );
   }
 
+ 
+
+  private getCharacteristicsFromFormGroup(form: FormGroup) {
   
 
+    let initCharact: GeneralCharacteristics =
+      this.productCharacteristicsService.initCharacteristics();
+    let charact: MouseCharacteristics = {
+      conectivity: form.get('mouseConnectivityType')?.value,
+      color: initCharact.color,
+      country: initCharact.country,
+      dimension: initCharact.dimension,
+      weight: initCharact.weight,
+    };
+
+    return charact;
+  }
+ 
+  formValid(){
+    this.characteristicsFormValid.emit(this.characteristicsFormGroup.valid);
+  }
+
+
+ /////   EDIT PRODUCT  ///////
+getProductoToEdit(id: string):Observable<ProductInterface2>{
+   console.log("ID: " + id);
+   return this.productService._getProductById(id);
+
+ }
+
+ setFormGroupToEdit(characteristics: MouseCharacteristics){
+   this.characteristicsFormGroup.get("mouseConnectivityType")?.setValue(characteristics.conectivity);
+
+
+
+ }
 }

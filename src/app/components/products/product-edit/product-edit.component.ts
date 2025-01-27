@@ -63,11 +63,6 @@ export class ProductEditComponent implements OnInit{
           this.product = response;
           this.setFormGroup(this.product);
 
-
-
-
-
-
         },
         error: error =>{
           alert("Error al buscar producto para editar...");

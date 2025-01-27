@@ -1,67 +1,139 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductcCharacteristicsService } from '../../../services/product/product-characteristics.service';
+import { MicrowaveCharacteristics } from '../../../interfaces/product/characteristics/microwave-characteristics';
+import { VolumeCapacity } from '../../../interfaces/product/characteristics/volume-capacity';
+import { VolumeUnit } from '../../../models/products/characteristics/volume-unit';
+import { Color } from '../../../models/products/characteristics/color';
+import { Country } from '../../../models/products/characteristics/country';
+import { GeneralCharacteristics } from '../../../interfaces/product/characteristics/general-characteristics';
+import { Observable } from 'rxjs';
+import { ProductInterface2 } from '../../../interfaces/product/product-interface2';
+import { ProductService } from '../../../services/product/product.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-microwave-characteristics',
   templateUrl: './microwave-characteristics.component.html',
-  styleUrl: './microwave-characteristics.component.css'
+  styleUrl: './microwave-characteristics.component.css',
 })
 export class MicrowaveCharacteristicsComponent {
-  microwaveCapacityList: string[] = ["15 lts", "17 lts", "20 lts", "23 lts", "25 lts", "28 lts", "30 lts", "32 lts", "35 lts", "40 lts", "42 lts", "45 lts"];
-
+  @Output() 
+  characteristicsFormValid = new EventEmitter<boolean>();
   characteristicsFormGroup: FormGroup;
-  characteristicsString: string = "";
 
-  constructor(private productCharacteristicsService: ProductcCharacteristicsService){
-  
-  
+  /// PRODUCT EDIT  //////////////////////
+    
+  productoToEdit: ProductInterface2;
+  id: string = "";
+  //////////////////////
+
+  constructor(
+    private productCharacteristicsService: ProductcCharacteristicsService,
+    private productService: ProductService, private route: ActivatedRoute
+  ) {
+   
     this.characteristicsFormGroup = new FormGroup({
-      "microwaveCapacity": new FormControl(this.microwaveCapacityList[0], [Validators.required])
+      microwaveCapacity: new FormControl('', [Validators.required]),
     });
-
-    this.getCharacteristicsString();//asigna por defecto el characteristicString
-    console.log("characteristicsString en CONSTRUCTOR MicrowaveCharacteristicsComponent");
-    console.log(this.characteristicsString);
+    
+/// PRODUCT EDIT  //////////////////////
+   
+   this.productoToEdit = this.productService.initProductInterface();/// carga un producto vacío para reemplazar y editar
   }
 
   ngOnInit(): void {
-      this.characteristicsFormGroup.valueChanges.subscribe(//suscripción a los cambios del formulario
-        form => {
-          this.getCharacteristicsString();//ejecuta la funcion q asigna el characteristicsString en cada cambio
-        }
-      )
-  }
 
-  getCharacteristicsString():void{//carga el string de caracteriticas
-
-    let keys: string[] = [];
-    let values: string[] = [];;
-    let out = "";
     
+/// PRODUCT EDIT  //////////////////////
+   let id = this.route.snapshot.paramMap.get("id");
+   if(id != null){
+     this.id = id;
+     this.getProductoToEdit(id).subscribe({//busdcar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
+       next: response =>{
+         this.productoToEdit = response;
+         this.setFormGroupToEdit(this.productoToEdit.characteristics as MicrowaveCharacteristics);
+         
+       },
+       error: error =>{
+         console.log("Error al buscar producto a editar")
+       }
+     });
+   }
+////////////////////////
 
-      keys = Object.keys(this.characteristicsFormGroup.controls);
-      values = Object.values(this.characteristicsFormGroup.value);
-  
-      for(let i = 0; i < keys.length; i++){
-        out = out + keys[i] + "," + values[i];
-      
-        if(i < keys.length-1){
-          out = out + ",";
-        }
+
+    this.productCharacteristicsService.setCharacteristics(
+      this.getCharacteristicsFromFormGroup(this.characteristicsFormGroup)
+    );
+
+    
+    this.productCharacteristicsService.setOnlyGeneralCharacteristics(false);
+    this.formValid();
+
+
+    this.characteristicsFormGroup.valueChanges.subscribe(
+      //suscripción a los cambios del formulario
+      (form) => {
+        
+        this.productCharacteristicsService.setCharacteristics(
+          this.getCharacteristicsFromFormGroup(this.characteristicsFormGroup)
+        );
+       
+        this.formValid();
       }
-    
-    
-    console.log("out: " + out);
-
-    this.characteristicsString = out;
-    
-    this.productCharacteristicsService.obtainCharacteristicsString(this.characteristicsString);
-    
-    
-
+    );
   }
 
+ 
+
+  private getCharacteristicsFromFormGroup(form: FormGroup) {
+    let _capacity: VolumeCapacity = {
+      value: form.get('microwaveCapacity')?.value,
+      unit: VolumeUnit.LITERS,
+    };
+
+    /* let charact: MicrowaveCharacteristics = {
+               
+                capacity: _capacity,
+                color: Color.NONE,
+                country: Country.NONE
+              }; */
+
+    let initCharact: GeneralCharacteristics =
+      this.productCharacteristicsService.initCharacteristics();
+    let charact: MicrowaveCharacteristics = {
+      capacity: _capacity,
+      color: initCharact.color,
+      country: initCharact.country,
+      dimension: initCharact.dimension,
+      weight: initCharact.weight,
+    };
+
+    return charact;
+  }
   
+  formValid(){
+    this.characteristicsFormValid.emit(this.characteristicsFormGroup.valid);
+  }
+
+
+
+
+
+ /////   EDIT PRODUCT  ///////
+getProductoToEdit(id: string):Observable<ProductInterface2>{
+   console.log("ID: " + id);
+   return this.productService._getProductById(id);
+
+ }
+
+ setFormGroupToEdit(characteristics: MicrowaveCharacteristics){
+   this.characteristicsFormGroup.get("microwaveCapacity")?.setValue(characteristics.capacity);
+ 
+
+
+
+ }
 
 }

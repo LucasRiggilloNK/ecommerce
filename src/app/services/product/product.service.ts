@@ -7,6 +7,12 @@ import { Purchase } from '../../models/purchases/purchase';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ProductInterface2 } from '../../interfaces/product/product-interface2';
+import { response } from 'express';
+import { ProductcCharacteristicsService } from './product-characteristics.service';
+import { FanType } from '../../models/products/characteristics/fan-type';
+import { AirType } from '../../models/products/characteristics/air-type';
+import { HeatCold } from '../../models/products/characteristics/heat-cold';
 
 @Injectable({
   providedIn: 'root',
@@ -20,15 +26,25 @@ export class ProductService {
   private formControlCategorySesion: FormControl;
   private formGroupSubfiltersSesion: FormGroup;
 
-  airTypesList: string[] = [
+
+  //////////////////////////   AGREGADO   ///////////////////////////////////77
+
+  private _productsApiUrl = 'http://localhost:3010/_products';
+
+  //////////////////////////////////////////////////////////////////////////
+
+  /* airTypesList: string[] = [
     'Todos',
     'Split',
     'Portatil',
     'Split inverter',
     'Ventana',
-  ];
-  heatColdList: string[] = ['Todos', 'Si', 'No'];
-  fanTypeList: string[] = ['Todos', 'Pie', 'Turbo'];
+  ]; */
+  private airTypesList: string[] = Object.values(AirType).sort();
+  /* heatColdList: string[] = ['Todos', 'Si', 'No']; */
+  private heatColdList: string[] = Object.values(HeatCold).sort();
+  //fanTypeList: string[] = ['Todos', 'Pie', 'Turbo'];
+  private fanTypeList: string[] = Object.values(FanType).sort();
   tvTechnologiesList: string[] = [
     'Todos',
     'LED',
@@ -175,7 +191,7 @@ export class ProductService {
     'Bluetooth',
   ];
 
-  constructor(private asyncService: AsyncService, private http: HttpClient) {
+  constructor(private asyncService: AsyncService, private http: HttpClient, private productCharacteristicsService: ProductcCharacteristicsService) {
     this.productInt = {
       brand: Brand.NONE,
       category: Category.NONE,
@@ -254,6 +270,13 @@ export class ProductService {
       return [];
     }
   }
+
+  ////////////  AGREGADO  ////////////////////////////////////////
+  public getAllProductsListInterface2(): Observable<ProductInterface2[]> {
+    return this.asyncService.getAll(this._productsApiUrl);
+    
+  }
+  ////////////////////////////////////////////////////////////////////////////////
 
   //////////////////////    ADD PRODUCTS     ////////////////////////////////////////////////////
 
@@ -473,5 +496,90 @@ export class ProductService {
     return this.formControlCategorySesion;
   }
 
+
+
+
+
+
+
+
+
+
+
+
+
+  //////////////////////////////////////////////   AGREGADO   /////////////////////////////////////////////////
+
+  getAllProducts(): Observable<ProductInterface2[]> {
+      return this.asyncService.getAll(this._productsApiUrl); 
+    }
   
+  
+    addProduct(product: ProductInterface2): Observable<ProductInterface2> {
+      return this.asyncService.addProduct(product, this._productsApiUrl);
+    }
+  
+    _getProductById(productId: string): Observable<ProductInterface2> {
+      return this.asyncService.getProductById(productId, this._productsApiUrl);
+    }
+
+  
+    _productExists(product: ProductInterface): boolean {
+      let productsInterfaceList: ProductInterface2[] | undefined = [];
+      let out = false;
+      let p: ProductInterface2 | undefined;
+  
+      this.getAllProducts().subscribe({
+        next: response =>{
+          productsInterfaceList = response;
+  
+          if (productsInterfaceList != undefined) {
+            p = productsInterfaceList.find(
+              (prod) =>
+                product.brand === prod.brand && product.model === prod.model
+            );
+            
+            if (p != undefined) {
+              out = true;
+            }
+          }
+
+
+
+
+
+        },
+        error: error =>{
+          console.log("Error al verificar existencia del producto...");
+          console.log(error);
+        }
+      });
+
+  
+      
+      return out;
+    }
+
+
+
+    ////////////////////////////  AGREGADO  ///////////////////////////////////////////
+
+    public initProductInterface(){//crea un producto vacío
+  
+      let product: ProductInterface2 = {
+        
+            id: "",
+              brand: Brand.NONE,
+              category: Category.NONE,
+              urlImage: "",
+              description: "",
+              price: 0,
+              stock: 0,
+              characteristics: this.productCharacteristicsService.initCharacteristics(),
+              model: "",
+              quantity: 0
+        
+      }
+      return product;
+    }
 }

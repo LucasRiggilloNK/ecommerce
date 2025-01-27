@@ -10,10 +10,7 @@
         <select id="heatCold" formControlName="heatCold" required> 
             <option *ngFor="let type of heatColdList" [value]="type">{{ type }}</option>
         </select>
-        <p> Color </p>
-        <select id="color" formControlName="color" required> 
-            <option *ngFor="let color of colorList" [value]="color">{{ color }}</option>
-        </select>
+        
     
     </form>
 

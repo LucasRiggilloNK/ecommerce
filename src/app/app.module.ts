@@ -35,6 +35,8 @@ import { LoginComponent } from './login/login.component';
 import { BuyFormComponent } from './components/buy-form/buy-form.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
+import { CreateProductComponent } from './components/products/create-product/create-product.component';
+import { GeneralChracteristicsComponent } from './components/characteristics/general-chracteristics/general-chracteristics.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,10 @@ import { ProductEditComponent } from './components/products/product-edit/product
     LoginComponent,
     BuyFormComponent,
     FooterComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    CreateProductComponent,
+    GeneralChracteristicsComponent,
+    
  
   ],
 

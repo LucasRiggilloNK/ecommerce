@@ -1,0 +1,254 @@
+{
+  "_products": [
+    {
+      "id": "1",
+      "brand": "Apple",
+      "category": "Aire Acondicionado",
+      "urlImage": "1",
+      "description": "1",
+      "price": 1,
+      "stock": 1,
+      "model": "1",
+      "quantity": 0,
+      "characteristics": {
+        "airType": "Portatil",
+        "heatCold": "Si",
+        "color": "Ninguno",
+        "country": "Ninguno",
+        "dimension": {
+          "height": {
+            "value": 1,
+            "unit": "cm"
+          },
+          "width": {
+            "value": 1,
+            "unit": "cm"
+          },
+          "depth": {
+            "value": 1,
+            "unit": "cm"
+          }
+        },
+        "weight": {
+          "weight": 1,
+          "unit": "gr"
+        }
+      }
+    },
+    {
+      "id": "2",
+      "brand": "BGH",
+      "category": "Aspiradoras",
+      "urlImage": "1",
+      "description": "1",
+      "price": 1,
+      "stock": 1,
+      "model": "123456",
+      "quantity": 0,
+      "characteristics": {
+        "country": "Ninguno",
+        "color": "Ninguno",
+        "dimension": {
+          "height": {
+            "value": 1,
+            "unit": "cm"
+          },
+          "width": {
+            "value": 1,
+            "unit": "cm"
+          },
+          "depth": {
+            "value": 2,
+            "unit": "cm"
+          }
+        },
+        "weight": {
+          "weight": 1,
+          "unit": "gr"
+        }
+      }
+    },
+    {
+      "id": "3",
+      "brand": "Anycubic",
+      "category": "Microondas",
+      "urlImage": "1",
+      "description": "1",
+      "price": 1,
+      "stock": 1,
+      "model": "1215",
+      "quantity": 0,
+      "characteristics": {
+        "capacity": {
+          "value": 1,
+          "unit": "L"
+        },
+        "color": "Ninguno",
+        "country": "India",
+        "dimension": {
+          "height": {
+            "value": 1,
+            "unit": "cm"
+          },
+          "width": {
+            "value": 1,
+            "unit": "cm"
+          },
+          "depth": {
+            "value": 1,
+            "unit": "cm"
+          }
+        },
+        "weight": {
+          "weight": 1,
+          "unit": "gr"
+        }
+      }
+    },
+    {
+      "id": "4",
+      "brand": "Be One",
+      "category": "Mouses",
+      "urlImage": "1",
+      "description": "12",
+      "price": 12,
+      "stock": 12,
+      "model": "121212",
+      "quantity": 0,
+      "characteristics": {
+        "conectivity": "Bluetooth",
+        "color": "Ninguno",
+        "country": "Ninguno",
+        "dimension": {
+          "height": {
+            "value": 1,
+            "unit": "cm"
+          },
+          "width": {
+            "value": 1,
+            "unit": "cm"
+          },
+          "depth": {
+            "value": 12,
+            "unit": "cm"
+          }
+        },
+        "weight": {
+          "weight": 12,
+          "unit": "gr"
+        }
+      }
+    },
+    {
+      "id": "5",
+      "brand": "Electra",
+      "category": "Aire Acondicionado",
+      "urlImage": "https://medias.musimundo.com/medias/size515-179769-01.png?context=bWFzdGVyfGltYWdlc3w3NTIyMHxpbWFnZS9wbmd8YUdaakwyaGtNeTh4TURZek9EYzFOamt3TkRrNU1DOXphWHBsTlRFMVh6RTNPVGMyT1Y4d01TNXdibWN8NzliMzM5N2M4OGMwOWQyMzJjOGJmNWVjYzZiYTk3YjBkZmUyYzRhZDM4ODIzZjAwOTc0NmYzYjE5MGNhZTcyOA",
+      "description": "AIRE ACONDICIONADO SPLIT FRIO/CALOR. POTENCIA DE 3200 W. FRIGORIAS: 2752 FG/H. CALORIAS: 2752. KCAL/H. EFICIENCIA ENERGETICA A. TIPO DE GAS REFRIGERANTE R410A. FUNCIONES: TIMER. FUNCION SLEEP. DESHUMIDIFICACION. REINICIO AUTOMATICO. DUAL CONEXION DRENAJE. BAJO NIVEL SONORO. DISPLAY. EL NUEVO EQUIPO TREND A (ON/OFF) COMBINA DISENO Y FUNCIONES PARA UN CLIMA PERFECTO. SU FUNCION TURBO PERMITE CLIMATIZAR EL AMBIENTE DE MANERA RAPIDA AL COMBINAR MAYOR POTENCIA Y DISTANCIA DEL FLUJO DE AIRE.",
+      "price": 749999,
+      "stock": 15,
+      "model": "ENTRDO32TC ",
+      "quantity": 0,
+      "characteristics": {
+        "airType": "Split",
+        "heatCold": "Si",
+        "color": "Ninguno",
+        "country": "Ninguno",
+        "dimension": {
+          "height": {
+            "value": 25,
+            "unit": "cm"
+          },
+          "width": {
+            "value": 77.7,
+            "unit": "cm"
+          },
+          "depth": {
+            "value": 20.5,
+            "unit": "cm"
+          }
+        },
+        "weight": {
+          "weight": 8,
+          "unit": "Kg"
+        }
+      }
+    },
+    {
+      "id": "68cb",
+      "brand": "JBL",
+      "category": "Auriculares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152183-01.jpg?context=bWFzdGVyfGltYWdlc3w3NDE3fGltYWdlL2pwZWd8YUdVMUwyZzFPUzh4TURZek9USTNNemM0TnpReU1pOXphWHBsTlRFMVh6RTFNakU0TTE4d01TNXFjR2N8NjBkNjEyNjhkMmM5ZmEwNGQxN2QzM2IyNmY5MzQ0MGU3NWY2NWNjNTFkMjFlY2Y0ZTlhZTcyYzQ3OWUwYWVjNg",
+      "description": "Auricular inalambrico tipo vincha. Microfono. Control de volumen. Conexion bluetooth 5.3, frecuencia 2.4 GHz - 2.4835 GHz. Plegable. Driver de 40mm. Frecuencia 20Hz - 20 kHz. Impendancia 30 ohm. Sensivilidad 101 dB. Sensibilidad del microfono 40 dBV. Bateria de 500 mAh / 3.7V. Tiempo de reproduccion 76 Hs. Tiempo de carga 2Hs. Incluye cable de carga tipo C.",
+      "price": 129999,
+      "stock": 13,
+      "model": "TUNE 720",
+      "quantity": 0,
+      "characteristics": {
+        "headphoneType": "headBand",
+        "conectivity": "Bluetooth",
+        "color": "Blanco",
+        "country": "China",
+        "dimension": {
+          "height": {
+            "value": 0,
+            "unit": "cm"
+          },
+          "width": {
+            "value": 0,
+            "unit": "cm"
+          },
+          "depth": {
+            "value": 0,
+            "unit": "cm"
+          }
+        },
+        "weight": {
+          "weight": 0,
+          "unit": "gr"
+        }
+      }
+    },
+    {
+      "id": "2959",
+      "brand": "Samsung",
+      "category": "Celulares",
+      "urlImage": "https://medias.musimundo.com/medias/size515-150915-01.jpg?context=bWFzdGVyfGltYWdlc3wyNDI5MXxpbWFnZS9qcGVnfGFHUXpMMmd3TUM4eE1EWXpOems1TkRrNE16UTFOQzl6YVhwbE5URTFYekUxTURreE5WOHdNUzVxY0djfGMzOGQzM2Y2NDMyZTJlMmUzMjhlMzE2YTY3NmM2ZTRiNTU0OTdkZTAxNTU5ZTE1ZTQ1M2E2M2I3YTNmMTcxMzg",
+      "description": "Celular. Pantalla de 6.8\" (3120x1440) Quad HD+. Frecuencia 120 Hz. Dynamic AMOLED 2X. Procesador Snapdragon 8 Gen 3, Octa core (3.39GHz, 3.1GHz, 2.9GHz, 2.2GHz). Capacidad 256 Gb. RAM 12 Gb. Camara principal 200 + 50 + 12 + 10 Mp. F1.7, F3.4, F2.2, F2.4. Camara frontal 12mp f2.2 dual pixel AF. Conexiones: Wi FI 802.11a/b/g/n/ac/ax/be 2.4GHz+5GHz+6GHz, EHT320, MIMO, 4096-QAM. Bluetooth 5.3. NFC. UWB (Ultra-wideband). USB 3.2 gen1 tipo C. Sistema operativo Android. Bateria de 5000 mAh. GPS, Glonass, Beidou, Galileo, QZSS. Dual SIM. Sensores: acelerometro, barometro, huella dactilar, gyro sensor, geomagnetico, hall sensor, sensor de luz y proximidad. Incluye lapiz.",
+      "price": 2599999,
+      "stock": 10,
+      "model": "GALAXY S24 ULTRA - SM-S928BZKMARO",
+      "quantity": 0,
+      "characteristics": {
+        "screenSize": {
+          "size": 6.8,
+          "unit": "\""
+        },
+        "ram": {
+          "size": 12,
+          "unit": "GB"
+        },
+        "color": "Negro",
+        "country": "Argentina",
+        "dimension": {
+          "height": {
+            "value": 16.23,
+            "unit": "cm"
+          },
+          "width": {
+            "value": 7.9,
+            "unit": "cm"
+          },
+          "depth": {
+            "value": 0.86,
+            "unit": "cm"
+          }
+        },
+        "weight": {
+          "weight": 232,
+          "unit": "gr"
+        }
+      }
+    }
+  ]
+}

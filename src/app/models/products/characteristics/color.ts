@@ -3,5 +3,7 @@ export enum Color {
     BLACK = "Negro",
     WHITE = "Blanco",
     YELLOW = "Amarillo",
-    GREEN = "Verde"
+    GREEN = "Verde",
+    NONE = "Ninguno",
+    //ALL = "Todos"
 }
