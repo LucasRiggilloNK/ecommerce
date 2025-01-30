@@ -507,16 +507,16 @@
       "model": "NKB-T100"
     },
     {
-      "id": "5588",
-      "brand": "BGH",
       "category": "Aire Acondicionado",
-      "urlImage": "https://medias.musimundo.com/medias/00560126-178033-178033-01.png-178033-01.png-size515?context=bWFzdGVyfGltYWdlc3wxNTExMjF8aW1hZ2UvcG5nfGFEUTFMMmcyTnk4eE1EUXdOVE01TkRjeE1EVTFPQzh3TURVMk1ERXlOaTB4Tnpnd016TXRNVGM0TURNelh6QXhMbkJ1WnkweE56Z3dNek5mTURFdWNHNW5YM05wZW1VMU1UVXxkZjZlZjQ5NzcxYTg3MzJjODhkZDhlNDgxYTEzOWIzODIxNmE0MmMzODU2MjE0M2MyM2Q2YjNhNTE3MDUzMzM2",
-      "description": "Aire acondicionado Split frio / calor. Frigorias 5590 fg/h / Calorias 5590 Kcal/h Control remoto. Display LED. Timer programable 24Hs. Funcion sleep. Eficiencia energetica A. Tipo de gas refrigerante R410A. ALTO:UNID INTERIOR 22.6 UNID EXTERIOR 67.3 ANCHO: UNID INTERIOR 108 UNID EXTERIOR 89 PROFUNDIDAD: UNID INTERIOR 33.5 UNID EXTERIOR 34.2 PESO:UNID INTERIOR 15 UNID EXTERIOR 49.9",
-      "price": 1699999.99,
-      "stock": 12,
-      "characteristics": "heatCold,Si,airTypes,Split",
+      "brand": "BGH",
       "model": "BS65WCCR",
-      "quantity": 0
+      "description": "Aire acondicionado Split frio / calor. Frigorias 5590 fg/h / Calorias 5590 Kcal/h Control remoto. Display LED. Timer programable 24Hs. Funcion sleep. Eficiencia energetica A. Tipo de gas refrigerante R410A. ALTO:UNID INTERIOR 22.6 UNID EXTERIOR 67.3 ANCHO: UNID INTERIOR 108 UNID EXTERIOR 89 PROFUNDIDAD: UNID INTERIOR 33.5 UNID EXTERIOR 34.2 PESO:UNID INTERIOR 15 UNID EXTERIOR 49.9",
+      "urlImage": "https://medias.musimundo.com/medias/size515-178033-01.png?context=bWFzdGVyfGltYWdlc3wxNTExNTd8aW1hZ2UvcG5nfGFHUmtMMmhsTkM4eE1EWXpOVFl6TWpBMU1ESXdOaTl6YVhwbE5URTFYekUzT0RBek0xOHdNUzV3Ym1jfGQ3MzE0ZjE1YzQzYzBlNGM0NWE1MmIyMTZmYmI5YmE3NWJiNzY2MThiNDViMWU2ZDFhOGQxZTVmNDdkYTM5NWI",
+      "characteristics": "",
+      "stock": 12,
+      "price": 1699999.99,
+      "quantity": 0,
+      "id": "5588"
     },
     {
       "id": "26a3",

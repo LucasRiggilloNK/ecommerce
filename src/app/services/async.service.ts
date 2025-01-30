@@ -66,6 +66,18 @@ export class AsyncService {
   getProductById(productId: string, urlApi: string): Observable<ProductInterface2> {
     return this.http.get<ProductInterface2>(urlApi + "/" + productId);
   }
+  _deleteProduct(id: string, urlApi: string): Observable<ProductInterface2>{
+    return this.http.delete<ProductInterface2>(urlApi + "/" + id);
+  }
+
+  _updateProduct(productId: string, product: ProductInterface2, urlApi: string): Observable<ProductInterface2>{
+    const httpOptions = {
+      headers: new HttpHeaders({'content-Type': 'application/json'}),
+    };
+    const { id, ...productWithoutId } = product;
+    return this.http.put<ProductInterface2>(urlApi + "/" + productId, productWithoutId, httpOptions);
+  }
+
 
 
 }

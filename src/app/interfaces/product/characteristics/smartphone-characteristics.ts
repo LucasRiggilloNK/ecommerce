@@ -6,5 +6,5 @@ import { ScreenSize } from "./screen-size";
 
 export interface SmartphoneCharacteristics extends GeneralCharacteristics{
     screenSize: ScreenSize;
-      ram: MemorySize;
+    ram: MemorySize;
 }

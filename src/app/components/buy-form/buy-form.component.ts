@@ -20,6 +20,7 @@ import { ProductService } from '../../services/product/product.service';
 import Swal from 'sweetalert2';
 import { CardsService } from '../../services/cards.service';
 import { Location } from '@angular/common';
+import { ProductInterface2 } from '../../interfaces/product/product-interface2';
 
 
 @Component({
@@ -28,7 +29,8 @@ import { Location } from '@angular/common';
   styleUrls: ['./buy-form.component.css'],
 })
 export class BuyFormComponent implements OnInit {
-  cartItems: ProductInterface[] = [];
+  //cartItems: ProductInterface[] = [];
+  cartItems: ProductInterface2[] = [];
   user: User | null;
   subTotalPrice: number;
   userDataForm: FormGroup;

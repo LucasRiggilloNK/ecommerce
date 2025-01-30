@@ -1,11 +1,17 @@
 
 
 <div class="form-container">
+  <button class="buttonBack" (click)="goBack()">
+    <img src="/arrow-left.svg" alt="volver" width="25px" />
+  </button>
+
   <h2 style="color: white; font-size: 30px; text-transform: uppercase">
     Agregar Producto
   </h2>
-  <p *ngIf="id != ''" >ID: {{id}}</p>
+ 
   <form [formGroup]="createProductFormGroup" (ngSubmit)="onSubmit()">
+
+    <img src="{{ createProductFormGroup.get('urlImage')?.value }}" alt="" />
     <p>Categoría</p>
     <select id="category" formControlName="category">
       <option
@@ -49,8 +55,9 @@
     </div>
 
     <p>URL Imágen</p>
-    <input type="text" formControlName="urlImage" class="form-control" />
-    <img src="{{ createProductFormGroup.get('urlImage')?.value }}" alt="" />
+    <!-- <input type="text" formControlName="urlImage" class="form-control" /> -->
+    <!-- <img src="{{ createProductFormGroup.get('urlImage')?.value }}" alt="" /> -->
+    <textarea formControlName="urlImage" class="form-control" rows="10"></textarea>
     <div
       style="color: red"
       *ngIf="
@@ -65,7 +72,8 @@
     </div>
 
     <p>Descripción</p>
-    <input type="text" formControlName="description" class="form-control" />
+    <!-- <input type="text" formControlName="description" class="form-control" /> -->
+    <textarea formControlName="description" class="form-control" rows="15"></textarea>
     <div
       style="color: red"
       *ngIf="
@@ -132,7 +140,8 @@
     <app-air-conditioning-characteristics (characteristicsFormValid)="setCharacteristicsFormValid($event)"
       *ngIf="createProductFormGroup.get('category')?.value == 'Aire Acondicionado'"
     ></app-air-conditioning-characteristics>
-    <app-fan-characteristics (characteristicsFormValid)="setCharacteristicsFormValid($event)" *ngIf="createProductFormGroup.get('category')?.value == 'Ventiladores'"  ></app-fan-characteristics>
+    <app-fan-characteristics (characteristicsFormValid)="setCharacteristicsFormValid($event)" 
+      *ngIf="createProductFormGroup.get('category')?.value == 'Ventiladores'"  ></app-fan-characteristics>
     <app-tv-characteristics (characteristicsFormValid)="setCharacteristicsFormValid($event)"
       *ngIf="createProductFormGroup.get('category')?.value == 'Televisores'"
     ></app-tv-characteristics>
@@ -168,9 +177,20 @@
     ></app-mouse-characteristics>
     <div class="flex">
      
-      <button class="inner-button" type="submit" [disabled]="!((this.createProductFormGroup.valid && this._generalCharacteristicsFormValid && this.characteristicsFormValid) || (this.createProductFormGroup.valid && this._generalCharacteristicsFormValid && this.generalCharacteristicsOnly))">
-        Crear
-      </button>
+      
+        <button  class="inner-button" type="submit" [disabled]="!((this.createProductFormGroup.valid && this._generalCharacteristicsFormValid && this.characteristicsFormValid) || (this.createProductFormGroup.valid && this._generalCharacteristicsFormValid && this.generalCharacteristicsOnly))">
+          Crear
+        </button>
+      
+      <!-- <div *ngIf="id != ''" >
+        <button  class="inner-button" type="button" (click)="productEdit()" [disabled]="!((this.createProductFormGroup.valid && this._generalCharacteristicsFormValid && this.characteristicsFormValid) || (this.createProductFormGroup.valid && this._generalCharacteristicsFormValid && this.generalCharacteristicsOnly))">
+          Modificar
+        </button>
+        <button  class="inner-button" type="button" (click)="productEdit()" [disabled]="!((this.createProductFormGroup.valid && this._generalCharacteristicsFormValid && this.characteristicsFormValid) || (this.createProductFormGroup.valid && this._generalCharacteristicsFormValid && this.generalCharacteristicsOnly))">
+          Eliminar producto
+        </button>
+      </div> -->
+      
       <!-- si todas las validaciones pasaron con exito lo habilita -->
       <button class="inner-button" type="button" (click)="resetForm()">
         Limpiar Campos

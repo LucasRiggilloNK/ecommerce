@@ -75,7 +75,7 @@ export class AirConditioningCharacteristicsComponent implements OnInit {
         }
       });
     }
-////////////////////////
+    ////////////////////////
     
     
     this.productCharacteristicsService.setCharacteristics(
@@ -138,12 +138,6 @@ getProductoToEdit(id: string):Observable<ProductInterface2>{
   setFormGroupToEdit(characteristics: AirConditioningCharacteristics){
     this.characteristicsFormGroup.get("heatCold")?.setValue(characteristics.heatCold);
     this.characteristicsFormGroup.get("airTypes")?.setValue(characteristics.airType);
-
-
-
-    
-
-
 
   }
   

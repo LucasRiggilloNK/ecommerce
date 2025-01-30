@@ -13,7 +13,7 @@ export class AdminGuard implements CanActivate {
     if (typeof window !== 'undefined') {
       const id = sessionStorage.getItem('userId');
       if (id === this.adminID) {
-        console.log(id);
+        console.log("2" + id);
         return true;
       }
     }

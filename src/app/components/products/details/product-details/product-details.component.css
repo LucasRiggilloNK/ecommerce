@@ -124,3 +124,18 @@ button:hover {
 .button-controls {
   max-width: 100px;
 }
+
+.inner-button {
+  min-width: 100px;
+  display: flex;
+  border: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  transition: 0.3s;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  background-color: grey;
+}

@@ -7,6 +7,7 @@ import { DistanceMatrixService } from './distance/distance-matrix.service';
 import { CardsService } from './cards.service';
 import { Card } from '../interfaces/cards/card';
 import { Observable } from 'rxjs';
+import { ProductInterface2 } from '../interfaces/product/product-interface2';
 
 @Injectable({
   providedIn: 'root',
@@ -27,10 +28,13 @@ export class BuyService {
     this.subTotalPrice = 0;
   }
 
-  public getCartItemsToBuy(): Observable<ProductInterface[]> {
+  /* public getCartItemsToBuy(): Observable<ProductInterface[]> {
+    return this.cartService.getCartItems();
+  } */
+
+  public getCartItemsToBuy(): Observable<ProductInterface2[]> {
     return this.cartService.getCartItems();
   }
-
   public getUser(userId: string) {
     return this.registerService.getUserById(userId);
   }

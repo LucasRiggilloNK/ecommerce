@@ -46,4 +46,15 @@
   button {
     border: none;
   }
+  .buttonBack {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    max-width: 50px;
+    display: flex;
+    align-items: flex-start;
+    transition: 0.3s;
+  }
   

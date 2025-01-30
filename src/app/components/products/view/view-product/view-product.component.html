@@ -98,9 +98,7 @@
 
 <form action="" [formGroup]="formGrupSubfilters">
   <div style="display: flex; justify-content: flex-start">
-    <!-- <aside *ngIf="productListFilteredByCategory.length != 0" class="aside"> -->
     <aside *ngIf="_productListFilteredByCategory.length != 0" class="aside">
-      <!-- <div *ngIf="productListFilteredByCategory.length != 0"> -->
         <div *ngIf="_productListFilteredByCategory.length != 0">
         <div class="filters">
           <p>Marca</p>
@@ -157,20 +155,14 @@
           </select>
         </div>
 
-        <!-- Condición para "Televisores" -->
+        <!-- Condición para tecnologia "Televisores" -->
         <div
           class="filters"
           *ngIf="formControlCategory.value === 'Televisores'"
         >
           <p>Tecnología</p>
-          <select id="tvTecnology" formControlName="tvTecnology">
-            <option *ngFor="let type of tvTechnologiesList" [value]="type">
-              {{ type }}
-            </option>
-          </select>
-          <p>Tamaño pantalla</p>
-          <select id="tvInches" formControlName="tvInches">
-            <option *ngFor="let type of tvInchesList" [value]="type">
+          <select id="screenTechnology" formControlName="screenTechnology">
+            <option *ngFor="let type of screenTechnologiesList" [value]="type">
               {{ type }}
             </option>
           </select>
@@ -193,11 +185,11 @@
         <div class="filters" *ngIf="formControlCategory.value === 'Heladeras'">
           <p>Sist. enfriamiento</p>
           <select
-            id="refrigeratorCoolingSystem"
-            formControlName="refrigeratorCoolingSystem"
+            id="coolingSystem"
+            formControlName="coolingSystem"
           >
             <option
-              *ngFor="let type of refrigeratorCoolingSystemList"
+              *ngFor="let type of coolingSystemList"
               [value]="type"
             >
               {{ type }}
@@ -207,10 +199,10 @@
 
         <!-- Condición para "Lavarropas" -->
         <div class="filters" *ngIf="formControlCategory.value === 'Lavarropas'">
-          <p>Tipo</p>
-          <select id="washingCapacity" formControlName="washingCapacity">
-            <option *ngFor="let type of washingCapacityList" [value]="type">
-              {{ type }}
+          <p>Capacidad</p>
+          <select id="weightCapacity" formControlName="weightCapacity">
+            <option *ngFor="let weight of weightCapacityList" [value]="weight">
+              {{ weight }}
             </option>
           </select>
         </div>
@@ -218,78 +210,26 @@
         <!-- Condición para "Microondas" -->
         <div class="filters" *ngIf="formControlCategory.value === 'Microondas'">
           <p>Capacidad</p>
-          <select id="microwaveCapacity" formControlName="microwaveCapacity">
-            <option *ngFor="let type of microwaveCapacityList" [value]="type">
+          <select id="volumeCapacity" formControlName="volumeCapacity">
+            <option *ngFor="let type of volumeCapacityList" [value]="type">
               {{ type }}
             </option>
           </select>
         </div>
 
-        <!-- Condición para "Celulares" -->
-        <div class="filters" *ngIf="formControlCategory.value === 'Celulares'">
-          <p>Tamaño pantalla</p>
-          <select id="smartphoneInches" formControlName="smartphoneInches">
-            <option *ngFor="let type of smartphoneInchesList" [value]="type">
-              {{ type }}
-            </option>
-          </select>
-          <p>RAM</p>
-          <select id="smartphoneRam" formControlName="smartphoneRam">
-            <option *ngFor="let type of smartphoneRamList" [value]="type">
-              {{ type }}
-            </option>
-          </select>
-        </div>
+        
 
         <!-- Condición para "Notebooks" -->
         <div class="filters" *ngIf="formControlCategory.value === 'Notebooks'">
-          <p>Tamaño pantalla</p>
-          <select id="notebookScreenSize" formControlName="notebookScreenSize">
-            <option *ngFor="let type of notebookScreenSizesList" [value]="type">
-              {{ type }}
-            </option>
-          </select>
-          <p>RAM</p>
-          <select id="notebookRam" formControlName="notebookRam">
-            <option *ngFor="let type of notebookRamList" [value]="type">
-              {{ type }}
-            </option>
-          </select>
           <p>Procesador</p>
-          <select id="notebookProcessor" formControlName="notebookProcessor">
-            <option *ngFor="let type of notebookProcessorsList" [value]="type">
-              {{ type }}
-            </option>
-          </select>
-          <p>Tamaño almacenamiento</p>
-          <select
-            id="notebookStorageSize"
-            formControlName="notebookStorageSize"
-          >
-            <option
-              *ngFor="let type of notebookStorageSizesList"
-              [value]="type"
-            >
-              {{ type }}
+          <select id="processor" formControlName="processor">
+            <option *ngFor="let processor of processorsList" [value]="processor">
+              {{ processor }}
             </option>
           </select>
         </div>
 
-        <!-- Condición para "Tablets" -->
-        <div class="filters" *ngIf="formControlCategory.value === 'Tablets'">
-          <p>Tamaño pantalla</p>
-          <select id="tabletScreenSize" formControlName="tabletScreenSize">
-            <option *ngFor="let type of tabletScreenSizesList" [value]="type">
-              {{ type }}
-            </option>
-          </select>
-          <p>RAM</p>
-          <select id="tabletRam" formControlName="tabletRam">
-            <option *ngFor="let type of tabletRamList" [value]="type">
-              {{ type }}
-            </option>
-          </select>
-        </div>
+        
 
         <!-- Condición para "Impresoras" -->
         <div class="filters" *ngIf="formControlCategory.value === 'Impresoras'">
@@ -301,15 +241,16 @@
           </select>
         </div>
 
-        <!-- Condición para "Teclados" -->
-        <div class="filters" *ngIf="formControlCategory.value === 'Teclados'">
+        
+        <!-- Condición conectividad  mouses, teclados y auriculares-->
+        <div class="filters" *ngIf="(formControlCategory.value === 'Mouses' || formControlCategory.value === 'Teclados' || formControlCategory.value === 'Auriculares')">
           <p>Conectividad</p>
           <select
-            id="keyboardConnectivityType"
-            formControlName="keyboardConnectivityType"
+            id="connectivity"
+            formControlName="connectivity"
           >
             <option
-              *ngFor="let type of keyboardConnectivityTypeList"
+              *ngFor="let type of connectivityTypeList"
               [value]="type"
             >
               {{ type }}
@@ -317,28 +258,57 @@
           </select>
         </div>
 
-        <!-- Condición para "Mouses" -->
-        <div class="filters" *ngIf="formControlCategory.value === 'Mouses'">
-          <p>Conectividad</p>
-          <select
-            id="mouseConnectivityType"
-            formControlName="mouseConnectivityType"
-          >
-            <option
-              *ngFor="let type of mouseConnectivityTypeList"
-              [value]="type"
-            >
-              {{ type }}
+        <!-- Condición tamaño pantalla televisores, notebook, smartphone, Tablet -->
+        <div
+        class="filters"
+        *ngIf="formControlCategory.value === 'Televisores' || formControlCategory.value === 'Notebooks' || formControlCategory.value === 'Tablets' || formControlCategory.value === 'Celulares'"
+        >
+        <p>Tamaño pantalla</p>
+        <select id="screenSize" formControlName="screenSize">
+          <option *ngFor="let size of screenSizeList" [value]="size">
+            {{ size }}
+          </option>
+        </select>
+        </div>
+
+        <!-- Condición RAM notebook, smartphone, Tablet -->
+        <div class="filters" *ngIf="formControlCategory.value === 'Notebooks' || formControlCategory.value === 'Tablets' || formControlCategory.value === 'Celulares'">
+          
+          <p>RAM</p>
+          <select id="ram" formControlName="ram">
+            <option *ngFor="let size of ramList" [value]="size">
+              {{ size }} 
             </option>
           </select>
+         
         </div>
+
+        <!-- Condición Tamaño almacenamiento notebook,  Tablet -->
+        <div class="filters" *ngIf="formControlCategory.value === 'Notebooks' || formControlCategory.value === 'Tablets'">
+          
+          <p>Tamaño almacenamiento</p>
+          <select
+            id="storageSize"
+            formControlName="storageSize"
+          >
+            <option
+              *ngFor="let size of storageSizeList"
+              [value]="size"
+            >
+              {{ size }}
+            </option>
+          </select>
+          
+        </div>
+
+
+
+
       </div>
     </aside>
 
-    <!-- <div *ngIf="productListSubFiltered.length != 0"> -->
       <div *ngIf="_productListSubFiltered.length != 0">
       <div class="cards">
-        <!-- <div *ngFor="let product of productListSubFiltered"> -->
           <div *ngFor="let product of _productListSubFiltered">
           <div [routerLink]="['/productDetails', product.id]" class="card">
             <img
@@ -366,7 +336,7 @@
                 <button
                   class="add-cart"
                   type="button"
-                  (click)="deleteProduct()"
+                  (click)="deleteProduct(product.id)" [hidden]="!isAdmin()"
                 >
                   Eliminar
                 </button>
@@ -383,7 +353,6 @@
         </div>
       </div>
     </div>
-    <!-- <div class="no-products" *ngIf="productListSubFiltered.length == 0"> -->
       <div class="no-products" *ngIf="noProducts">
       <div class="alert alert-info" role="alert">
         SIN PRODUCTOS

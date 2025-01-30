@@ -5,7 +5,8 @@ OLED = "OLED",
 AMOLED = "AMOLED", 
 QLED = "QLED", 
 NANOCELL = "NanoCell", 
-FHD = "FHD"
+FHD = "FHD",
+MINI_LED = "Mini LED"
 
 }
 

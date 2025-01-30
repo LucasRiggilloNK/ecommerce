@@ -8,7 +8,7 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
 import { GeneralCharacteristics } from '../../../interfaces/product/characteristics/general-characteristics';
 import Swal from 'sweetalert2';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-create-product',
@@ -17,16 +17,13 @@ import { Observable } from 'rxjs';
 })
 export class CreateProductComponent implements OnInit{
 
-  
-
-
   createProductFormGroup: FormGroup;
   categoryList: string[] = Object.values(Category).sort();
   brandList: string[] = Object.values(Brand).sort();
   selectedCategory: string = '';
 
-  productAdded: boolean = false;
-  productNotAdded: boolean = false;
+  /* productAdded: boolean = false;
+  productNotAdded: boolean = false; */
 
   private product: ProductInterface2;
   
@@ -38,17 +35,14 @@ export class CreateProductComponent implements OnInit{
 
   resetFormGeneralAndCharacteristics: boolean = false;
   
-
-  //// EDIT PRODUCT////
-  id: string = "";
-  productoToEdit: ProductInterface2;
   
 
 
   constructor(private productService: ProductService, private productCharacteristicsService: ProductcCharacteristicsService, private cdr: ChangeDetectorRef, 
-              private route: ActivatedRoute){
+              private route: ActivatedRoute, private location: Location){
 
-    this.product = this.initProductInterface();/// carga un producto vacío
+    //this.product = this.initProductInterface();/// carga un producto vacío
+    this.product = this.productService.initProductInterface();/// carga un producto vacío
     
 
     this.createProductFormGroup = new FormGroup({
@@ -64,9 +58,7 @@ export class CreateProductComponent implements OnInit{
     });
 
 
-    ///// EDIT PRODUCT  /////
-    this.productoToEdit = this.initProductInterface();/// carga un producto vacío para reemplazar y editar
-  }
+ }
 
 
   ngOnInit(): void {
@@ -79,27 +71,6 @@ export class CreateProductComponent implements OnInit{
     let allCategoriesIndex = this.categoryList.indexOf(Category.ALL);
     this.categoryList.splice(allCategoriesIndex, 1);// Elimina todos en la lista para crear
 
-    ////// PRODUCT EDIT ///////
-
-    let id = this.route.snapshot.paramMap.get("id");
-    if(id != null){
-      this.id = id;
-      this.getProductoToEdit(this.id).subscribe({
-        next: response =>{
-          this.productoToEdit = response;
-          this.setFormGroupToEdit(this.productoToEdit);
-          
-
-
-
-        },
-        error: error =>{
-          console.log("Error al buscar producto a editar")
-        }
-      });
-    }
-
-    /////  CREATE PRODUCT  //////
 
     this.createProductFormGroup.get("category")?.valueChanges.subscribe(() =>{
       
@@ -108,22 +79,6 @@ export class CreateProductComponent implements OnInit{
       this.resetFormGeneralAndCharacteristics = false;
     });
 
-
-
-
-
-   
-
-    
-    
-
-
-
-    
-
-
-   
-    
 
   }
 
@@ -134,7 +89,6 @@ export class CreateProductComponent implements OnInit{
 
     this.product = this.createProductFromData(this.createProductFormGroup, 
                                                 this.productCharacteristicsService.getFinalCharacteristics());
-    //console.log(this.product);
    
 
 
@@ -168,7 +122,6 @@ export class CreateProductComponent implements OnInit{
                         },
                         error: error =>{
                           console.log("Error al agregar el producto...");
-                          //console.log(error);
                           Swal.fire({
                             title: "",
                             text: "Error al agregar el producto",
@@ -212,7 +165,7 @@ export class CreateProductComponent implements OnInit{
 
   }
 
-  private initProductInterface(){//crea un producto vacío
+ /*  private initProductInterface(){//crea un producto vacío
 
     let product: ProductInterface2 = {
       
@@ -229,7 +182,7 @@ export class CreateProductComponent implements OnInit{
       
     }
     return product;
-  }
+  } */
 
 
  
@@ -336,32 +289,9 @@ export class CreateProductComponent implements OnInit{
     }
 
 
-
-    ////////////////////////////  PRODUCT EDIT   //////////////////////////////////////////
-
-
-    setFormGroupToEdit(product: ProductInterface2){//Setea el formGroup con los datos del producto a editar
-
-      this.createProductFormGroup.get("category")?.setValue(product.category);
-      this.createProductFormGroup.get("brand")?.setValue(product.brand);
-      this.createProductFormGroup.get("urlImage")?.setValue(product.urlImage);
-      this.createProductFormGroup.get("description")?.setValue(product.description);
-      this.createProductFormGroup.get("price")?.setValue(product.price);
-      this.createProductFormGroup.get("stock")?.setValue(product.stock);
-      this.createProductFormGroup.get("model")?.setValue(product.model);
-
+    goBack(): void {
+      this.location.back();
     }
-
-    getProductoToEdit(id: string):Observable<ProductInterface2>{
-      console.log("ID: " + id);
-      return this.productService._getProductById(id);
-
-
-
-
-
-
-      
-    }
+   
  
 }

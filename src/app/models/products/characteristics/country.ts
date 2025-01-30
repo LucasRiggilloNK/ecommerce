@@ -6,5 +6,9 @@ export enum Country {
     TAIWAN = "Taiwan",
     INDIA = "India",
     MEXICO = "México",
-    COLOMBIA = "Colombia"
+    COLOMBIA = "Colombia",
+    COREA_DEL_SUR = "Corea del Sur",
+    FILIPINAS = "Filipinas",
+    VIETNAM = "Vietnam",
+    BRASIL = "Brasil"
 }

@@ -154,7 +154,6 @@ export class ProductcCharacteristicsService {
     public getHeadphonesTypeList(){
       return this.headphonesTypeList;
     }
-
     public getConnectivityTypeList(){
       return this.connectivityTypeList;
     }
@@ -294,17 +293,8 @@ export class ProductcCharacteristicsService {
       public setCharacteristics(charact: GeneralCharacteristics){//Recibe las caracteriticas desde el componente de caracteriticas particulares y lo setea
         
         this.characteristics = this.initCharacteristics();
-        
-        
-
-        /* charact.color = this.generalCharacteristics.color;
-        charact.country = this.generalCharacteristics.country; */
-        
-        
         this.characteristics = charact;
-        
-        console.log(this.characteristics);
-        
+              
       }
 
 

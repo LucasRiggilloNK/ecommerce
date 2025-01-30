@@ -73,5 +73,9 @@ export enum Brand {
     ANYCUBIC = "Anycubic",
     PANTUM = "Pantum",
     TRAMONTINA = "Tramontina",
-    KANJI = "Kanji"
+    KANJI = "Kanji",
+    CREALITY = "Creality",
+    X_VIEW = "X-View",
+    FEDDERS = "Fedders",
+    JVC = "JVC"
 }

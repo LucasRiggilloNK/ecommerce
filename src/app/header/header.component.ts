@@ -57,13 +57,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.stockSubscription) {
       this.stockSubscription.unsubscribe();
     }
+
+    console.log("DESTROYED");
+    
   }
 
   getAdmin(): boolean {
     if (typeof window !== 'undefined') {
       const id = sessionStorage.getItem('userId');
       if (id === this.adminId) {
-        console.log(id);
+        console.log("1 " + id);
         return true;
       }
     }

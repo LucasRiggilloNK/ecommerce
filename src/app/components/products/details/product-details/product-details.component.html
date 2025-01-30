@@ -1,3 +1,6 @@
+<button class="button" (click)="goBack()">
+  <img src="/arrow-left.svg" alt="volver" width="25px" />
+</button>
 <div>
   <div>
     <img
@@ -15,6 +18,7 @@
     <p>{{ productToVievDetails?.description }}</p>
     <p>Precio: ${{ productToVievDetails?.price | number : "1.0-0" }}</p>
     <div class="controls" [hidden]="!isLoggedIN()">
+      <p>Añadir al carrito</p>
       <button
         class="button-controls"
         (click)="decreaseQuantity(productToVievDetails?.id!)"
@@ -37,8 +41,26 @@
         +
       </button>
     </div>    
-    <button class="button" (click)="goBack()">
-      <img src="/arrow-left.svg" alt="volver" width="25px" />
-    </button>
+    
+
+
+    <div  >
+      <button
+        class="inner-button"
+        type="button"
+        [routerLink]="['/productEdit', productToVievDetails?.id]" [hidden]='!isAdmin()'
+      >
+        Modificar
+      </button>
+
+      <button
+        class="inner-button"
+        type="button"
+        (click)="deleteProduct(productToVievDetails?.id)" [hidden]="!isAdmin()"
+      >
+        Eliminar
+      </button>
+    </div>
+
   </div>
 </div>

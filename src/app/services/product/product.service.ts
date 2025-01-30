@@ -13,6 +13,13 @@ import { ProductcCharacteristicsService } from './product-characteristics.servic
 import { FanType } from '../../models/products/characteristics/fan-type';
 import { AirType } from '../../models/products/characteristics/air-type';
 import { HeatCold } from '../../models/products/characteristics/heat-cold';
+import { Conectivity } from '../../models/products/characteristics/conectivity';
+import { MemoryUnit } from '../../models/products/characteristics/memory-unit';
+import { Processor } from '../../models/products/characteristics/processor';
+import { CoolingSystem } from '../../models/products/characteristics/cooling-system';
+import { PrinterType } from '../../models/products/characteristics/printer-type';
+import { HeadphoneType } from '../../models/products/characteristics/headphone-type';
+import { ScreenTechnology } from '../../models/products/characteristics/screen-technology';
 
 @Injectable({
   providedIn: 'root',
@@ -45,7 +52,11 @@ export class ProductService {
   private heatColdList: string[] = Object.values(HeatCold).sort();
   //fanTypeList: string[] = ['Todos', 'Pie', 'Turbo'];
   private fanTypeList: string[] = Object.values(FanType).sort();
-  tvTechnologiesList: string[] = [
+
+  private processorsList: string[] = Object.values(Processor).sort();
+
+
+  /* tvTechnologiesList: string[] = [
     'Todos',
     'LED',
     'OLED',
@@ -53,8 +64,9 @@ export class ProductService {
     'QLED',
     'NanoCell',
     'FHD',
-  ];
-  tvInchesList: string[] = [
+  ]; */
+  private screenTechnologiesList: string[] = Object.values(ScreenTechnology).sort();
+  /* tvInchesList: string[] = [
     'Todos',
     '32"',
     '43"',
@@ -63,17 +75,19 @@ export class ProductService {
     '70"',
     '75"',
     '98"',
-  ];
-  headphonesTypeList = ['Todos', 'inEar', 'headBand'];
-  refrigeratorCoolingSystemList: string[] = [
+  ]; */
+  /* headphonesTypeList = ['Todos', 'inEar', 'headBand']; */
+  private headphonesTypeList = Object.values(HeadphoneType).sort();
+  /* refrigeratorCoolingSystemList: string[] = [
     'Todos',
     'No frost',
     'Ciclico',
     'Cycle defrost',
     'Mono cooling',
     'Skin condenser',
-  ];
-  washingCapacityList: string[] = [
+  ]; */
+  private coolingSystemList: string[] = Object.values(CoolingSystem).sort();
+  /* washingCapacityList: string[] = [
     'Todos',
     '6 kg',
     '6.5 kg',
@@ -106,9 +120,9 @@ export class ProductService {
     '6.7"',
     '6.8"',
     '7.0"',
-  ];
-  smartPhoneRamList: string[] = ['Todos', '4 GB', '6 GB', '8 GB', '12 GB'];
-  notebookScreenSizesList: string[] = [
+  ]; */
+  //private smartPhoneRamList: string[] = ['Todos', '4 GB', '6 GB', '8 GB', '12 GB'];
+  /* notebookScreenSizesList: string[] = [
     'Todos',
     '13"',
     '14"',
@@ -152,8 +166,8 @@ export class ProductService {
     '16TB',
     '32TB',
     '64TB',
-  ];
-  tabletScreenSizesList: string[] = [
+  ]; */
+  /* tabletScreenSizesList: string[] = [
     'Todos',
     '7"',
     '8"',
@@ -166,8 +180,8 @@ export class ProductService {
     '12.9"',
     '13"',
     '14"',
-  ];
-  tabletRamList: string[] = [
+  ]; */
+  /* tabletRamList: string[] = [
     'Todos',
     '2 GB',
     '3 GB',
@@ -176,20 +190,22 @@ export class ProductService {
     '8 GB',
     '12 GB',
     '16 GB',
-  ];
-  printerTypeList: string[] = ['Todos', 'Color', 'Monocromática', '3D'];
-  keyboardConnectivityTypeList: string[] = [
+  ]; */
+  /* printerTypeList: string[] = ['Todos', 'Color', 'Monocromática', '3D']; */
+  private printerTypeList: string[] = Object.values(PrinterType).sort();
+  /* keyboardConnectivityTypeList: string[] = [
     'Todos',
     'Cable',
     'Wireless',
     'Bluetooth',
-  ];
-  mouseConnectivityTypeList: string[] = [
+  ]; */
+  /* mouseConnectivityTypeList: string[] = [
     'Todos',
     'Cable',
     'Wireless',
     'Bluetooth',
-  ];
+  ]; */
+  private connectivityTypeList: string[] = Object.values(Conectivity).sort();
 
   constructor(private asyncService: AsyncService, private http: HttpClient, private productCharacteristicsService: ProductcCharacteristicsService) {
     this.productInt = {
@@ -255,6 +271,10 @@ export class ProductService {
       keyboardConnectivityType: new FormControl(''),
       mouseConnectivityType: new FormControl(''),
     });
+
+    /* this.airTypesList.push("Todos");
+    this.heatColdList.push("Todos"); */
+    
   }
 
   //////////////////////    GET PRODUCTS     ////////////////////////////////////////////////////
@@ -397,7 +417,7 @@ export class ProductService {
       case 'headphoneType':
         out = this.headphonesTypeList;
         break;
-      case 'microwaveCapacity':
+      /* case 'microwaveCapacity':
         out = this.microwaveCapacityList;
         break;
       case 'notebookScreenSize':
@@ -411,40 +431,43 @@ export class ProductService {
         break;
       case 'notebookStorageSize':
         out = this.notebookStorageSizesList;
-        break;
+        break; */
       case 'printerType':
         out = this.printerTypeList;
         break;
-      case 'refrigeratorCoolingSystem':
-        out = this.refrigeratorCoolingSystemList;
+      case 'coolingSystem':
+        out = this.coolingSystemList;
         break;
-      case 'smartphoneInches':
+      /* case 'smartphoneInches':
         out = this.smartPhoneInchesList;
-        break;
-      case 'smartphoneRam':
+        break; */
+      /* case 'smartphoneRam':
         out = this.smartPhoneRamList;
-        break;
-      case 'tabletScreenSize':
+        break; */
+     /*  case 'tabletScreenSize':
         out = this.tabletScreenSizesList;
         break;
       case 'tabletRam':
         out = this.tabletRamList;
+        break; */
+      case 'screenTechnology':
+        out = this.screenTechnologiesList;
         break;
-      case 'tvTecnology':
-        out = this.tvTechnologiesList;
-        break;
-      case 'tvInches':
+      /* case 'tvInches':
         out = this.tvInchesList;
         break;
       case 'washingCapacity':
         out = this.washingCapacityList;
-        break;
-      case 'keyboardConnectivityType':
+        break; */
+      /* case 'keyboardConnectivityType':
         out = this.keyboardConnectivityTypeList;
+        break; */
+      case 'connectivity':
+        out = this.connectivityTypeList;
         break;
-      case 'mouseConnectivityType':
-        out = this.mouseConnectivityTypeList;
-        break;
+      case 'processor':
+          out = this.processorsList;
+              break;
     }
     return out;
   }
@@ -562,7 +585,6 @@ export class ProductService {
 
 
 
-    ////////////////////////////  AGREGADO  ///////////////////////////////////////////
 
     public initProductInterface(){//crea un producto vacío
   
@@ -581,5 +603,20 @@ export class ProductService {
         
       }
       return product;
+    }
+
+    public _deleteProduct(product: ProductInterface2): Observable<ProductInterface2>{
+      return this.asyncService._deleteProduct(product.id, this._productsApiUrl);
+    }
+
+    public _updateProduct(product: ProductInterface2): Observable<ProductInterface2>{
+      return this.asyncService._updateProduct(product.id, product, this._productsApiUrl);
+    }
+
+
+
+
+    getRAMListFromData(category: string){
+      this.getAllProducts()
     }
 }

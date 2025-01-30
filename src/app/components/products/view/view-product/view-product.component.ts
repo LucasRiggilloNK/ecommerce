@@ -1,30 +1,29 @@
-import {
-  Component,
-  CSP_NONCE,
-  ElementRef,
-  OnDestroy,
-  OnInit,
-  ViewChild,
-  viewChild,
-} from '@angular/core';
-import { ProductInterface } from '../../../../interfaces/product/product-interface';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductService } from '../../../../services/product/product.service';
-import { Product } from '../../../../models/products/product';
 import { Brand } from '../../../../models/products/brands/brand';
 import { Category } from '../../../../models/products/categories/category';
-import { Image } from '../../../../models/products/images/image';
-import { response } from 'express';
-import { error } from 'console';
-import { Observable, Subscription } from 'rxjs';
-import { BADNAME } from 'dns';
+
+import { Subscription } from 'rxjs';
 import { CarritoService } from '../../../../services/cart.service';
 import { AuthService } from '../../../../services/login/auth.service';
-import {
-  AbstractFormGroupDirective,
-  FormControl,
-  FormGroup,
-} from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ProductInterface2 } from '../../../../interfaces/product/product-interface2';
+
+import { AirConditioningCharacteristics } from '../../../../interfaces/product/characteristics/air-conditioning-characteristics';
+import { FanCharacteristics } from '../../../../interfaces/product/characteristics/fan-characteristics';
+import { TvCharacteristics } from '../../../../interfaces/product/characteristics/tv-characteristics';
+import { HeadphoneCharacteristics } from '../../../../interfaces/product/characteristics/headphone-characteristics';
+import { RefrigeratorCharacteristics } from '../../../../interfaces/product/characteristics/refrigerator-characteristics';
+import { WashingCharacteristics } from '../../../../interfaces/product/characteristics/washing-characteristics';
+import { NotebookCharacteristics } from '../../../../interfaces/product/characteristics/notebook-characteristics';
+import { MicrowaveCharacteristics } from '../../../../interfaces/product/characteristics/microwave-characteristics';
+import { SmartphoneCharacteristics } from '../../../../interfaces/product/characteristics/smartphone-characteristics';
+import { TabletCharacteristics } from '../../../../interfaces/product/characteristics/tablet-characteristics';
+import { PrinterCharacteristics } from '../../../../interfaces/product/characteristics/printer-characteristics';
+import { KeyboardCharacteristics } from '../../../../interfaces/product/characteristics/keyboard-characteristics';
+import { MouseCharacteristics } from '../../../../interfaces/product/characteristics/mouse-characteristics';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-product',
@@ -32,860 +31,253 @@ import { ProductInterface2 } from '../../../../interfaces/product/product-interf
   styleUrl: './view-product.component.css',
 })
 export class ViewProductComponent implements OnInit, OnDestroy {
-  productsListInt: ProductInterface[] = [];
-  filteredProducts: ProductInterface[] = [];
-  productInterfaceById: ProductInterface | null = null;
-  subscriptionGetProductInterfaceById: Subscription;
-  formControlById: FormControl;
-  categoryList: string[] = Object.values(Category).sort();
-  brandList: string[] = [];
-  searchTerm: string = '';
-  productListFilteredByCategory: ProductInterface[] = [];
-  productListSubFiltered: ProductInterface[] = [];
   formControlCategory: FormControl;
   formGrupSubfilters: FormGroup;
-
-  
 
   valueChangesSubscription?: Subscription;
   valueChangesformGrupSubfiltersSubscription?: Subscription;
 
-  tvTechnologiesList: string[];
-  tvInchesList: string[];
-  airTypesList: string[];
-  heatColdList: string[];
-  fanTypeList: string[];
-  headphonesTypeList: string[];
-  refrigeratorCoolingSystemList: string[];
-  washingCapacityList: string[];
-  microwaveCapacityList: string[];
-  smartphoneInchesList: string[];
-  smartphoneRamList: string[];
-  notebookScreenSizesList: string[];
-  notebookRamList: string[];
-  notebookProcessorsList: string[];
-  notebookStorageSizesList: string[];
-  tabletScreenSizesList: string[];
-  tabletRamList: string[];
-  printerTypeList: string[];
-  keyboardConnectivityTypeList: string[];
-  mouseConnectivityTypeList: string[];
+  //categoryList: string[] = Object.values(Category).sort();
+  categoryList: string[] = [];
+  brandList: string[] = [];
+  screenTechnologiesList: string[] = [];
+  airTypesList: string[] = [];
+  heatColdList: string[] = [];
+  fanTypeList: string[] = [];
+  headphonesTypeList: string[] = [];
+  coolingSystemList: string[] = [];
+  volumeCapacityList: string[] = [];
+  printerTypeList: string[] = [];
+  connectivityTypeList: string[] = [];
+  screenSizeList: string[] = [];
+  ramList: string[] = [];
+  storageSizeList: string[] = [];
+  processorsList: string[] = [];
+  weightCapacityList: string[] = [];
 
   noProducts = false;
 
+  private all = 'Todos';
 
-  ////////// AGREGADO  /////////////////////
-  totalProductList: ProductInterface2[] = [];
+  private totalProductList: ProductInterface2[] = [];
   _productListFilteredByCategory: ProductInterface2[] = [];
   _productListSubFiltered: ProductInterface2[] = [];
-
-
 
   constructor(
     private productService: ProductService,
     private carritoService: CarritoService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
-    this.subscriptionGetProductInterfaceById = new Subscription();
-    this.formControlById = new FormControl();
-
-    
-
-    this.formControlCategory = new FormControl();
+    this.formControlCategory = new FormControl('');
     this.formGrupSubfilters = new FormGroup({
-      brand: new FormControl(""),
+      brand: new FormControl(''),
       orderByPrice: new FormControl(''),
-      // Aire acondicionado
       airTypes: new FormControl(''),
       heatCold: new FormControl(''),
-      // Ventiladores
       fanType: new FormControl(''),
-      // Televisores
-      tvTecnology: new FormControl(''),
-      tvInches: new FormControl(''),
-      // Auriculares
+      screenTechnology: new FormControl(''),
       headphoneType: new FormControl(''),
-      // Heladeras
-      refrigeratorCoolingSystem: new FormControl(''),
-      // Lavarropas
-      washingCapacity: new FormControl(''),
-      // Notebooks
-      notebookScreenSize: new FormControl(''),
-      notebookRam: new FormControl(''),
-      notebookProcessor: new FormControl(''),
-      notebookStorageSize: new FormControl(''),
-      // Microondas
-      microwaveCapacity: new FormControl(''),
-      // Celulares
-      smartphoneInches: new FormControl(''),
-      smartphoneRam: new FormControl(''),
-      // Tablets
-      tabletScreenSize: new FormControl(''),
-      tabletRam: new FormControl(''),
-      // Impresoras
+      coolingSystem: new FormControl(''),
+      weightCapacity: new FormControl(''),
+      volumeCapacity: new FormControl(''),
       printerType: new FormControl(''),
-      // Teclado, mouse
-      keyboardConnectivityType: new FormControl(''),
-      mouseConnectivityType: new FormControl(''),
+      connectivity: new FormControl(''),
+      screenSize: new FormControl(''),
+      ram: new FormControl(''),
+      storageSize: new FormControl(''),
+      processor: new FormControl(''),
     });
-    this.tvTechnologiesList = this.productService.getCharacteristicsList('tvTecnology');
-    this.tvTechnologiesList.push("Todos");
-    this.tvInchesList = this.productService.getCharacteristicsList('tvInches');
-    this.tvInchesList.push("Todos");
+
+    this.categoryList = Object.values(Category).sort();
+    this.screenTechnologiesList =
+      this.productService.getCharacteristicsList('screenTechnology');
+    this.addAllToList(this.screenTechnologiesList);
+
     this.airTypesList = this.productService.getCharacteristicsList('airTypes');
-    this.airTypesList.push("Todos");
+    this.addAllToList(this.airTypesList);
+
     this.heatColdList = this.productService.getCharacteristicsList('heatCold');
-    this.heatColdList.push("Todos");
+    this.addAllToList(this.heatColdList);
+
     this.fanTypeList = this.productService.getCharacteristicsList('fanType');
-    this.fanTypeList.push("Todos");
+    this.addAllToList(this.fanTypeList);
+
     this.headphonesTypeList =
       this.productService.getCharacteristicsList('headphoneType');
-      this.headphonesTypeList.push("Todos");
-    this.refrigeratorCoolingSystemList =
-      this.productService.getCharacteristicsList('refrigeratorCoolingSystem');
-      this.refrigeratorCoolingSystemList.push("Todos");
-    this.washingCapacityList =
-      this.productService.getCharacteristicsList('washingCapacity');
-      this.washingCapacityList.push("Todos");
-    this.microwaveCapacityList =
-      this.productService.getCharacteristicsList('microwaveCapacity');
-      this.microwaveCapacityList.push("Todos");
-    this.smartphoneInchesList =
-      this.productService.getCharacteristicsList('smartphoneInches');
-      this.smartphoneInchesList.push("Todos");
-    this.smartphoneRamList =
-      this.productService.getCharacteristicsList('smartphoneRam');
-      this.smartphoneRamList.push("Todos");
-    this.notebookScreenSizesList =
-      this.productService.getCharacteristicsList('notebookScreenSize');
-      this.notebookScreenSizesList.push("Todos");
-    this.notebookRamList =
-      this.productService.getCharacteristicsList('notebookRam');
-      this.notebookRamList.push("Todos");
-    this.notebookProcessorsList =
-      this.productService.getCharacteristicsList('notebookProcessor');
-      this.notebookProcessorsList.push("Todos");
-    this.notebookStorageSizesList = this.productService.getCharacteristicsList(
-      'notebookStorageSize'
-    );
-    this.notebookStorageSizesList.push("Todos");
-    this.tabletScreenSizesList =
-      this.productService.getCharacteristicsList('tabletScreenSize');
-      this.tabletScreenSizesList.push("Todos");
-    this.tabletRamList =
-      this.productService.getCharacteristicsList('tabletRam');
-      this.tabletRamList.push("Todos");
+    this.addAllToList(this.headphonesTypeList);
+
+    this.coolingSystemList =
+      this.productService.getCharacteristicsList('coolingSystem');
+    this.addAllToList(this.coolingSystemList);
+
     this.printerTypeList =
       this.productService.getCharacteristicsList('printerType');
-      this.printerTypeList.push("Todos");
-    this.keyboardConnectivityTypeList =
-      this.productService.getCharacteristicsList('keyboardConnectivityType');
-      this.keyboardConnectivityTypeList.push("Todos");
-    this.mouseConnectivityTypeList = this.productService.getCharacteristicsList(
-      'mouseConnectivityType'
-    );
-    this.mouseConnectivityTypeList.push("Todos");
+    this.addAllToList(this.printerTypeList);
+
+    this.connectivityTypeList =
+      this.productService.getCharacteristicsList('connectivity');
+    this.addAllToList(this.connectivityTypeList);
+
+    this.processorsList =
+      this.productService.getCharacteristicsList('processor');
+    this.addAllToList(this.processorsList);
 
     this.categoryList.splice(this.categoryList.indexOf(Category.NONE), 1);
-
   }
 
-  ngOnInit(): void {
-    
-    
-     this.noProducts = false;
-     
+  ngOnInit() {
+    this.noProducts = false; // setea en falso el cartel de sin productos
+
     this.getTotalProduclist().subscribe({
-      next: response =>{
-        this.totalProductList = response;//Obtiene todos los productos y setea la totalProductList
+      next: (response) => {
+        this.totalProductList = response;
 
-        console.log(this.totalProductList);
-        
+        this._productListFilteredByCategory = this.totalProductList; //carga la lista de productos de categoria con todos los productos
 
-        this.valueChangesSubscription =
-        this.formControlCategory.valueChanges.subscribe((form) => {//suscribe a los cambios de valor de la categoría
+        //setea el estado inicial de lo subfiltros
+        this.setInitialSubFiltersOfListProductsInterface(
+          this._productListFilteredByCategory
+        );
 
-          this.noProducts = false;// setea n falso el cartel de sin productos
-          this._productListFilteredByCategory = this.getListFilteredByCategory(this.totalProductList, this.formControlCategory.value);
-
-          console.log(this._productListFilteredByCategory);
-
-          //limpiar todos los subfiltros
-          this.valueChangesformGrupSubfiltersSubscription?.unsubscribe(); //desuscribo para poder cambiar los subfiltros y q no haya problemas de detección
-
-          this.setInitialSubFiltersOfListProductsInterface(
-            this._productListFilteredByCategory
-          ); //setea el estado inicial de lo subfiltros
-          
-          //Asignar lista a mostrar
-          this._productListSubFiltered = this._productListFilteredByCategory; // está sin subfiltros aplicados pero es lo q tiene q mostrar inicialmente
-          
-
-          this.valueChangesformGrupSubfiltersSubscription =
-            this.formGrupSubfilters.valueChanges.subscribe((form) => {
-              this._productListSubFiltered = this.getListFilteredBySubFilters(
-                this._productListFilteredByCategory,
-                this.formGrupSubfilters,
-                this.formControlCategory.value
-              );
-            });
-
-            if(this._productListSubFiltered.length == 0){
-              this.noProducts = true;
-            }
-
-            console.log(this._productListSubFiltered);
-
-
-      });
-
-      this.formControlCategory.setValue(Category.ALL);// setea la categoria en todos para el inicio de página
-      this._productListFilteredByCategory = this.getListFilteredByCategory(this.totalProductList, this.formControlCategory.value); //carga la lista para mostrar en el inicio e página
-
+        //Asignar lista a mostrar
+        this._productListSubFiltered = this._productListFilteredByCategory; // está sin subfiltros aplicados pero es lo q tiene q mostrar inicialmente
       },
-      error: error =>{
-        console.log("Error al obtener todos los productos...")
-      }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      error: (error) => {
+        console.log('Error al obtener todos los productos...' + error);
+      },
     });
 
-
-    
-/*
-
-    this.getProductListInterface();
-    
-
+    //suscribe a los cambios de valor de la categoría
     this.valueChangesSubscription =
       this.formControlCategory.valueChanges.subscribe((form) => {
-        this.getListFilteredByCategory(this.formControlCategory.value);
-      });
+        // setea en falso el cartel de sin productos
+        this.noProducts = false;
 
-      
-       
+        this.getTotalProduclist().subscribe({
+          next: (response) => {
+            this.totalProductList = response;
+
+            //filtra la lista total con la categoria
+            this._productListFilteredByCategory =
+              this.getListFilteredByCategory(
+                this.totalProductList,
+                this.formControlCategory.value
+              );
+
+            //Carga las listas de los subfiltros a partir de los productos de la categoria
+            this.loadSubfiltersLists(
+              this._productListFilteredByCategory,
+              this.formControlCategory.value,
+              this.formGrupSubfilters
+            );
+
+            //setea el estado inicial de lo subfiltros
+            this.setInitialSubFiltersOfListProductsInterface(
+              this._productListFilteredByCategory
+            );
+
+            //Asignar lista a mostrar
+            this._productListSubFiltered = this._productListFilteredByCategory; // está sin subfiltros aplicados pero es lo q tiene q mostrar inicialmente
+          },
+          error: (error) => {
+            console.log('Error al obtener todos los productos...' + error);
+          },
+        });
+      });
 
     this.valueChangesformGrupSubfiltersSubscription =
       this.formGrupSubfilters.valueChanges.subscribe((form) => {
-        this.getListFilteredBySubFilters(
-          this.productListFilteredByCategory,
+        //Obtiene la lista subfiltrada a partir de la lista por categoria seleccionada
+        this._productListSubFiltered = this.getListFilteredBySubFilters(
+          this._productListFilteredByCategory,
           this.formGrupSubfilters,
           this.formControlCategory.value
         );
+        //si la lista está vacia habilita el cartel de sin productos
+        if (this._productListSubFiltered.length == 0) {
+          this.noProducts = true;
+        }
       });
-
-      if(this.productService.getFormControlCategorySesion().value === ""){
-        this.formControlCategory.setValue(Category.ALL);//seteo inicial de muestra de home 
-      }else{
-        
-        this.formControlCategory.setValue(this.productService.getFormControlCategorySesion().value);
-      }
-      
-       */
-
-
   }
   ngOnDestroy(): void {
-   /*  this.valueChangesSubscription?.unsubscribe();
-    this.valueChangesformGrupSubfiltersSubscription?.unsubscribe(); */
+    this.valueChangesSubscription?.unsubscribe();
+    this.valueChangesformGrupSubfiltersSubscription?.unsubscribe();
   }
 
-/////////////////////////////////////// AGREGADO ////////////////////////////////////////////////////////
+  /////////////////////////////////////// AGREGADO ////////////////////////////////////////////////////////
 
-getTotalProduclist(){
-  return this.productService.getAllProducts();
-}
+  getTotalProduclist() {
+    return this.productService.getAllProducts();
+  }
 
+  //filtra la lista total con la categoria
+  getListFilteredByCategory(
+    totalProductList: ProductInterface2[],
+    category: string
+  ) {
+    let filteredProductsList: ProductInterface2[] = totalProductList;
 
-getListFilteredByCategory(totalProductList: ProductInterface2[], category: string) {//Función que se ejecuta al hacer cambios en el select categoría
-  
-  
-  //let filteredProductsListInterface: ProductInterface2[] = [];
-  let filteredProductsList: ProductInterface2[] = totalProductList;
-
-  if (category != Category.NONE) {
     //none está cargado iniciamente en el formControl. Si está así, no muestra nada
-
-      if(category != Category.ALL){
+    if (category != Category.NONE) {
+      //filtro categoria
+      if (category != Category.ALL) {
         filteredProductsList = this.getFilterByCategory(
           filteredProductsList,
           category
-        ); //filtro categoria
-      }
-    
-    //filteredProductsListInterface = this.productListFilteredByCategory; // la iguala a filteredProductsListInterface para poder filtrar desde ahi y no perder el punto de inicio de la categoria
-    
-
-    //limpiar todos los subfiltros
-    /* this.valueChangesformGrupSubfiltersSubscription?.unsubscribe(); //desuscribo para poder cambiar los subfiltros y q no haya problemas de detección
-
-    
-    this.setInitialSubFiltersOfListProductsInterface(
-      filteredProductsListInterface
-    ); //setea el estado inicial de lo subfiltros
-    
-
-    
-
-    //Asignar lista a mostrar
-    this.productListSubFiltered = filteredProductsListInterface; // está sin subfiltros aplicados pero es lo q tiene q mostrar inicialmente
-    if(this.productListSubFiltered.length == 0){
-      this.noProducts = true;
-    }
-
-    this.valueChangesformGrupSubfiltersSubscription =
-      this.formGrupSubfilters.valueChanges.subscribe((form) => {
-        this.getListFilteredBySubFilters(
-          this.productListFilteredByCategory,
-          this.formGrupSubfilters,
-          this.formControlCategory.value
         );
-      });
-
-    if (category == Category.ALL){
-      this.productListSubFiltered = this.productListFilteredByCategory.slice(0, 48);
-      if(this.formGrupSubfilters.get('brand')?.value === 'Todos'){
-        this.productListSubFiltered = this.productListSubFiltered.slice(0, 48);
       }
-      if(this.productListSubFiltered.length == 0){
-        this.noProducts = true;
-      }
-
     }
-    this.productService.setFormControlCategorySesion(this.formControlCategory);//SEtea la categoría aplicada en la sesiónpara reutilizarla al volver atrás en alguna opción
-     */
+    return filteredProductsList;
   }
-  return filteredProductsList;
-}
 
-private getFilterByCategory(
-  productsList: ProductInterface2[],
-  category: string
-): ProductInterface2[] {
   //retorna la lista filtrada por categoria
-  return productsList.filter(
-    (product) => product.category === category
-  );
-}
-
-private setInitialSubFiltersOfListProductsInterface(
-  productsList: ProductInterface2[]
-) {
-  this.brandList = this.obtainBrandListFilteredByCategory(
-    productsList
-  ); // obtiene las marcas de los productos filtrados
-  this.formGrupSubfilters.get('brand')?.setValue("");
-  this.formGrupSubfilters.get('orderByPrice')?.setValue('');
-  this.formGrupSubfilters.get('airTypes')?.setValue('');
-  this.formGrupSubfilters.get('heatCold')?.setValue('');
-  this.formGrupSubfilters.get('fanType')?.setValue('');
-  this.formGrupSubfilters.get('tvTecnology')?.setValue('');
-  this.formGrupSubfilters.get('tvInches')?.setValue('');
-  this.formGrupSubfilters.get('headphoneType')?.setValue('');
-  this.formGrupSubfilters.get('refrigeratorCoolingSystem')?.setValue('');
-  this.formGrupSubfilters.get('washingCapacity')?.setValue('');
-  this.formGrupSubfilters.get('notebookScreenSize')?.setValue('');
-  this.formGrupSubfilters.get('notebookRam')?.setValue('');
-  this.formGrupSubfilters.get('notebookProcessor')?.setValue('');
-  this.formGrupSubfilters.get('notebookStorageSize')?.setValue('');
-  this.formGrupSubfilters.get('microwaveCapacity')?.setValue('');
-  this.formGrupSubfilters.get('smartphoneInches')?.setValue('');
-  this.formGrupSubfilters.get('smartphoneRam')?.setValue('');
-  this.formGrupSubfilters.get('tabletScreenSize')?.setValue('');
-  this.formGrupSubfilters.get('tabletRam')?.setValue('');
-  this.formGrupSubfilters.get('printerType')?.setValue('');
-  this.formGrupSubfilters.get('keyboardConnectivityType')?.setValue('');
-  this.formGrupSubfilters.get('mouseConnectivityType')?.setValue('');
-}
-
-private obtainBrandListFilteredByCategory(productList: ProductInterface2[]) {
-  //devuelve las marcas existentes en la lista por categoria
-  let brandList: string[] = [];
-  brandList.push(Brand.ALL);
-  productList.forEach((product) => {
-    if (!brandList.includes(product.brand)) {
-      brandList.push(product.brand);
-    }
-  });
-  return brandList;
-}
-
-
-private getListFilteredBySubFilters(
-  productListSubFilteredByCategory: ProductInterface2[],
-  formGroup: FormGroup,
-  category: string
-) {
-  let filteredProductsListInterface = productListSubFilteredByCategory;
-  this.noProducts = false;
-
-  //FILTRA POR MARCA
-  if (
-    formGroup.get('brand')?.value != Brand.NONE &&
-    formGroup.get('brand')?.value != Brand.ALL
-  ) {
-    filteredProductsListInterface = this.getListFilteredByBrand(
-      filteredProductsListInterface,
-      formGroup.get('brand')?.value
-    );
-  }
-  
-  /* // MUESTRA MAXIMO 48 PRODUCTOS CUANDO MUESTRA LA LISTA CON TODAS LAS CATEGORIAS 
-  if(category == Category.ALL && formGroup.get('brand')?.value == Brand.ALL){
-    filteredProductsListInterface = productListSubFilteredByCategory.slice(0, 48);
-  } */
-
-  // FILTRA ORDENADO POR PRECIO
-  if (formGroup.get('orderByPrice')?.value != '') {
-    filteredProductsListInterface = this.getListOrderedByPrice(filteredProductsListInterface,formGroup.get('orderByPrice')?.value).slice(0, 48);
-  }
-
- /*  // FILTRA POR CARACTERISTICAS DE CATEGORIA
-  switch (category) {
-    case 'Aire Acondicionado':
-      if (
-        formGroup.get('airTypes')?.value != '' &&
-        formGroup.get('airTypes')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'airTypes',
-          formGroup.get('airTypes')?.value
-        );
-      }
-      if (
-        formGroup.get('heatCold')?.value != '' &&
-        formGroup.get('heatCold')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'heatCold',
-          formGroup.get('heatCold')?.value
-        );
-      }
-      break;
-    case 'Ventiladores':
-      if (
-        formGroup.get('fanType')?.value != '' &&
-        formGroup.get('fanType')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'fanType',
-          formGroup.get('fanType')?.value
-        );
-      }
-      break;
-    case 'Televisores':
-      if (
-        formGroup.get('tvTecnology')?.value != '' &&
-        formGroup.get('tvTecnology')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'tvTecnology',
-          formGroup.get('tvTecnology')?.value
-        );
-      }
-      if (
-        formGroup.get('tvInches')?.value != '' &&
-        formGroup.get('tvInches')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'tvInches',
-          formGroup.get('tvInches')?.value
-        );
-      }
-      break;
-    case 'Auriculares':
-      if (
-        formGroup.get('headphoneType')?.value != '' &&
-        formGroup.get('headphoneType')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'headphoneType',
-          formGroup.get('headphoneType')?.value
-        );
-      }
-      break;
-    case 'Parlantes':
-      break;
-    case 'Heladeras':
-      if (
-        formGroup.get('refrigeratorCoolingSystem')?.value != '' &&
-        formGroup.get('refrigeratorCoolingSystem')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'refrigeratorCoolingSystem',
-          formGroup.get('refrigeratorCoolingSystem')?.value
-        );
-      }
-      break;
-    case 'Lavarropas':
-      if (
-        formGroup.get('washingCapacity')?.value != '' &&
-        formGroup.get('washingCapacity')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'washingCapacity',
-          formGroup.get('washingCapacity')?.value
-        );
-      }
-      break;
-    case 'Aspiradoras':
-      break;
-    case 'Microondas':
-      if (
-        formGroup.get('microwaveCapacity')?.value != '' &&
-        formGroup.get('microwaveCapacity')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'microwaveCapacity',
-          formGroup.get('microwaveCapacity')?.value
-        );
-      }
-      break;
-    case 'Tostadora':
-      break;
-    case 'Celulares':
-      if (
-        formGroup.get('smartphoneInches')?.value != '' &&
-        formGroup.get('smartphoneInches')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'smartphoneInches',
-          formGroup.get('smartphoneInches')?.value
-        );
-      }
-      if (
-        formGroup.get('smartphoneRam')?.value != '' &&
-        formGroup.get('smartphoneRam')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'smartphoneRam',
-          formGroup.get('smartphoneRam')?.value
-        );
-      }
-      break;
-    case 'Notebooks':
-      if (
-        formGroup.get('notebookScreenSize')?.value != '' &&
-        formGroup.get('notebookScreenSize')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'notebookScreenSize',
-          formGroup.get('notebookScreenSize')?.value
-        );
-      }
-      if (
-        formGroup.get('notebookRam')?.value != '' &&
-        formGroup.get('notebookRam')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'notebookRam',
-          formGroup.get('notebookRam')?.value
-        );
-      }
-      if (
-        formGroup.get('notebookProcessor')?.value != '' &&
-        formGroup.get('notebookProcessor')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'notebookProcessor',
-          formGroup.get('notebookProcessor')?.value
-        );
-      }
-      if (
-        formGroup.get('notebookStorageSize')?.value != '' &&
-        formGroup.get('notebookStorageSize')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'notebookStorageSize',
-          formGroup.get('notebookStorageSize')?.value
-        );
-      }
-      break;
-    case 'Tablets':
-      if (
-        formGroup.get('tabletScreenSize')?.value != '' &&
-        formGroup.get('tabletScreenSize')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'tabletScreenSize',
-          formGroup.get('tabletScreenSize')?.value
-        );
-      }
-      if (
-        formGroup.get('tabletRam')?.value != '' &&
-        formGroup.get('tabletRam')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'tabletRam',
-          formGroup.get('tabletRam')?.value
-        );
-      }
-      break;
-    case 'Impresoras':
-      if (
-        formGroup.get('printerType')?.value != '' &&
-        formGroup.get('printerType')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'printerType',
-          formGroup.get('printerType')?.value
-        );
-      }
-      break;
-    case 'Computadoras de Escritorio':
-      break;
-    case 'Teclados':
-      if (
-        formGroup.get('keyboardConnectivityType')?.value != '' &&
-        formGroup.get('keyboardConnectivityType')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'keyboardConnectivityType',
-          formGroup.get('keyboardConnectivityType')?.value
-        );
-      }
-
-      break;
-    case 'Mouses':
-      if (
-        formGroup.get('mouseConnectivityType')?.value != '' &&
-        formGroup.get('mouseConnectivityType')?.value != 'Todos'
-      ) {
-        filteredProductsListInterface = this.getListFilteredCharacteristics(
-          filteredProductsListInterface,
-          'mouseConnectivityType',
-          formGroup.get('mouseConnectivityType')?.value
-        );
-      }
-
-      break;
-  }
- */
-
-  
-  //Asignar lista a mostrar
-  return filteredProductsListInterface;
-  
-
-  
-}
-
-
-private getListFilteredByBrand(// retorna una lista filtrada por marca
-  productsList: ProductInterface2[],
-  brand: string
-): ProductInterface2[] {
-  return productsList.filter((product) => product.brand == brand);
-}
-
-private getListOrderedByPrice(// retorna una lista ordenada por precio
-  productList: ProductInterface2[],
-  mode: 'asc' | 'desc'
-): ProductInterface2[] {
-  productList.sort((a, b) => {
-    return mode === 'asc' ? a.price - b.price : b.price - a.price;
-  });
-  return productList;
-}
-
-private getListFilteredCharacteristics(
-  productsList: ProductInterface2[],
-  typeName: string,
-  typeValue: string
-): ProductInterface2[] {
-  let producList: ProductInterface2[] = [];
-  productsList.forEach((product) => {
-    //HACER
-
-    /* let characteristics =
-      this.obtainCharacteristicsArrayOfStringCharacteristics(
-        productinterface.characteristics
-      );
-    if (characteristics[characteristics.indexOf(typeName) + 1] == typeValue) {
-      console.log('*');
-      console.log(productinterface);
-      producList.push(productinterface);
-    } */
-  });
-  return producList;
-}
-
-
-
-//////////////////////////////////  DELETE   //////////////////////////////////
-deleteProduct(){ // HACER
-
-}
-
-isAdmin(){ // HACER
-  return true
-}
-
-  ////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  /* async getProductListInterface() {
-    this.productsListInt =
-      await this.productService.getAllProductsListInterface();
-  }
-
-  async getProductInterfaceById(id: string) {
-    // CON PROMISE
-    this.productInterfaceById =
-      await this.productService.getProductInterfaceById(id);
-    if (this.productInterfaceById != null) {
-      console.log('Producto encontrado: ');
-      console.log(this.productInterfaceById);
-    } else {
-      console.log('Producto NO encontrado: ');
-    }
-  }
-
-
-  getFilterByCategory(
-    productsListInt: ProductInterface[],
+  private getFilterByCategory(
+    productsList: ProductInterface2[],
     category: string
-  ): ProductInterface[] {
-    //retorna la lista filtrada por categoria
-    return this.productService.filterByCategory(productsListInt, category);
+  ): ProductInterface2[] {
+    return productsList.filter((product) => product.category === category);
   }
 
-  async getAllProductsListInterface(): Promise<ProductInterface[]> {
-    return await this.productService.getAllProductsListInterface();
-  }
-
-  async getListFilteredByCategory(category: string) {//Función que se ejecuta al hacer cambios en el select categoría
-    this.noProducts = false;
-    
-    let filteredProductsListInterface: ProductInterface[] = [];
-
-    if (category != Category.NONE) {
-      //none está cargado iniciamente en el formControl. Si está así, no muestra nada
-
-      //Filtrar por categoria
-      this.productListFilteredByCategory =
-        await this.getAllProductsListInterface(); // carga todos los productos en productListFilteredByCategory
-
-        if(category != Category.ALL){
-          this.productListFilteredByCategory = this.getFilterByCategory(
-            this.productListFilteredByCategory,
-            category
-          ); //filtro categoria
-        }
-      
-      filteredProductsListInterface = this.productListFilteredByCategory; // la iguala a filteredProductsListInterface para poder filtrar desde ahi y no perder el punto de inicio de la categoria
-
-
-      //limpiar todos los subfiltros
-      this.valueChangesformGrupSubfiltersSubscription?.unsubscribe(); //desuscribo para poder cambiar los subfiltros y q no haya problemas de detección
-
-      
-      this.setInitialSubFiltersOfListProductsInterface(
-        filteredProductsListInterface
-      ); //setea el estado inicial de lo subfiltros
-      
-  
-      
-
-      //Asignar lista a mostrar
-      this.productListSubFiltered = filteredProductsListInterface; // está sin subfiltros aplicados pero es lo q tiene q mostrar inicialmente
-      if(this.productListSubFiltered.length == 0){
-        this.noProducts = true;
-      }
-
-      this.valueChangesformGrupSubfiltersSubscription =
-        this.formGrupSubfilters.valueChanges.subscribe((form) => {
-          this.getListFilteredBySubFilters(
-            this.productListFilteredByCategory,
-            this.formGrupSubfilters,
-            this.formControlCategory.value
-          );
-        });
-
-      if (category == Category.ALL){
-        this.productListSubFiltered = this.productListFilteredByCategory.slice(0, 48);
-        if(this.formGrupSubfilters.get('brand')?.value === 'Todos'){
-          this.productListSubFiltered = this.productListSubFiltered.slice(0, 48);
-        }
-        if(this.productListSubFiltered.length == 0){
-          this.noProducts = true;
-        }
-
-      }
-      this.productService.setFormControlCategorySesion(this.formControlCategory);//SEtea la categoría aplicada en la sesiónpara reutilizarla al volver atrás en alguna opción
-      
-    }
-  }
-
+  //setea el estado inicial de lo subfiltros
   private setInitialSubFiltersOfListProductsInterface(
-    productsListInterface: ProductInterface[]
+    productsList: ProductInterface2[]
   ) {
-    this.brandList = this.obtainBrandListFilteredByCategory(
-      productsListInterface
-    ); // obtiene las marcas de los productos filtrados
-    this.formGrupSubfilters.get('brand')?.setValue("");
+    this.brandList = this.obtainBrandListFilteredByCategory(productsList); // obtiene las marcas de los productos filtrados
+
+    this.formGrupSubfilters.get('brand')?.setValue(this.all);
     this.formGrupSubfilters.get('orderByPrice')?.setValue('');
-    this.formGrupSubfilters.get('airTypes')?.setValue('');
-    this.formGrupSubfilters.get('heatCold')?.setValue('');
-    this.formGrupSubfilters.get('fanType')?.setValue('');
-    this.formGrupSubfilters.get('tvTecnology')?.setValue('');
-    this.formGrupSubfilters.get('tvInches')?.setValue('');
-    this.formGrupSubfilters.get('headphoneType')?.setValue('');
-    this.formGrupSubfilters.get('refrigeratorCoolingSystem')?.setValue('');
-    this.formGrupSubfilters.get('washingCapacity')?.setValue('');
-    this.formGrupSubfilters.get('notebookScreenSize')?.setValue('');
-    this.formGrupSubfilters.get('notebookRam')?.setValue('');
-    this.formGrupSubfilters.get('notebookProcessor')?.setValue('');
-    this.formGrupSubfilters.get('notebookStorageSize')?.setValue('');
-    this.formGrupSubfilters.get('microwaveCapacity')?.setValue('');
-    this.formGrupSubfilters.get('smartphoneInches')?.setValue('');
-    this.formGrupSubfilters.get('smartphoneRam')?.setValue('');
-    this.formGrupSubfilters.get('tabletScreenSize')?.setValue('');
-    this.formGrupSubfilters.get('tabletRam')?.setValue('');
-    this.formGrupSubfilters.get('printerType')?.setValue('');
-    this.formGrupSubfilters.get('keyboardConnectivityType')?.setValue('');
-    this.formGrupSubfilters.get('mouseConnectivityType')?.setValue('');
+    this.formGrupSubfilters.get('airTypes')?.setValue(this.all);
+    this.formGrupSubfilters.get('heatCold')?.setValue(this.all);
+    this.formGrupSubfilters.get('fanType')?.setValue(this.all);
+    this.formGrupSubfilters.get('screenTechnology')?.setValue(this.all);
+    this.formGrupSubfilters.get('headphoneType')?.setValue(this.all);
+    this.formGrupSubfilters.get('coolingSystem')?.setValue(this.all);
+    this.formGrupSubfilters.get('volumeCapacity')?.setValue(this.all);
+    this.formGrupSubfilters.get('printerType')?.setValue(this.all);
+    this.formGrupSubfilters.get('connectivity')?.setValue(this.all);
+    this.formGrupSubfilters.get('screenSize')?.setValue(this.all);
+    this.formGrupSubfilters.get('ram')?.setValue(this.all);
+    this.formGrupSubfilters.get('storageSize')?.setValue(this.all);
+    this.formGrupSubfilters.get('processor')?.setValue(this.all);
+    this.formGrupSubfilters.get('weightCapacity')?.setValue(this.all);
   }
 
-  obtainCharacteristicsArrayOfStringCharacteristics(
-    stringCharacteristics: string
-  ): string[] {
-    return stringCharacteristics.split(',');
+  //devuelve las marcas existentes en la lista por categoria
+  private obtainBrandListFilteredByCategory(productList: ProductInterface2[]) {
+    let brandList: string[] = [];
+    brandList.push(Brand.ALL);
+    productList.forEach((product) => {
+      if (!brandList.includes(product.brand)) {
+        brandList.push(product.brand);
+      }
+    });
+    return brandList;
   }
 
-  private async getListFilteredBySubFilters(
-    productListSubFilteredByCategory: ProductInterface[],
+  //Obtiene la lista subfiltrada a partir de la lista por categoria seleccionada
+  private getListFilteredBySubFilters(
+    productListSubFilteredByCategory: ProductInterface2[],
     formGroup: FormGroup,
     category: string
   ) {
@@ -902,376 +294,643 @@ isAdmin(){ // HACER
         formGroup.get('brand')?.value
       );
     }
-    
-    // MUESTRA MAXIMO 48 PRODUCTOS CUANDO MUESTRA LA LISTA CON TODAS LAS CATEGORIAS 
-    if(category == Category.ALL && formGroup.get('brand')?.value == Brand.ALL){
-      filteredProductsListInterface = productListSubFilteredByCategory.slice(0, 48);
-    }
 
     // FILTRA ORDENADO POR PRECIO
     if (formGroup.get('orderByPrice')?.value != '') {
-      filteredProductsListInterface = this.getListOrderedByPrice(filteredProductsListInterface,formGroup.get('orderByPrice')?.value).slice(0, 48);
+      filteredProductsListInterface = this.getListOrderedByPrice(
+        filteredProductsListInterface,
+        formGroup.get('orderByPrice')?.value
+      ).slice(0, 48);
     }
 
-    // FILTRA POR CARACTERISTICAS DE CATEGORIA
+    //filtra a partir de la categoria y las caracteristicas de la categoria, utilizando los forms
+    filteredProductsListInterface = this.getListFilteredCharacteristics(
+      filteredProductsListInterface,
+      category,
+      formGroup
+    );
+
+    //Retorna lista a mostrar
+    return filteredProductsListInterface;
+  }
+
+  //Filtra la lista por marca
+  private getListFilteredByBrand(
+    productsList: ProductInterface2[],
+    brand: string
+  ): ProductInterface2[] {
+    // retorna una lista filtrada por marca
+    return productsList.filter((product) => product.brand == brand);
+  }
+
+  //Ordena la lista por categoria
+  private getListOrderedByPrice(
+    productList: ProductInterface2[],
+    mode: 'asc' | 'desc'
+  ): ProductInterface2[] {
+    // retorna una lista ordenada por precio
+    productList.sort((a, b) => {
+      return mode === 'asc' ? a.price - b.price : b.price - a.price;
+    });
+    return productList;
+  }
+
+  //Retorna la lista filtrada a partir de la categoria y los subfiltros
+  private getListFilteredCharacteristics(
+    productsList: ProductInterface2[],
+    category: string,
+    formGroup: FormGroup
+  ): ProductInterface2[] {
+    let filteredProductList: ProductInterface2[] = productsList;
+
     switch (category) {
-      case 'Aire Acondicionado':
+      case Category.AIRE_ACONDICIONADO:
         if (
           formGroup.get('airTypes')?.value != '' &&
-          formGroup.get('airTypes')?.value != 'Todos'
+          formGroup.get('airTypes')?.value != this.all
         ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'airTypes',
-            formGroup.get('airTypes')?.value
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('airTypes')?.value ===
+              (product.characteristics as AirConditioningCharacteristics)
+                .airType
           );
         }
         if (
           formGroup.get('heatCold')?.value != '' &&
-          formGroup.get('heatCold')?.value != 'Todos'
+          formGroup.get('heatCold')?.value != this.all
         ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'heatCold',
-            formGroup.get('heatCold')?.value
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('heatCold')?.value ===
+              (product.characteristics as AirConditioningCharacteristics)
+                .heatCold
           );
         }
         break;
-      case 'Ventiladores':
+      case Category.AURICULARES:
         if (
-          formGroup.get('fanType')?.value != '' &&
-          formGroup.get('fanType')?.value != 'Todos'
+          formGroup.get('connectivity')?.value != '' &&
+          formGroup.get('connectivity')?.value != this.all
         ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'fanType',
-            formGroup.get('fanType')?.value
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('connectivity')?.value ===
+              (product.characteristics as HeadphoneCharacteristics).conectivity
           );
         }
-        break;
-      case 'Televisores':
-        if (
-          formGroup.get('tvTecnology')?.value != '' &&
-          formGroup.get('tvTecnology')?.value != 'Todos'
-        ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'tvTecnology',
-            formGroup.get('tvTecnology')?.value
-          );
-        }
-        if (
-          formGroup.get('tvInches')?.value != '' &&
-          formGroup.get('tvInches')?.value != 'Todos'
-        ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'tvInches',
-            formGroup.get('tvInches')?.value
-          );
-        }
-        break;
-      case 'Auriculares':
+
         if (
           formGroup.get('headphoneType')?.value != '' &&
-          formGroup.get('headphoneType')?.value != 'Todos'
+          formGroup.get('headphoneType')?.value != this.all
         ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'headphoneType',
-            formGroup.get('headphoneType')?.value
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('headphoneType')?.value ===
+              (product.characteristics as HeadphoneCharacteristics)
+                .headphoneType
+          );
+        }
+
+        break;
+      case Category.MOUSES:
+        if (
+          formGroup.get('connectivity')?.value != '' &&
+          formGroup.get('connectivity')?.value != this.all
+        ) {
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('connectivity')?.value ===
+              (product.characteristics as MouseCharacteristics).conectivity
+          );
+        }
+
+        break;
+      case Category.TECLADOS:
+        if (
+          formGroup.get('connectivity')?.value != '' &&
+          formGroup.get('connectivity')?.value != this.all
+        ) {
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('connectivity')?.value ===
+              (product.characteristics as KeyboardCharacteristics).conectivity
+          );
+        }
+
+        break;
+      case Category.CELULARES:
+        if (
+          formGroup.get('screenSize')?.value != '' &&
+          formGroup.get('screenSize')?.value != this.all
+        ) {
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('screenSize')?.value ===
+              String(
+                (product.characteristics as SmartphoneCharacteristics)
+                  .screenSize.size
+              ) +
+                String(
+                  (product.characteristics as SmartphoneCharacteristics)
+                    .screenSize.unit
+                )
+          );
+        }
+
+        if (
+          formGroup.get('ram')?.value != '' &&
+          formGroup.get('ram')?.value != this.all
+        ) {
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('ram')?.value ===
+              String(
+                (product.characteristics as SmartphoneCharacteristics).ram.size
+              ) +
+                String(
+                  (product.characteristics as SmartphoneCharacteristics).ram
+                    .unit
+                )
           );
         }
         break;
-      case 'Parlantes':
-        break;
-      case 'Heladeras':
+      case Category.HELADERAS:
         if (
-          formGroup.get('refrigeratorCoolingSystem')?.value != '' &&
-          formGroup.get('refrigeratorCoolingSystem')?.value != 'Todos'
+          formGroup.get('coolingSystem')?.value != '' &&
+          formGroup.get('coolingSystem')?.value != this.all
         ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'refrigeratorCoolingSystem',
-            formGroup.get('refrigeratorCoolingSystem')?.value
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('coolingSystem')?.value ===
+              (product.characteristics as RefrigeratorCharacteristics)
+                .coolingSystem
           );
         }
         break;
-      case 'Lavarropas':
-        if (
-          formGroup.get('washingCapacity')?.value != '' &&
-          formGroup.get('washingCapacity')?.value != 'Todos'
-        ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'washingCapacity',
-            formGroup.get('washingCapacity')?.value
-          );
-        }
-        break;
-      case 'Aspiradoras':
-        break;
-      case 'Microondas':
-        if (
-          formGroup.get('microwaveCapacity')?.value != '' &&
-          formGroup.get('microwaveCapacity')?.value != 'Todos'
-        ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'microwaveCapacity',
-            formGroup.get('microwaveCapacity')?.value
-          );
-        }
-        break;
-      case 'Tostadora':
-        break;
-      case 'Celulares':
-        if (
-          formGroup.get('smartphoneInches')?.value != '' &&
-          formGroup.get('smartphoneInches')?.value != 'Todos'
-        ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'smartphoneInches',
-            formGroup.get('smartphoneInches')?.value
-          );
-        }
-        if (
-          formGroup.get('smartphoneRam')?.value != '' &&
-          formGroup.get('smartphoneRam')?.value != 'Todos'
-        ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'smartphoneRam',
-            formGroup.get('smartphoneRam')?.value
-          );
-        }
-        break;
-      case 'Notebooks':
-        if (
-          formGroup.get('notebookScreenSize')?.value != '' &&
-          formGroup.get('notebookScreenSize')?.value != 'Todos'
-        ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'notebookScreenSize',
-            formGroup.get('notebookScreenSize')?.value
-          );
-        }
-        if (
-          formGroup.get('notebookRam')?.value != '' &&
-          formGroup.get('notebookRam')?.value != 'Todos'
-        ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'notebookRam',
-            formGroup.get('notebookRam')?.value
-          );
-        }
-        if (
-          formGroup.get('notebookProcessor')?.value != '' &&
-          formGroup.get('notebookProcessor')?.value != 'Todos'
-        ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'notebookProcessor',
-            formGroup.get('notebookProcessor')?.value
-          );
-        }
-        if (
-          formGroup.get('notebookStorageSize')?.value != '' &&
-          formGroup.get('notebookStorageSize')?.value != 'Todos'
-        ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'notebookStorageSize',
-            formGroup.get('notebookStorageSize')?.value
-          );
-        }
-        break;
-      case 'Tablets':
-        if (
-          formGroup.get('tabletScreenSize')?.value != '' &&
-          formGroup.get('tabletScreenSize')?.value != 'Todos'
-        ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'tabletScreenSize',
-            formGroup.get('tabletScreenSize')?.value
-          );
-        }
-        if (
-          formGroup.get('tabletRam')?.value != '' &&
-          formGroup.get('tabletRam')?.value != 'Todos'
-        ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'tabletRam',
-            formGroup.get('tabletRam')?.value
-          );
-        }
-        break;
-      case 'Impresoras':
+      case Category.IMPRESORAS:
         if (
           formGroup.get('printerType')?.value != '' &&
-          formGroup.get('printerType')?.value != 'Todos'
+          formGroup.get('printerType')?.value != this.all
         ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'printerType',
-            formGroup.get('printerType')?.value
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('printerType')?.value ===
+              (product.characteristics as PrinterCharacteristics).printerType
           );
         }
         break;
-      case 'Computadoras de Escritorio':
-        break;
-      case 'Teclados':
+      case Category.LAVARROPAS:
         if (
-          formGroup.get('keyboardConnectivityType')?.value != '' &&
-          formGroup.get('keyboardConnectivityType')?.value != 'Todos'
+          formGroup.get('weightCapacity')?.value != '' &&
+          formGroup.get('weightCapacity')?.value != this.all
         ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'keyboardConnectivityType',
-            formGroup.get('keyboardConnectivityType')?.value
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('weightCapacity')?.value ===
+              String(
+                (product.characteristics as WashingCharacteristics)
+                  .weightCapacity.weight
+              ) +
+                String(
+                  (product.characteristics as WashingCharacteristics)
+                    .weightCapacity.unit
+                )
+          );
+        }
+        break;
+      case Category.MICROONDAS:
+        if (
+          formGroup.get('volumeCapacity')?.value != '' &&
+          formGroup.get('volumeCapacity')?.value != this.all
+        ) {
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('volumeCapacity')?.value ===
+              String(
+                (product.characteristics as MicrowaveCharacteristics).capacity
+                  .value
+              ) +
+                String(
+                  (product.characteristics as MicrowaveCharacteristics).capacity
+                    .unit
+                )
+          );
+        }
+        break;
+
+      case Category.NOTEBOOKS:
+        if (
+          formGroup.get('screenSize')?.value != '' &&
+          formGroup.get('screenSize')?.value != this.all
+        ) {
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('screenSize')?.value ===
+              String(
+                (product.characteristics as NotebookCharacteristics).screenSize
+                  .size
+              ) +
+                String(
+                  (product.characteristics as NotebookCharacteristics)
+                    .screenSize.unit
+                )
+          );
+        }
+
+        if (
+          formGroup.get('ram')?.value != '' &&
+          formGroup.get('ram')?.value != this.all
+        ) {
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('ram')?.value ===
+              String(
+                (product.characteristics as NotebookCharacteristics).ram.size
+              ) +
+                String(
+                  (product.characteristics as NotebookCharacteristics).ram.unit
+                )
+          );
+        }
+
+        if (
+          formGroup.get('storageSize')?.value != '' &&
+          formGroup.get('storageSize')?.value != this.all
+        ) {
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('storageSize')?.value ===
+              String(
+                (product.characteristics as NotebookCharacteristics).storageSize
+                  .size
+              ) +
+                String(
+                  (product.characteristics as NotebookCharacteristics)
+                    .storageSize.unit
+                )
+          );
+        }
+        if (
+          formGroup.get('processor')?.value != '' &&
+          formGroup.get('processor')?.value != this.all
+        ) {
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('processor')?.value ===
+              (product.characteristics as NotebookCharacteristics).processor
+          );
+        }
+        break;
+
+      case Category.TABLETS:
+        if (
+          formGroup.get('screenSize')?.value != '' &&
+          formGroup.get('screenSize')?.value != this.all
+        ) {
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('screenSize')?.value ===
+              String(
+                (product.characteristics as NotebookCharacteristics).screenSize
+                  .size
+              ) +
+                String(
+                  (product.characteristics as NotebookCharacteristics)
+                    .screenSize.unit
+                )
+          );
+        }
+
+        if (
+          formGroup.get('ram')?.value != '' &&
+          formGroup.get('ram')?.value != this.all
+        ) {
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('ram')?.value ===
+              String(
+                (product.characteristics as NotebookCharacteristics).ram.size
+              ) +
+                String(
+                  (product.characteristics as NotebookCharacteristics).ram.unit
+                )
+          );
+        }
+
+        if (
+          formGroup.get('storageSize')?.value != '' &&
+          formGroup.get('storageSize')?.value != this.all
+        ) {
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('storageSize')?.value ===
+              String(
+                (product.characteristics as NotebookCharacteristics).storageSize
+                  .size
+              ) +
+                String(
+                  (product.characteristics as NotebookCharacteristics)
+                    .storageSize.unit
+                )
           );
         }
 
         break;
-      case 'Mouses':
+
+      case Category.TELEVISORES:
         if (
-          formGroup.get('mouseConnectivityType')?.value != '' &&
-          formGroup.get('mouseConnectivityType')?.value != 'Todos'
+          formGroup.get('screenSize')?.value != '' &&
+          formGroup.get('screenSize')?.value != this.all
         ) {
-          filteredProductsListInterface = this.getListFilteredCharacteristics(
-            filteredProductsListInterface,
-            'mouseConnectivityType',
-            formGroup.get('mouseConnectivityType')?.value
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('screenSize')?.value ===
+              String(
+                (product.characteristics as TvCharacteristics).screenSize.size
+              ) +
+                String(
+                  (product.characteristics as TvCharacteristics).screenSize.unit
+                )
           );
         }
 
+        if (
+          formGroup.get('screenTechnology')?.value != '' &&
+          formGroup.get('screenTechnology')?.value != this.all
+        ) {
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('screenTechnology')?.value ===
+              (product.characteristics as TvCharacteristics).screenTechnology
+          );
+        }
+        break;
+      case Category.VENTILADOR:
+        if (
+          formGroup.get('fanType')?.value != '' &&
+          formGroup.get('fanType')?.value != this.all
+        ) {
+          filteredProductList = filteredProductList.filter(
+            (product) =>
+              formGroup.get('fanType')?.value ===
+              (product.characteristics as FanCharacteristics).fanType
+          );
+        }
         break;
     }
 
+    return filteredProductList;
+  }
 
+  //////////////////////////////////  DELETE   //////////////////////////////////
+  deleteProduct(id: string) {
+    this.productService._getProductById(id).subscribe({
+      next: (response) => {
+        let product = response;
+        this.deleteAlert(product)
+          .then((result) => {
+            if (result.isConfirmed) {
+              if (product != null) {
+                this.productService._deleteProduct(product).subscribe({
+                  next: (response) => {
+                    Swal.fire({
+                      title: '',
+                      text: 'Eliminado con éxito',
+                      icon: 'success',
+                    });
+                    this.router.navigateByUrl('/home');
+                  },
+                  error: (error) => {
+                    Swal.fire({
+                      title: '',
+                      text: 'No se pudo eliminar',
+                      icon: 'error',
+                    });
+                  },
+                });
+              }
+            }
+          })
+          .catch((error) => {
+            alert('Error al intentar eliminar producto');
+          });
+      },
+      error: (error) => {
+        alert('Error al obtener producto por ID');
+      },
+    });
+  }
+
+  deleteAlert(product: ProductInterface2 | null) {
+    const message = `
+                      <strong>ID:</strong> ${product?.id}<br>
+                      <strong>Categoría:</strong> ${product?.category}<br>
+                      <strong>Marca:</strong> ${product?.brand}<br>
+                      <strong>Modelo:</strong> ${product?.model}<br>
+                      <strong>Descripción:</strong> ${product?.description}<br>
+                      <strong>Precio:</strong> $${product?.price}<br>
+                      <strong>Stock:</strong> ${product?.stock}`;
+
+    return Swal.fire({
+      title: 'Eliminar producto?',
+      html: message,
+      width: 1000,
+      imageUrl: product?.urlImage,
+      imageHeight: 200,
+      imageAlt: 'A tall image',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+    });
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin()
     
-    //Asignar lista a mostrar
-    this.productListSubFiltered = filteredProductsListInterface;
-    if(this.productListSubFiltered.length == 0){
-      this.noProducts = true;
+  }
+
+  //Carga las listas de los subfiltros a partir de los productos de la categoria
+  private loadSubfiltersLists(
+    productList: ProductInterface2[],
+    category: string,
+    formGroup: FormGroup
+  ) {
+    // carga las listar de subfiltrado a partir de las litas de datos
+    this.screenSizeList = [];
+    this.ramList = [];
+    this.storageSizeList = [];
+    this.weightCapacityList = [];
+    this.volumeCapacityList = [];
+
+    this.screenSizeList.push(this.all);
+    this.ramList.push(this.all);
+    this.storageSizeList.push(this.all);
+    this.weightCapacityList.push(this.all);
+    this.volumeCapacityList.push(this.all);
+
+    switch (category) {
+      case Category.NOTEBOOKS:
+        productList.forEach((product) => {
+          let screenSize = String(
+            (product.characteristics as NotebookCharacteristics).screenSize.size
+          );
+          let screenUnit = String(
+            (product.characteristics as NotebookCharacteristics).screenSize.unit
+          );
+
+          let ramSize = String(
+            (product.characteristics as NotebookCharacteristics).ram.size
+          );
+          let ramUnit = String(
+            (product.characteristics as NotebookCharacteristics).ram.unit
+          );
+
+          let storageSize = String(
+            (product.characteristics as NotebookCharacteristics).storageSize
+              .size
+          );
+          let storageUnit = String(
+            (product.characteristics as NotebookCharacteristics).storageSize
+              .unit
+          );
+
+          if (!this.screenSizeList.includes(screenSize + screenUnit)) {
+            this.screenSizeList.push(screenSize + screenUnit);
+          }
+          if (!this.ramList.includes(ramSize + ramUnit)) {
+            this.ramList.push(ramSize + ramUnit);
+          }
+
+          if (!this.storageSizeList.includes(storageSize + storageUnit)) {
+            this.storageSizeList.push(storageSize + storageUnit);
+          }
+        });
+
+        break;
+      case Category.TABLETS:
+        productList.forEach((product) => {
+          let screenSize = String(
+            (product.characteristics as TabletCharacteristics).screenSize.size
+          );
+          let screenUnit = String(
+            (product.characteristics as TabletCharacteristics).screenSize.unit
+          );
+
+          let ramSize = String(
+            (product.characteristics as TabletCharacteristics).ram.size
+          );
+          let ramUnit = String(
+            (product.characteristics as TabletCharacteristics).ram.unit
+          );
+
+          let storageSize = String(
+            (product.characteristics as TabletCharacteristics).storageSize.size
+          );
+          let storageUnit = String(
+            (product.characteristics as TabletCharacteristics).storageSize.unit
+          );
+
+          if (!this.screenSizeList.includes(screenSize + screenUnit)) {
+            this.screenSizeList.push(screenSize + screenUnit);
+          }
+          if (!this.ramList.includes(ramSize + ramUnit)) {
+            this.ramList.push(ramSize + ramUnit);
+          }
+
+          if (!this.storageSizeList.includes(storageSize + storageUnit)) {
+            this.storageSizeList.push(storageSize + storageUnit);
+          }
+        });
+
+        break;
+      case Category.CELULARES:
+        productList.forEach((product) => {
+          let screenSize = String(
+            (product.characteristics as SmartphoneCharacteristics).screenSize
+              .size
+          );
+          let screenUnit = String(
+            (product.characteristics as SmartphoneCharacteristics).screenSize
+              .unit
+          );
+
+          let ramSize = String(
+            (product.characteristics as SmartphoneCharacteristics).ram.size
+          );
+          let ramUnit = String(
+            (product.characteristics as SmartphoneCharacteristics).ram.unit
+          );
+
+          if (!this.screenSizeList.includes(screenSize + screenUnit)) {
+            this.screenSizeList.push(screenSize + screenUnit);
+          }
+          if (!this.ramList.includes(ramSize + ramUnit)) {
+            this.ramList.push(ramSize + ramUnit);
+          }
+        });
+
+        break;
+
+      case Category.TELEVISORES:
+        productList.forEach((product) => {
+          let screenSize = String(
+            (product.characteristics as SmartphoneCharacteristics).screenSize
+              .size
+          );
+          let screenUnit = String(
+            (product.characteristics as SmartphoneCharacteristics).screenSize
+              .unit
+          );
+
+          if (!this.screenSizeList.includes(screenSize + screenUnit)) {
+            this.screenSizeList.push(screenSize + screenUnit);
+          }
+        });
+
+        break;
+
+      case Category.LAVARROPAS:
+        productList.forEach((product) => {
+          let capacity = String(
+            (product.characteristics as WashingCharacteristics).weightCapacity
+              .weight
+          );
+          let capacityUnit = String(
+            (product.characteristics as WashingCharacteristics).weightCapacity
+              .unit
+          );
+
+          if (!this.weightCapacityList.includes(capacity + capacityUnit)) {
+            this.weightCapacityList.push(capacity + capacityUnit);
+          }
+        });
+
+        break;
+      case Category.MICROONDAS:
+        productList.forEach((product) => {
+          let capacity = String(
+            (product.characteristics as MicrowaveCharacteristics).capacity.value
+          );
+          let capacityUnit = String(
+            (product.characteristics as MicrowaveCharacteristics).capacity.unit
+          );
+
+          if (!this.volumeCapacityList.includes(capacity + capacityUnit)) {
+            this.volumeCapacityList.push(capacity + capacityUnit);
+          }
+        });
+
+        break;
     }
-
-    
   }
 
-  private getListFilteredByBrand(
-    productsListInterface: ProductInterface[],
-    brand: string
-  ): ProductInterface[] {
-    return productsListInterface.filter((product) => product.brand == brand);
+  //agrega Todos a la lista por parametro
+  private addAllToList(list: string[]) {
+    if (!list.includes(this.all)) {
+      list.push(this.all);
+    }
   }
-
-  private getListOrderedByPrice(
-    productListInterface: ProductInterface[],
-    mode: 'asc' | 'desc'
-  ): ProductInterface[] {
-    productListInterface.sort((a, b) => {
-      return mode === 'asc' ? a.price - b.price : b.price - a.price;
-    });
-    return productListInterface;
-  }
-
-  getListFilteredCharacteristics(
-    productsListInterface: ProductInterface[],
-    typeName: string,
-    typeValue: string
-  ): ProductInterface[] {
-    let producList: ProductInterface[] = [];
-    productsListInterface.forEach((productinterface) => {
-      let characteristics =
-        this.obtainCharacteristicsArrayOfStringCharacteristics(
-          productinterface.characteristics
-        );
-      if (characteristics[characteristics.indexOf(typeName) + 1] == typeValue) {
-        console.log('*');
-        console.log(productinterface);
-        producList.push(productinterface);
-      }
-    });
-    return producList;
-  }
-
-  addToCart(product: ProductInterface): void {
-    this.carritoService.addToCart(product);
-  }
-
-  decreaseQuantity(productId: string) {
-    this.carritoService.decreaseQuantity(productId);
-  }
-
-  filterProducts() {
-    const term = this.searchTerm.toLowerCase();
-    this.filteredProducts = this.productListSubFiltered.filter(
-      (product) =>
-        product.model.toLowerCase().includes(term) ||
-        product.brand.toLowerCase().includes(term) ||
-        product.category.toLowerCase().includes(term)
-    );
-  }
-
-  obtainBrandListFilteredByCategory(productListInterface: ProductInterface[]) {
-    //devuelve las marcas existentes en la lista por categoria
-    let brandList: string[] = [];
-    brandList.push(Brand.ALL);
-    productListInterface.forEach((product) => {
-      if (!brandList.includes(product.brand)) {
-        brandList.push(product.brand);
-      }
-    });
-    return brandList;
-  }
-
-  //////////////////////////////////////////   nav   /////////////////////////////////////////////////////
-  getListFiltersByButtonNav(category: string) {
-    let filteredProductsListInterface = [];
-
-    this.productListFilteredByCategory = this.getFilterByCategory(
-      this.productListFilteredByCategory,
-      category
-    ); //filtro categoria
-    filteredProductsListInterface = this.productListFilteredByCategory; // la iguala a filteredProductsListInterface para poder filtrar desde ahi y no perder el punto de inicio de la categoria
-
-    //limpiar todos los subfiltros
-    this.valueChangesformGrupSubfiltersSubscription?.unsubscribe(); //desuscribo para poder cambiar los subfiltros y q no haya problemas de detección
-
-    this.setInitialSubFiltersOfListProductsInterface(
-      filteredProductsListInterface
-    ); //setea el estado inicial de lo subfiltros
-
-    //Asignar lista a mostrar
-    this.productListSubFiltered = filteredProductsListInterface; // está sin subfiltros aplicados pero es lo q tiene q mostrar inicialmente
-
-    this.valueChangesformGrupSubfiltersSubscription =
-      this.formGrupSubfilters.valueChanges.subscribe((form) => {
-        this.getListFilteredBySubFilters(
-          this.productListFilteredByCategory,
-          this.formGrupSubfilters,
-          this.formControlCategory.value
-        );
-      });
-
-    console.log(this.productListSubFiltered);
-  }
-  
-  isLoggedIN(): boolean {
-    return this.authService.isLoggedIn();
-  }
-
-  isAdmin(){
-    return this.authService.isAdmin();
-  }
-
-  deleteProduct(){
-    alert("Generar metodo para eliminar");
-  } */
 }

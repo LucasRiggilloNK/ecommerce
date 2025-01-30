@@ -30,7 +30,7 @@ export class GeneralChracteristicsComponent implements OnInit, OnChanges {
   @Output()
   generalCharacteristicsFormValid = new EventEmitter<boolean>();
   @Input()
-  resetFormGroup: boolean = false; // input desde createComponent para reiniciar el formulario
+  resetFormGroup: boolean = false; // input para reiniciar el formulario
   
 
   generalCharacteristicsFormGroup: FormGroup;
@@ -80,7 +80,7 @@ export class GeneralChracteristicsComponent implements OnInit, OnChanges {
     let id = this.route.snapshot.paramMap.get("id");
     if(id != null){
       this.id = id;
-      this.getProductoToEdit(id).subscribe({//busdcar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
+      this.getProductoToEdit(id).subscribe({//buscar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
         next: response =>{
           this.productoToEdit = response;
           this.setFormGroupToEdit(this.productoToEdit);
@@ -162,8 +162,7 @@ export class GeneralChracteristicsComponent implements OnInit, OnChanges {
       this.generalCharacteristicsFormGroup.get("depth")?.setValue(product.characteristics.dimension.depth.value);
       this.generalCharacteristicsFormGroup.get("weight")?.setValue(product.characteristics.weight.weight);
       this.generalCharacteristicsFormGroup.get("weightUnit")?.setValue(product.characteristics.weight.unit);
-      console.log(" FORMGROUP TO EDIT")
-      console.log(product);
+      
   
     
     
@@ -180,12 +179,6 @@ export class GeneralChracteristicsComponent implements OnInit, OnChanges {
     console.log("ID: " + id);
     return this.productService._getProductById(id);
 
-
-
-
-
-
-    
   }
 
 
