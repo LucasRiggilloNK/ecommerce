@@ -10,6 +10,8 @@ import { ChangeDetectorRef } from '@angular/core';
 import { CustomValidators } from '../../common/custom-validators';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product/product.service';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-edit-profile',
   templateUrl: './edit-profile.component.html',
@@ -37,6 +39,7 @@ export class EditProfileComponent implements OnInit {
   showCurrentPassword: boolean = false;
   showNewPassword: boolean = false;
   showConfirmPassword: boolean = false;
+  selectedPurchaseId: number | null = null;
 
   constructor(
     private authService: AuthService,
@@ -234,23 +237,67 @@ export class EditProfileComponent implements OnInit {
 
   async loadProductDetails(purchase: Purchase) {
     if (!purchase.productosCargados) {
-      purchase.productosCargados = [];  
+      purchase.productosCargados = [];
   
-      for (const product of purchase.productos) {
-        try {
-          const productData = await this.productService.getProductById(product.id);
-          if (productData) {
-            purchase.productosCargados.push({
-              cantidad: product.quantity,
-              precio: product.price,
-              brand: product.brand,
-            });
-          }
-        } catch (error) {
-          console.error(`Error al obtener datos del producto con ID ${product.id}`, error);
-        }
+      const productRequests = purchase.productos.map(product =>
+        this.productService.getProductById(product.id).toPromise().catch(() => ({
+          cantidad: product.quantity,
+          precio: product.price,
+          brand: 'Producto no disponible',
+        }))
+      );
+  
+      try {
+        const productsData = await Promise.all(productRequests);
+        purchase.productosCargados = productsData.map((product, index) => ({
+          cantidad: purchase.productos[index].quantity,
+          precio: purchase.productos[index].price,
+          brand: product?.brand || 'Producto no disponible',
+        }));
+      } catch (error) {
+        console.error('Error al cargar los productos:', error);
       }
     }
+  }
+  
+  async togglePurchaseDetails(purchase: Purchase) {
+    console.log('Mostrando detalles para la compra:', purchase); 
+  
+    const detallesProductos = purchase.productos
+      .map(
+        (producto) => `
+          <div style="margin-bottom: 15px;">
+            <strong>Marca:</strong> ${producto.brand} <br>
+            <strong>Precio:</strong> $${producto.price.toFixed(2)} <br>
+            <strong>Cantidad:</strong> ${producto.quantity} <br>
+          </div>
+        `
+      )
+      .join('');
+  
+    const contenidoHtml = `
+      <strong>Productos comprados:</strong>
+      <div style="max-height: 300px; overflow-y: auto; margin-top: 10px;">
+        ${detallesProductos}
+      </div>
+      <br>
+      <strong>Total:</strong> $${purchase.total.toFixed(2)} <br>
+      <strong>Fecha de la compra:</strong> ${new Date(purchase.fecha).toLocaleString()}
+    `;
+  
+    await Swal.fire({
+      title: 'Detalles de la compra',
+      html: contenidoHtml,
+      icon: 'info',
+      showCancelButton: false,
+      confirmButtonText: 'Cerrar',
+      backdrop: true,
+      customClass: {
+        popup: 'custom-swal-dark',
+        title: 'custom-title-dark',
+        confirmButton: 'custom-confirm-button-dark',
+      },
+    });
   }
   
 }

@@ -341,75 +341,71 @@ export class BuyFormComponent implements OnInit {
     )
     .join('');
   
-  Swal.fire({
-    title: 'Resumen de la compra',
-    html: `
-      <strong>Productos:</strong>
-      <div style="max-height: 300px; overflow-y: auto; margin-top: 10px;">${detallesProductos}</div>
-      <br>
-      <strong>Total:</strong> $${total.toFixed(2)}<br>
-      <strong>Domicilio de envío:</strong> ${domicilio}<br>
-      <strong>Tarjeta:</strong> ${tarjetaMascara}
-    `,
-    icon: 'info',
-    showCancelButton: true,
-    confirmButtonText: 'Confirmar compra',
-    cancelButtonText: 'Cancelar',
-    backdrop: true,
-    customClass: {
-      popup: 'custom-swal-dark',
-      title: 'custom-title-dark',
-      confirmButton: 'custom-confirm-button-dark',
-      cancelButton: 'custom-cancel-button-dark',
-    },
-  }).then((result) => {
-    if (result.isConfirmed) {
-      const nuevaCompra: Purchase = {
-        clienteId: this.authService.getUserId(),
-        productos: productos.map(({ id, quantity, price, brand }) => ({
-          id,
-          quantity,
-          price,   // Incluir el precio aquí
-          brand,   // Mantener la marca
-        })),
-        fecha: new Date(),
-        total,
-      };
-      
-      this.purchaseService.agregarCompra(nuevaCompra).subscribe(
-        (response) => {
-          console.log('Compra registrada con éxito:', response);
-  
-          productos.forEach((producto) => {
-            this.productService.updateProductStock(
-              producto.id,
-              producto.quantity
-            );
-          });
-  
-          localStorage.removeItem('cart');
-          this.router.navigate(['/']);
-          setTimeout(() => {
-            window.location.reload();
-          }, 100); 
-          
-        },
-        (error) => {
-          console.error('Error al registrar la compra:', error);
-        }
-      );
-    } else {
-      Swal.fire({
-        title: 'Compra cancelada',
-        text: 'No se realizaron cambios.',
-        icon: 'info',
-        customClass: {
-          popup: 'custom-swal-dark',
-        },
-      });
-    }
-  });
-}  
+    Swal.fire({
+      title: 'Resumen de la compra',
+      html: `
+        <strong>Productos:</strong>
+        <div style="max-height: 300px; overflow-y: auto; margin-top: 10px;">${detallesProductos}</div>
+        <br>
+        <strong>Total:</strong> $${total.toFixed(2)}<br>
+        <strong>Domicilio de envío:</strong> ${domicilio}<br>
+        <strong>Tarjeta:</strong> ${tarjetaMascara}
+      `,
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Confirmar compra',
+      cancelButtonText: 'Cancelar',
+      backdrop: true,
+      customClass: {
+        popup: 'custom-swal-dark',
+        title: 'custom-title-dark',
+        confirmButton: 'custom-confirm-button-dark',
+        cancelButton: 'custom-cancel-button-dark',
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.purchaseService.obtenerUltimoId().subscribe((ultimoId) => {
+          const nuevaCompra: Purchase = {
+            purchaseId: ultimoId, // Usamos el ID obtenido
+            clienteId: this.authService.getUserId(),
+            productos: productos.map(({ id, quantity, price, brand }) => ({
+              id,
+              quantity,
+              price, // Incluir el precio aquí
+              brand, // Mantener la marca
+            })),
+            fecha: new Date(),
+            total,
+          };
+    
+          this.purchaseService.agregarCompra(nuevaCompra).subscribe(
+            (response) => {
+              console.log('Compra registrada con éxito:', response);
+    
+              productos.forEach((producto) => {
+                this.productService.updateProductStock(producto.id, producto.quantity);
+              });
+    
+              localStorage.removeItem('cart');
+              this.router.navigate(['/']);
+            },
+            (error) => {
+              console.error('Error al registrar la compra:', error);
+            }
+          );
+        });
+      } else {
+        Swal.fire({
+          title: 'Compra cancelada',
+          text: 'No se realizaron cambios.',
+          icon: 'info',
+          customClass: {
+            popup: 'custom-swal-dark',
+          },
+        });
+      }
+    });
+  }
     
   agregarProducto() {
     this.productos.push(

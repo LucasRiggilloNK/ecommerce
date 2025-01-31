@@ -1,4 +1,5 @@
 export interface Purchase {
+  purchaseId: number; 
   clienteId: string | null;
   productos: {
     id: string;
@@ -8,5 +9,5 @@ export interface Purchase {
   }[];
   fecha: Date;
   total: number;
-  productosCargados?: { brand: string; cantidad: number; precio: number }[];
+  productosCargados?: { cantidad: number; precio: number; brand: string }[];
 }

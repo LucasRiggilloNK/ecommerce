@@ -68,7 +68,7 @@
       </div>
   </div>
 </div>
-
+<!-- MODAL HISTORIAL DE COMPRAS -->
 <div class="modal fade" id="purchaseHistoryModal" tabindex="-1" aria-labelledby="purchaseHistoryLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -77,48 +77,39 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        
+        <!-- Mostrar compras si existen -->
         <div *ngIf="purchases.length > 0; else noPurchases">
-          <h3 class="text-center mb-3">Compras del usuario</h3>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead class="table-dark">
-                <tr>
-                  <th>#</th>
-                  <th>Fecha</th>
-                  <th>Total</th>
-                  <th>Acciones</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let purchase of purchases; let i = index">
-                  <td>{{ i + 1 }}</td>
-                  <td>{{ purchase.fecha }}</td>
-                  <td>${{ purchase.total | number:'1.2-2' }}</td>
-                  <td>
-                    <button class="btn btn-info btn-sm" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#details' + i">
-                      Ver Detalles
-                    </button>
-                  </td>
-                </tr>
-                <tr *ngFor="let purchase of purchases; let i = index" [id]="'details' + i" class="collapse">
-                  <td colspan="4">
-                    <div class="p-3 border rounded bg-light">
-                      <h6>Productos Comprados:</h6>
-                      <ul class="list-group">
-                        <li *ngFor="let product of purchase.productos" class="list-group-item">
-                            
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div *ngFor="let purchase of purchases" class="border p-3 mb-3">
+            <div class="d-flex justify-content-between align-items-center">
+              <span><strong>{{ purchase.fecha | date: 'dd/MM/yyyy' }}</strong> - {{ purchase.total | currency }}</span>
+              <button (click)="togglePurchaseDetails(purchase)" class="btn btn-info btn-sm">
+                {{ selectedPurchaseId === purchase.purchaseId ? 'Ocultar Detalles' : 'Ver Detalle' }}
+              </button>              
+            </div>
+
+            <!-- Mostrar detalles de la compra si es la seleccionada -->
+            <div *ngIf="selectedPurchaseId === purchase.purchaseId" class="mt-2">
+              <h5>Detalles de la Compra:</h5>
+              <ul class="list-group">
+                <li *ngFor="let product of purchase.productosCargados || []" class="list-group-item d-flex justify-content-between">
+                  <div>
+                    <strong>{{ product.brand }}</strong> - Cantidad: {{ product.cantidad }}
+                  </div>
+                  <div class="text-end">
+                    Precio: {{ product.precio | currency }}
+                  </div>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
+
+        <!-- Mensaje si no hay compras -->
         <ng-template #noPurchases>
-          <p class="text-center">No se encontraron compras para este usuario.</p>
+          <p class="text-center text-muted">No se encontraron compras para este usuario.</p>
         </ng-template>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -126,7 +117,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- MODAL PARA EDITAR PERFIL -->
 <div class="modal" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileLabel" aria-hidden="true">
