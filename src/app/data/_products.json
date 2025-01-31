@@ -4024,6 +4024,51 @@
           "unit": "gr"
         }
       }
+    },
+    {
+      "brand": "Lenovo",
+      "category": "Tablets",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152202-01.jpg?context=bWFzdGVyfGltYWdlc3wyNTYwMnxpbWFnZS9qcGVnfGFHTmlMMmhqWWk4eE1EWXpPVEk1TXpJMU1UWXhOQzl6YVhwbE5URTFYekUxTWpJd01sOHdNUzVxY0djfDVlZDAyODJiNWY1MDRkNzliN2NjYzM3MDQwNDJjZjM0MDc4MGYyMWVkNDlmZGYzMzNlZTdkMGIwNTgwMzgzZmY",
+      "description": "Tablet. Pantalla de 11.5\", IPS 400nits, 72% NTSC, 90Hz. Resolucion 2000x1200. Procesador MediaTek Helio G99 (8C, 2x A76 @2.2GHz + 6x A55 @2.0GHz). Almacenamiento de 128GB UFS 2.2. Memoria RAM de 8GB Soldered LPDDR4x. Camara principal 8 MP y trasera de 8 MP. Graficos GPU Mali-G57 MC2 con brazo integrado. Sistema operativo Android 14. Conexiones: Wi-Fi 5, 802.11ac 1x1 + Bluetooth 5.2. Puertos estandar 1x USB-C (USB de alta velocidad / USB 2.0). 1 Conector combinado para auriculares/microfono (3,5 mm). GPS + GLONASS + Galileo. Lector de tarjeta microSD. Sonido: Altavoces Hi-Fi Octa JBL (sonido de JBL), 4 x tweeters, 4 x unidades de bajos con balance de fuerza, Dolby Atmos. Modo de altavoz Bluetooth. Sensores: acelerometro (G), sensor de luz ambiental, Sensor de giroscopio. Resistente al polvo y al agua: IP52. Bateria Integrada 8600 mAh / Carga 45W.\n",
+      "price": 499999,
+      "stock": 12,
+      "model": "TAB PLUS ZADX0124AR",
+      "quantity": 0,
+      "characteristics": {
+        "screenSize": {
+          "size": 11.5,
+          "unit": "\""
+        },
+        "ram": {
+          "size": 6,
+          "unit": "GB"
+        },
+        "storageSize": {
+          "size": 128,
+          "unit": "GB"
+        },
+        "color": "Gris",
+        "country": "China",
+        "dimension": {
+          "height": {
+            "value": 26.83,
+            "unit": "cm"
+          },
+          "width": {
+            "value": 17.42,
+            "unit": "cm"
+          },
+          "depth": {
+            "value": 13.58,
+            "unit": "cm"
+          }
+        },
+        "weight": {
+          "weight": 650,
+          "unit": "gr"
+        }
+      },
+      "id": "ddfd"
     }
   ]
 }
