@@ -13,6 +13,7 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { AdminGuard } from '../guards/admin.guard';
 import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
 import { CreateProductComponent } from './components/products/create-product/create-product.component';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -37,6 +38,7 @@ const routes: Routes = [
     path: 'productDetails/:id',
     component: ProductDetailsComponent,
   },
+  { path: 'profile', component: EditProfileComponent, canActivate: [AuthGuard]},
   { path: 'buyForm', component: BuyFormComponent, canActivate: [AuthGuard] },
   {path: "productEdit/:id", component: ProductEditComponent, canActivate:[AdminGuard]},
   { path: '', redirectTo: '/home', pathMatch: 'full' },

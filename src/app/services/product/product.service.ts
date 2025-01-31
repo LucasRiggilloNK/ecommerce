@@ -357,33 +357,26 @@ export class ProductService {
       (product) => product.category === category
     );
   }
-
   updateProductStock(productId: string, quantitySold: number): void {
-    this.getProductById(productId).subscribe((product) => {
+    this.getProductById(productId).subscribe(product => {
+      if (!product) {
+        console.error(`No se encontró el producto con ID ${productId}`);
+        return;
+      }
+  
       const updatedStock = product.stock - quantitySold;
-
       if (updatedStock < 0) {
         console.error(`No hay suficiente stock para el producto ${productId}`);
         return;
       }
-
-      this.http
-        .patch(`http://localhost:3003/products/${productId}`, {
-          stock: updatedStock,
-        })
-        .subscribe(
-          () => {
-            console.log(`Stock actualizado para el producto ${productId}`);
-          },
-          (error) => {
-            console.error(
-              `Error al actualizar el stock para ${productId}`,
-              error
-            );
-          }
-        );
+  
+      this.http.patch(`${this.productsApiUrl}/${productId}`, { stock: updatedStock }).subscribe(
+        () => console.log(`Stock actualizado para el producto ${productId}`),
+        (error) => console.error(`Error al actualizar el stock para ${productId}`, error)
+      );
     });
   }
+  
 
   getProductById(productId: string): Observable<ProductInterface> {
     return this.http.get<ProductInterface>(
@@ -401,7 +394,31 @@ export class ProductService {
   }
 
   //////////////////////    GET CHARACTERISTICS     ////////////////////////////////////////////////////
-
+/*
+  private characteristicsMap: Record<string, string[]> = {
+    airTypes: this.airTypesList,
+    heatCold: this.heatColdList,
+    fanType: this.fanTypeList,
+    headphoneType: this.headphonesTypeList,
+    microwaveCapacity: this.microwaveCapacityList,
+    notebookScreenSize: this.notebookScreenSizesList,
+    notebookRam: this.notebookRamList,
+    notebookProcessor: this.notebookProcessorsList,
+    notebookStorageSize: this.notebookStorageSizesList,
+    printerType: this.printerTypeList,
+    refrigeratorCoolingSystem: this.refrigeratorCoolingSystemList,
+    smartphoneInches: this.smartPhoneInchesList,
+    smartphoneRam: this.smartPhoneRamList,
+    tabletScreenSize: this.tabletScreenSizesList,
+    tabletRam: this.tabletRamList,
+    tvTecnology: this.tvTechnologiesList,
+    tvInches: this.tvInchesList,
+    washingCapacity: this.washingCapacityList,
+    keyboardConnectivityType: this.keyboardConnectivityTypeList,
+    mouseConnectivityType: this.mouseConnectivityTypeList,
+  };
+  */
+ 
   getCharacteristicsList(type: string): string[] {
     let out: string[] = [];
     switch (type) {
@@ -471,45 +488,26 @@ export class ProductService {
     }
     return out;
   }
+  
 
   ////////////////////////////////////    DETALLES PRODUCTO    //////////////////////////////////////////
 
   async getLatestProductId(): Promise<number> {
-    let allProducts: ProductInterface[] = [];
-    allProducts = await this.getAllProductsListInterface();
-
-    return Math.max(...allProducts.map((product) => Number(product.id)));
+    const allProducts = await this.getAllProductsListInterface();
+    return allProducts.length ? Math.max(...allProducts.map((p) => Number(p.id))) : 0;
   }
+  
 
   async productExists(product: ProductInterface): Promise<boolean> {
-    let productsInterfaceList: ProductInterface[] | undefined = [];
-    let out = false;
-    let p: ProductInterface | undefined;
-
-    await this.asyncService
-      .getAllPromise(this.productsApiUrl)
-      .then((response) => {
-        productsInterfaceList = response;
-
-        if (productsInterfaceList != undefined) {
-          p = productsInterfaceList.find(
-            (prod) =>
-              product.brand === prod.brand && product.model === prod.model
-          );
-          console.log('p');
-          console.log(p);
-          if (p != undefined) {
-            out = true;
-          }
-        }
-      })
-      .catch((error) => {
-        alert('No se pudo verificar si existe el producto...');
-      });
-
-    console.log('Out: ' + out);
-    return out;
+    try {
+      const productsInterfaceList = await this.asyncService.getAllPromise(this.productsApiUrl);
+      return productsInterfaceList?.some(prod => product.brand === prod.brand && product.model === prod.model) ?? false;
+    } catch (error) {
+      console.error('No se pudo verificar si existe el producto...', error);
+      return false;
+    }
   }
+  
 
   ///////////////////////////  FORM CONTROL y GROUP  ///////////////////////////////////
   setFormControlCategorySesion(form: FormControl){

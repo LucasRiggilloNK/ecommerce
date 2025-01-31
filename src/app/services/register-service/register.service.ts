@@ -36,8 +36,10 @@ export class RegisterService {
   }
 
   updateUser(user: User): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}/${user.id}`, user);
+    const url = `${this.apiUrl}/${user.id}`; 
+    return this.http.put<User>(url, user);
   }
+  
 
   deleteUser(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);

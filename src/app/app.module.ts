@@ -37,7 +37,8 @@ import { FooterComponent } from './footer/footer.component';
 import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
 import { CreateProductComponent } from './components/products/create-product/create-product.component';
 import { GeneralChracteristicsComponent } from './components/characteristics/general-chracteristics/general-chracteristics.component';
-
+import {NgxPaginationModule} from 'ngx-pagination';
+import { EditProfileComponent } from './components/edit-profile/edit-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,11 +69,10 @@ import { GeneralChracteristicsComponent } from './components/characteristics/gen
     ProductEditComponent,
     CreateProductComponent,
     GeneralChracteristicsComponent,
-    
- 
+    EditProfileComponent
   ],
 
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule,BrowserModule, NgxPaginationModule],
 
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

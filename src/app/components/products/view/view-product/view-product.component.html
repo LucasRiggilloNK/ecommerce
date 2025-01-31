@@ -306,10 +306,9 @@
 
       </div>
     </aside>
-
-      <div *ngIf="_productListSubFiltered.length != 0">
+      <div *ngIf="_productListSubFiltered.length> 0; else noProducts">
       <div class="cards">
-          <div *ngFor="let product of _productListSubFiltered">
+      <div *ngFor="let product of _productListSubFiltered  | paginate: { itemsPerPage: 8, currentPage: currentPage }">
           <div [routerLink]="['/productDetails', product.id]" class="card">
             <img
               src="{{ product.urlImage }}"
@@ -325,14 +324,21 @@
 
               <!-- <div class="controls" [hidden]="!isLoggedIN()"> -->
                 <div class="controls" [hidden]="!isAdmin()">
+                  <p>Precio: ${{ product.price | number: '1.0-0' }}</p>
                 <button
                   class="add-cart"
                   type="button"
-                  [routerLink]="['/productEdit', product.id]"
-                >
+                  [routerLink]="['/productEdit', product.id]">
+                <!--  <div class="controls" [hidden]="!isLoggedIN()">
+                <button
+                  class="add-cart"
+                  type="button"
+                  (click)="decreaseQuantity(product.id); $event.stopPropagation()" 
+                >-->
+
                   Modificar
                 </button>
-
+    
                 <button
                   class="add-cart"
                   type="button"
@@ -341,7 +347,7 @@
                   Eliminar
                 </button>
               </div>
-              <button
+                <button
                 class="add-cart"
                 type="button"
                 [routerLink]="['/productDetails', product.id]"
@@ -352,11 +358,22 @@
           </div>
         </div>
       </div>
+      
+      <div class="my-pagination">
+        <pagination-controls
+          (pageChange)="onPageChange($event)"
+          [autoHide]="false"
+        ></pagination-controls>
+      </div>
     </div>
-      <div class="no-products" *ngIf="noProducts">
-      <div class="alert alert-info" role="alert">
-        SIN PRODUCTOS
-      </div>
-      </div>
+    
+      <ng-template #noProducts>
+        <div class="no-products">
+          <div class="alert alert-info" role="alert">
+            SIN PRODUCTOS
+          </div>
+        </div>
+      </ng-template>
+      
   </div>
 </form>

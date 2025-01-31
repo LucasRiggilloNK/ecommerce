@@ -48,6 +48,10 @@
             Inicia sesión para comenzar a comprar
           </ng-template>
         </div>
+        <div *ngIf="isLoggedIn()" class="profile-icon link" (click)="goToProfile()">
+          <img src="/profile.png" alt="Perfil" width="25px" height="25px" />
+        </div>
+
         <div
           class="link"
           routerLink="/login"

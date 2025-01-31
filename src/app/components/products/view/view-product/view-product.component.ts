@@ -33,6 +33,9 @@ import { Router } from '@angular/router';
 export class ViewProductComponent implements OnInit, OnDestroy {
   formControlCategory: FormControl;
   formGrupSubfilters: FormGroup;
+  currentPage: number = 1;        
+  itemsPerPage: number = 10; 
+  
 
   valueChangesSubscription?: Subscription;
   valueChangesformGrupSubfiltersSubscription?: Subscription;
@@ -153,7 +156,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       this.formControlCategory.valueChanges.subscribe((form) => {
         // setea en falso el cartel de sin productos
         this.noProducts = false;
-
+        this.currentPage = 1;
         this.getTotalProduclist().subscribe({
           next: (response) => {
             this.totalProductList = response;
@@ -189,6 +192,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.valueChangesformGrupSubfiltersSubscription =
       this.formGrupSubfilters.valueChanges.subscribe((form) => {
         //Obtiene la lista subfiltrada a partir de la lista por categoria seleccionada
+        this.currentPage = 1;
         this._productListSubFiltered = this.getListFilteredBySubFilters(
           this._productListFilteredByCategory,
           this.formGrupSubfilters,
@@ -200,6 +204,7 @@ export class ViewProductComponent implements OnInit, OnDestroy {
         }
       });
   }
+
   ngOnDestroy(): void {
     this.valueChangesSubscription?.unsubscribe();
     this.valueChangesformGrupSubfiltersSubscription?.unsubscribe();
@@ -933,4 +938,13 @@ export class ViewProductComponent implements OnInit, OnDestroy {
       list.push(this.all);
     }
   }
+
+  onPageChange(pageNumber: number): void {
+    this.currentPage = pageNumber;
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' 
+    });
+  }
+  
 }
