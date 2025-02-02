@@ -21,7 +21,8 @@ export class RegisterComponent {
   registerForm: FormGroup;
   provincesList: string[] = Object.values(Province);
   bsasCityList: string[] = Object.values(BsasCity);
-
+  showNewPassword: boolean = false;
+  showConfirmPassword: boolean = false;
   constructor(
     private fb: FormBuilder,
     private registerService: RegisterService,
@@ -57,7 +58,13 @@ export class RegisterComponent {
     { validators: CustomValidators.samePasswordValidator }
   );
   }
-
+  togglePasswordVisibility(field: 'new' | 'confirm') {
+    if (field === 'new') {
+      this.showNewPassword = !this.showNewPassword;
+    } else if (field === 'confirm') {
+      this.showConfirmPassword = !this.showConfirmPassword;
+    } 
+  }
   onSubmit() {
     if (this.registerForm.valid) {
       const {
@@ -125,3 +132,4 @@ export class RegisterComponent {
     }
   }
 }
+
