@@ -236,8 +236,8 @@ export class EditProfileComponent implements OnInit {
   }
 
   async loadProductDetails(purchase: Purchase) {
-    if (!purchase.productosCargados) {
-      purchase.productosCargados = [];
+    if (!purchase.productos) {
+      purchase.productos = [];
   
       const productRequests = purchase.productos.map(product =>
         this.productService.getProductById(product.id).toPromise().catch(() => ({
@@ -261,15 +261,19 @@ export class EditProfileComponent implements OnInit {
   }
   
   async togglePurchaseDetails(purchase: Purchase) {
-    console.log('Mostrando detalles para la compra:', purchase); 
+    // Cargar los detalles de los productos si no están cargados
+    if (!purchase.productos) {
+      await this.loadProductDetails(purchase);
+    }
   
+    // Crear el contenido HTML para mostrar en SweetAlert2
     const detallesProductos = purchase.productos
       .map(
-        (producto) => `
+        (product) => `
           <div style="margin-bottom: 15px;">
-            <strong>Marca:</strong> ${producto.brand} <br>
-            <strong>Precio:</strong> $${producto.price.toFixed(2)} <br>
-            <strong>Cantidad:</strong> ${producto.quantity} <br>
+            <strong>Marca:</strong> ${product.brand} <br>
+            <strong>Precio:</strong> $${product.price.toFixed(2)} <br>
+            <strong>Cantidad:</strong> ${product.quantity} <br>
           </div>
         `
       )
@@ -299,5 +303,4 @@ export class EditProfileComponent implements OnInit {
       },
     });
   }
-  
 }

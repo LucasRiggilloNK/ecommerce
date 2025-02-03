@@ -80,27 +80,12 @@
         
         <!-- Mostrar compras si existen -->
         <div *ngIf="purchases.length > 0; else noPurchases">
-          <div *ngFor="let purchase of purchases" class="border p-3 mb-3">
+          <div *ngFor="let purchase of purchases" class="purchase-item border p-3 mb-3">
             <div class="d-flex justify-content-between align-items-center">
               <span><strong>{{ purchase.fecha | date: 'dd/MM/yyyy' }}</strong> - {{ purchase.total | currency }}</span>
               <button (click)="togglePurchaseDetails(purchase)" class="btn btn-info btn-sm">
-                {{ selectedPurchaseId === purchase.purchaseId ? 'Ocultar Detalles' : 'Ver Detalle' }}
-              </button>              
-            </div>
-
-            <!-- Mostrar detalles de la compra si es la seleccionada -->
-            <div *ngIf="selectedPurchaseId === purchase.purchaseId" class="mt-2">
-              <h5>Detalles de la Compra:</h5>
-              <ul class="list-group">
-                <li *ngFor="let product of purchase.productosCargados || []" class="list-group-item d-flex justify-content-between">
-                  <div>
-                    <strong>{{ product.brand }}</strong> - Cantidad: {{ product.cantidad }}
-                  </div>
-                  <div class="text-end">
-                    Precio: {{ product.precio | currency }}
-                  </div>
-                </li>
-              </ul>
+                Ver Detalle Compra
+              </button>
             </div>
           </div>
         </div>
