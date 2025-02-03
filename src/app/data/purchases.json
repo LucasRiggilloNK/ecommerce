@@ -30,9 +30,9 @@
         {
           "id": "8",
           "quantity": 1,
-          "price": 299.99,
-          "brand": "BrandB",
-          "model": "ModelY"
+          "price": 589999,
+          "brand": "Samsung",
+          "model": "GALAXY A35 - SM-A356E"
         }
       ],
       "fecha": "2024-11-20T20:06:06.022Z",
@@ -111,23 +111,23 @@
         {
           "id": "12",
           "quantity": 1,
-          "price": 999.99,
-          "brand": "BrandF",
-          "model": "ModelC"
+          "price": 1899999,
+          "brand": "Philips",
+          "model": "65PML9118/77"
         },
         {
           "id": "13",
           "quantity": 2,
-          "price": 499.99,
-          "brand": "BrandG",
-          "model": "ModelD"
+          "price": 629999,
+          "brand": "Samsung",
+          "model": "UN43CU7000GCZB"
         },
         {
           "id": "18",
           "quantity": 1,
-          "price": 1099.99,
-          "brand": "BrandH",
-          "model": "ModelE"
+          "price": 439999,
+          "brand": "Noblex",
+          "model": "DV43X5150"
         }
       ],
       "fecha": "2024-11-21T01:21:38.841Z",
@@ -165,9 +165,9 @@
         {
           "id": "22",
           "quantity": 1,
-          "price": 899.99,
-          "brand": "BrandJ",
-          "model": "ModelG"
+          "price": 699999,
+          "brand": "Hisense",
+          "model": "WFMB6510SU"
         }
       ],
       "fecha": "2024-11-21T01:36:16.829Z",
@@ -193,9 +193,9 @@
         {
           "id": "24",
           "quantity": 1,
-          "price": 599.99,
-          "brand": "BrandK",
-          "model": "ModelH"
+          "price": 799999,
+          "brand": "Motorola",
+          "model": "EDGE 50 FUSION - XT2429-1"
         }
       ],
       "fecha": "2024-11-21T15:49:21.704Z",
@@ -285,9 +285,9 @@
         {
           "id": "2959",
           "quantity": 1,
-          "price": 999.99,
-          "brand": "BrandO",
-          "model": "ModelL"
+          "price": 2599999,
+          "brand": "Samsung",
+          "model": "GALAXY S24 ULTRA - SM-S928BZKMARO"
         }
       ],
       "fecha": "2025-01-30T14:59:30.479Z",
@@ -330,6 +330,86 @@
       ],
       "fecha": "2025-02-03T18:17:47.504Z",
       "total": 4440682.6
+    },
+    {
+      "id": "e2ea",
+      "purchaseId": 480,
+      "clienteId": "ccc1",
+      "productos": [
+        {
+          "id": "5",
+          "quantity": 1,
+          "price": 749999,
+          "brand": "Electra",
+          "model": "ENTRDO32TC "
+        }
+      ],
+      "fecha": "2025-02-03T19:46:44.305Z",
+      "total": 750684.6
+    },
+    {
+      "id": "d33c",
+      "purchaseId": 480,
+      "clienteId": "e844",
+      "productos": [
+        {
+          "id": "68cb",
+          "quantity": 1,
+          "price": 129999,
+          "brand": "JBL",
+          "model": "TUNE 770 WH"
+        }
+      ],
+      "fecha": "2025-02-03T19:49:03.230Z",
+      "total": 130557.2
+    },
+    {
+      "id": "8dc3",
+      "purchaseId": 480,
+      "clienteId": "e844",
+      "productos": [
+        {
+          "id": "fe30",
+          "quantity": 1,
+          "price": 1799999,
+          "brand": "Exo",
+          "model": "D6-S7785"
+        }
+      ],
+      "fecha": "2025-02-03T20:13:49.888Z",
+      "total": 1800557.2
+    },
+    {
+      "id": "ca4e",
+      "purchaseId": 480,
+      "clienteId": "e844",
+      "productos": [
+        {
+          "id": "5",
+          "quantity": 1,
+          "price": 749999,
+          "brand": "Electra",
+          "model": "ENTRDO32TC "
+        }
+      ],
+      "fecha": "2025-02-03T20:19:19.840Z",
+      "total": 750557.2
+    },
+    {
+      "id": "dac3",
+      "purchaseId": 480,
+      "clienteId": "e844",
+      "productos": [
+        {
+          "id": "2959",
+          "quantity": 1,
+          "price": 2599999,
+          "brand": "Samsung",
+          "model": "GALAXY S24 ULTRA - SM-S928BZKMARO"
+        }
+      ],
+      "fecha": "2025-02-03T20:21:25.455Z",
+      "total": 2600557.2
     }
   ]
 }

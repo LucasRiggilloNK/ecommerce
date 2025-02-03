@@ -21,7 +21,7 @@ import { Location } from '@angular/common';
 import { ProductInterface2 } from '../../interfaces/product/product-interface2';
 import { DiscountCoupon } from '../../interfaces/product/discount-coupon';
 import { DiscountCouponService } from '../../services/discount-coupon/discount-coupon.service';
-
+import { CarritoService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-purchase',
@@ -65,7 +65,8 @@ export class BuyFormComponent implements OnInit {
     private productService: ProductService,
     private cardService: CardsService, 
     private location: Location,
-    private discountCouponService: DiscountCouponService
+    private discountCouponService: DiscountCouponService,
+    private carritoService: CarritoService,
   ) {
     this.userDataForm = this.fb.group({
       clienteId: [''],
@@ -441,7 +442,7 @@ export class BuyFormComponent implements OnInit {
                 this.productService.updateProductStock(producto.id, producto.quantity);
               });
     
-              localStorage.removeItem('cart');
+              this.carritoService.clearCart();
               this.router.navigate(['/']);
             },
             (error) => {

@@ -3,17 +3,17 @@
     {
       "id": "e844",
       "dni": "31888551",
-      "name": "Lucas",
+      "name": "Lucass",
       "lastname": "Riggillo",
       "birthdate": "2003-04-14",
       "province": "Buenos Aires",
       "city": "Mar del Plata",
-      "street": "aguado",
+      "street": "aguadoa",
       "streetNumber": "1601",
       "floor": "",
       "flat": "",
       "email": "lucasjoaquinriggillo@gmail.com",
-      "password": "hola",
+      "password": "12345678",
       "role": "USER"
     },
     {
