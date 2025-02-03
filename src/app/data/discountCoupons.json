@@ -12,6 +12,19 @@
       "infinitStock": false,
       "stock": 4,
       "id": "1"
+    },
+    {
+        "code": "AACOND6",
+        "maxMount": 75000,
+        "discountPercentage": 6,
+        "freeShiping": false,
+        "categoryList": ["Aire Acondicionado"],
+        "brandList": [],
+        "startstDate": "2025-01-24T14:30:00-03:00",
+        "endDate": "2025-02-24T14:30:00-03:00",
+        "infinitStock": false,
+        "stock": 4,
+        "id": "1"
     }
   ]
 }
