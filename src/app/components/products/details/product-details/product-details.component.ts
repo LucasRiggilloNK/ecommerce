@@ -1,9 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProductInterface } from '../../../../interfaces/product/product-interface';
 import { ProductService } from '../../../../services/product/product.service';
 import { CarritoService } from '../../../../services/cart.service';
-import { Brand } from '../../../../models/products/brands/brand';
-import { Category } from '../../../../models/products/categories/category';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subscription } from 'rxjs';
@@ -18,7 +15,6 @@ import Swal from 'sweetalert2';
   styleUrl: './product-details.component.css',
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
-  //productToVievDetails: ProductInterface | null = null;
   productToVievDetails: ProductInterface2 | null = null;
   private cartSubscription: Subscription = new Subscription();
 
@@ -69,9 +65,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  /* addToCart(product: ProductInterface): void {
-    this.carritoService.addToCart(product);
-  } */
 
   addToCart(product: ProductInterface2): void {
     

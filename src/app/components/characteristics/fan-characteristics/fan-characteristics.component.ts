@@ -49,7 +49,7 @@ export class FanCharacteristicsComponent implements OnInit{
  let id = this.route.snapshot.paramMap.get("id");
  if(id != null){
    this.id = id;
-   this.getProductoToEdit(id).subscribe({//busdcar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
+   this.getProductoToEdit(id).subscribe({//buscar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
      next: response =>{
        this.productoToEdit = response;
        this.setFormGroupToEdit(this.productoToEdit.characteristics as FanCharacteristics);
@@ -98,8 +98,7 @@ export class FanCharacteristicsComponent implements OnInit{
       weight: initCharact.weight,
     };
 
-    console.log("!!!");
-    console.log(charact);
+
 
     return charact;
   }
@@ -114,7 +113,6 @@ export class FanCharacteristicsComponent implements OnInit{
 
 /////   EDIT PRODUCT  ///////
 getProductoToEdit(id: string):Observable<ProductInterface2>{
-  console.log("ID: " + id);
   return this.productService._getProductById(id);
  
  }

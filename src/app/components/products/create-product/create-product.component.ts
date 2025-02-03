@@ -22,9 +22,6 @@ export class CreateProductComponent implements OnInit{
   brandList: string[] = Object.values(Brand).sort();
   selectedCategory: string = '';
 
-  /* productAdded: boolean = false;
-  productNotAdded: boolean = false; */
-
   private product: ProductInterface2;
   
   
@@ -41,7 +38,6 @@ export class CreateProductComponent implements OnInit{
   constructor(private productService: ProductService, private productCharacteristicsService: ProductcCharacteristicsService, private cdr: ChangeDetectorRef, 
               private route: ActivatedRoute, private location: Location){
 
-    //this.product = this.initProductInterface();/// carga un producto vacío
     this.product = this.productService.initProductInterface();/// carga un producto vacío
     
 
@@ -165,24 +161,6 @@ export class CreateProductComponent implements OnInit{
 
   }
 
- /*  private initProductInterface(){//crea un producto vacío
-
-    let product: ProductInterface2 = {
-      
-          id: "",
-            brand: Brand.NONE,
-            category: Category.NONE,
-            urlImage: "",
-            description: "",
-            price: 0,
-            stock: 0,
-            characteristics: this.productCharacteristicsService.initCharacteristics(),
-            model: "",
-            quantity: 0
-      
-    }
-    return product;
-  } */
 
 
  
@@ -255,7 +233,7 @@ export class CreateProductComponent implements OnInit{
                       <strong>Descripción:</strong> ${product.description}<br>
                       <strong>Precio:</strong> $${product.price}<br>
                       <strong>Stock:</strong> ${product.stock}`;
-              //VER Q MUESTRE BIEN EL MSAJE ANTERIOR
+              
               
               
       

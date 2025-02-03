@@ -5,8 +5,6 @@ import { ScreenTechnology } from '../../../models/products/characteristics/scree
 import { TvCharacteristics } from '../../../interfaces/product/characteristics/tv-characteristics';
 import { ScreenSize } from '../../../interfaces/product/characteristics/screen-size';
 import { LengthUnit } from '../../../models/products/characteristics/length-unit';
-import { Color } from '../../../models/products/characteristics/color';
-import { Country } from '../../../models/products/characteristics/country';
 import { Smart } from '../../../models/products/characteristics/smart';
 import { GeneralCharacteristics } from '../../../interfaces/product/characteristics/general-characteristics';
 import { Observable } from 'rxjs';
@@ -129,7 +127,6 @@ export class TvCharacteristicsComponent {
 
  /////   EDIT PRODUCT  ///////
 getProductoToEdit(id: string):Observable<ProductInterface2>{
-   console.log("ID: " + id);
    return this.productService._getProductById(id);
 
  }

@@ -3,13 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../../../services/product/product.service';
 import { Category } from '../../../models/products/categories/category';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { Product } from '../../../models/products/product';
-import { response } from 'express';
-import { ProductInterface } from '../../../interfaces/product/product-interface';
-import { error } from 'console';
 import { Brand } from '../../../models/products/brands/brand';
 import Swal from 'sweetalert2';
-import { strict } from 'assert';
 import { ProductcCharacteristicsService } from '../../../services/product/product-characteristics.service';
 import { Observable } from 'rxjs';
 import { ProductInterface2 } from '../../../interfaces/product/product-interface2';
@@ -26,8 +21,6 @@ export class ProductEditComponent implements OnInit{
   editProduct: FormGroup;
   categoryList: string[] = Object.values(Category).sort();
   brandList: string[] = Object.values(Brand).sort();
-  //productAdded: boolean = false;
-  //productNotAdded: boolean = false;
   product: ProductInterface2;
   id: string = "";
   
@@ -104,19 +97,6 @@ this.productService.getAllProducts().subscribe({//para verificar si ya existe el
 
         if (productsList != undefined) {
 
-          //si cambia la categoria verifica que no exista en la categoria nueva
-          /* if(this.product.category !== newProduct.category){
-
-            p = productsList.find(
-              (prod) =>
-                newProduct.brand === prod.brand && newProduct.model === prod.model && newProduct.category === prod.category
-            );
-          }else{
-            p = productsList.find(
-              (prod) =>
-                newProduct.brand === prod.brand && newProduct.model === prod.model && newProduct.id !== prod.id
-            );
-          } */
             //Busca el mismo producto en otras categorias (distinto id)
             p = productsList.find(
               (prod) =>
@@ -335,48 +315,9 @@ this.productService.getAllProducts().subscribe({//para verificar si ya existe el
   }
 
 
-  /* setFormGroup(product: ProductInterface){
-    this.editProduct.get("category")?.setValue(product.category);
-    this.editProduct.get("brand")?.setValue(product.brand);
-    this.editProduct.get("urlImage")?.setValue(product.urlImage);
-    this.editProduct.get("description")?.setValue(product.description);
-    this.editProduct.get("price")?.setValue(product.price);
-    this.editProduct.get("stock")?.setValue(product.stock);
-    this.editProduct.get("model")?.setValue(product.model);
-    
-  }
-
-  private formGroupToProduct(form: FormGroup){
-    let product: ProductInterface = {
-      id: "",
-      category: Category.NONE,
-      brand: Brand.NONE,
-      model:  "",
-      description:  "",
-      urlImage:  "",
-      characteristics: "",
-      stock: 0,
-      price: 0,
-      quantity: 0
-
-    }
-
-    product.id = this.id;
-    product.category = form.get("category")?.value;
-    product.brand = form.get("brand")?.value;
-    product.model = form.get("model")?.value;
-    product.description = form.get("description")?.value;
-    product.urlImage = form.get("urlImage")?.value;
-    product.stock = form.get("stock")?.value;
-    product.price = form.get("price")?.value;
-    product.characteristics = this.productCharacteristicsService.getCharacteristicsString();
-    
-
-    return product;
-  } */
+  
 
   getProductoToEdit(id: string):Observable<ProductInterface2>{
-        console.log("ID: " + id);
         return this.productService._getProductById(id);
         
       }

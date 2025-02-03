@@ -4,7 +4,6 @@ import { Brand } from '../../../../models/products/brands/brand';
 import { Category } from '../../../../models/products/categories/category';
 
 import { Subscription } from 'rxjs';
-import { CarritoService } from '../../../../services/cart.service';
 import { AuthService } from '../../../../services/login/auth.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ProductInterface2 } from '../../../../interfaces/product/product-interface2';
@@ -40,7 +39,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
   valueChangesSubscription?: Subscription;
   valueChangesformGrupSubfiltersSubscription?: Subscription;
 
-  //categoryList: string[] = Object.values(Category).sort();
   categoryList: string[] = [];
   brandList: string[] = [];
   screenTechnologiesList: string[] = [];
@@ -68,7 +66,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
 
   constructor(
     private productService: ProductService,
-    private carritoService: CarritoService,
     private authService: AuthService,
     private router: Router
   ) {
@@ -209,8 +206,6 @@ export class ViewProductComponent implements OnInit, OnDestroy {
     this.valueChangesSubscription?.unsubscribe();
     this.valueChangesformGrupSubfiltersSubscription?.unsubscribe();
   }
-
-  /////////////////////////////////////// AGREGADO ////////////////////////////////////////////////////////
 
   getTotalProduclist() {
     return this.productService.getAllProducts();

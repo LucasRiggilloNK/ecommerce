@@ -30,10 +30,7 @@ export class BuyService {
     this.subTotalPrice = 0;
   }
 
-  /* public getCartItemsToBuy(): Observable<ProductInterface[]> {
-    return this.cartService.getCartItems();
-  } */
-
+ 
   public getCartItemsToBuy(): Observable<ProductInterface2[]> {
     return this.cartService.getCartItems();
   }
@@ -41,10 +38,7 @@ export class BuyService {
     return this.registerService.getUserById(userId);
   }
 
-  /* getSubtotal() {
-    this.subTotalPrice = this.cartService.getTotalPrice();
-    return this.subTotalPrice;
-  } */
+
     getSubtotal(discountCoupon: DiscountCoupon) {
       this.subTotalPrice = this.cartService.getTotalPrice(discountCoupon);
       return this.subTotalPrice;

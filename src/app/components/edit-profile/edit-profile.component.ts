@@ -5,7 +5,6 @@ import { AuthService } from '../../services/login/auth.service';
 import { RegisterService, User } from '../../services/register-service/register.service';
 import { PurchaseService } from '../../services/purchase-service/purchase-service.service';
 import { Purchase } from '../../models/purchases/purchase';
-import { FormsModule } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
 import { CustomValidators } from '../../common/custom-validators';
 import { Router } from '@angular/router';
@@ -240,7 +239,7 @@ export class EditProfileComponent implements OnInit {
       purchase.productos = [];
   
       const productRequests = purchase.productos.map(product =>
-        this.productService.getProductById(product.id).toPromise().catch(() => ({
+        this.productService._getProductById(product.id).toPromise().catch(() => ({
           cantidad: product.quantity,
           precio: product.price,
           brand: 'Producto no disponible',

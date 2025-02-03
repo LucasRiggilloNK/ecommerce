@@ -27,7 +27,6 @@ export class AuthService {
   
           if (user) {
             if (typeof window !== 'undefined') {
-              console.log('Usuario logueado:', user.email);
               sessionStorage.setItem('auth_token', 'your_token');
               sessionStorage.setItem('email', user.email);
               sessionStorage.setItem('userId', String(user.id));

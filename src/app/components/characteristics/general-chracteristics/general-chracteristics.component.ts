@@ -7,19 +7,16 @@ import {
   Output,
   SimpleChanges,
 } from '@angular/core';
-import { constrainedMemory } from 'process';
 import { ProductcCharacteristicsService } from '../../../services/product/product-characteristics.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Color } from '../../../models/products/characteristics/color';
 import { Country } from '../../../models/products/characteristics/country';
-import { GeneralCharacteristics } from '../../../interfaces/product/characteristics/general-characteristics';
 import { WeightUnit } from '../../../models/products/characteristics/weight-unit';
 import { Observable } from 'rxjs';
 import { ProductInterface2 } from '../../../interfaces/product/product-interface2';
 import { ProductService } from '../../../services/product/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { Brand } from '../../../models/products/brands/brand';
-import { Category } from '../../../models/products/categories/category';
+
 
 @Component({
   selector: 'app-general-chracteristics',
@@ -114,14 +111,7 @@ export class GeneralChracteristicsComponent implements OnInit, OnChanges {
 
 
 
-  /* /// PRODUCT EDIT  //////////////////////
-  this.setFormGroupToEditCharact(this.characteristicsToEdit);
 
-  //////////////////////// */
-
-    
-
-    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -165,18 +155,13 @@ export class GeneralChracteristicsComponent implements OnInit, OnChanges {
       
   
     
-    
-
-   
-
-
+  
   }
 
   
 
 
   getProductoToEdit(id: string):Observable<ProductInterface2>{
-    console.log("ID: " + id);
     return this.productService._getProductById(id);
 
   }

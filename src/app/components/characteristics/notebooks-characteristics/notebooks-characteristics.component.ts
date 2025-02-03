@@ -8,8 +8,6 @@ import { MemorySize } from '../../../interfaces/product/characteristics/memory-s
 import { MemoryUnit } from '../../../models/products/characteristics/memory-unit';
 import { LengthUnit } from '../../../models/products/characteristics/length-unit';
 import { NotebookCharacteristics } from '../../../interfaces/product/characteristics/notebook-characteristics';
-import { Color } from '../../../models/products/characteristics/color';
-import { Country } from '../../../models/products/characteristics/country';
 import { GeneralCharacteristics } from '../../../interfaces/product/characteristics/general-characteristics';
 import { Observable } from 'rxjs';
 import { ProductInterface2 } from '../../../interfaces/product/product-interface2';
@@ -75,7 +73,7 @@ export class NotebooksCharacteristicsComponent {
    let id = this.route.snapshot.paramMap.get("id");
    if(id != null){
      this.id = id;
-     this.getProductoToEdit(id).subscribe({//busdcar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
+     this.getProductoToEdit(id).subscribe({//buscar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
        next: response =>{
          this.productoToEdit = response;
          this.setFormGroupToEdit(this.productoToEdit.characteristics as NotebookCharacteristics);
@@ -154,7 +152,6 @@ export class NotebooksCharacteristicsComponent {
 
  /////   EDIT PRODUCT  ///////
 getProductoToEdit(id: string):Observable<ProductInterface2>{
-   console.log("ID: " + id);
    return this.productService._getProductById(id);
 
  }

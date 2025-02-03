@@ -143,7 +143,6 @@ export class TabletCharacteristicsComponent {
 
 /////   EDIT PRODUCT  ///////
 getProductoToEdit(id: string):Observable<ProductInterface2>{
- console.log("ID: " + id);
  return this.productService._getProductById(id);
 
 }

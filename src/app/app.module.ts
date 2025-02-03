@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { AddProductComponent } from './components/add-product/add-product.component';
 import { AirConditioningCharacteristicsComponent } from './components/characteristics/air-conditioning-characteristics/air-conditioning-characteristics.component';
 import { TvCharacteristicsComponent } from './components/characteristics/tv-characteristics/tv-characteristics.component';
 import { FanCharacteristicsComponent } from './components/characteristics/fan-characteristics/fan-characteristics.component';
@@ -24,7 +23,6 @@ import { TabletCharacteristicsComponent } from './components/characteristics/tab
 import { PrinterCharacteristicsComponent } from './components/characteristics/printer-characteristics/printer-characteristics.component';
 import { KeyboardCharacteristicsComponent } from './components/characteristics/keyboard-characteristics/keyboard-characteristics.component';
 import { MouseCharacteristicsComponent } from './components/characteristics/mouse-characteristics/mouse-characteristics.component';
-import { PrivateComponent } from './private/private.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/login/auth.interceptor';
 import { CartComponent } from './components/cart/cart.component';
@@ -45,7 +43,6 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     HeaderComponent,
     CartComponent,
     HomeComponent,
-    AddProductComponent,
     AirConditioningCharacteristicsComponent,
     TvCharacteristicsComponent,
     FanCharacteristicsComponent,
@@ -61,7 +58,6 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
     PrinterCharacteristicsComponent,
     KeyboardCharacteristicsComponent,
     MouseCharacteristicsComponent,
-    PrivateComponent,
     RegisterComponent,
     LoginComponent,
     BuyFormComponent,

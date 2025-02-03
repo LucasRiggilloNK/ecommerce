@@ -1,14 +1,10 @@
 <form action="" [formGroup]="characteristicsFormGroup">
     <P> Tamaño pantalla</P>
-    <!-- <select id="tabletScreenSize" formControlName="tabletScreenSize"> 
-        <option *ngFor="let inch of tabletScreenSizesList" [value]="inch">{{ inch }}</option>
-    </select> -->    
+  
     <input type="number" id="tabletScreenSize" formControlName="tabletScreenSize" min="0">Pulg
 
     <P> RAM </P>
-    <!-- <select id="tabletRam" formControlName="tabletRam"> 
-        <option *ngFor="let ram of tabletRamList" [value]="ram">{{ ram }}</option>
-    </select>  --> 
+
     <input type="text" id="tabletRam" formControlName="tabletRam" >GB
     <div style="color: red" *ngIf="characteristicsFormGroup.get('tabletRam')?.errors?.['numbersOnly']">
         Campo números enteros...

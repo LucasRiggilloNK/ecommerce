@@ -20,7 +20,8 @@
           "precio": 119.99,
           "brand": "BrandA"
         }
-      ]
+      ],
+      "id": "c432"
     },
     {
       "purchaseId": 81,
@@ -42,7 +43,8 @@
           "precio": 299.99,
           "brand": "BrandB"
         }
-      ]
+      ],
+      "id": "f9bb"
     },
     {
       "purchaseId": 160,
@@ -64,7 +66,8 @@
           "precio": 1299.99,
           "brand": "BrandC"
         }
-      ]
+      ],
+      "id": "5e48"
     },
     {
       "purchaseId": 237,
@@ -98,7 +101,8 @@
           "precio": 1499.99,
           "brand": "BrandE"
         }
-      ]
+      ],
+      "id": "072c"
     },
     {
       "purchaseId": 237,
@@ -144,7 +148,8 @@
           "precio": 1099.99,
           "brand": "BrandH"
         }
-      ]
+      ],
+      "id": "383a"
     },
     {
       "purchaseId": 238,
@@ -178,7 +183,8 @@
           "precio": 899.99,
           "brand": "BrandJ"
         }
-      ]
+      ],
+      "id": "1642"
     },
     {
       "purchaseId": 243,
@@ -200,7 +206,8 @@
           "precio": 599.99,
           "brand": "BrandK"
         }
-      ]
+      ],
+      "id": "7842"
     },
     {
       "purchaseId": 361,
@@ -222,7 +229,8 @@
           "precio": 199.99,
           "brand": "BrandL"
         }
-      ]
+      ],
+      "id": "0cd5"
     },
     {
       "purchaseId": 480,
@@ -244,7 +252,8 @@
           "precio": 179.99,
           "brand": "BrandM"
         }
-      ]
+      ],
+      "id": "1fdb"
     },
     {
       "purchaseId": 132,
@@ -266,7 +275,8 @@
           "precio": 149.99,
           "brand": "BrandN"
         }
-      ]
+      ],
+      "id": "2003"
     },
     {
       "purchaseId": 109,
@@ -288,7 +298,38 @@
           "precio": 999.99,
           "brand": "BrandO"
         }
-      ]
+      ],
+      "id": "bc7b"
+    },
+    {
+      "id": "a2bb",
+      "purchaseId": 480,
+      "clienteId": "ccc1",
+      "productos": [
+        {
+          "id": "27",
+          "quantity": 1,
+          "price": 439999,
+          "brand": "Epson",
+          "model": "ECOTANK L1250 (B631E)"
+        },
+        {
+          "id": "26a3",
+          "quantity": 1,
+          "price": 2199999,
+          "brand": "LG",
+          "model": "W18KLRPA"
+        },
+        {
+          "id": "fe30",
+          "quantity": 1,
+          "price": 1799999,
+          "brand": "Exo",
+          "model": "D6-S7785"
+        }
+      ],
+      "fecha": "2025-02-03T18:17:47.504Z",
+      "total": 4440682.6
     }
   ]
 }

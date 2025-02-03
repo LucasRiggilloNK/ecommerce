@@ -1,12 +1,5 @@
 <form action="" [formGroup]="characteristicsFormGroup">
-    <!-- <P> Monocromática </P>
-    <select id="monochromatic" formControlName="monochromatic"> 
-        <option *ngFor="let monochromatic of isMonochromatic" [value]="monochromatic">{{ monochromatic }}</option>
-    </select>    
-    <P> 3D </P>
-    <select id="is3DPrinter" formControlName="is3DPrinter"> 
-        <option *ngFor="let is3D of is3DPrinter" [value]="is3D">{{ is3D }}</option>
-    </select>        -->
+
     <P> Tipo </P>
     <select id="printerType" formControlName="printerType"> 
         <option *ngFor="let type of printerTypeList" [value]="type">{{ type }}</option>

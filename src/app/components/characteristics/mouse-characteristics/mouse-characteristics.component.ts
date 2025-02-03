@@ -3,8 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductcCharacteristicsService } from '../../../services/product/product-characteristics.service';
 import { Conectivity } from '../../../models/products/characteristics/conectivity';
 import { MouseCharacteristics } from '../../../interfaces/product/characteristics/mouse-characteristics';
-import { Color } from '../../../models/products/characteristics/color';
-import { Country } from '../../../models/products/characteristics/country';
 import { GeneralCharacteristics } from '../../../interfaces/product/characteristics/general-characteristics';
 import { Observable } from 'rxjs';
 import { ProductInterface2 } from '../../../interfaces/product/product-interface2';
@@ -55,7 +53,7 @@ export class MouseCharacteristicsComponent {
    let id = this.route.snapshot.paramMap.get("id");
    if(id != null){
      this.id = id;
-     this.getProductoToEdit(id).subscribe({//busdcar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
+     this.getProductoToEdit(id).subscribe({//buscar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
        next: response =>{
          this.productoToEdit = response;
          this.setFormGroupToEdit(this.productoToEdit.characteristics as MouseCharacteristics);
@@ -118,7 +116,6 @@ export class MouseCharacteristicsComponent {
 
  /////   EDIT PRODUCT  ///////
 getProductoToEdit(id: string):Observable<ProductInterface2>{
-   console.log("ID: " + id);
    return this.productService._getProductById(id);
 
  }

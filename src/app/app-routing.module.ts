@@ -5,11 +5,9 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from '../guards/auth.guard';
 import { NoAuthGuard } from '../guards/no-auth.guard';
-import { PrivateComponent } from './private/private.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductDetailsComponent } from './components/products/details/product-details/product-details.component';
 import { BuyFormComponent } from './components/buy-form/buy-form.component';
-import { AddProductComponent } from './components/add-product/add-product.component';
 import { AdminGuard } from '../guards/admin.guard';
 import { ProductEditComponent } from './components/products/product-edit/product-edit.component';
 import { CreateProductComponent } from './components/products/create-product/create-product.component';
@@ -17,11 +15,6 @@ import { EditProfileComponent } from './components/edit-profile/edit-profile.com
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  /* {
-    path: 'addProduct',
-    component: AddProductComponent,
-    canActivate: [AdminGuard],
-  }, */
   {
     path: 'createProduct',
     component: CreateProductComponent,

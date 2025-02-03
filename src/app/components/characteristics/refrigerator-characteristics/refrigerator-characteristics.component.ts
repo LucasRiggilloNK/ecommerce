@@ -3,8 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductcCharacteristicsService } from '../../../services/product/product-characteristics.service';
 import { CoolingSystem } from '../../../models/products/characteristics/cooling-system';
 import { RefrigeratorCharacteristics } from '../../../interfaces/product/characteristics/refrigerator-characteristics';
-import { Color } from '../../../models/products/characteristics/color';
-import { Country } from '../../../models/products/characteristics/country';
 import { GeneralCharacteristics } from '../../../interfaces/product/characteristics/general-characteristics';
 import { Observable } from 'rxjs';
 import { ProductInterface2 } from '../../../interfaces/product/product-interface2';
@@ -63,7 +61,7 @@ this.productoToEdit = this.productService.initProductInterface();/// carga un pr
    let id = this.route.snapshot.paramMap.get("id");
    if(id != null){
      this.id = id;
-     this.getProductoToEdit(id).subscribe({//busdcar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
+     this.getProductoToEdit(id).subscribe({//buscar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
        next: response =>{
          this.productoToEdit = response;
          this.setFormGroupToEdit(this.productoToEdit.characteristics as RefrigeratorCharacteristics);
@@ -123,7 +121,6 @@ this.productoToEdit = this.productService.initProductInterface();/// carga un pr
 
  /////   EDIT PRODUCT  ///////
 getProductoToEdit(id: string):Observable<ProductInterface2>{
-   console.log("ID: " + id);
    return this.productService._getProductById(id);
 
  }

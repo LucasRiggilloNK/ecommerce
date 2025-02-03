@@ -43,9 +43,7 @@
     </div>
 
     <p>URL Imágen</p>
-    <!-- <input type="text" formControlName="urlImage" class="form-control" /> -->
     <textarea formControlName="urlImage" class="form-control" rows="10"></textarea>
-    <!-- <img src="{{ editProduct.get('urlImage')?.value }}" alt /> -->
     <div style="color: red" *ngIf="
         !editProduct.valid &&
         (editProduct.get('urlImage')?.dirty ||
@@ -57,7 +55,6 @@
     </div>
 
     <p>Descripción</p>
-    <!-- <input type="text" formControlName="description" class="form-control"  /> -->
      <textarea formControlName="description" class="form-control" rows="15"></textarea>
     
     <div style="color: red" *ngIf="

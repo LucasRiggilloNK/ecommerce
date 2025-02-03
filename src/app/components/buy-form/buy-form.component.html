@@ -284,12 +284,7 @@
   </select>
 
   
-    <!-- <div class="error-message" *ngIf="userDataForm.valid" >
-
-      <div *ngIf="!verifyCard" >
-        *Tarjeta inválida
-      </div>
-    </div> -->
+  
     <div class="error-message" *ngIf="!verifyCard && (this.userDataForm.get('cardType')?.touched || this.userDataForm.get('cardType')?.dirty ||
     this.userDataForm.get('cardHolder')?.touched || this.userDataForm.get('cardHolder')?.dirty ||
     this.userDataForm.get('cardNumber')?.touched || this.userDataForm.get('cardNumber')?.dirty || 

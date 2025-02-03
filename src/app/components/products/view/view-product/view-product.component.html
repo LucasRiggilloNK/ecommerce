@@ -324,17 +324,12 @@
 
               <!-- <div class="controls" [hidden]="!isLoggedIN()"> -->
                 <div class="controls" [hidden]="!isAdmin()">
-                  <p>Precio: ${{ product.price | number: '1.0-0' }}</p>
+                  <!-- <p>Precio: ${{ product.price | number: '1.0-0' }}</p> -->
                 <button
                   class="add-cart"
                   type="button"
                   [routerLink]="['/productEdit', product.id]">
-                <!--  <div class="controls" [hidden]="!isLoggedIN()">
-                <button
-                  class="add-cart"
-                  type="button"
-                  (click)="decreaseQuantity(product.id); $event.stopPropagation()" 
-                >-->
+                
 
                   Modificar
                 </button>

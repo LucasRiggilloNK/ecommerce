@@ -145,7 +145,6 @@
       }
     },
     {
-      "id": "bd65",
       "brand": "Samsung",
       "category": "Heladeras",
       "urlImage": "https://medias.musimundo.com/medias/size515-153327-01.jpg?context=bWFzdGVyfGltYWdlc3wxMTAzNHxpbWFnZS9qcGVnfGFHSmpMMmczWlM4eE1EWTBOakUwT0RNME9UazRNaTl6YVhwbE5URTFYekUxTXpNeU4xOHdNUzVxY0djfDg4NTEwNGZiZjU3MWRiNTAxZjJiNGY5NjRkMjI1MzZlN2NiMDdmZTVkNmFiNzM3M2M2ODFjMGI4OTY2Y2QwODI",
@@ -176,7 +175,8 @@
           "weight": 151,
           "unit": "Kg"
         }
-      }
+      },
+      "id": "bd65"
     },
     {
       "brand": "BGH",
@@ -3914,7 +3914,6 @@
       }
     },
     {
-      "id": "229d",
       "brand": "Shenlong",
       "category": "Mouses",
       "urlImage": "https://medias.musimundo.com/medias/size515-142601-01.jpg?context=bWFzdGVyfGltYWdlc3wyMzgzOHxpbWFnZS9qcGVnfGFESTBMMmcxTWk4eE1EWXpORGd5TURFNU1ESXpPQzl6YVhwbE5URTFYekUwTWpZd01WOHdNUzVxY0djfGEzNDZjYTcwMGM3NzY2OGEyZDhlM2I1OWYyMjA0M2JlYjdmNzdlYjhiZTAyNzVlYTU0ODMxMDNiMWRmODA5MGQ",
@@ -3945,7 +3944,8 @@
           "weight": 250,
           "unit": "gr"
         }
-      }
+      },
+      "id": "229d"
     },
     {
       "brand": "Samsung",
@@ -4069,6 +4069,73 @@
         }
       },
       "id": "ddfd"
+    },
+    {
+      "id": "7e27",
+      "brand": "Exo",
+      "category": "Computadoras de Escritorio",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152864-01.jpg?context=bWFzdGVyfGltYWdlc3wyNDAwMnxpbWFnZS9qcGVnfGFERXpMMmczTUM4eE1EWTFNRGt4TkRZNE5EazFPQzl6YVhwbE5URTFYekUxTWpnMk5GOHdNUzVxY0djfGI3ZWU2ZTVhMzlkNzI4YTFkYTMyZTI5MTZjNzgwMTg0MTFiMjE4MWZlNmY3YmE3NmU3MWNjOTc5ZTYwYzU3YWM",
+      "description": "Pc gamer. Procesador Intel core i5-12400 (2.50 hasta 4.40 Ghz). Capacidad 480 Gb SSD. RAM 16 Gb. Placa de video UHD Intel + GF RTX 3050 6 Gb. Conexiones: 8 entradas USB. 1 Entrada HDMI. Sistema operativo Windows 11.\n",
+      "price": 1299999,
+      "stock": 12,
+      "model": "G52A",
+      "quantity": 0,
+      "characteristics": {
+        "country": "Argentina",
+        "color": "Gris",
+        "dimension": {
+          "height": {
+            "value": 36,
+            "unit": "cm"
+          },
+          "width": {
+            "value": 16.5,
+            "unit": "cm"
+          },
+          "depth": {
+            "value": 33.5,
+            "unit": "cm"
+          }
+        },
+        "weight": {
+          "weight": 5.5,
+          "unit": "Kg"
+        }
+      }
+    },
+    {
+      "id": "bdb7",
+      "brand": "Whirlpool",
+      "category": "Heladeras",
+      "urlImage": "https://medias.musimundo.com/medias/size515-152720-01.jpg?context=bWFzdGVyfGltYWdlc3w5NTE2fGltYWdlL2pwZWd8YURWbEwyZzBaUzh4TURZek9UVTRORFF5T0RBMk1pOXphWHBsTlRFMVh6RTFNamN5TUY4d01TNXFjR2N8ZjMyNmY3NDYxNDYwOGQ1MGUxNjQ2NDM3ZTNjNDQ4Y2EwY2EwOWE0Y2JkMzk1NTFmZGVjMTM0YjFhYmJiMDc0ZA",
+      "description": "Heladera Bottom Freezer No Frost. Volumen bruto 527 L. Volumen neto 488 L. Sistema de enfriamiento: No Frost. Ubicacion del freezer: inferior. Eficiencia Energetica A++. Crisper hortinatura para frutas y verduras conservando por mas tiempo y reduciendo desperdicios. Tipo de estantes: vidrio templado antiderrame. Pies Regulables. Controles digitales con Food Control. Tecnologia Autosense: regula la temperatura automaticamente utilizando inteligencia artificial y prolonga la vida de los aliemntos hasta 30% mas tiempo. Sistema Food Control: controla la validez de los alimentos frescos hasta la fecha optima de consumo, evitando desperdicios. Tecnologia Inverter: el compresor mantiene la temperatura mas estable garantizando hasta un 41% de ahorro de energia. TasteGuard: elimina hasta 9 veces mas rapido los malos olores causados por las bacterias. FastAdapt: estantes que permiten configuraciones internas para almacenar alimentos de diferentes tamanos. IceMax: compartimento que permite la reposicion del agua sin salpicaduras y sin mezcla de olores con el resto del freezer. Funcion drink express: permite enfriar las bebidas en menos tiempo. Funcion compras: permite enfriar rapidamente los alimentos. Funcion fiesta: mantiene la maxima capacidad de refrigeracion durante 6 horas. Funcion de bloque del panel.\n",
+      "price": 2624999,
+      "stock": 12,
+      "model": "IB7B",
+      "quantity": 0,
+      "characteristics": {
+        "coolingSystem": "No frost",
+        "color": "Negro",
+        "country": "Brasil",
+        "dimension": {
+          "height": {
+            "value": 189.5,
+            "unit": "cm"
+          },
+          "width": {
+            "value": 69.9,
+            "unit": "cm"
+          },
+          "depth": {
+            "value": 74.85,
+            "unit": "cm"
+          }
+        },
+        "weight": {
+          "weight": 70.5,
+          "unit": "gr"
+        }
+      }
     }
   ]
 }

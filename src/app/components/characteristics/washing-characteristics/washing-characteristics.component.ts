@@ -1,9 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductcCharacteristicsService } from '../../../services/product/product-characteristics.service';
-import { CustomValidators } from '../../../common/custom-validators';
-import { Color } from '../../../models/products/characteristics/color';
-import { Country } from '../../../models/products/characteristics/country';
 import { WashingCharacteristics } from '../../../interfaces/product/characteristics/washing-characteristics';
 import { WeightUnit } from '../../../models/products/characteristics/weight-unit';
 import { WeightCapacity } from '../../../interfaces/product/characteristics/weight-capacity';
@@ -117,7 +114,6 @@ export class WashingCharacteristicsComponent {
 
  /////   EDIT PRODUCT  ///////
 getProductoToEdit(id: string):Observable<ProductInterface2>{
-   console.log("ID: " + id);
    return this.productService._getProductById(id);
 
  }

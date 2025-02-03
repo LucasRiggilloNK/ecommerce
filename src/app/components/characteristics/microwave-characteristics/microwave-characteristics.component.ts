@@ -4,8 +4,6 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
 import { MicrowaveCharacteristics } from '../../../interfaces/product/characteristics/microwave-characteristics';
 import { VolumeCapacity } from '../../../interfaces/product/characteristics/volume-capacity';
 import { VolumeUnit } from '../../../models/products/characteristics/volume-unit';
-import { Color } from '../../../models/products/characteristics/color';
-import { Country } from '../../../models/products/characteristics/country';
 import { GeneralCharacteristics } from '../../../interfaces/product/characteristics/general-characteristics';
 import { Observable } from 'rxjs';
 import { ProductInterface2 } from '../../../interfaces/product/product-interface2';
@@ -93,12 +91,6 @@ export class MicrowaveCharacteristicsComponent {
       unit: VolumeUnit.LITERS,
     };
 
-    /* let charact: MicrowaveCharacteristics = {
-               
-                capacity: _capacity,
-                color: Color.NONE,
-                country: Country.NONE
-              }; */
 
     let initCharact: GeneralCharacteristics =
       this.productCharacteristicsService.initCharacteristics();
@@ -123,7 +115,6 @@ export class MicrowaveCharacteristicsComponent {
 
  /////   EDIT PRODUCT  ///////
 getProductoToEdit(id: string):Observable<ProductInterface2>{
-   console.log("ID: " + id);
    return this.productService._getProductById(id);
 
  }

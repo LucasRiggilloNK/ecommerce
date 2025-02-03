@@ -85,7 +85,6 @@ export class ProductcCharacteristicsService {
 
   
   constructor() { 
-    /////  AGREGADO /////
     this.generalCharacteristics = this.initCharacteristics();
     this.characteristics = this.initCharacteristics();
 
@@ -123,11 +122,9 @@ export class ProductcCharacteristicsService {
 
     obtainCharacteristicsString(characteristicsString: string){
       this.characteristicsString = characteristicsString;
-      console.log("characteristicsString en OBTAIN: " + this.characteristicsString);
 
     }
     sendCharacteristicsString(){
-      console.log("characteristicsString en SEND: " + this.characteristicsString);
       return this.characteristicsString;
     }
 
@@ -179,8 +176,6 @@ export class ProductcCharacteristicsService {
     public getWeightUnitList(){
       return this.weightUnitList;
     }
-
-    /////////////////////////   AGREGADO    ///////////////////////////////////777
 
 
 
@@ -277,14 +272,6 @@ export class ProductcCharacteristicsService {
 
 
 
-      /* public characteristicsFormGroupToCharacteristics(form: FormGroup){
-        let characteristics: GeneralCharacteristics = {
-          country: form.get("country")?.value,
-          color: form.get("color")?.value
-        }
-        this.setCharacteristics(characteristics);
-      } */
-
       public getFinalCharacteristics(){//Devuelve las caracteristicas establecidas en el componente de características
         this.setFinalCharacteristics();
         return this.characteristics;
@@ -311,21 +298,12 @@ export class ProductcCharacteristicsService {
       }
 
       public getCharacteristicsFormGroupValid(){
-        /* let out: boolean;
-        if(this.onlyGeneralCharacteristics){
-          out = this.generalCharacteristicsFormGroupValid;
-        }else{
-          out = this.generalCharacteristicsFormGroupValid && this.characteristicsFormGroupValid;
-        } */
+
           let out: boolean = this.generalCharacteristicsFormGroupValid;
           if(!this.onlyGeneralCharacteristics){
             out = this.generalCharacteristicsFormGroupValid && this.characteristicsFormGroupValid;
           }
-          
 
-        console.log("GET");
-        console.log(out);
-        //return this.generalCharacteristicsFormGroupValid && this.characteristicsFormGroupValid;
         return out;
       }
 

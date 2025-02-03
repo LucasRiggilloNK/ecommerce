@@ -4,14 +4,12 @@ import { ProductcCharacteristicsService } from '../../../services/product/produc
 import { AirConditioningCharacteristics } from '../../../interfaces/product/characteristics/air-conditioning-characteristics';
 import { HeatCold } from '../../../models/products/characteristics/heat-cold';
 import { AirType } from '../../../models/products/characteristics/air-type';
-
 import { GeneralCharacteristics } from '../../../interfaces/product/characteristics/general-characteristics';
 import { EventEmitter } from '@angular/core';
 import { ProductService } from '../../../services/product/product.service';
 import { ProductInterface2 } from '../../../interfaces/product/product-interface2';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { producerAccessed } from '@angular/core/primitives/signals';
 
 @Component({
   selector: 'app-air-conditioning-characteristics',
@@ -33,9 +31,9 @@ export class AirConditioningCharacteristicsComponent implements OnInit {
 
   /// PRODUCT EDIT  //////////////////////
     
-    productoToEdit: ProductInterface2;
-    id: string = "";
-    //////////////////////
+  productoToEdit: ProductInterface2;
+  id: string = "";
+  //////////////////////
   
 
   constructor(
@@ -100,7 +98,6 @@ export class AirConditioningCharacteristicsComponent implements OnInit {
   }
 
   
-  //////////////////////////   AGREGADO  ////////////////////////////////////////////////////////////
 
   private getCharacteristicsFromFormGroup(form: FormGroup) {
  
@@ -118,9 +115,7 @@ export class AirConditioningCharacteristicsComponent implements OnInit {
     return charact;
   }
 
-  private resetForm(form: FormGroup){
-    form.reset();
-  }
+
 
   formValid(){
     this.characteristicsFormValid.emit(this.characteristicsFormGroup.valid);
@@ -130,7 +125,6 @@ export class AirConditioningCharacteristicsComponent implements OnInit {
 
   /////   EDIT PRODUCT  ///////
 getProductoToEdit(id: string):Observable<ProductInterface2>{
-    console.log("ID: " + id);
     return this.productService._getProductById(id);
 
   }

@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ProductInterface } from '../../interfaces/product/product-interface';
 import { CarritoService } from '../../services/cart.service';
 import { Subscription } from 'rxjs';
 import { Location } from '@angular/common';
@@ -11,7 +10,6 @@ import { ProductInterface2 } from '../../interfaces/product/product-interface2';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit, OnDestroy {
-  //carrito: ProductInterface[] = [];
   carrito: ProductInterface2[] = [];
   quantity: number;
   totalQty: number = 0;
@@ -36,9 +34,6 @@ export class CartComponent implements OnInit, OnDestroy {
       });
   }
 
-  /* addToCart(product: ProductInterface): void {
-    this.carritoService.addToCart(product);
-  } */
     addToCart(product: ProductInterface2): void {
       this.carritoService.addToCart(product);
     }

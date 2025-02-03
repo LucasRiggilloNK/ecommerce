@@ -5,8 +5,6 @@ import { ScreenSize } from '../../../interfaces/product/characteristics/screen-s
 import { MemorySize } from '../../../interfaces/product/characteristics/memory-size';
 import { MemoryUnit } from '../../../models/products/characteristics/memory-unit';
 import { SmartphoneCharacteristics } from '../../../interfaces/product/characteristics/smartphone-characteristics';
-import { Color } from '../../../models/products/characteristics/color';
-import { Country } from '../../../models/products/characteristics/country';
 import { LengthUnit } from '../../../models/products/characteristics/length-unit';
 import { CustomValidators } from '../../../common/custom-validators';
 import { GeneralCharacteristics } from '../../../interfaces/product/characteristics/general-characteristics';
@@ -56,7 +54,7 @@ export class SmartphonesCharacteristicsComponent {
  let id = this.route.snapshot.paramMap.get("id");
  if(id != null){
    this.id = id;
-   this.getProductoToEdit(id).subscribe({//busdcar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
+   this.getProductoToEdit(id).subscribe({//buscar el producto si es para editar y extrae las carcteristicas y las cargar en el formulario
      next: response =>{
        this.productoToEdit = response;
        this.setFormGroupToEdit(this.productoToEdit.characteristics as SmartphoneCharacteristics);
@@ -126,7 +124,6 @@ export class SmartphonesCharacteristicsComponent {
 
 /////   EDIT PRODUCT  ///////
 getProductoToEdit(id: string):Observable<ProductInterface2>{
- console.log("ID: " + id);
  return this.productService._getProductById(id);
 
 }

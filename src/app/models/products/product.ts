@@ -1,7 +1,6 @@
 import { BADNAME } from "node:dns";
 import { Brand } from "./brands/brand";
 import { Category } from "./categories/category";
-import { Image } from "./images/image";
 
 export class Product {
     private id: number;
@@ -12,13 +11,13 @@ export class Product {
     private stock: number;
     private characteristics: string;
     private model: string;
-    private image: Image;
+    private image: string;
 
 	constructor(){
             this.id = 0; // Valor por defecto
             this.brand = Brand.NONE;
             this.category = Category.NONE;
-            this.image = new Image("");
+            this.image = "";
             this.description = '';
             this.price = 0;
             this.stock = 0;
@@ -53,12 +52,12 @@ export class Product {
         this.category = category;
     }
 
-     public getImage(): Image
+     public getImage(): string
     {
         return this.image;
     }
 
-    public setImage(image: Image) {
+    public setImage(image: string) {
         this.image = image;
     }  
 

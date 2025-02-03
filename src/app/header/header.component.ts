@@ -2,8 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../services/login/auth.service';
 import { CarritoService } from '../services/cart.service';
 import { Subscription } from 'rxjs';
-import { AuthGuard } from '../../guards/auth.guard';
-import { AdminGuard } from '../../guards/admin.guard';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
@@ -20,7 +18,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private adminGuard: AdminGuard,
     private carritoService: CarritoService,
     private router: Router
   ) {}
@@ -58,8 +55,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (this.stockSubscription) {
       this.stockSubscription.unsubscribe();
     }
-
-    console.log("DESTROYED");
     
   }
 
@@ -67,7 +62,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (typeof window !== 'undefined') {
       const id = sessionStorage.getItem('userId');
       if (id === this.adminId) {
-        console.log("1 " + id);
         return true;
       }
     }
