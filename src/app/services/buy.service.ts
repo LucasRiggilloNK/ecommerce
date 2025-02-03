@@ -8,6 +8,7 @@ import { CardsService } from './cards.service';
 import { Card } from '../interfaces/cards/card';
 import { Observable } from 'rxjs';
 import { ProductInterface2 } from '../interfaces/product/product-interface2';
+import { DiscountCoupon } from '../interfaces/product/discount-coupon';
 
 @Injectable({
   providedIn: 'root',
@@ -16,6 +17,7 @@ export class BuyService {
   private cartItems: ProductInterface[] = [];
   private user: User | null;
   subTotalPrice: number;
+  private shippingCostByKm: number = 100;
 
   constructor(
     private cartService: CarritoService,
@@ -39,10 +41,14 @@ export class BuyService {
     return this.registerService.getUserById(userId);
   }
 
-  getSubtotal() {
+  /* getSubtotal() {
     this.subTotalPrice = this.cartService.getTotalPrice();
     return this.subTotalPrice;
-  }
+  } */
+    getSubtotal(discountCoupon: DiscountCoupon) {
+      this.subTotalPrice = this.cartService.getTotalPrice(discountCoupon);
+      return this.subTotalPrice;
+    }
 
   getShippingPrice(destiny: string) {
     return this.distanceMatrixService.getApiDistanceMatrix(destiny);
@@ -53,4 +59,7 @@ export class BuyService {
     return out;
   }
     
+  public getShippingCostByKm(){
+    return this.shippingCostByKm;
+  }
 }

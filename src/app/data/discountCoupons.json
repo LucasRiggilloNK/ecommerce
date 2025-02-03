@@ -1,0 +1,17 @@
+{
+  "discountCoupons": [
+    {
+      "code": "AXRT1414",
+      "maxMount": 150000,
+      "discountPercentage": 5,
+      "freeShiping": true,
+      "categoryList": [],
+      "brandList": [],
+      "startstDate": "2025-01-24T14:30:00-03:00",
+      "endDate": "2025-02-24T14:30:00-03:00",
+      "infinitStock": false,
+      "stock": 4,
+      "id": "1"
+    }
+  ]
+}

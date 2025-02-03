@@ -21,6 +21,8 @@ import Swal from 'sweetalert2';
 import { CardsService } from '../../services/cards.service';
 import { Location } from '@angular/common';
 import { ProductInterface2 } from '../../interfaces/product/product-interface2';
+import { DiscountCoupon } from '../../interfaces/product/discount-coupon';
+import { DiscountCouponService } from '../../services/discount-coupon/discount-coupon.service';
 
 
 @Component({
@@ -36,13 +38,18 @@ export class BuyFormComponent implements OnInit {
   userDataForm: FormGroup;
 
 
-  shippingCostByKm: number = 100;
+  //shippingCostByKm: number = 100;
+  shippingCostByKm: number;
   shippingPrice: number;
   distanceMatrixObject: DistanceMatrix;
   destination_addresses: string = '';
   calculateDistance: number;
 
-  addressNotExits: boolean = false; //agregado
+  //addressNotExits: boolean = false; //agregado
+
+  addressExists: boolean = false; //agregado
+  calculatedShipping:boolean = false;
+  
 
 
   provincesList: string[] = Object.values(Province);
@@ -52,6 +59,9 @@ export class BuyFormComponent implements OnInit {
 
   verifyCard: boolean = false;
 
+  discountCoupon: DiscountCoupon;
+  
+
   constructor(
     private buyService: BuyService,
     private fb: FormBuilder,
@@ -60,7 +70,8 @@ export class BuyFormComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private cardService: CardsService, 
-    private location: Location
+    private location: Location,
+    private discountCouponService: DiscountCouponService
   ) {
     this.userDataForm = this.fb.group({
       clienteId: [''],
@@ -114,6 +125,7 @@ export class BuyFormComponent implements OnInit {
         CustomValidators.numbersOnly(),
       ]),
       cardIssuer: new FormControl('', Validators.required),
+      discountCoupon: new FormControl("",[],[CustomValidators.couponExists(this.discountCouponService)])
     });
 
     this.distanceMatrixObject = {
@@ -143,6 +155,9 @@ export class BuyFormComponent implements OnInit {
 
     this.shippingPrice = 0;
     this.calculateDistance = 0;
+    this.shippingCostByKm = this.buyService.getShippingCostByKm();
+
+    this.discountCoupon = this.initDiscountCoupon();
   }
 
   
@@ -151,10 +166,15 @@ export class BuyFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
+
+
+
     this.buyService.getCartItemsToBuy().subscribe((items) => {
       this.cartItems = items;
     });
-    this.subTotalPrice = this.buyService.getSubtotal();
+    //this.subTotalPrice = this.buyService.getSubtotal();
+    this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
 
     let userId: string | null = this.authService.getUserId();
     console.log('id ' + userId);
@@ -190,7 +210,8 @@ export class BuyFormComponent implements OnInit {
           !this.userDataForm.get('city')?.valid  ||
           !this.userDataForm.get('street')?.valid  ||
           !this.userDataForm.get('streetNumber')?.valid){
-            this.addressNotExits = false;
+            this.addressExists = false;
+            this.calculatedShipping = false;
           }
           
 
@@ -198,24 +219,35 @@ export class BuyFormComponent implements OnInit {
     });
     
     this.userDataForm.get('province')?.valueChanges.subscribe(() =>{
-      this.addressNotExits = false;
+      this.addressExists = false;
       this.shippingPrice = 0;
       this.destination_addresses = "";
+      this.calculatedShipping = false;
     });
     this.userDataForm.get('city')?.valueChanges.subscribe(() =>{
-      this.addressNotExits = false;
+      this.addressExists = false;
       this.shippingPrice = 0;
       this.destination_addresses = "";
+      this.calculatedShipping = false;
     });
     this.userDataForm.get('street')?.valueChanges.subscribe(() =>{
-      this.addressNotExits = false;
+      this.addressExists = false;
       this.shippingPrice = 0;
       this.destination_addresses = "";
+      this.calculatedShipping = false;
     });
     this.userDataForm.get('streetNumber')?.valueChanges.subscribe(() =>{
-      this.addressNotExits = false;
+      this.addressExists = false;
       this.shippingPrice = 0;
       this.destination_addresses = "";
+      this.calculatedShipping = false;
+    });
+    this.userDataForm.get('discountCoupon')?.valueChanges.subscribe(() =>{
+      this.addressExists = false;
+      this.shippingPrice = 0;
+      this.destination_addresses = "";
+      this.calculatedShipping = false;
+      this.discountCoupon = this.initDiscountCoupon();
     });
 
   }
@@ -235,9 +267,13 @@ export class BuyFormComponent implements OnInit {
     this.userDataForm.get('floor')?.setValue(user.floor);
   }
 
-  getSubtotal() {
+  /* getSubtotal() {
     return this.buyService.getSubtotal();
-  }
+  } */
+
+    getSubtotal() {
+      return this.buyService.getSubtotal(this.discountCoupon);
+    }
 
   getShippingPrice() {
     let destiny =
@@ -257,31 +293,42 @@ export class BuyFormComponent implements OnInit {
       .then((response) => {
         this.distanceMatrixObject = response as DistanceMatrix;
 
-        console.log(this.distanceMatrixObject);
+        //console.log(this.distanceMatrixObject);
 
         if (this.distanceMatrixObject.rows[0].elements[0].status == 'OK') {
 
-          this.addressNotExits = false;
+          this.addressExists = true;
+          this.calculatedShipping = true;
+          console.log("this.addressExists: " + this.addressExists);
+          console.log("this.calculatedShipping: " + this.calculatedShipping);
 
-          console.log(
+          /* console.log(
             'Domicilio entrega: ' +
               this.distanceMatrixObject.destination_addresses[0]
-          );
+          ); */
 
           this.destination_addresses = this.distanceMatrixObject.destination_addresses[0];
 
           this.calculateDistance = this.distanceMatrixObject.rows[0].elements[0].distance.value;
 
-          console.log('Distancia: ' + this.calculateDistance);
-          this.shippingPrice = (this.calculateDistance * this.shippingCostByKm) / 1000;
-          this.userDataForm.get('sendPrice')?.setValue(this.shippingPrice);
+          //console.log('Distancia: ' + this.calculateDistance);
+          if(this.discountCoupon.code != "" && this.discountCoupon.freeShiping){
+            this.shippingPrice = 0;
+
+            
+          }else{
+            this.shippingPrice = (this.calculateDistance * this.shippingCostByKm) / 1000;
+          }
+          
+          //this.userDataForm.get('sendPrice')?.setValue(this.shippingPrice);
 
         } else if (this.distanceMatrixObject.rows[0].elements[0].status == 'ZERO_RESULTS') {
           this.destination_addresses = '';
 
 
-          this.addressNotExits = true;
+          this.addressExists = false;
           this.shippingPrice = 0;
+          this.calculatedShipping = true;
 
 
           console.log('Dirección inexistente...');
@@ -296,6 +343,15 @@ export class BuyFormComponent implements OnInit {
   }
 
   getTotalBuy() {
+    
+    if(this.discountCoupon.code != ""){
+      
+      this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
+      
+
+
+    }
+    //return this.subTotalPrice + this.shippingPrice;
     return this.subTotalPrice + this.shippingPrice;
   }
 
@@ -304,6 +360,8 @@ export class BuyFormComponent implements OnInit {
   }
 
   generatePurchase() {
+
+    
     const productos = this.cartItems.map(({ id, quantity, urlImage, price, model, brand}) => ({
       id,
       quantity,
@@ -384,6 +442,21 @@ export class BuyFormComponent implements OnInit {
     
           this.purchaseService.agregarCompra(nuevaCompra).subscribe(
             (response) => {
+
+              if(this.discountCoupon.code != ""){
+                this.discountCoupon.stock--;
+                this.discountCouponService.updateDiscountCoupon(this.discountCoupon).subscribe({
+                  next: response =>{
+                    console.log("Stock modificado");
+                  },
+                  error: error =>{
+                    console.log("No se pudo modificar el stock");
+                  }
+                });
+              }
+              
+
+
               console.log('Compra registrada con éxito:', response);
     
               productos.forEach((producto) => {
@@ -444,5 +517,77 @@ export class BuyFormComponent implements OnInit {
   }
 
 
+
+
+  applyDiscountCoupon(){//hacer un custom validator
+    this.discountCouponService.getAll().subscribe({
+      next: response =>{
+        let allDiscountCoupons = response;
+        let findedDiscountCoupon: DiscountCoupon | undefined;
+        let itemsApplyDiscountCoupon: ProductInterface2[] = [];
+        
+        findedDiscountCoupon = this.discountCouponService.getDiscountCouponByCode(allDiscountCoupons, this.userDataForm.get("discountCoupon")?.value);
+        console.log("Cupon encontrado");
+        console.log(findedDiscountCoupon);
+  
+        /* if(findedDiscountCoupon != undefined){
+          if(findedDiscountCoupon.categoryList.length != 0 && findedDiscountCoupon.brandList.length != 0){//Cupón por categoria y marca
+            this.cartItems.forEach(item =>{//Cupón por categoria y marca
+              if(findedDiscountCoupon.categoryList.find(category => category == item.category) != undefined && 
+                    findedDiscountCoupon.brandList.find(brand => brand == item.brand) != undefined){
+                       itemsApplyDiscountCoupon.push(item);
+               }
+          });
+
+        }else if(findedDiscountCoupon.categoryList.length != 0 && findedDiscountCoupon.brandList.length == 0){//Cupón por categoria sola
+          this.cartItems.forEach(item =>{
+            if(findedDiscountCoupon.categoryList.find(category => category == item.category) != undefined){
+                     itemsApplyDiscountCoupon.push(item);
+            }
+          });
+          
+        }else if(findedDiscountCoupon.categoryList.length == 0 && findedDiscountCoupon.brandList.length != 0){//Cupón por marca sola
+          this.cartItems.forEach(item =>{
+            if(findedDiscountCoupon.brandList.find(brand => brand == item.brand) != undefined){
+                     itemsApplyDiscountCoupon.push(item);
+            }
+          });
+        }
+      } */
+
+
+        if(findedDiscountCoupon != undefined){
+          this.discountCoupon = findedDiscountCoupon;
+
+        }else{
+          this.discountCoupon = this.initDiscountCoupon();
+        };
+
+
+
+      },
+      error: error =>{
+        console.log("Error al obtener todos los cupones de descuento");
+      }
+    });
+  }
+
+  private initDiscountCoupon(){
+    let coupon: DiscountCoupon = {
+      id: "",
+      code: "",
+      maxMount: 0,
+      discountPercentage: 0,
+      freeShiping: false,
+      categoryList: [],
+      brandList: [],
+      startstDate: new Date(),
+      endDate: new Date(),
+      infinitStock: false,
+      stock: 0
+    }
+    return coupon;
+  }
+  
 
 }

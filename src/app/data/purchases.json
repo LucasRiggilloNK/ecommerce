@@ -147,6 +147,22 @@
       ],
       "fecha": "2025-01-30T14:59:30.479Z",
       "total": 2600691.1
+    },
+    {
+      "id": "e28d",
+      "purchaseId": null,
+      "clienteId": "ccc1",
+      "productos": [
+        {
+          "id": "8",
+          "quantity": 1,
+          "price": 589999,
+          "brand": "Samsung",
+          "model": "GALAXY A35 - SM-A356E"
+        }
+      ],
+      "fecha": "2025-02-03T00:52:41.688Z",
+      "total": 560499.05
     }
   ]
 }

@@ -3,6 +3,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ProductInterface } from '../interfaces/product/product-interface';
 import Swal from 'sweetalert2';
 import { ProductInterface2 } from '../interfaces/product/product-interface2';
+import { DiscountCoupon } from '../interfaces/product/discount-coupon';
+import { DiscountCouponService } from './discount-coupon/discount-coupon.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +17,7 @@ export class CarritoService {
   private cartQuantitySource = new BehaviorSubject<number>(0);
   private cartStockSource = new BehaviorSubject<number>(0);
 
-  constructor() {
+  constructor(private discounCouponService: DiscountCouponService) {
     this.loadCart();
   }
 
@@ -165,12 +167,27 @@ export class CarritoService {
     }
   }
 
-  getTotalPrice(): number {
+  /* getTotalPrice(): number {
     return this.cart.reduce(
       (total, item) => total + item.price * item.quantity,
       0
     );
-  }
+  } */
+    getTotalPrice(discountCoupon: DiscountCoupon): number {
+      let total: number = 0;
+      if(discountCoupon.code == ""){
+        this.cart.forEach(item =>{
+          total = total + item.price * item.quantity;
+        })
+        
+      }else{
+        console.log("ENTRA")
+        total = this.discounCouponService.applyDiscount(this.cart, discountCoupon);
+
+      }
+
+      return total;
+    }
 
   private saveCart(): void {
     sessionStorage.setItem('cart', JSON.stringify(this.cart));

@@ -137,7 +137,21 @@
   <input type="text" formControlName="floor" />
   <p>Departamento:</p>
   <input type="text" formControlName="flat" />
-
+  <div >
+    <p>Cupon de descuento</p>
+    <input type="text" formControlName="discountCoupon" />
+    <div class="error-message" *ngIf="!userDataForm.get('discountCoupon')?.errors?.['couponExists']">
+      *Cupón inválido
+    </div>
+    <button
+    (click)="applyDiscountCoupon()" [disabled]="!userDataForm.get('discountCoupon')?.errors?.['couponExists'] || userDataForm.get('discountCoupon')?.value == ''"
+  >
+    Aplicar cupón
+  </button>
+  <label for="" *ngIf="discountCoupon.freeShiping" >Envío gratis!</label>
+  <label for="">Calcular envío para comprobar dirección</label>
+  </div>
+  
   
 
  
@@ -156,7 +170,8 @@
     >
       Calcular envio
     </button>
-    <div class="error-message" *ngIf="addressNotExits" >
+    
+    <div class="error-message" *ngIf="!addressExists && calculatedShipping" >
       Dirección inexistente
     </div>
 
@@ -269,14 +284,23 @@
   </select>
 
   
-    <div class="error-message" *ngIf="userDataForm.valid" >
+    <!-- <div class="error-message" *ngIf="userDataForm.valid" >
 
       <div *ngIf="!verifyCard" >
         *Tarjeta inválida
       </div>
+    </div> -->
+    <div class="error-message" *ngIf="!verifyCard && (this.userDataForm.get('cardType')?.touched || this.userDataForm.get('cardType')?.dirty ||
+    this.userDataForm.get('cardHolder')?.touched || this.userDataForm.get('cardHolder')?.dirty ||
+    this.userDataForm.get('cardNumber')?.touched || this.userDataForm.get('cardNumber')?.dirty || 
+    this.userDataForm.get('expirationDate')?.touched || this.userDataForm.get('expirationDate')?.dirty ||
+    this.userDataForm.get('cardNumber')?.touched || this.userDataForm.get('cardNumber')?.dirty ||
+    this.userDataForm.get('cvv')?.touched ||  this.userDataForm.get('cvv')?.dirty ||
+    this.userDataForm.get('cardIssuer')?.touched || this.userDataForm.get('cardIssuer')?.dirty)" >
+      *Tarjeta inválida
     </div>
     
 
-  <button  (click)="generatePurchase()" type="submit" [disabled]="!(userDataForm.valid && verifyCard) || shippingPrice == 0 " >Confirmar compra</button>
+  <button  (click)="generatePurchase()" type="submit" [disabled]="!verifyCard || !addressExists" >Confirmar compra</button>
 </form>
 </div>
