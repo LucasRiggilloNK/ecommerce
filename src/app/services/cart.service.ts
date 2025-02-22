@@ -135,7 +135,7 @@ export class CarritoService {
         })
         
       }else{
-        console.log("ENTRA")
+        //console.log("ENTRA")
         total = this.discounCouponService.applyDiscount(this.cart, discountCoupon);
 
       }
