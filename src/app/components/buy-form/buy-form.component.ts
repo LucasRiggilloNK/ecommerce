@@ -365,14 +365,13 @@ export class BuyFormComponent implements OnInit {
   generatePurchase() {
 
     
-    const productos = this.cartItems.map(({ id, quantity, urlImage, price, model, brand, category}) => ({//agregué category aca y mas abajo
+    const productos = this.cartItems.map(({ id, quantity, urlImage, price, model, brand}) => ({
       id,
       quantity,
       urlImage,
       price,
       model,
-      brand,
-      category
+      brand
     }));
   
     
@@ -439,13 +438,12 @@ export class BuyFormComponent implements OnInit {
           const nuevaCompra: Purchase = {
             purchaseId: ultimoId, // Usamos el ID obtenido
             clienteId: this.authService.getUserId(),
-            productos: productos.map(({ id, quantity, price, brand, model, category }) => ({
+            productos: productos.map(({ id, quantity, price, brand, model }) => ({
               id,
               quantity,
               price, // Incluir el precio aquí
               brand, // Mantener la marca
-              model,
-              category
+              model
             })),
             
             fecha: new Date(),
