@@ -63,12 +63,16 @@ export class AuthService {
   }
 
   logout(): void {
-    if (confirm('Estas seguro que queres cerrar sesión?')) {
+    /* if (confirm('Estas seguro que queres cerrar sesión?')) {
       if (typeof window !== 'undefined') {
         sessionStorage.clear();
         window.location.reload();
       }
-    }
+    } */
+      
+        sessionStorage.clear();
+        window.location.reload();
+      
   }
 
   isLoggedIn(): boolean {

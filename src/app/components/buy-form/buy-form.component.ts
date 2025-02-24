@@ -365,13 +365,14 @@ export class BuyFormComponent implements OnInit {
   generatePurchase() {
 
     
-    const productos = this.cartItems.map(({ id, quantity, urlImage, price, model, brand}) => ({
+    const productos = this.cartItems.map(({ id, quantity, urlImage, price, model, brand, category}) => ({//agregué category aca y mas abajo
       id,
       quantity,
       urlImage,
       price,
       model,
       brand,
+      category
     }));
   
     
@@ -438,12 +439,13 @@ export class BuyFormComponent implements OnInit {
           const nuevaCompra: Purchase = {
             purchaseId: ultimoId, // Usamos el ID obtenido
             clienteId: this.authService.getUserId(),
-            productos: productos.map(({ id, quantity, price, brand, model }) => ({
+            productos: productos.map(({ id, quantity, price, brand, model, category }) => ({
               id,
               quantity,
               price, // Incluir el precio aquí
               brand, // Mantener la marca
-              model
+              model,
+              category
             })),
             
             fecha: new Date(),
@@ -453,7 +455,7 @@ export class BuyFormComponent implements OnInit {
           this.purchaseService.agregarCompra(nuevaCompra).subscribe(
             (response) => {
 
-              if(this.discountCoupon.code != ""){
+              if(this.discountCoupon.code != "" && !this.discountCoupon.infinitStock){
                 this.discountCoupon.stock--;
                 this.discountCouponService.updateDiscountCoupon(this.discountCoupon).subscribe({
                   next: response =>{
@@ -550,8 +552,12 @@ export class BuyFormComponent implements OnInit {
       
           //this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
           this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
+          if(this.discountCoupon.freeShiping){
+            this.shippingPrice = 0;
+          }
           
         }
+
 
         this.getTotalBuy();
 

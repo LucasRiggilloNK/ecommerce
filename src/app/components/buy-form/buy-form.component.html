@@ -1,7 +1,11 @@
+<button class="button" (click)="goBack()">
+  <img src="/arrow-left.svg" alt="volver" width="25px" />
+</button>
 <div class="buy">
-  <button class="button" (click)="goBack()">
+  <!-- <button class="button" (click)="goBack()">
     Volver
-  </button>
+  </button> -->
+  
   <div class="items" *ngIf="cartItems.length > 0">
     <div *ngFor="let product of cartItems">
       <div class="product-item">
