@@ -22,7 +22,7 @@ export class RegisterComponent {
   provincesList: string[] = Object.values(Province);
   bsasCityList: string[] = Object.values(BsasCity);
   showNewPassword: boolean = false;
-  showConfirmPassword: boolean = false;
+  showConfirmPassword: boolean = false;  
   constructor(
     private fb: FormBuilder,
     private registerService: RegisterService,
@@ -63,7 +63,13 @@ export class RegisterComponent {
       this.showNewPassword = !this.showNewPassword;
     } else if (field === 'confirm') {
       this.showConfirmPassword = !this.showConfirmPassword;
-    } 
+    }
+  }
+
+  samePasswordValidator(form: FormGroup) {
+    const password = form.get('password')?.value;
+    const passwordConfirmation = form.get('passwordConfirmation')?.value;
+    return password === passwordConfirmation ? null : { samePasswordValidator: true };
   }
   onSubmit() {
     if (this.registerForm.valid) {

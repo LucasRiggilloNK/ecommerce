@@ -123,16 +123,15 @@
         </div>
       </div>
     </div>
-
     <div class="flex">
       <!-- Contraseña -->
       <div class="inner-flex">
         <label for="password">Contraseña:</label>
         <div class="input-group">
-          <input [type]="showNewPassword ? 'text' : 'password'" class="form-control" formControlName="currentPassword">
+          <input [type]="showNewPassword ? 'text' : 'password'" class="form-control" formControlName="password">
           <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility('new')">
-            <img *ngIf="showNewPassword; else showIcon" src="/eyeHide-icon.png" alt="Ocultar Contraseña" width="20">
-            <ng-template #showIcon>
+            <img *ngIf="showNewPassword; else showIconNew" src="/eyeHide-icon.png" alt="Ocultar Contraseña" width="20">
+            <ng-template #showIconNew>
               <img src="/eye-icon.png" alt="Mostrar Contraseña" width="20">
             </ng-template>
           </button>
@@ -148,10 +147,10 @@
       <div class="inner-flex">
         <label for="passwordConfirmation">Confirmar contraseña:</label>
         <div class="input-group">
-          <input [type]="showConfirmPassword ? 'text' : 'password'" class="form-control" formControlName="currentPassword">
+          <input [type]="showConfirmPassword ? 'text' : 'password'" class="form-control" formControlName="passwordConfirmation">
           <button type="button" class="btn btn-outline-secondary" (click)="togglePasswordVisibility('confirm')">
-            <img *ngIf="showConfirmPassword; else showIcon" src="/eyeHide-icon.png" alt="Ocultar Contraseña" width="20">
-            <ng-template #showIcon>
+            <img *ngIf="showConfirmPassword; else showIconConfirm" src="/eyeHide-icon.png" alt="Ocultar Contraseña" width="20">
+            <ng-template #showIconConfirm>
               <img src="/eye-icon.png" alt="Mostrar Contraseña" width="20">
             </ng-template>
           </button>
@@ -166,7 +165,7 @@
         </div>
       </div>
     </div>
-
+    
     <button class="button" type="submit" [disabled]="registerForm.invalid">
       Registrarme
     </button>

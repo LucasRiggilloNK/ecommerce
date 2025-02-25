@@ -95,6 +95,22 @@
       "email": "martincho@gmail.com",
       "password": "123456",
       "role": "ADMIN"
+    },
+    {
+      "id": "d0a4",
+      "name": "Nicolas",
+      "lastname": "Blanco Rio",
+      "dni": "42597483",
+      "birthdate": "2000-10-02",
+      "province": "Buenos Aires",
+      "city": "Mar del Plata",
+      "street": "Beltrami Al",
+      "streetNumber": "1560",
+      "floor": "",
+      "flat": "",
+      "email": "nicolasuxmal@gmail.com",
+      "password": "123456",
+      "role": 1
     }
   ]
 }
