@@ -66,4 +66,8 @@ export class CartComponent implements OnInit, OnDestroy {
   goBack(): void {
     this.location.back();
   }
+
+  removeItem(id: string){
+    this.carritoService.removeProduct(id);
+  }
 }

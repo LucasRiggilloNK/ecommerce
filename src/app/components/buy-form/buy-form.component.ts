@@ -32,6 +32,7 @@ export class BuyFormComponent implements OnInit {
   cartItems: ProductInterface2[] = [];
   user: User | null;
   subTotalPrice: number;
+  totalBuy: number = 0;
   userDataForm: FormGroup;
 
 
@@ -162,13 +163,16 @@ export class BuyFormComponent implements OnInit {
 
   ngOnInit(): void {
     
-
-
-
     this.buyService.getCartItemsToBuy().subscribe((items) => {
       this.cartItems = items;
     });
     this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
+
+    //AGREGADO
+    this.totalBuy = this.getTotalBuy();
+
+    ////////////////////
+
 
     let userId: string | null = this.authService.getUserId();
     if (userId !== null) {
@@ -240,6 +244,13 @@ export class BuyFormComponent implements OnInit {
       this.destination_addresses = "";
       this.calculatedShipping = false;
       this.discountCoupon = this.initDiscountCoupon();
+
+      //AGREGADO
+      this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
+      this.totalBuy = this.getTotalBuy();
+  
+      ////////////////////
+      
     });
 
   }
@@ -298,7 +309,9 @@ export class BuyFormComponent implements OnInit {
             
           }else{
             this.shippingPrice = (this.calculateDistance * this.shippingCostByKm) / 1000;
+            
           }
+
           
 
         } else if (this.distanceMatrixObject.rows[0].elements[0].status == 'ZERO_RESULTS') {
@@ -312,6 +325,11 @@ export class BuyFormComponent implements OnInit {
 
           console.log('Dirección inexistente...');
         }
+
+        
+
+
+
       })
       .catch((error) => {
         this.destination_addresses = '';
@@ -321,18 +339,24 @@ export class BuyFormComponent implements OnInit {
       });
   }
 
-  getTotalBuy() {
+  /* getTotalBuy() {
+
+    let total = this.subTotalPrice;
     
     if(this.discountCoupon.code != ""){
       
-      this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
+      //this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
+      total = this.buyService.getSubtotal(this.discountCoupon);
       
-
-
     }
     //return this.subTotalPrice + this.shippingPrice;
-    return this.subTotalPrice + this.shippingPrice;
-  }
+    return total + this.shippingPrice;
+  } */
+    getTotalBuy() {
+
+      this.totalBuy = this.subTotalPrice + this.shippingPrice;
+      return this.totalBuy;
+    }
 
   get productos(): FormArray {
     return this.userDataForm.get('productos') as FormArray;
@@ -347,10 +371,17 @@ export class BuyFormComponent implements OnInit {
       urlImage,
       price,
       model,
-      brand,
+      brand
     }));
   
-    const total = this.getTotalBuy();
+    
+    //const total = this.getTotalBuy();
+
+    //AGREGADO
+    const total = this.totalBuy;
+    /////////////////
+
+
     const domicilio = `${this.userDataForm.get('street')?.value} ${this.userDataForm.get('streetNumber')?.value}, ${this.userDataForm.get('city')?.value}, ${this.userDataForm.get('province')?.value}, ${this.userDataForm.get('country')?.value}`;
     const tarjeta = this.userDataForm.get('cardNumber')?.value;
   
@@ -422,7 +453,7 @@ export class BuyFormComponent implements OnInit {
           this.purchaseService.agregarCompra(nuevaCompra).subscribe(
             (response) => {
 
-              if(this.discountCoupon.code != ""){
+              if(this.discountCoupon.code != "" && !this.discountCoupon.infinitStock){
                 this.discountCoupon.stock--;
                 this.discountCouponService.updateDiscountCoupon(this.discountCoupon).subscribe({
                   next: response =>{
@@ -498,7 +529,7 @@ export class BuyFormComponent implements OnInit {
 
 
 
-  applyDiscountCoupon(){//hacer un custom validator
+  applyDiscountCoupon(){
     this.discountCouponService.getAll().subscribe({
       next: response =>{
         let allDiscountCoupons = response;
@@ -509,9 +540,26 @@ export class BuyFormComponent implements OnInit {
         if(findedDiscountCoupon != undefined){
           this.discountCoupon = findedDiscountCoupon;
 
+
         }else{
           this.discountCoupon = this.initDiscountCoupon();
         };
+
+        //AGREGADO
+        if(this.discountCoupon.code != ""){
+      
+          //this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
+          this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
+          if(this.discountCoupon.freeShiping){
+            this.shippingPrice = 0;
+          }
+          
+        }
+
+
+        this.getTotalBuy();
+
+        ///////////////////////
 
 
 

@@ -3,6 +3,8 @@ import { AuthService } from '../services/login/auth.service';
 import { CarritoService } from '../services/cart.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { error } from 'console';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -44,8 +46,34 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
-    this.authService.logout();
-    this.name = null;
+    this.logoutAlert()
+    .then(result =>{
+      if(result.isConfirmed){
+        this.authService.logout();
+        this.name = null;
+      }
+    })
+    .catch(error =>{
+      console.log("Error en deslogueo");
+    });
+    
+    
+    
+  }
+
+  logoutAlert(){
+      const message = "Está seguro que desea salir?";
+          
+      return Swal.fire({
+        html: message,
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Aceptar"
+      });
+    
+
+
   }
 
   ngOnDestroy(): void {

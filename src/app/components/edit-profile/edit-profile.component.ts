@@ -270,7 +270,9 @@ export class EditProfileComponent implements OnInit {
       .map(
         (product) => `
           <div style="margin-bottom: 15px;">
+            
             <strong>Marca:</strong> ${product.brand} <br>
+            <strong>Modelo:</strong> ${product.model} <br>
             <strong>Precio:</strong> $${product.price.toFixed(2)} <br>
             <strong>Cantidad:</strong> ${product.quantity} <br>
           </div>

@@ -410,6 +410,75 @@
       ],
       "fecha": "2025-02-03T20:21:25.455Z",
       "total": 2600557.2
+    },
+    {
+      "id": "a636",
+      "purchaseId": 480,
+      "clienteId": "ccc1",
+      "productos": [
+        {
+          "id": "10",
+          "quantity": 1,
+          "price": 2999999,
+          "brand": "Whirlpool",
+          "model": "WRO85BK"
+        },
+        {
+          "id": "68cb",
+          "quantity": 1,
+          "price": 129999,
+          "brand": "JBL",
+          "model": "TUNE 770 WH"
+        },
+        {
+          "id": "01af",
+          "quantity": 1,
+          "price": 71999,
+          "brand": "Philco",
+          "model": "PHLF6510P2"
+        }
+      ],
+      "fecha": "2025-02-23T01:25:36.038Z",
+      "total": 3101997
+    },
+    {
+      "id": "edc1",
+      "purchaseId": 480,
+      "clienteId": "ccc1",
+      "productos": [
+        {
+          "id": "68cb",
+          "quantity": 1,
+          "price": 129999,
+          "brand": "JBL",
+          "model": "TUNE 770 WH"
+        },
+        {
+          "id": "21",
+          "quantity": 1,
+          "price": 699999,
+          "brand": "Gafa",
+          "model": "HGF358AFB"
+        }
+      ],
+      "fecha": "2025-02-23T01:41:52.846Z",
+      "total": 759998.1
+    },
+    {
+      "id": "3654",
+      "purchaseId": 480,
+      "clienteId": "ccc1",
+      "productos": [
+        {
+          "id": "3a69",
+          "quantity": 1,
+          "price": 1075299,
+          "brand": "Electrolux",
+          "model": "HENI3500P"
+        }
+      ],
+      "fecha": "2025-02-23T01:44:24.468Z",
+      "total": 975299
     }
   ]
 }
