@@ -78,8 +78,11 @@
 </div>
 
 <!-- Si no hay productos, muestra un mensaje -->
+
 <ng-template #noProducts>
-  <div class="vacio">
-    <p>Carrito vacio.</p>
+  <div class="no-products">
+    <div class="alert alert-info" role="alert">
+      Carrito vacio.
+    </div>
   </div>
 </ng-template>
