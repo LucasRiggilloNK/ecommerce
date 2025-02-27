@@ -34,10 +34,10 @@
         <label for="lastname">dni:</label>
         <input id="lastname" formControlName="dni" type="text" placeholder="DNI" />
         <div class="error-message" *ngIf="!registerForm.valid && (registerForm.get('dni')?.dirty || registerForm.get('dni')?.touched)">
-          <div *ngIf="registerForm.get('sni')?.errors?.['required']">
+          <div *ngIf="registerForm.get('dni')?.errors?.['required']">
             *Campo requerido
           </div>
-          <div *ngIf="registerForm.get('sni')?.errors?.['numbersOnly']">
+          <div *ngIf="registerForm.get('dni')?.errors?.['numbersOnly']">
             *Debe contener sólo números
           </div>
         </div>

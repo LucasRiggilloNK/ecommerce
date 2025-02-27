@@ -168,10 +168,9 @@ export class BuyFormComponent implements OnInit {
     });
     this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
 
-    //AGREGADO
+   
     this.totalBuy = this.getTotalBuy();
 
-    ////////////////////
 
 
     let userId: string | null = this.authService.getUserId();
@@ -245,11 +244,9 @@ export class BuyFormComponent implements OnInit {
       this.calculatedShipping = false;
       this.discountCoupon = this.initDiscountCoupon();
 
-      //AGREGADO
       this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
       this.totalBuy = this.getTotalBuy();
   
-      ////////////////////
       
     });
 
@@ -339,19 +336,6 @@ export class BuyFormComponent implements OnInit {
       });
   }
 
-  /* getTotalBuy() {
-
-    let total = this.subTotalPrice;
-    
-    if(this.discountCoupon.code != ""){
-      
-      //this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
-      total = this.buyService.getSubtotal(this.discountCoupon);
-      
-    }
-    //return this.subTotalPrice + this.shippingPrice;
-    return total + this.shippingPrice;
-  } */
     getTotalBuy() {
 
       this.totalBuy = this.subTotalPrice + this.shippingPrice;
@@ -374,12 +358,8 @@ export class BuyFormComponent implements OnInit {
       brand
     }));
   
-    
-    //const total = this.getTotalBuy();
 
-    //AGREGADO
     const total = this.totalBuy;
-    /////////////////
 
 
     const domicilio = `${this.userDataForm.get('street')?.value} ${this.userDataForm.get('streetNumber')?.value}, ${this.userDataForm.get('city')?.value}, ${this.userDataForm.get('province')?.value}, ${this.userDataForm.get('country')?.value}`;
@@ -545,10 +525,8 @@ export class BuyFormComponent implements OnInit {
           this.discountCoupon = this.initDiscountCoupon();
         };
 
-        //AGREGADO
         if(this.discountCoupon.code != ""){
       
-          //this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
           this.subTotalPrice = this.buyService.getSubtotal(this.discountCoupon);
           if(this.discountCoupon.freeShiping){
             this.shippingPrice = 0;
@@ -559,7 +537,6 @@ export class BuyFormComponent implements OnInit {
 
         this.getTotalBuy();
 
-        ///////////////////////
 
 
 

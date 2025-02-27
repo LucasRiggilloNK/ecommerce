@@ -34,7 +34,7 @@ export class DiscountCouponService {
   applyDiscount(cartItems: ProductInterface2[], discountCoupon: DiscountCoupon){// aplica el descuento, el el envio gratis, retorna el subtotal del carrito con el descuento
     let subTotal = 0;
     let mount = discountCoupon.maxMount;
-    console.log("MxMount = " + mount);
+    
     if(discountCoupon != undefined){
       if(discountCoupon.categoryList.length != 0 && discountCoupon.brandList.length != 0){//Cupón por categoria y marca
 
@@ -42,7 +42,6 @@ export class DiscountCouponService {
           if(discountCoupon.categoryList.find(category => category == item.category) != undefined && 
             discountCoupon.brandList.find(brand => brand == item.brand) != undefined){
 
-              //subTotal = this.calculateSubtotalByPorcentAndMount(discountCoupon, item, subTotal, mount);
               let value = this.calculateSubtotalByPorcentAndMount2(discountCoupon, item, mount); 
               subTotal = subTotal + value.subTotal;
               mount = value.mount;
@@ -59,7 +58,6 @@ export class DiscountCouponService {
       cartItems.forEach(item =>{
         if(discountCoupon.categoryList.find(category => category == item.category) != undefined){
 
-          //subTotal = this.calculateSubtotalByPorcentAndMount(discountCoupon, item, subTotal, mount);
           let value = this.calculateSubtotalByPorcentAndMount2(discountCoupon, item, mount); 
           subTotal = subTotal + value.subTotal;
           mount = value.mount;
@@ -76,7 +74,6 @@ export class DiscountCouponService {
       cartItems.forEach(item =>{
         if(discountCoupon.brandList.find(brand => brand == item.brand) != undefined){
 
-          //subTotal = this.calculateSubtotalByPorcentAndMount(discountCoupon, item, subTotal, mount);
           let value = this.calculateSubtotalByPorcentAndMount2(discountCoupon, item, mount); 
           subTotal = subTotal + value.subTotal;
           mount = value.mount;
@@ -88,14 +85,13 @@ export class DiscountCouponService {
     }else{// cupón de descuento general
       cartItems.forEach(item =>{
         
-        //subTotal = this.calculateSubtotalByPorcentAndMount(discountCoupon, item, subTotal, mount); 
-        //subTotal = subTotal + this.calculateSubtotalByPorcentAndMount2(discountCoupon, item, mount); 
+        
         let value = this.calculateSubtotalByPorcentAndMount2(discountCoupon, item, mount); 
         subTotal = subTotal + value.subTotal;
         mount = value.mount;
 
         
-        console.log("Mount = " + mount);
+        
       });
 
 
@@ -111,7 +107,7 @@ export class DiscountCouponService {
 
   //Calcula el subtotal aplicando porcentaje y monto maximo o porcentaje solo según corresponda el cupon de descuento
   calculateSubtotalByPorcentAndMount(discountCoupon: DiscountCoupon, item: ProductInterface2, subTotal: number, mount: number){
-    //console.log("Mount = " + mount);
+    
     let discountVar = discountCoupon.discountPercentage/100;
     
     if(discountCoupon.discountPercentage != 0 && discountCoupon.maxMount != 0){//descuento con porcentaje y monto maximo

@@ -34,7 +34,7 @@ export class AuthService {
               sessionStorage.setItem('role', String(user.role)); 
               
             }
-            //window.location.reload();
+            
             return true;
           }
           return false;
@@ -63,12 +63,7 @@ export class AuthService {
   }
 
   logout(): void {
-    /* if (confirm('Estas seguro que queres cerrar sesión?')) {
-      if (typeof window !== 'undefined') {
-        sessionStorage.clear();
-        window.location.reload();
-      }
-    } */
+    
       
         sessionStorage.clear();
         window.location.reload();

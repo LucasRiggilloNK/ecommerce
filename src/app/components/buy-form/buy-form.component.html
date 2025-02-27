@@ -2,9 +2,7 @@
   <img src="/arrow-left.svg" alt="volver" width="25px" />
 </button>
 <div class="buy">
-  <!-- <button class="button" (click)="goBack()">
-    Volver
-  </button> -->
+
   
   <div class="items" *ngIf="cartItems.length > 0">
     <div *ngFor="let product of cartItems">
@@ -24,9 +22,7 @@
         </div>
       </div>
     </div>
-    <!-- <div class="subtotal">
-      <p>Subtotal: ${{ getSubtotal() | number : "1.0" }}</p>
-    </div> -->
+
     <div class="subtotal">
       <p>Subtotal: ${{ subTotalPrice | number : "1.0" }}</p>
     </div>
@@ -192,8 +188,7 @@
 
       <label style="color: white" for=""
         >Total compra ${{ getTotalBuy() | number : "1.0" }}</label>
-        <!-- <label style="color: white" for=""
-        >Total compra ${{ totalBuy | number : "1.0" }}</label> -->
+
     </div>
   </div>
   <br>

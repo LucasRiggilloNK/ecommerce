@@ -83,7 +83,7 @@ export class EditProfileComponent implements OnInit {
       next: (response) => {
         this.user = response;
         this.profileForm.patchValue(this.user); 
-        console.log('Datos del usuario cargados:', this.user);
+        //console.log('Datos del usuario cargados:', this.user);
       },
       error: (error) => {
         console.error(`Error al obtener usuario con ID ${userId}:`, error);
@@ -93,7 +93,7 @@ export class EditProfileComponent implements OnInit {
     this.purchaseService.obtenerComprasPorCliente(userId).subscribe({
       next: (response) => {
         this.purchases = response;
-        console.log('Compras del usuario:', this.purchases);
+        //console.log('Compras del usuario:', this.purchases);
       },
       error: (error) => {
         console.error(`Error al obtener compras del usuario con ID ${userId}:`, error);

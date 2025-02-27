@@ -111,6 +111,22 @@
       "email": "nicolasuxmal@gmail.com",
       "password": "123456",
       "role": 1
+    },
+    {
+      "id": "e8ec",
+      "name": "Martin",
+      "lastname": "Perez",
+      "dni": "25555555",
+      "birthdate": "1988-10-10",
+      "province": "Buenos Aires",
+      "city": "Mar del Plata",
+      "street": "Lamadrid",
+      "streetNumber": "1275",
+      "floor": "",
+      "flat": "",
+      "email": "martinPerez@gmail.com",
+      "password": "123456",
+      "role": 1
     }
   ]
 }
