@@ -58,10 +58,16 @@
                   <input type="text" class="form-control" formControlName="streetNumber">
 
                   <label>Ciudad:</label>
-                  <input type="text" class="form-control" formControlName="city">
+                  <select name="" id="" formControlName="city" class="form-control" >
+                    <option *ngFor="let city of bsasCityList" [value]="city">{{ city }}</option>
+                  </select>
 
                   <label>Provincia:</label>
-                  <input type="text" class="form-control" formControlName="province">
+                  <select name="" id="" formControlName="province"  class="form-control">
+                    <option *ngFor="let province of provincesList" [value]="province">
+                      {{ province }}
+                    </option>
+                  </select>
               </form>
           </div>
           <div class="modal-footer">

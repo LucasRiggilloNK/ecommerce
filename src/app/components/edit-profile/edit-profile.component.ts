@@ -10,6 +10,8 @@ import { CustomValidators } from '../../common/custom-validators';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product/product.service';
 import Swal from 'sweetalert2';
+import { BsasCity } from '../../models/bsas-city';
+import { Province } from '../../models/province';
 
 @Component({
   selector: 'app-edit-profile',
@@ -39,6 +41,8 @@ export class EditProfileComponent implements OnInit {
   showNewPassword: boolean = false;
   showConfirmPassword: boolean = false;
   selectedPurchaseId: number | null = null;
+  bsasCityList: string[] = Object.values(BsasCity);
+  provincesList: string[] = Object.values(Province);
 
   constructor(
     private authService: AuthService,

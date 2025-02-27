@@ -261,7 +261,7 @@ export class BuyFormComponent implements OnInit {
     this.userDataForm.get('email')?.setValue(user.email);
     this.userDataForm.get('country')?.setValue('Argentina');
     this.userDataForm.get('province')?.setValue(Province.BuenosAires);
-    this.userDataForm.get('city')?.setValue(BsasCity.MarDelPlata);
+    this.userDataForm.get('city')?.setValue(user.city);
     this.userDataForm.get('cardType')?.setValue(CardType.CREDITO);
     this.userDataForm.get('cardIssuer')?.setValue(CardIssuer.VISA);
     this.userDataForm.get('street')?.setValue(user.street);
